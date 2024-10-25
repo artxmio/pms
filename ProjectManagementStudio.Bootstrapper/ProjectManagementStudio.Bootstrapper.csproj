@@ -7,4 +7,14 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="8.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProjectManagementStudio.Model\ProjectManagementStudio.Model.csproj" />
+    <ProjectReference Include="..\ProjectManagementStudio.ViewModel\ProjectManagementStudio.ViewModel.csproj" />
+    <ProjectReference Include="..\ProjectManagementStudio.View\ProjectManagementStudio.View.csproj" />
+  </ItemGroup>
+
 </Project>

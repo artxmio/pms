@@ -1,14 +1,18 @@
-﻿using System.Configuration;
-using System.Data;
+﻿using ProjectManagementStudio.Bootstrapper;
 using System.Windows;
 
-namespace ProjectManagmentStudio
-{
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : Application
-    {
-    }
+namespace ProjectManagmentStudio;
 
+public partial class App
+{
+    private Bootstrapper? _bootstrapper;
+
+    protected override void OnStartup(StartupEventArgs e)
+    {
+        base.OnStartup(e);
+
+        _bootstrapper = new Bootstrapper();
+
+        _bootstrapper.Run();
+    }
 }

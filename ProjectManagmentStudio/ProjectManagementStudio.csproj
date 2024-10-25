@@ -8,4 +8,12 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="8.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProjectManagementStudio.Bootstrapper\ProjectManagementStudio.Bootstrapper.csproj" />
+  </ItemGroup>
+
 </Project>
