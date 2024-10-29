@@ -2,7 +2,7 @@
 
 namespace ProjectManagementStudio.ViewModel.Command;
 
-public class RelayCommand(Action execute) : ICommand
+public class CommandBase(Action execute) : ICommand
 {
     private readonly Action _execute = execute;
 
