@@ -2,20 +2,16 @@
 
 namespace ProjectManagementStudio.ViewModel.Command;
 
-public class CommandBase(Action execute) : ICommand
+public abstract class CommandBase : ICommand
 {
-    private readonly Action _execute = execute;
-
-    public event EventHandler? CanExecuteChanged
-    {
-        add { CommandManager.RequerySuggested += value; }
-        remove { CommandManager.RequerySuggested -= value; }
-    }
+    public event EventHandler? CanExecuteChanged;
 
     public bool CanExecute(object? parameter) => true;
 
-    public void Execute(object? parameter)
+    public abstract void Execute(object? parameter);
+
+    protected void OnCanExecutedChanged()
     {
-        _execute.Invoke();
+        CanExecuteChanged?.Invoke(this, new EventArgs());
     }
 }
