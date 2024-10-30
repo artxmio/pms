@@ -1,0 +1,100 @@
+﻿<Page x:Class="ProjectManagementStudio.View.MainWindow.Pages.RegistrationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjectManagementStudio.View.MainWindow.Pages"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="900" d:DesignWidth="1600"
+      Title="RegistrationPage"
+      >
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <materialDesign:BundledTheme BaseTheme="Light" 
+                                         PrimaryColor="DeepPurple" 
+                                         SecondaryColor="Pink" />
+
+                <ResourceDictionary 
+                Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    
+    <Border CornerRadius="30" Width="446" Height="500" 
+        HorizontalAlignment="Left" 
+        VerticalAlignment="Center" 
+        Margin="250,0,0,0"
+        Background="#80DBCBE8" 
+        >
+        <StackPanel>
+            <TextBlock Text="Sign up"
+                   Width="267"
+                   Height="92"
+                   FontSize="75"
+                   Foreground="White"
+                   FontWeight="SemiBold"
+                   HorizontalAlignment="left"
+                   VerticalAlignment="Center"
+                   FontFamily="Outfit"
+                   Margin="99,32,0,0"
+                   />
+            <TextBox FontSize="20" Foreground="white" Height="40" Width="365"
+                     materialDesign:HintAssist.Hint="login"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     HorizontalAlignment="Left"
+                     Margin="41,30,0,0"
+                     BorderBrush="white"
+                     FontWeight="Normal" FontFamily="Outfit"
+            />
+            <TextBox FontSize="20" Foreground="white" Height="40" Width="365"
+                     materialDesign:HintAssist.Hint="email"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     HorizontalAlignment="Left"
+                     Margin="41,21,0,0"
+                     BorderBrush="white"
+                     FontWeight="Normal" FontFamily="Outfit"
+            />
+            <TextBox FontSize="20" Foreground="white" Height="40" Width="365"
+                     materialDesign:HintAssist.Hint="password"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     HorizontalAlignment="Left"
+                     Margin="41,21,0,0"
+                     BorderBrush="white"
+                     FontWeight="Normal" FontFamily="Outfit"
+            />
+            <Button Background="#2C1B45" FontWeight="Normal" FontFamily="Outfit" FontSize="40" Margin="0,45,0,0" Content="Continue" Width="370" Height="60">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                    BorderBrush="{TemplateBinding BorderBrush}" 
+
+                    CornerRadius="30">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                  VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Line X1="1" Y1="0" X2="366" Y2="0" 
+                  Stroke="White" StrokeThickness="1"
+                  Margin="41,16,0,0"  
+            />
+            <Grid Width="290" Height="23" Margin="0,6,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="234"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock FontFamily="Outfit" FontSize="20" FontWeight="Normal"
+                            Foreground="White" Text="Already have an account?"
+                />
+                <TextBlock Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Foreground="White">
+                    <Hyperlink NavigateUri="LoginPage.xaml" Foreground="#2883F8" RequestNavigate="Hyperlink_RequestNavigate">
+                        Log in
+                    </Hyperlink>
+                </TextBlock>
+            </Grid>
+        </StackPanel>
+    </Border>
+</Page>
