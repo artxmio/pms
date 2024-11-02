@@ -3,8 +3,9 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:ProjectManagementStudio.View.MainWindow.Pages"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:valid="clr-namespace:ProjectManagementStudio.ViewModel.ValidationsRules;assembly=ProjectManagementStudio.ViewModel"
+
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1600"
       Title="RegistrationPage"
@@ -21,7 +22,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    
+
     <Border CornerRadius="30" Width="446" Height="500" 
         HorizontalAlignment="Left" 
         VerticalAlignment="Center" 
@@ -40,31 +41,62 @@
                    FontFamily="Outfit"
                    Margin="99,32,0,0"
                    />
-            <TextBox FontSize="20" Foreground="white" Height="40" Width="365"
-                     materialDesign:HintAssist.Hint="login"
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     HorizontalAlignment="Left"
-                     Margin="41,30,0,0"
-                     BorderBrush="white"
-                     FontWeight="Normal" FontFamily="Outfit"
-            />
-            <TextBox FontSize="20" Foreground="white" Height="40" Width="365"
-                     materialDesign:HintAssist.Hint="email"
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     HorizontalAlignment="Left"
-                     Margin="41,21,0,0"
-                     BorderBrush="white"
-                     FontWeight="Normal" FontFamily="Outfit"
-            />
-            <TextBox FontSize="20" Foreground="white" Height="40" Width="365"
-                     materialDesign:HintAssist.Hint="password"
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     HorizontalAlignment="Left"
-                     Margin="41,21,0,0"
-                     BorderBrush="white"
-                     FontWeight="Normal" FontFamily="Outfit"
-            />
-            <Button Background="#2C1B45" FontWeight="Normal" FontFamily="Outfit" FontSize="40" Margin="0,45,0,0" Content="Continue" Width="370" Height="60">
+            <TextBox MaxLength="20" FontSize="20" Foreground="White" Height="40" Width="365"
+             materialDesign:HintAssist.Hint="login"
+             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+             HorizontalAlignment="Left"
+             Margin="41,30,0,0"
+             BorderBrush="White"
+             FontWeight="Normal" FontFamily="Outfit">
+                <TextBox.Text>
+                    <Binding Path="Login" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" ValidatesOnDataErrors="True">
+                        <Binding.ValidationRules>
+                            <valid:LoginValidationRules/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <TextBlock Foreground="Red" FontSize="12"
+                Text="{Binding ElementName=LoginTextBox, Path=(Validation.Errors)[0].ErrorContent}" />
+            
+            <TextBox x:Name="EmailTextBox" MaxLength="50" FontSize="20" Foreground="White" Height="40" Width="365"
+             materialDesign:HintAssist.Hint="email"
+             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+             HorizontalAlignment="Left"
+             Margin="41,21,0,0"
+             BorderBrush="White"
+             FontWeight="Normal" FontFamily="Outfit">
+                <TextBox.Text>
+                    <Binding Path="Email" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" ValidatesOnDataErrors="True">
+                        <Binding.ValidationRules>
+                            <valid:EmailValidationRules />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <TextBlock Foreground="Red" FontSize="12"
+               Text="{Binding ElementName=EmailTextBox, Path=(Validation.Errors)[0].ErrorContent}" />
+
+            <TextBox x:Name="PasswordTextBox" MaxLength="24" FontSize="20" Foreground="White" Height="40" Width="365"
+             materialDesign:HintAssist.Hint="password"
+             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+             HorizontalAlignment="Left"
+             Margin="41,21,0,0"
+             BorderBrush="White"
+             FontWeight="Normal" FontFamily="Outfit">
+                <TextBox.Text>
+                    <Binding Path="Password" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" ValidatesOnDataErrors="True">
+                        <Binding.ValidationRules>
+                            <valid:PasswordValidationRules />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <TextBlock Foreground="Red" FontSize="12"
+               Text="{Binding ElementName=PasswordTextBox, Path=(Validation.Errors)[0].ErrorContent}" />
+            
+            <Button Background="#2C1B45" FontWeight="Normal" FontFamily="Outfit" 
+                    FontSize="40" Margin="0,44,0,0" Content="Continue" Width="370" Height="60">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}" 
