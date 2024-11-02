@@ -5,6 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectManagementStudio.View.MainWindow.Pages"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:valid="clr-namespace:ProjectManagementStudio.ViewModel.ValidationsRules;assembly=ProjectManagementStudio.ViewModel"
+      
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1600"
       Title="LoginPage"
@@ -38,30 +40,51 @@
                HorizontalAlignment="center"
                VerticalAlignment="Center"
                FontFamily="Outfit"
-               Margin="0,32,0,0"
+               Margin="0,37,0,0"
                />
-            <TextBox FontSize="20" Foreground="white" Height="40" Width="365"
+            <TextBox MaxLength="20" FontSize="20" Foreground="white" Height="40" Width="365"
                  materialDesign:HintAssist.Hint="login"
                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                  HorizontalAlignment="Left"
-                 Margin="41,41,0,0"
+                 Margin="41,42,0,0"
                  BorderBrush="white"
-                 FontWeight="Normal" FontFamily="Outfit"
-        />
-            <TextBox FontSize="20" Foreground="white" Height="40" Width="365"
-                 materialDesign:HintAssist.Hint="password"
-                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                 HorizontalAlignment="Left"
-                 Margin="41,32,0,0"
-                 BorderBrush="white"
-                 FontWeight="Normal" FontFamily="Outfit"
-        />
-            <CheckBox Content="remember me" Margin="40,30,0,0" BorderBrush="#2C1B45"
+                 FontWeight="Normal" FontFamily="Outfit">
+                <TextBox.Text>
+                    <Binding Path="Login" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" ValidatesOnDataErrors="True">
+                        <Binding.ValidationRules>
+                            <valid:LoginValidationRules/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <TextBlock Foreground="Red" FontSize="12"
+            Text="{Binding ElementName=LoginTextBox, Path=(Validation.Errors)[0].ErrorContent}" />
+
+            <TextBox MaxLength="24" FontSize="20" Foreground="white" Height="40" Width="365"
+            materialDesign:HintAssist.Hint="password"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+            HorizontalAlignment="Left"
+            Margin="41,32,0,0"
+            BorderBrush="white"
+            FontWeight="Normal" FontFamily="Outfit">
+                <TextBox.Text>
+                    <Binding Path="Password" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" ValidatesOnDataErrors="True">
+                        <Binding.ValidationRules>
+                            <valid:PasswordValidationRules />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <TextBlock Foreground="Red" FontSize="12"
+            Text="{Binding ElementName=PasswordTextBox, Path=(Validation.Errors)[0].ErrorContent}" />
+            
+            <CheckBox Width="123" Content="remember me" Margin="40,29,0,0" BorderBrush="#2C1B45"
                       FontFamily="Outfit" FontWeight="Normal" Foreground="White"
                       FontSize="16" VerticalContentAlignment="Center" Checked="CheckBox_Checked"
+                      VerticalAlignment="Center" HorizontalAlignment="Left"
             />
             <Button Background="#2C1B45" FontWeight="Normal" FontFamily="Outfit" FontSize="40" 
-                    Margin="0,23,0,0" Content="Continue" Width="370" Height="60">
+                    Margin="0,26,0,0" Content="Continue" Width="370" Height="60">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}" 

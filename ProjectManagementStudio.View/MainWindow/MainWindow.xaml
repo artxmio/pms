@@ -15,7 +15,23 @@
     <Window.Background>
         <ImageBrush ImageSource="Source\backgroundImage.jpg"/>
     </Window.Background>
+
     <Grid>
-        <Frame x:Name="RegistrationFrame" NavigationUIVisibility="Hidden" />
+        <Frame x:Name="RegistrationFrame" NavigationUIVisibility="Hidden"/>
+        <Image MouseDown="Image_MouseDown" Margin="0,25,25,0" Width="20" Height="20" HorizontalAlignment="Right" VerticalAlignment="Top" Source="Source\Close_icon.png">
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Setter Property="Opacity" Value="1"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Opacity" Value="0.6"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Opacity" Value="1"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
     </Grid>
 </Window>
