@@ -56,9 +56,7 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            <TextBlock Foreground="Red" FontSize="12"
-                Text="{Binding ElementName=LoginTextBox, Path=(Validation.Errors)[0].ErrorContent}" />
-            
+
             <TextBox x:Name="EmailTextBox" MaxLength="50" FontSize="20" Foreground="White" Height="40" Width="365"
              materialDesign:HintAssist.Hint="email"
              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -74,8 +72,6 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            <TextBlock Foreground="Red" FontSize="12"
-               Text="{Binding ElementName=EmailTextBox, Path=(Validation.Errors)[0].ErrorContent}" />
 
             <TextBox x:Name="PasswordTextBox" MaxLength="24" FontSize="20" Foreground="White" Height="40" Width="365"
              materialDesign:HintAssist.Hint="password"
@@ -92,9 +88,7 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            <TextBlock Foreground="Red" FontSize="12"
-               Text="{Binding ElementName=PasswordTextBox, Path=(Validation.Errors)[0].ErrorContent}" />
-            
+
             <Button Background="#2C1B45" FontWeight="Normal" FontFamily="Outfit" 
                     FontSize="40" Margin="0,44,0,0" Content="Continue" Width="370" Height="60">
                 <Button.Template>

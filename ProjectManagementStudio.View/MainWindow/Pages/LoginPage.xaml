@@ -57,8 +57,6 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            <TextBlock Foreground="Red" FontSize="12"
-            Text="{Binding ElementName=LoginTextBox, Path=(Validation.Errors)[0].ErrorContent}" />
 
             <TextBox MaxLength="24" FontSize="20" Foreground="white" Height="40" Width="365"
             materialDesign:HintAssist.Hint="password"
@@ -75,9 +73,7 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            <TextBlock Foreground="Red" FontSize="12"
-            Text="{Binding ElementName=PasswordTextBox, Path=(Validation.Errors)[0].ErrorContent}" />
-            
+
             <CheckBox Width="123" Content="remember me" Margin="40,29,0,0" BorderBrush="#2C1B45"
                       FontFamily="Outfit" FontWeight="Normal" Foreground="White"
                       FontSize="16" VerticalContentAlignment="Center" Checked="CheckBox_Checked"
