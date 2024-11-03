@@ -6,11 +6,16 @@
       xmlns:local="clr-namespace:ProjectManagementStudio.View.MainWindow.Pages"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:valid="clr-namespace:ProjectManagementStudio.ViewModel.ValidationsRules;assembly=ProjectManagementStudio.ViewModel"
+      xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MainWindow;assembly=ProjectManagementStudio.ViewModel"
       
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1600"
       Title="LoginPage"
       >
+    <Page.DataContext>
+        <vm:MainWindowViewModel/>
+    </Page.DataContext>
+    
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -50,9 +55,9 @@
                  BorderBrush="white"
                  FontWeight="Normal" FontFamily="Outfit">
                 <TextBox.Text>
-                    <Binding Path="Login" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" ValidatesOnDataErrors="True">
+                    <Binding Path="test.Login" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
-                            <valid:LoginValidationRules/>
+                            <valid:LoginValidationRules ValidationStep="ConvertedProposedValue"/>
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
@@ -65,13 +70,15 @@
             Margin="41,32,0,0"
             BorderBrush="white"
             FontWeight="Normal" FontFamily="Outfit">
+                
                 <TextBox.Text>
-                    <Binding Path="Password" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" ValidatesOnDataErrors="True">
+                    <Binding Path="test.Password" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" ValidatesOnDataErrors="True">
                         <Binding.ValidationRules>
-                            <valid:PasswordValidationRules />
+                            <valid:PasswordValidationRules ValidationStep="ConvertedProposedValue"/>
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
+                
             </TextBox>
 
             <CheckBox Width="123" Content="remember me" Margin="40,29,0,0" BorderBrush="#2C1B45"

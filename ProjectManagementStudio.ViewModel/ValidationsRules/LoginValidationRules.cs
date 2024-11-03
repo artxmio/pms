@@ -15,6 +15,6 @@ public class LoginValidationRules : ValidationRule
         if (input is not null && _regex.IsMatch(input))
             return ValidationResult.ValidResult;
 
-        return new ValidationResult(false, "");
+        return new ValidationResult(false, "не прошел валидацию");
     }
 }
