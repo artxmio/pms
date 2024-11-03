@@ -12,9 +12,19 @@ public class PasswordValidationRules : ValidationRule
     {
         var input = value?.ToString();
 
-        if (input is not null && _regex.IsMatch(input))
-            return ValidationResult.ValidResult;
+        if (input is not null)
+        {
+            if (input.Length < 5)
+            {
+                return new ValidationResult(false, "The email length must be more than 5 and less than 20 characters.");
+            }
 
-        return new ValidationResult(false, "");
+            if (_regex.IsMatch(input))
+            {
+                return ValidationResult.ValidResult;
+            }
+        }
+
+        return new ValidationResult(false, "Please, enter the valid password!");
     }
 }
