@@ -44,7 +44,7 @@
                    FontFamily="Outfit"
                    Margin="99,32,0,0"
                    />
-            <TextBox MaxLength="20" FontSize="20" Foreground="White" Height="40" Width="365"
+            <TextBox MaxLength="20" FontSize="20" Foreground="White" Height="42" Width="365"
              materialDesign:HintAssist.Hint="login"
              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
              HorizontalAlignment="Left"
@@ -60,7 +60,7 @@
                 </TextBox.Text>
             </TextBox>
 
-            <TextBox x:Name="EmailTextBox" MaxLength="50" FontSize="20" Foreground="White" Height="40" Width="365"
+            <TextBox x:Name="EmailTextBox" MaxLength="50" FontSize="20" Foreground="White" Height="42" Width="365"
              materialDesign:HintAssist.Hint="email"
              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
              HorizontalAlignment="Left"
@@ -76,7 +76,7 @@
                 </TextBox.Text>
             </TextBox>
 
-            <TextBox x:Name="PasswordTextBox" MaxLength="24" FontSize="20" Foreground="White" Height="40" Width="365"
+            <TextBox x:Name="PasswordTextBox" MaxLength="24" FontSize="20" Foreground="White" Height="42" Width="365"
              materialDesign:HintAssist.Hint="password"
              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
              HorizontalAlignment="Left"

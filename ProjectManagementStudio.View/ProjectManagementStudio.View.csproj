@@ -10,6 +10,7 @@
   <ItemGroup>
     <None Remove="MainWindow\Source\backgroundImage.jpg" />
     <None Remove="MainWindow\Source\Close_icon.png" />
+    <None Remove="MainWindow\Source\Close_icon2.png" />
     <None Remove="MainWindow\Source\exit acc.svg" />
     <None Remove="Source\background_.jpg" />
   </ItemGroup>
@@ -29,6 +30,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="MainWindow\Source\Close_icon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="MainWindow\Source\Close_icon2.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

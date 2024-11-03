@@ -47,7 +47,7 @@
                FontFamily="Outfit"
                Margin="0,37,0,0"
                />
-            <TextBox MaxLength="20" FontSize="20" Foreground="white" Height="40" Width="365"
+            <TextBox MaxLength="20" FontSize="20" Foreground="white" Height="41" Width="365"
                  materialDesign:HintAssist.Hint="login"
                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                  HorizontalAlignment="Left"
@@ -102,7 +102,7 @@
             <Line X1="1" Y1="0" X2="366" Y2="0" 
               Stroke="White" StrokeThickness="1"
               Margin="41,16,0,0"  
-        />
+            />
             <Grid Width="314" Height="23" Margin="0,6,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="209"/>
