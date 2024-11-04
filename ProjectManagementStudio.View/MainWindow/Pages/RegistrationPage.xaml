@@ -9,10 +9,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1600"
       Title="RegistrationPage"
+      d:DataContext="{d:DesignInstance vm:MainWindowViewModel}" 
       >
-    <Page.DataContext>
-        <vm:MainWindowViewModel/>
-    </Page.DataContext>
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

@@ -5,30 +5,66 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ProjectManagementStudio.View.MainWindow"
+        xmlns:local="clr-namespace:ProjectManagementStudio.View.MainWindow" 
+        xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MainWindow;assembly=ProjectManagementStudio.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="900" Width="1600"
         ResizeMode="NoResize"
         WindowStyle="None"
         WindowState="Maximized"
-        >
+        d:DataContext="{d:DesignInstance vm:MainWindowViewModel}"    
+    >
+
+    <Window.Resources>
+        <Style x:Key="CloseButton" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#3D5754"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Red"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    
     <Window.Background>
         <ImageBrush ImageSource="Source\backgroundImage.jpg"/>
     </Window.Background>
 
+
     <Grid>
         <Frame x:Name="RegistrationFrame" NavigationUIVisibility="Hidden"/>
-        <Image MouseDown="Image_MouseDown" Margin="0,20,20,0" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Source="Source\Close_icon2.png">
-            <Image.Style>
-                <Style TargetType="Image">
-                    <Setter Property="Opacity" Value="0.5"/>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Opacity" Value="1"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Image.Style>
-        </Image>
+
+        <Button Command="{Binding Close}"
+                BorderBrush="Transparent"
+                Margin="0,20,20,0" 
+                Width="30" Height="30" 
+                VerticalAlignment="Top" 
+                HorizontalAlignment="Right" 
+                Background="Transparent" 
+                Style="{StaticResource ResourceKey=CloseButton}">
+
+            <Image Source="Source\Close_icon2.png">
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Setter Property="Opacity" Value="0.5"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="1"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+        </Button>
+        
     </Grid>
 </Window>

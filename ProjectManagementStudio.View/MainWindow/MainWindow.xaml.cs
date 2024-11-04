@@ -15,9 +15,4 @@ public partial class MainWindow : IMainWindow
         
         RegistrationFrame.Navigate(new RegistrationPage());
     }
-
-    private void Image_MouseDown(object sender, MouseButtonEventArgs e)
-    {
-        Application.Current.Shutdown();
-    }
 }

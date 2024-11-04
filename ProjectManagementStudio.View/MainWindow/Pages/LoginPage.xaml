@@ -11,11 +11,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1600"
       Title="LoginPage"
+      d:DataContext="{d:DesignInstance vm:MainWindowViewModel}" 
       >
-    <Page.DataContext>
-        <vm:MainWindowViewModel/>
-    </Page.DataContext>
-    
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -70,7 +67,7 @@
             Margin="41,32,0,0"
             BorderBrush="white"
             FontWeight="Normal" FontFamily="Outfit">
-                
+
                 <TextBox.Text>
                     <Binding Path="test.Password" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" ValidatesOnDataErrors="True">
                         <Binding.ValidationRules>
@@ -78,7 +75,7 @@
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
-                
+
             </TextBox>
 
             <CheckBox Width="123" Content="remember me" Margin="40,29,0,0" BorderBrush="#2C1B45"
