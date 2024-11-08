@@ -13,6 +13,6 @@ public partial class MainWindow : IMainWindow
 
         DataContext = viewModel;
         
-        RegistrationFrame.Navigate(new RegistrationPage());
+        RegistrationFrame.Navigate(new LoginPage());
     }
 }

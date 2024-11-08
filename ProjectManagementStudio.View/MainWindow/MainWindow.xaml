@@ -6,6 +6,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectManagementStudio.View.MainWindow" 
+        xmlns:validations="clr-namespace:ProjectManagementStudio.ViewModel.ValidationsRules;assembly=ProjectManagementStudio.ViewModel"
         xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MainWindow;assembly=ProjectManagementStudio.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="900" Width="1600"
@@ -52,7 +53,7 @@
                 Background="Transparent" 
                 Style="{StaticResource ResourceKey=CloseButton}">
 
-            <Image Source="Source\Close_icon2.png">
+            <Image x:Name="close" Source="Source\Close_icon2.png">
                 <Image.Style>
                     <Style TargetType="Image">
                         <Setter Property="Opacity" Value="0.5"/>

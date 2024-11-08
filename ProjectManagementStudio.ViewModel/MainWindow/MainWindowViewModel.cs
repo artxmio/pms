@@ -1,6 +1,6 @@
 ﻿using ProjectManagementStudio.Model.TestModel;
-using ProjectManagementStudio.ViewModel.Command;
 using ProjectManagementStudio.ViewModel.Windows;
+using ProjectManagementStudio.ViewModel.Command;
 using System.Windows.Input;
 
 namespace ProjectManagementStudio.ViewModel.MainWindow;
@@ -11,13 +11,13 @@ public class MainWindowViewModel : IMainWindowViewModel
 
     private readonly ICommand _closeCommand;
 
-    public TestModel test { get; set; }
+    public TestModel Test { get; set; }
 
     public ICommand Close => _closeCommand;
 
     public MainWindowViewModel(IWindowManager windowManager)
     {
-        test = new();
+        Test = new TestModel();
 
         _windowManager = windowManager;
 
