@@ -12,10 +12,7 @@
       d:DesignHeight="900" d:DesignWidth="1600"
       Title="LoginPage"
       >
-    <Page.DataContext>
-        <vm:MainWindowViewModel/>
-    </Page.DataContext>
-    
+
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
