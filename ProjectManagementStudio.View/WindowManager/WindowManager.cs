@@ -1,5 +1,8 @@
-﻿using ProjectManagementStudio.View.WindowFactory;
+﻿using ProjectManagementStudio.View.MainWindow;
+using ProjectManagementStudio.View.WindowFactory;
+using ProjectManagementStudio.ViewModel.MainWindow;
 using ProjectManagementStudio.ViewModel.Windows;
+using System.Windows;
 
 namespace ProjectManagementStudio.View.WindowManager;
 

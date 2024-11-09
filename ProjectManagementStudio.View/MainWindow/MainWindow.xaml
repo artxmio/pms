@@ -8,11 +8,11 @@
         xmlns:local="clr-namespace:ProjectManagementStudio.View.MainWindow" 
         xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MainWindow;assembly=ProjectManagementStudio.ViewModel"
         mc:Ignorable="d"
+        xmlns:vm="clr-namespace:ProjectManagementStudio.View.MainWindow;assembly=ProjectManagementStudio.View"
         Title="MainWindow" Height="900" Width="1600"
         ResizeMode="NoResize"
         WindowStyle="None"
-        WindowState="Maximized"
-        d:DataContext="{d:DesignInstance vm:MainWindowViewModel}"    
+        WindowState="Maximized"   
     >
 
     <Window.Resources>
@@ -35,6 +35,7 @@
         </Style>
     </Window.Resources>
     
+    >
     <Window.Background>
         <ImageBrush ImageSource="Source\backgroundImage.jpg"/>
     </Window.Background>

@@ -9,11 +9,11 @@ public class MainWindowViewModel : IMainWindowViewModel
 {
     private readonly IWindowManager _windowManager;
 
-    private readonly ICommand _closeCommand;
-
     public TestModel test { get; set; }
 
-    public ICommand Close => _closeCommand;
+    private readonly IWindowManager _windowManager;
+
+    public ICommand CloseCommand { get; set; }
 
     public MainWindowViewModel(IWindowManager windowManager)
     {
@@ -21,6 +21,6 @@ public class MainWindowViewModel : IMainWindowViewModel
 
         _windowManager = windowManager;
 
-        _closeCommand = new RelayCommand(() => _windowManager.Close(this));
+        CloseCommand = new RelayCommand(() => windowManager.Close(this));
     }
 }

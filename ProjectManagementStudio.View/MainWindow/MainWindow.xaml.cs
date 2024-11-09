@@ -10,9 +10,7 @@ public partial class MainWindow : IMainWindow
     public MainWindow(IMainWindowViewModel viewModel)
     {
         InitializeComponent();
-
-        DataContext = viewModel;
         
-        RegistrationFrame.Navigate(new RegistrationPage());
+        RegistrationFrame.Navigate(new LoginPage());
     }
 }

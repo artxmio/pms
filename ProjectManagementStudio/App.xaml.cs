@@ -1,4 +1,5 @@
 ﻿using ProjectManagementStudio.Bootstrapper;
+using ProjectManagementStudio.ViewModel.MainWindow;
 using System.Windows;
 
 namespace ProjectManagmentStudio;
@@ -13,6 +14,6 @@ public partial class App
 
         _bootstrapper = new Bootstrapper();
 
-        _bootstrapper.Run();
+        var window = _bootstrapper.Run();
     }
 }

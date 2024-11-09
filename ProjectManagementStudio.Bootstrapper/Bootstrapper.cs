@@ -13,6 +13,7 @@ namespace ProjectManagementStudio.Bootstrapper;
 public class Bootstrapper : IDisposable
 {
     private readonly IContainer _container;
+    private readonly IWindowManager _windowManager;
 
     public Bootstrapper()
     {
@@ -25,19 +26,22 @@ public class Bootstrapper : IDisposable
             .RegisterModule<View.RegistrationModule.RegistrationModule>();
 
         _container = container.Build();
+        
+        _windowManager = _container.Resolve<IWindowManager>();
     }
 
     public Window Run()
     {
         var mainWindowViewModel = _container.Resolve<IMainWindowViewModel>();
-        IWindowManager windowManager = _container.Resolve<IWindowManager>();
 
-        var mainWindow = windowManager.Show(mainWindowViewModel);
+        var mainWindow = _windowManager.Show(mainWindowViewModel);
 
         if (mainWindow is not Window window)
         {
             throw new NotImplementedException();
         }
+
+        window.DataContext = mainWindowViewModel;
 
         return window;
     }

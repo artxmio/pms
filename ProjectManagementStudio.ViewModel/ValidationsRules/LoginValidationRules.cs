@@ -10,7 +10,7 @@ public class LoginValidationRules : ValidationRule
 
     public override ValidationResult Validate(object? value, CultureInfo cultureInfo)
     {
-        var input = value?.ToString();
+         var input = value?.ToString();
 
         if (input is not null)
         {
