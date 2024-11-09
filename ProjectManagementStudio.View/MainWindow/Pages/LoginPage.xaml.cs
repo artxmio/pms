@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using System.Windows.Navigation;
 
 namespace ProjectManagementStudio.View.MainWindow.Pages;
@@ -9,11 +8,6 @@ public partial class LoginPage : Page
     public LoginPage()
     {
         InitializeComponent();
-    }
-
-    private void CheckBox_Checked(object sender, RoutedEventArgs e)
-    {
-
     }
 
     private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)

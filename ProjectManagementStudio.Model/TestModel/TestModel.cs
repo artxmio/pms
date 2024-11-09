@@ -4,7 +4,6 @@ using System.Runtime.CompilerServices;
 
 namespace ProjectManagementStudio.Model.TestModel;
 
-
 public class TestModel : ITestModel, INotifyPropertyChanged
 {
 

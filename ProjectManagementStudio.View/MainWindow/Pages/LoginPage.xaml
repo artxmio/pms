@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectManagementStudio.View.MainWindow.Pages"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-      xmlns:valid="clr-namespace:ProjectManagementStudio.ViewModel.ValidationsRules;assembly=ProjectManagementStudio.ViewModel"
+      xmlns:validations="clr-namespace:ProjectManagementStudio.ViewModel.ValidationsRules;assembly=ProjectManagementStudio.ViewModel"
       xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MainWindow;assembly=ProjectManagementStudio.ViewModel"
       
       mc:Ignorable="d" 
@@ -44,7 +44,7 @@
                FontFamily="Outfit"
                Margin="0,37,0,0"
                />
-            <TextBox MaxLength="20" FontSize="20" Foreground="white" Height="41" Width="365"
+            <TextBox x:Name="login" MaxLength="20" FontSize="20" Foreground="white" Height="41" Width="365"
                  materialDesign:HintAssist.Hint="login"
                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                  HorizontalAlignment="Left"
@@ -52,15 +52,15 @@
                  BorderBrush="white"
                  FontWeight="Normal" FontFamily="Outfit">
                 <TextBox.Text>
-                    <Binding Path="test.Login" UpdateSourceTrigger="PropertyChanged">
+                    <Binding Path="Test.Login" UpdateSourceTrigger="PropertyChanged" NotifyOnTargetUpdated="True">
                         <Binding.ValidationRules>
-                            <valid:LoginValidationRules ValidationStep="ConvertedProposedValue"/>
+                            <validations:LoginValidationRules ValidationStep="ConvertedProposedValue"/>
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
             </TextBox>
 
-            <TextBox MaxLength="24" FontSize="20" Foreground="white" Height="40" Width="365"
+            <TextBox x:Name="password" MaxLength="24" FontSize="20" Foreground="white" Height="40" Width="365"
             materialDesign:HintAssist.Hint="password"
             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
             HorizontalAlignment="Left"
@@ -69,9 +69,9 @@
             FontWeight="Normal" FontFamily="Outfit">
 
                 <TextBox.Text>
-                    <Binding Path="test.Password" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" ValidatesOnDataErrors="True">
+                    <Binding Path="Test.Password" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
-                            <valid:PasswordValidationRules ValidationStep="ConvertedProposedValue"/>
+                            <validations:PasswordValidationRules ValidationStep="ConvertedProposedValue"/>
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
@@ -80,7 +80,7 @@
 
             <CheckBox Width="123" Content="remember me" Margin="40,29,0,0" BorderBrush="#2C1B45"
                       FontFamily="Outfit" FontWeight="Normal" Foreground="White"
-                      FontSize="16" VerticalContentAlignment="Center" Checked="CheckBox_Checked"
+                      FontSize="16" VerticalContentAlignment="Center"
                       VerticalAlignment="Center" HorizontalAlignment="Left"
             />
             <Button Background="#2C1B45" FontWeight="Normal" FontFamily="Outfit" FontSize="40" 
