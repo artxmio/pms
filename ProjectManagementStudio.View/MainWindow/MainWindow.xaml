@@ -9,7 +9,6 @@
         xmlns:validations="clr-namespace:ProjectManagementStudio.ViewModel.ValidationsRules;assembly=ProjectManagementStudio.ViewModel"
         xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MainWindow;assembly=ProjectManagementStudio.ViewModel"
         mc:Ignorable="d"
-        xmlns:vm="clr-namespace:ProjectManagementStudio.View.MainWindow;assembly=ProjectManagementStudio.View"
         Title="MainWindow" Height="900" Width="1600"
         ResizeMode="NoResize"
         WindowStyle="None"
@@ -36,7 +35,7 @@
         </Style>
     </Window.Resources>
     
-    >
+    
     <Window.Background>
         <ImageBrush ImageSource="Source\backgroundImage.jpg"/>
     </Window.Background>
@@ -45,7 +44,7 @@
     <Grid>
         <Frame x:Name="RegistrationFrame" NavigationUIVisibility="Hidden"/>
 
-        <Button Command="{Binding Close}"
+        <Button Command="{Binding CloseCommand}"
                 BorderBrush="Transparent"
                 Margin="0,20,20,0" 
                 Width="30" Height="30" 

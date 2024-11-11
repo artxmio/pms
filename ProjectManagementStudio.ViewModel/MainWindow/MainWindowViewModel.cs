@@ -11,13 +11,11 @@ public class MainWindowViewModel : IMainWindowViewModel
 
     public TestModel test { get; set; }
 
-    private readonly IWindowManager _windowManager;
-
     public ICommand CloseCommand { get; set; }
 
     public MainWindowViewModel(IWindowManager windowManager)
     {
-        Test = new TestModel();
+        test = new TestModel();
 
         _windowManager = windowManager;
 

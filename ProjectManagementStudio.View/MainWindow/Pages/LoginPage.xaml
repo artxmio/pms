@@ -52,7 +52,7 @@
                  BorderBrush="white"
                  FontWeight="Normal" FontFamily="Outfit">
                 <TextBox.Text>
-                    <Binding Path="Test.Login" UpdateSourceTrigger="PropertyChanged" NotifyOnTargetUpdated="True">
+                    <Binding Path="test.Login" UpdateSourceTrigger="PropertyChanged" NotifyOnTargetUpdated="True">
                         <Binding.ValidationRules>
                             <validations:LoginValidationRules ValidationStep="ConvertedProposedValue"/>
                         </Binding.ValidationRules>
@@ -69,7 +69,7 @@
             FontWeight="Normal" FontFamily="Outfit">
 
                 <TextBox.Text>
-                    <Binding Path="Test.Password" UpdateSourceTrigger="PropertyChanged">
+                    <Binding Path="test.Password" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
                             <validations:PasswordValidationRules ValidationStep="ConvertedProposedValue"/>
                         </Binding.ValidationRules>
