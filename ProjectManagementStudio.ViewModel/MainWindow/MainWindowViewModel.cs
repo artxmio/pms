@@ -1,7 +1,7 @@
-﻿using ProjectManagementStudio.Model.TestModel;
-using ProjectManagementStudio.ViewModel.Windows;
+﻿using ProjectManagementStudio.ViewModel.Windows;
 using ProjectManagementStudio.ViewModel.Command;
 using System.Windows.Input;
+using ProjectManagementStudio.Model.AuthModel;
 
 namespace ProjectManagementStudio.ViewModel.MainWindow;
 
@@ -9,13 +9,13 @@ public class MainWindowViewModel : IMainWindowViewModel
 {
     private readonly IWindowManager _windowManager;
 
-    public TestModel test { get; set; }
+    public AuthModel Model { get; set; }
 
     public ICommand CloseCommand { get; set; }
 
     public MainWindowViewModel(IWindowManager windowManager)
     {
-        test = new TestModel();
+        Model = new AuthModel();
 
         _windowManager = windowManager;
 
