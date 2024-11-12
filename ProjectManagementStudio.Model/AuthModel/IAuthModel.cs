@@ -2,7 +2,7 @@
 
 public interface IAuthModel
 {
-    string Login { get; set; }
-    string Password { get; set; }
-    string Email { get; set; }
+    string login { get; set; }
+    string password { get; set; }
+    string email { get; set; }
 }

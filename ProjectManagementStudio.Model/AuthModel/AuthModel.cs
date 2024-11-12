@@ -9,7 +9,7 @@ public class AuthModel : IAuthModel, INotifyPropertyChanged
     private string _password = "";
     private string _email = "";
 
-    public string Login
+    public string login
     {
         get => _login;
         set
@@ -18,7 +18,7 @@ public class AuthModel : IAuthModel, INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
-    public string Password
+    public string password
     {
         get => _password;
         set
@@ -27,7 +27,7 @@ public class AuthModel : IAuthModel, INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
-    public string Email
+    public string email
     {
         get => _email;
         set

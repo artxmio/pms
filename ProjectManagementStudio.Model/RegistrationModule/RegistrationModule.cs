@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using ProjectManagementStudio.Model.AuthModel;
 
 namespace ProjectManagementStudio.Model.RegistrationModule
 {
@@ -8,6 +9,7 @@ namespace ProjectManagementStudio.Model.RegistrationModule
         {
             base.Load(builder);
 
+            builder.RegisterType<AuthModel.AuthModel>().As<IAuthModel>().SingleInstance();
         }
     }
 }

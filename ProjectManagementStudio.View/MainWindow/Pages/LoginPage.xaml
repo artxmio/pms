@@ -52,7 +52,7 @@
                  BorderBrush="white"
                  FontWeight="Normal" FontFamily="Outfit">
                 <TextBox.Text>
-                    <Binding Path="Model.Login" UpdateSourceTrigger="PropertyChanged" NotifyOnTargetUpdated="True">
+                    <Binding Path="Model.login" UpdateSourceTrigger="PropertyChanged" NotifyOnTargetUpdated="True">
                         <Binding.ValidationRules>
                             <validations:LoginValidationRules ValidationStep="ConvertedProposedValue"/>
                         </Binding.ValidationRules>
@@ -69,7 +69,7 @@
             FontWeight="Normal" FontFamily="Outfit">
 
                 <TextBox.Text>
-                    <Binding Path="Model.Password" UpdateSourceTrigger="PropertyChanged">
+                    <Binding Path="Model.password" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
                             <validations:PasswordValidationRules ValidationStep="ConvertedProposedValue"/>
                         </Binding.ValidationRules>
@@ -84,7 +84,7 @@
                       VerticalAlignment="Center" HorizontalAlignment="Left"
             />
             <Button Background="#2C1B45" FontWeight="Normal" FontFamily="Outfit" FontSize="40" 
-                    Margin="0,26,0,0" Content="Continue" Width="370" Height="60">
+                    Margin="0,26,0,0" Content="Continue" Width="370" Height="60" Command="{Binding AuthorizationCommand}">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}" 
