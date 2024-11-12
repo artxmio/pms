@@ -83,18 +83,30 @@
                       FontSize="16" VerticalContentAlignment="Center"
                       VerticalAlignment="Center" HorizontalAlignment="Left"
             />
-            <Button Background="#2C1B45" FontWeight="Normal" FontFamily="Outfit" FontSize="40" 
-                    Margin="0,26,0,0" Content="Continue" Width="370" Height="60" Command="{Binding AuthorizationCommand}">
+            <Button Background="#2C1B45" 
+                    FontWeight="Normal" 
+                    FontFamily="Outfit"
+                    FontSize="40" 
+                    Margin="0,26,0,0" 
+                    Content="Continue" 
+                    Width="370" 
+                    Height="60" 
+                    IsEnabled="{Binding Model.IsValid}"
+                    Command="{Binding AuthorizationCommand}">
+
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}" 
-                BorderBrush="{TemplateBinding BorderBrush}" 
-                CornerRadius="30">
-                            <ContentPresenter HorizontalAlignment="Center" 
-                              VerticalAlignment="Center"/>
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                CornerRadius="30">
+                            <ContentPresenter 
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
+
                 </Button.Template>
+
             </Button>
             <Line X1="1" Y1="0" X2="366" Y2="0" 
               Stroke="White" StrokeThickness="1"
@@ -106,12 +118,14 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <TextBlock FontFamily="Outfit" FontSize="20" FontWeight="Normal"
-                        Foreground="White" Text="Don't have an account?"
-            />
+                        Foreground="White" Text="Don't have an account?"/>
+
                 <TextBlock Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Foreground="White">
-                <Hyperlink NavigateUri="RegistrationPage.xaml" Foreground="#2883F8" RequestNavigate="Hyperlink_RequestNavigate">
+                
+                    <Hyperlink NavigateUri="RegistrationPage.xaml" Foreground="#2883F8" RequestNavigate="Hyperlink_RequestNavigate">
                     Create new
-                </Hyperlink>
+               
+                    </Hyperlink>
                 </TextBlock>
             </Grid>
         </StackPanel>
