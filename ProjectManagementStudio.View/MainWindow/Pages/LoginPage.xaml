@@ -78,35 +78,47 @@
 
             </TextBox>
 
-            <CheckBox Width="123" Content="remember me" Margin="40,29,0,0" BorderBrush="#2C1B45"
+            <CheckBox Width="123" Content="remember me" Margin="40,30,0,0" BorderBrush="#2C1B45"
                       FontFamily="Outfit" FontWeight="Normal" Foreground="White"
                       FontSize="16" VerticalContentAlignment="Center"
                       VerticalAlignment="Center" HorizontalAlignment="Left"
             />
             <Button Background="#2C1B45" 
-                    FontWeight="Normal" 
-                    FontFamily="Outfit"
-                    FontSize="40" 
-                    Margin="0,26,0,0" 
-                    Content="Continue" 
-                    Width="370" 
-                    Height="60" 
-                    IsEnabled="{Binding Model.IsValid}"
-                    Command="{Binding AuthorizationCommand}">
+        FontWeight="Normal" 
+        FontFamily="Outfit"
+        FontSize="40" 
+        Margin="0,30,0,0" 
+        Content="Continue" 
+        Width="370" 
+        Height="60" 
+        IsEnabled="{Binding Model.IsValid}"
+        Command="{Binding AuthorizationCommand}">
 
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" 
-                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                CornerRadius="30">
+                        <Border x:Name="buttonBorder" 
+                    Background="{TemplateBinding Background}" 
+                    BorderBrush="{TemplateBinding BorderBrush}" 
+                    CornerRadius="30">
                             <ContentPresenter 
-                                HorizontalAlignment="Center" 
-                                VerticalAlignment="Center"/>
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center"/>
                         </Border>
+
+                        <ControlTemplate.Triggers>
+                            <!-- Триггер для изменения цвета при наведении (если кнопка активна) -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="buttonBorder" Property="Background" Value="#3B2B57"/>
+                            </Trigger>
+
+                            <!-- Цвет для неактивного состояния кнопки -->
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="buttonBorder" Property="Background" Value="#1A1230"/>
+                                <Setter Property="Foreground" Value="#666666" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
-
                 </Button.Template>
-
             </Button>
             <Line X1="1" Y1="0" X2="366" Y2="0" 
               Stroke="White" StrokeThickness="1"

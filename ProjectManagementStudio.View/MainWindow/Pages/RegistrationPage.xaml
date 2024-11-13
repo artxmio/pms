@@ -90,20 +90,44 @@
                 </TextBox.Text>
             </TextBox>
 
-            <Button Background="#2C1B45" FontWeight="Normal" FontFamily="Outfit" 
-                    FontSize="40" Margin="0,44,0,0" Content="Continue" Width="370" Height="60">
+            <Button Background="#2C1B45" 
+        FontWeight="Normal" 
+        FontFamily="Outfit" 
+        FontSize="40" 
+        Margin="0,44,0,0" 
+        Content="Continue" 
+        Width="370" 
+        Height="60"
+        IsEnabled="{Binding Model.IsValid}" 
+        Command="{Binding AuthorizationCommand}">
+
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" 
+                        <Border x:Name="buttonBorder" 
+                    Background="{TemplateBinding Background}" 
                     BorderBrush="{TemplateBinding BorderBrush}" 
-
                     CornerRadius="30">
-                            <ContentPresenter HorizontalAlignment="Center" 
-                                  VerticalAlignment="Center"/>
+                            <ContentPresenter 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center"/>
                         </Border>
+
+                        <ControlTemplate.Triggers>
+                            <!-- Триггер для изменения цвета при наведении (когда активна) -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="buttonBorder" Property="Background" Value="#3B2B57"/>
+                            </Trigger>
+
+                            <!-- Цвет для неактивного состояния кнопки -->
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="buttonBorder" Property="Background" Value="#1A1230"/>
+                                <Setter Property="Foreground" Value="#666666" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
+
             <Line X1="1" Y1="0" X2="366" Y2="0" 
                   Stroke="White" StrokeThickness="1"
                   Margin="41,16,0,0"  
