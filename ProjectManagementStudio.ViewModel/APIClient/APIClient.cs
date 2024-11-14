@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace ProjectManagementStudio.ViewModel.APIClient;
 
-public class APIClient
+public class APIClient : IAPIClient
 {
     private readonly HttpClient _client = new();
 
@@ -22,16 +22,26 @@ public class APIClient
         var content = new StringContent(json, Encoding.UTF8, "application/json");
         var url = $"https://magpie-concrete-clearly.ngrok-free.app/is-user-exists/3i7r4ybfwbatro387";
 
-        //получаем ответ от сервера
-        var response = await _client.PostAsync(url, content);
+        try
+        {
+            var response = await _client.PostAsync(url, content);
 
-        response.EnsureSuccessStatusCode();
+            response.EnsureSuccessStatusCode();
 
-        IsUserExistResponse? deserializeResponse = JsonSerializer.Deserialize<IsUserExistResponse>(await response.Content.ReadAsStringAsync());
+            IsUserExistResponse? deserializeResponse = JsonSerializer.Deserialize<IsUserExistResponse>(await response.Content.ReadAsStringAsync());
 
-        if (deserializeResponse is not null && deserializeResponse.exists == "True")
-            MessageBox.Show("Есть такой пользователь");
-        else
-            MessageBox.Show("Нету такой пользователь");
+            if (deserializeResponse is not null && deserializeResponse.exists == "True")
+                MessageBox.Show("Есть такой пользователь");
+            else
+                MessageBox.Show("Нету такой пользователь");
+        }
+        catch (HttpRequestException ex)
+        {
+            MessageBox.Show($"Возникла ошибка: сервер отключён или недоступен ({ex.Message})");
+        }
+        catch(Exception ex)
+        {
+            MessageBox.Show($"Возникла неизвестная ошибка: {ex.Message}");
+        }
     }
 }

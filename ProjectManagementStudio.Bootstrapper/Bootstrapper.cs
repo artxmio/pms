@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using ProjectManagementStudio.Model.UserSavedData.Wrapper;
 using ProjectManagementStudio.ViewModel.MainWindow;
 using ProjectManagementStudio.ViewModel.Windows;
 using System.Windows;
@@ -32,6 +33,8 @@ public class Bootstrapper : IDisposable
 
     public Window Run()
     {
+        InitializeDependencies();
+
         var mainWindowViewModel = _container.Resolve<IMainWindowViewModel>();
 
         var mainWindow = _windowManager.Show(mainWindowViewModel);
@@ -44,6 +47,11 @@ public class Bootstrapper : IDisposable
         window.DataContext = mainWindowViewModel;
 
         return window;
+    }
+
+    private void InitializeDependencies()
+    {
+        _container.Resolve<IUserDataMementoWrapperInitializer>().Initialize();
     }
 
     public void Dispose()
