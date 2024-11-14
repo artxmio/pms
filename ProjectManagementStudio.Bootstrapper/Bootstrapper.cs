@@ -6,11 +6,6 @@ using System.Windows;
 
 namespace ProjectManagementStudio.Bootstrapper;
 
-/*
-    Класс отвечает за запуск программы и регистрацию всех модулей
-    в контейнере.
-*/
-
 public class Bootstrapper : IDisposable
 {
     private readonly IContainer _container;
@@ -54,8 +49,5 @@ public class Bootstrapper : IDisposable
         _container.Resolve<IUserDataMementoWrapperInitializer>().Initialize();
     }
 
-    public void Dispose()
-    {
-        _container.Dispose();
-    }
+    public void Dispose() => GC.SuppressFinalize(_container);
 }

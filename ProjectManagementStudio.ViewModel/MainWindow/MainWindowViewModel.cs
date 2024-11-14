@@ -3,6 +3,7 @@ using ProjectManagementStudio.ViewModel.Command;
 using System.Windows.Input;
 using ProjectManagementStudio.Model.AuthModel;
 using ProjectManagementStudio.ViewModel.ValidationsRules;
+using ProjectManagementStudio.Model.UserSavedData.Wrapper;
 
 namespace ProjectManagementStudio.ViewModel.MainWindow;
 
@@ -16,9 +17,11 @@ public class MainWindowViewModel : IMainWindowViewModel
     public ICommand CloseCommand { get; }
     public ICommand AuthorizationCommand { get; }
 
-    public MainWindowViewModel(IWindowManager windowManager)
+    public MainWindowViewModel(
+        IWindowManager windowManager, 
+        IUserDataMementoWrapper userDataMementoWrapper)
     {
-        Model = new AuthModel();
+        Model = new AuthModel(userDataMementoWrapper);
 
         _windowManager = windowManager;
         _client = new APIClient.APIClient();

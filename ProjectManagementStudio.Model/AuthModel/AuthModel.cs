@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using ProjectManagementStudio.Model.UserSavedData.Wrapper;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
@@ -9,27 +10,27 @@ public class AuthModel : IAuthModel, INotifyPropertyChanged
     private readonly Regex _loginRegex = new Regex("^[a-zA-Z0-9_]{6,20}$");
     private readonly Regex _passwordRegex = new("^[a-zA-Z0-9@#$%&*()<>[\\]{}]{6,24}$");
 
-    private string _login = "";
-    private string _password = "";
+    private readonly IUserDataMementoWrapper _wrapper;
+
     private string _email = "";
     private bool _isValid = false;
 
     public string login
     {
-        get => _login;
+        get => _wrapper.UserLogin;
         set
         {
-            _login = value;
+            _wrapper.UserLogin = value;
             OnPropertyChanged();
             Validate();
         }
     }
     public string password
     {
-        get => _password;
+        get => _wrapper.UserPassword;
         set
         {
-            _password = value;
+            _wrapper.UserPassword = value;
             OnPropertyChanged();
             Validate();
         }
@@ -41,7 +42,7 @@ public class AuthModel : IAuthModel, INotifyPropertyChanged
         {
             _email = value;
             OnPropertyChanged();
-            Validate(); 
+            Validate();
         }
     }
     public bool IsValid
@@ -52,6 +53,11 @@ public class AuthModel : IAuthModel, INotifyPropertyChanged
             _isValid = value;
             OnPropertyChanged();
         }
+    }
+
+    public AuthModel(IUserDataMementoWrapper wrapper)
+    {
+        _wrapper = wrapper;
     }
 
     private void Validate()
