@@ -52,7 +52,7 @@
                  BorderBrush="white"
                  FontWeight="Normal" FontFamily="Outfit">
                 <TextBox.Text>
-                    <Binding Path="Model.login" UpdateSourceTrigger="PropertyChanged" NotifyOnTargetUpdated="True">
+                    <Binding Path="LoginModel.login" UpdateSourceTrigger="PropertyChanged" NotifyOnTargetUpdated="True">
                         <Binding.ValidationRules>
                             <validations:LoginValidationRules ValidationStep="ConvertedProposedValue"/>
                         </Binding.ValidationRules>
@@ -69,7 +69,7 @@
             FontWeight="Normal" FontFamily="Outfit">
 
                 <TextBox.Text>
-                    <Binding Path="Model.password" UpdateSourceTrigger="PropertyChanged">
+                    <Binding Path="LoginModel.password" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
                             <validations:PasswordValidationRules ValidationStep="ConvertedProposedValue"/>
                         </Binding.ValidationRules>
@@ -82,7 +82,7 @@
                       FontFamily="Outfit" FontWeight="Normal" Foreground="White"
                       FontSize="16" VerticalContentAlignment="Center"
                       VerticalAlignment="Center" HorizontalAlignment="Left"
-                      IsChecked="{Binding Model.IsRememberMe}"
+                      IsChecked="{Binding LoginModel.IsRememberMe}"
             />
             <Button Background="#2C1B45" 
         FontWeight="Normal" 
@@ -92,7 +92,7 @@
         Content="Continue" 
         Width="370" 
         Height="60" 
-        IsEnabled="{Binding Model.IsValid}"
+        IsEnabled="{Binding LoginModel.IsValid}"
         Command="{Binding AuthorizationCommand}">
 
                 <Button.Template>

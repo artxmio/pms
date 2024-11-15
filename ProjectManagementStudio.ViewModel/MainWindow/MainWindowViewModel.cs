@@ -4,6 +4,7 @@ using System.Windows.Input;
 using ProjectManagementStudio.Model.AuthModel;
 using ProjectManagementStudio.ViewModel.ValidationsRules;
 using ProjectManagementStudio.Model.UserSavedData.Wrapper;
+using ProjectManagementStudio.Model.RegisterModel;
 
 namespace ProjectManagementStudio.ViewModel.MainWindow;
 
@@ -12,7 +13,8 @@ public class MainWindowViewModel : IMainWindowViewModel
     private readonly IWindowManager _windowManager;
     private readonly APIClient.APIClient _client;
 
-    public AuthModel Model { get; set; }
+    public AuthModel LoginModel { get; set; }
+    public RegisterModel RegistrationModel { get; set; }
 
     public ICommand CloseCommand { get; }
     public ICommand AuthorizationCommand { get; }
@@ -21,12 +23,13 @@ public class MainWindowViewModel : IMainWindowViewModel
         IWindowManager windowManager, 
         IUserDataMementoWrapper userDataMementoWrapper)
     {
-        Model = new AuthModel(userDataMementoWrapper);
+        LoginModel = new AuthModel(userDataMementoWrapper);
+        RegistrationModel = new RegisterModel();
 
         _windowManager = windowManager;
         _client = new APIClient.APIClient();
 
         CloseCommand = new RelayCommand(() => _windowManager.Close(this));
-        AuthorizationCommand = new AsyncCommand(() => _client.IsUserExists(Model));
+        AuthorizationCommand = new AsyncCommand(() => _client.IsUserExists(LoginModel));
     }
 }
