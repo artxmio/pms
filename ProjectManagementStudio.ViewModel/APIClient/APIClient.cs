@@ -1,4 +1,6 @@
 ﻿using ProjectManagementStudio.Model.AuthModel;
+using ProjectManagementStudio.Model.RegisterModel;
+using ProjectManagementStudio.Model.RequestsModels;
 using ProjectManagementStudio.Model.Responses;
 using System.Net.Http;
 using System.Text;
@@ -18,7 +20,7 @@ public class APIClient : IAPIClient
     public async Task IsUserExists(AuthModel user)
     {
         //подготовка данных к запросу
-        var json = JsonSerializer.Serialize(user);
+        var json = JsonSerializer.Serialize(new AuthRequestModel(user.login, user.password));
         var content = new StringContent(json, Encoding.UTF8, "application/json");
         var url = $"https://magpie-concrete-clearly.ngrok-free.app/is-user-exists/3i7r4ybfwbatro387";
 
@@ -37,11 +39,16 @@ public class APIClient : IAPIClient
         }
         catch (HttpRequestException ex)
         {
-            MessageBox.Show($"Возникла ошибка: сервер отключён или недоступен ({ex.Message})");
+            MessageBox.Show($"Возникла ошибка: сервер отключён или недоступен ({ex.Message})", "Ошибка");
         }
         catch(Exception ex)
         {
-            MessageBox.Show($"Возникла неизвестная ошибка: {ex.Message}");
+            MessageBox.Show($"Возникла неизвестная ошибка: {ex.Message}", "Ошибка");
         }
+    }
+
+    public async Task AddUser(RegisterModel user) 
+    {
+
     }
 }
