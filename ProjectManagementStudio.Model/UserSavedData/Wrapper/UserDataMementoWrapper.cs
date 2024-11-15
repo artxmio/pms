@@ -7,8 +7,7 @@ namespace ProjectManagementStudio.Model.UserSavedData.Wrapper;
 
 internal class UserDataMementoWrapper :
     IUserDataMementoWrapper,
-    IUserDataMementoWrapperInitializer,
-    IDisposable
+    IUserDataMementoWrapperInitializer
 {
     private UserDataMemento _userDataMemento;
     private bool _initialized = false;
@@ -43,9 +42,34 @@ internal class UserDataMementoWrapper :
         }
     }
 
+    private bool _isRememberMe;
+
+    public bool IsRememberMe
+    {
+        get
+        {
+            EnsureInitialized();
+            return _isRememberMe;
+        }
+        set
+        {
+            EnsureInitialized();
+            _isRememberMe = value;
+
+            if (_isRememberMe)
+            {
+                SaveUserData();
+            }
+            else
+            {
+                DeleteUserData();
+            }
+        }
+    }
+
     public UserDataMementoWrapper()
     {
-        _userDataMemento = new(); 
+        _userDataMemento = new();
     }
 
     public void Initialize()
@@ -78,27 +102,26 @@ internal class UserDataMementoWrapper :
         _userDataMemento = JsonConvert.DeserializeObject<UserDataMemento>(jsonString);
     }
 
-    public void Dispose()
-    {
-        try
-        {
-            EnsureInitialized();
-
-            var json = JsonConvert.SerializeObject(_userDataMemento);
-
-            File.WriteAllText(_userDataFilePath, json);
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show(ex.Message);
-        }
-    }
-
     private void EnsureInitialized()
     {
         if (!_initialized)
         {
             throw new InvalidOperationException($"{nameof(IUserDataMementoWrapper)} is not initialized");
         }
+    }
+
+    private void SaveUserData()
+    {
+        EnsureInitialized();
+
+        var json = JsonConvert.SerializeObject(_userDataMemento);
+
+        File.WriteAllText(_userDataFilePath, json);
+    }
+
+    private void DeleteUserData()
+    {
+        EnsureInitialized();
+        File.Delete(_userDataFilePath);
     }
 }

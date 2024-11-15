@@ -7,7 +7,7 @@ namespace ProjectManagementStudio.Model.AuthModel;
 
 public class AuthModel : IAuthModel, INotifyPropertyChanged
 {
-    private readonly Regex _loginRegex = new Regex("^[a-zA-Z0-9_]{6,20}$");
+    private readonly Regex _loginRegex = new("^[a-zA-Z0-9_]{6,20}$");
     private readonly Regex _passwordRegex = new("^[a-zA-Z0-9@#$%&*()<>[\\]{}]{6,24}$");
 
     private readonly IUserDataMementoWrapper _wrapper;
@@ -45,12 +45,23 @@ public class AuthModel : IAuthModel, INotifyPropertyChanged
             Validate();
         }
     }
+
     public bool IsValid
     {
         get => _isValid;
         set
         {
             _isValid = value;
+            OnPropertyChanged();
+        }
+    }
+    public bool IsRememberMe
+    {
+        get => _wrapper.IsRememberMe;
+
+        set
+        {
+            _wrapper.IsRememberMe = value;
             OnPropertyChanged();
         }
     }

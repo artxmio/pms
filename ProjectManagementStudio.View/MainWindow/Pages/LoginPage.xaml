@@ -82,6 +82,7 @@
                       FontFamily="Outfit" FontWeight="Normal" Foreground="White"
                       FontSize="16" VerticalContentAlignment="Center"
                       VerticalAlignment="Center" HorizontalAlignment="Left"
+                      IsChecked="{Binding Model.IsRememberMe}"
             />
             <Button Background="#2C1B45" 
         FontWeight="Normal" 
