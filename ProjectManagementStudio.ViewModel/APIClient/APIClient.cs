@@ -49,6 +49,23 @@ public class APIClient : IAPIClient
 
     public async Task AddUser(RegisterModel user) 
     {
+        var json = JsonSerializer.Serialize(new AddUserRequestModel(user.login, user.password, user.email));
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+        var url = $"https://magpie-concrete-clearly.ngrok-free.app/add-user/3i7r4ybfwbatro387";
 
+        try
+        {
+            var response = await _client.PostAsync(url, content);
+
+            response.EnsureSuccessStatusCode();
+        }
+        catch (HttpRequestException ex)
+        {
+            MessageBox.Show($"Возникла ошибка: сервер отключён или недоступен ({ex.Message})", "Ошибка");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Возникла неизвестная ошибка: {ex.Message}", "Ошибка");
+        }
     }
 }
