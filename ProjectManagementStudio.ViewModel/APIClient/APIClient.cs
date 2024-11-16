@@ -58,10 +58,10 @@ public class APIClient : IAPIClient
         {
             var response = await _client.PostAsync(url, content);
 
-            response.EnsureSuccessStatusCode();
-
             AddUserResponse deserializeResponse = JsonConvert.DeserializeObject<AddUserResponse>(await response.Content.ReadAsStringAsync())
                 ?? throw new InvalidOperationException("Deserialized response can't be null");
+
+            deserializeResponse.Message = MessagePerCode(deserializeResponse.Code);
 
             if (deserializeResponse is not null && deserializeResponse.Success)
                 MessageBox.Show("Успешно!");
@@ -76,5 +76,17 @@ public class APIClient : IAPIClient
         {
             MessageBox.Show($"Возникла неизвестная ошибка: {ex.Message}", "Ошибка");
         }
+    }
+
+    private string MessagePerCode(int code)
+    {
+        string message = "успешно";
+        switch (code)
+        {
+            case 2001: message = "Логин уже существует"; break;
+            case 2002: message = "Email уже существует"; break;
+        }
+
+        return message;
     }
 }
