@@ -13,11 +13,16 @@ public class MainWindowViewModel : IMainWindowViewModel
     private readonly IWindowManager _windowManager;
     private readonly APIClient.APIClient _client;
 
+    #region
     public AuthModel LoginModel { get; set; }
     public RegisterModel RegistrationModel { get; set; }
+    #endregion
 
+    #region
     public ICommand CloseCommand { get; }
     public ICommand AuthorizationCommand { get; }
+    public ICommand RegistrationCommand { get; }
+    #endregion
 
     public MainWindowViewModel(
         IWindowManager windowManager, 
@@ -31,5 +36,6 @@ public class MainWindowViewModel : IMainWindowViewModel
 
         CloseCommand = new RelayCommand(() => _windowManager.Close(this));
         AuthorizationCommand = new AsyncCommand(() => _client.IsUserExists(LoginModel));
+        RegistrationCommand = new AsyncCommand(() => _client.AddUser(RegistrationModel));
     }
 }

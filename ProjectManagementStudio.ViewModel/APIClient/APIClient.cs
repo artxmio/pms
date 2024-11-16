@@ -1,10 +1,11 @@
-﻿using ProjectManagementStudio.Model.RequestsModels;
+﻿using Newtonsoft.Json;
+using ProjectManagementStudio.Model.RequestsModels;
+using ProjectManagementStudio.Model.ResponseModels;
 using ProjectManagementStudio.Model.Responses;
 using ProjectManagementStudio.Model.WindowModels.AuthModel;
 using ProjectManagementStudio.Model.WindowModels.RegisterModel;
 using System.Net.Http;
 using System.Text;
-using System.Text.Json;
 using System.Windows;
 
 namespace ProjectManagementStudio.ViewModel.APIClient;
@@ -19,7 +20,7 @@ public class APIClient : IAPIClient
 
     public async Task IsUserExists(AuthModel user)
     {
-        var json = JsonSerializer.Serialize(new AuthRequestModel(user.login, user.password));
+        var json = JsonConvert.SerializeObject(new AuthRequestModel(user.login, user.password));
         var content = new StringContent(json, Encoding.UTF8, "application/json");
         var url = $"https://magpie-concrete-clearly.ngrok-free.app/is-user-exists/3i7r4ybfwbatro387";
 
@@ -29,9 +30,10 @@ public class APIClient : IAPIClient
 
             response.EnsureSuccessStatusCode();
 
-            IsUserExistResponse? deserializeResponse = JsonSerializer.Deserialize<IsUserExistResponse>(await response.Content.ReadAsStringAsync());
+            IsUserExistResponse deserializeResponse = JsonConvert.DeserializeObject<IsUserExistResponse>(await response.Content.ReadAsStringAsync())
+                ?? throw new InvalidOperationException("Deserialized response can't be null");
 
-            if (deserializeResponse is not null && deserializeResponse.exists == "True")
+            if (deserializeResponse is not null && deserializeResponse.Exists == "True")
                 MessageBox.Show("Есть такой пользователь");
             else
                 MessageBox.Show("Нету такой пользователь");
@@ -48,7 +50,7 @@ public class APIClient : IAPIClient
 
     public async Task AddUser(RegisterModel user) 
     {
-        var json = JsonSerializer.Serialize(new AddUserRequestModel(user.login, user.password, user.email));
+        var json = JsonConvert.SerializeObject(new AddUserRequestModel(user.login, user.password, user.email));
         var content = new StringContent(json, Encoding.UTF8, "application/json");
         var url = $"https://magpie-concrete-clearly.ngrok-free.app/add-user/3i7r4ybfwbatro387";
 
@@ -57,6 +59,14 @@ public class APIClient : IAPIClient
             var response = await _client.PostAsync(url, content);
 
             response.EnsureSuccessStatusCode();
+
+            AddUserResponse deserializeResponse = JsonConvert.DeserializeObject<AddUserResponse>(await response.Content.ReadAsStringAsync())
+                ?? throw new InvalidOperationException("Deserialized response can't be null");
+
+            if (deserializeResponse is not null && deserializeResponse.Success)
+                MessageBox.Show("Успешно!");
+            else
+                MessageBox.Show($"Ошибка: {deserializeResponse?.Message} ({deserializeResponse?.Code})"); 
         }
         catch (HttpRequestException ex)
         {

@@ -99,7 +99,7 @@
         Width="370" 
         Height="60"
         IsEnabled="{Binding RegistrationModel.IsValid}" 
-        Command="{Binding AuthorizationCommand}">
+        Command="{Binding RegistrationCommand}">
 
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
