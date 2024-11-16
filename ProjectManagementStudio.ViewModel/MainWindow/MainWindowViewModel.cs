@@ -1,10 +1,10 @@
 ﻿using ProjectManagementStudio.ViewModel.Windows;
 using ProjectManagementStudio.ViewModel.Command;
 using System.Windows.Input;
-using ProjectManagementStudio.Model.AuthModel;
 using ProjectManagementStudio.ViewModel.ValidationsRules;
 using ProjectManagementStudio.Model.UserSavedData.Wrapper;
-using ProjectManagementStudio.Model.RegisterModel;
+using ProjectManagementStudio.Model.WindowModels.RegisterModel;
+using ProjectManagementStudio.Model.WindowModels.AuthModel;
 
 namespace ProjectManagementStudio.ViewModel.MainWindow;
 

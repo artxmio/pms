@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows;
 using Newtonsoft.Json;
+using ProjectManagementStudio.Model.PathService;
 
 namespace ProjectManagementStudio.Model.UserSavedData.Wrapper;
 
@@ -10,6 +11,7 @@ internal class UserDataMementoWrapper :
     IUserDataMementoWrapperInitializer
 {
     private UserDataMemento _userDataMemento;
+    private IPathService _pathService;
     private bool _initialized = false;
     private string _userDataFilePath = "";
 
@@ -67,8 +69,10 @@ internal class UserDataMementoWrapper :
         }
     }
 
-    public UserDataMementoWrapper()
+    public UserDataMementoWrapper(IPathService pathService)
     {
+        _pathService = pathService;
+
         _userDataMemento = new();
     }
 
@@ -81,13 +85,9 @@ internal class UserDataMementoWrapper :
 
         _initialized = true;
 
-        var localApplicationPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-        var companyName = "artxm";
-        var applicationName = "pms";
         var userDataFolderName = "user";
 
-        var userDataPath = Path.Combine(localApplicationPath, companyName, applicationName, userDataFolderName);
-
+        var userDataPath = Path.Combine(_pathService.ApplicationFolder, userDataFolderName);
         _userDataFilePath = Path.Combine(userDataPath, "userData.json");
 
         Directory.CreateDirectory(userDataPath);
@@ -99,7 +99,8 @@ internal class UserDataMementoWrapper :
 
         string jsonString = File.ReadAllText(_userDataFilePath);
 
-        _userDataMemento = JsonConvert.DeserializeObject<UserDataMemento>(jsonString);
+        _userDataMemento = JsonConvert.DeserializeObject<UserDataMemento>(jsonString)
+            ?? throw new InvalidOperationException("Deserialized memento can't be null");
     }
 
     private void EnsureInitialized()

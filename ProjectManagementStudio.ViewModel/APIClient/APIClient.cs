@@ -1,7 +1,7 @@
-﻿using ProjectManagementStudio.Model.AuthModel;
-using ProjectManagementStudio.Model.RegisterModel;
-using ProjectManagementStudio.Model.RequestsModels;
+﻿using ProjectManagementStudio.Model.RequestsModels;
 using ProjectManagementStudio.Model.Responses;
+using ProjectManagementStudio.Model.WindowModels.AuthModel;
+using ProjectManagementStudio.Model.WindowModels.RegisterModel;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -19,7 +19,6 @@ public class APIClient : IAPIClient
 
     public async Task IsUserExists(AuthModel user)
     {
-        //подготовка данных к запросу
         var json = JsonSerializer.Serialize(new AuthRequestModel(user.login, user.password));
         var content = new StringContent(json, Encoding.UTF8, "application/json");
         var url = $"https://magpie-concrete-clearly.ngrok-free.app/is-user-exists/3i7r4ybfwbatro387";
