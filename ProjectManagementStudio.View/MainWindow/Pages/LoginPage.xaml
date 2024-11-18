@@ -84,16 +84,16 @@
                       VerticalAlignment="Center" HorizontalAlignment="Left"
                       IsChecked="{Binding LoginModel.IsRememberMe}"
             />
-            <Button Background="#2C1B45" 
-        FontWeight="Normal" 
-        FontFamily="Outfit"
-        FontSize="40" 
-        Margin="0,30,0,0" 
-        Content="Continue" 
-        Width="370" 
-        Height="60" 
-        IsEnabled="{Binding LoginModel.IsValid}"
-        Command="{Binding AuthorizationCommand}">
+            <Button Click="LoginButton_Click" Background="#2C1B45" 
+            FontWeight="Normal" 
+            FontFamily="Outfit"
+            FontSize="40" 
+            Margin="0,30,0,0" 
+            Content="Continue" 
+            Width="370" 
+            Height="60" 
+            IsEnabled="{Binding LoginModel.IsValid}"
+            Command="{Binding AuthorizationCommand}">
 
                 <Button.Template>
                     <ControlTemplate TargetType="Button">

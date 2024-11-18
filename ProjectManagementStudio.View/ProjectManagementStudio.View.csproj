@@ -8,11 +8,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="MainWindow\Source\backgroundImage.jpg" />
-    <None Remove="MainWindow\Source\Close_icon.png" />
-    <None Remove="MainWindow\Source\Close_icon2.png" />
-    <None Remove="MainWindow\Source\exit acc.svg" />
-    <None Remove="Source\background_.jpg" />
+    <Compile Remove="MainWindow\Source\**" />
+    <EmbeddedResource Remove="MainWindow\Source\**" />
+    <None Remove="MainWindow\Source\**" />
+    <Page Remove="MainWindow\Source\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Source\backgroundImage.jpg" />
+    <None Remove="Source\Close_icon.png" />
+    <None Remove="Source\file.png" />
+    <None Remove="Source\home.png" />
+    <None Remove="Source\plus.png" />
+    <None Remove="Source\settings.png" />
+    <None Remove="Source\user.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,21 +35,27 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="MainWindow\Source\backgroundImage.jpg">
+    <Resource Include="Source\backgroundImage.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="MainWindow\Source\Close_icon.png">
+    <Resource Include="Source\Close_icon.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="MainWindow\Source\Close_icon2.png">
+    <Resource Include="Source\file.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Source\background_.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <Resource Include="Source\home.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Source\plus.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Source\settings.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Source\user.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

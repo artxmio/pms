@@ -1,0 +1,25 @@
+﻿<Page x:Class="ProjectManagementStudio.View.MenuWindow.pages.WelcomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjectManagementStudio.View.MenuWindow.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="813" d:DesignWidth="1500"
+      Title="WelcomePage">
+
+    <Grid>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Width="573" Height="380"
+                   Foreground="#FFFFFF"
+                   FontSize="75"
+                   FontFamily="Outfit"
+                   FontWeight="Normal"
+                   TextWrapping="Wrap"
+                   TextAlignment="Center"
+                   Opacity="0.5"
+                   >
+            Welcome to Project Management Studio!
+        </TextBlock>
+    </Grid>
+</Page>

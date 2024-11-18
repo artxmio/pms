@@ -13,4 +13,9 @@ public partial class MainWindow : IMainWindow
         
         RegistrationFrame.Navigate(new LoginPage());
     }
+
+    private void RegistrationFrame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+    {
+
+    }
 }
