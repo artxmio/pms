@@ -41,10 +41,7 @@
         <Frame x:Name="WelcomeFrame" NavigationUIVisibility="Hidden" Navigated="WelcomeFrame_Navigated"/>
         
         <!-- Верхнее меню -->
-        <Grid Width="1500" Height="87" 
-              VerticalAlignment="Top" 
-              HorizontalAlignment="Stretch" 
-              Margin="100,0,0,0">
+        <Grid Height="87" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="100,0,0,0">
             <Grid.Background>
                 <LinearGradientBrush StartPoint="0,5" EndPoint="1,0">
                     <GradientStop Color="#2C1B47" Offset="0.2" />
@@ -52,18 +49,27 @@
                 </LinearGradientBrush>
             </Grid.Background>
 
+            <!-- Определение столбцов и строк для верхнего меню -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <!-- Основное пространство -->
+                <ColumnDefinition Width="Auto" />
+                <!-- Кнопка профиля -->
+                <ColumnDefinition Width="Auto" />
+                <!-- Логин пользователя -->
+                <ColumnDefinition Width="Auto" />
+                <!-- Кнопка закрытия -->
+            </Grid.ColumnDefinitions>
+
             <!-- Кнопка Профиля -->
-            <Button
+            <Button Grid.Column="1"
             BorderBrush="Transparent"
-            Margin="1097,0,10,0" 
             Width="65" Height="65" 
             HorizontalAlignment="Left" VerticalAlignment="Center" 
             Background="Transparent">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
-                        <Border 
-                    Background="{TemplateBinding Background}" 
-                    BorderBrush="{TemplateBinding BorderBrush}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
@@ -83,13 +89,11 @@
             </Button>
 
             <!-- Логин пользователя -->
-            <TextBlock HorizontalAlignment="Left" Margin="1167,24,0,24" 
-               Height="38" Width="190">
-
-            </TextBlock>
+            <TextBlock Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,86,0" 
+               Height="38" Width="190"/>
 
             <!-- Кнопка закрытия -->
-            <Button
+            <Button Grid.Column="3"
             Click="CloseButton_Click"
             Width="30" Height="30" 
             Background="Transparent"
@@ -111,7 +115,7 @@
                 </Image>
             </Button>
         </Grid>
-        
+
         <!-- Боковое меню -->
         <Grid Background="#2C1B47" Width="100" HorizontalAlignment="Left" VerticalAlignment="Stretch">
             <Button
