@@ -29,10 +29,10 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
-    
+
     <Window.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-            <GradientStop Color="#221B37" Offset="0.36" />
+            <GradientStop Color="#221B37" Offset="0" />
             <GradientStop Color="#352469" Offset="1" />
         </LinearGradientBrush>
     </Window.Background>
@@ -41,32 +41,29 @@
         <Frame x:Name="WelcomeFrame" NavigationUIVisibility="Hidden" Navigated="WelcomeFrame_Navigated"/>
         
         <!-- Верхнее меню -->
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Width="1500" Height="87">
-            <StackPanel.Style>
-                <Style TargetType="StackPanel">
-                    <Setter Property="Background">
-                        <Setter.Value>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                <GradientStop Color="#2C1B47" Offset="0" />
-                                <GradientStop Color="#3C2463" Offset="1" />
-                            </LinearGradientBrush>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </StackPanel.Style>
+        <Grid Width="1500" Height="87" 
+              VerticalAlignment="Top" 
+              HorizontalAlignment="Right" 
+              Margin="100,0,0,0">
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,5" EndPoint="1,0">
+                    <GradientStop Color="#2C1B47" Offset="0.2" />
+                    <GradientStop Color="#3C2463" Offset="1" />
+                </LinearGradientBrush>
+            </Grid.Background>
 
-            <!-- Кнопка Профиля-->
+            <!-- Кнопка Профиля -->
             <Button
             BorderBrush="Transparent"
-            Margin="1097,10,0,0" 
+            Margin="1097,0,10,0" 
             Width="65" Height="65" 
-            HorizontalAlignment="Right" VerticalAlignment="Top" 
+            HorizontalAlignment="Left" VerticalAlignment="Center" 
             Background="Transparent">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border 
-                            Background="{TemplateBinding Background}" 
-                            BorderBrush="{TemplateBinding BorderBrush}">
+                    Background="{TemplateBinding Background}" 
+                    BorderBrush="{TemplateBinding BorderBrush}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
@@ -86,32 +83,57 @@
             </Button>
 
             <!-- Логин пользователя -->
-            <TextBlock Margin="12,0,0,0" 
-                       Height="38" Width="190">
-                
+            <TextBlock HorizontalAlignment="Left" Margin="1167,24,0,24" 
+               Height="38" Width="190">
+
             </TextBlock>
-            
-            <Button Click="CloseButton_Click"
-            BorderBrush="Transparent"
-            Margin="86,20,20,0" 
+
+            <!-- Кнопка закрытия -->
+            <Button
+            Click="CloseButton_Click"
             Width="30" Height="30" 
-            VerticalAlignment="Top" 
-            HorizontalAlignment="Right" 
-            Background="Transparent" 
+            Background="Transparent"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Margin="0,20,20,0"
             Style="{StaticResource ResourceKey=CloseButton}">
+                <Image x:Name="close" Source="C:\Users\user\Desktop\project\ProjectManagementStudio.View\Source\Close_icon.png">
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Setter Property="Opacity" Value="0.5" />
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Opacity" Value="1" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Button>
+        </Grid>
+        
+        <!-- Боковое меню -->
+        <Grid Background="#2C1B47" Width="100" HorizontalAlignment="Left" VerticalAlignment="Stretch">
+            <Button
+            BorderBrush="Transparent"
+            Margin="0,18,0,0" 
+            Width="65" Height="65" 
+            VerticalAlignment="Top"
+            HorizontalAlignment="Center"
+            Background="Transparent">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border 
-                            Background="{TemplateBinding Background}" 
-                            BorderBrush="{TemplateBinding BorderBrush}">
+                    Background="{TemplateBinding Background}" 
+                    BorderBrush="{TemplateBinding BorderBrush}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
-                <Image x:Name="close" Source="..\Source\close_icon.png">
+                <Image Margin="0,0,0,0" Height="60" Width="60" Source="..\Source\home.png">
                     <Image.Style>
                         <Style TargetType="Image">
-                            <Setter Property="Opacity" Value="0.5"/>
+                            <Setter Property="Opacity" Value="0.7"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="Opacity" Value="1"/>
@@ -121,51 +143,20 @@
                     </Image.Style>
                 </Image>
             </Button>
-        </StackPanel>
 
-        <!-- Боковое меню -->
-        <StackPanel Background="#2C1B47" VerticalAlignment="Center" HorizontalAlignment="Left" Width="100" Height="900">
-            <!-- Кнопка дом -->
+            <!-- Кнопка Ползователь -->
             <Button
-             BorderBrush="Transparent"
-            Margin="0,18,0,0" 
+            BorderBrush="Transparent"
+            Margin="0,108,0,0" 
             Width="65" Height="65" 
-            VerticalAlignment="Top"  
+            VerticalAlignment="Top"
+            HorizontalAlignment="Center"
             Background="Transparent">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border 
                         Background="{TemplateBinding Background}" 
                         BorderBrush="{TemplateBinding BorderBrush}">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-                <Image Margin="0,0,0,0" Height="60" Width="60" Source="..\Source\home.png">
-                <Image.Style>
-                    <Style TargetType="Image">
-                        <Setter Property="Opacity" Value="0.7"/>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Opacity" Value="1"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Image.Style>
-                </Image>
-            </Button>
-            <!-- Кнопка Ползователь -->
-            <Button
-            BorderBrush="Transparent"
-            Margin="0,28,0,0" 
-            Width="65" Height="65" 
-            VerticalAlignment="Top"  
-            Background="Transparent">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border 
-                            Background="{TemplateBinding Background}" 
-                            BorderBrush="{TemplateBinding BorderBrush}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
@@ -183,18 +174,20 @@
                     </Image.Style>
                 </Image>
             </Button>
+
             <!-- Кнопка Файл -->
             <Button
             BorderBrush="Transparent"
-            Margin="0,28,0,0" 
+            Margin="0,198,0,0" 
             Width="65" Height="65" 
-            VerticalAlignment="Top"  
+            VerticalAlignment="Top"
+            HorizontalAlignment="Center"
             Background="Transparent">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border 
-                            Background="{TemplateBinding Background}" 
-                            BorderBrush="{TemplateBinding BorderBrush}">
+                        Background="{TemplateBinding Background}" 
+                        BorderBrush="{TemplateBinding BorderBrush}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
@@ -216,15 +209,16 @@
             <!-- Кнопка настройки -->
             <Button
             BorderBrush="Transparent"
-            Margin="0,571,0,0" 
+            Margin="0,0,0,21" 
             Width="54" Height="54" 
-            VerticalAlignment="Bottom"  
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Center"
             Background="Transparent">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border 
-                            Background="{TemplateBinding Background}" 
-                            BorderBrush="{TemplateBinding BorderBrush}">
+                        Background="{TemplateBinding Background}" 
+                        BorderBrush="{TemplateBinding BorderBrush}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
@@ -242,8 +236,8 @@
                     </Image.Style>
                 </Image>
             </Button>
-        </StackPanel>
-
+        </Grid>
+        
         <!-- Кнопка добавить проект-->
         <Button
         BorderBrush="Transparent"
@@ -254,8 +248,8 @@
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border 
-                        Background="{TemplateBinding Background}" 
-                        BorderBrush="{TemplateBinding BorderBrush}">
+                    Background="{TemplateBinding Background}" 
+                    BorderBrush="{TemplateBinding BorderBrush}">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                 </ControlTemplate>
