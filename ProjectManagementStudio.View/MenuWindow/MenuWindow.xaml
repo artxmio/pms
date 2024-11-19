@@ -9,6 +9,7 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         WindowState="Maximized"
+        RenderOptions.BitmapScalingMode="HighQuality"
         >
     <Window.Resources>
         <Style x:Key="CloseButton" TargetType="{x:Type Button}">
