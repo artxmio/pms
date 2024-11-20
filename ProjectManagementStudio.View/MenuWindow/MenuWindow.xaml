@@ -102,7 +102,7 @@
             VerticalAlignment="Top"
             Margin="0,20,20,0"
             Style="{StaticResource ResourceKey=CloseButton}">
-                <Image x:Name="close" Source="C:\Users\user\Desktop\project\ProjectManagementStudio.View\Source\Close_icon.png">
+                <Image x:Name="close" Source="..\Source\Close_icon.png">
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
                             <Setter Property="Opacity" Value="0.5" />

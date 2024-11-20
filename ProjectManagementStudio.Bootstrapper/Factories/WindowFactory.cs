@@ -16,7 +16,7 @@ internal class WindowFactory : IWindowFactory
 
     private readonly Dictionary<Type, Type> _typeMap = new()
         {
-            {typeof(IMainWindowViewModel), typeof(IMainWindow) }
+            { typeof(IMainWindowViewModel), typeof(IMainWindow) }
         };
 
     public WindowFactory(IComponentContext componentContext)
