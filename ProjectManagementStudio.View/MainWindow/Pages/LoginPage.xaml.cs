@@ -17,17 +17,4 @@ public partial class LoginPage : Page
 
         e.Handled = true;
     }
-
-    private void LoginButton_Click(object sender, RoutedEventArgs e)
-    {
-        // Открытие нового окна MenuWindow
-        MenuWindow.MenuWindow menuWindow = new MenuWindow.MenuWindow();
-        menuWindow.Show();
-
-        Window parentWindow = Window.GetWindow(this); // Получение окна, содержащего текущую страницу
-        if (parentWindow != null)
-        {
-            parentWindow.Close();
-        }
-    }
 }

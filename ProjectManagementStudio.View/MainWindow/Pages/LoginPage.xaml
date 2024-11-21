@@ -84,7 +84,7 @@
                       VerticalAlignment="Center" HorizontalAlignment="Left"
                       IsChecked="{Binding LoginModel.IsRememberMe}"
             />
-            <Button Click="LoginButton_Click" Background="#2C1B45" 
+            <Button Background="#2C1B45" 
             FontWeight="Normal" 
             FontFamily="Outfit"
             FontSize="40" 
@@ -121,10 +121,12 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
+            
             <Line X1="1" Y1="0" X2="366" Y2="0" 
               Stroke="White" StrokeThickness="1"
               Margin="41,16,0,0"  
             />
+            
             <Grid Width="314" Height="23" Margin="0,6,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="209"/>

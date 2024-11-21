@@ -18,11 +18,13 @@ public class APIClient : IAPIClient
     {
     }
 
-    public async Task IsUserExists(AuthModel user)
+    public async Task<bool> IsUserExists(AuthModel user)
     {
         var json = JsonConvert.SerializeObject(new AuthRequestModel(user.login, user.password));
         var content = new StringContent(json, Encoding.UTF8, "application/json");
         var url = $"https://magpie-concrete-clearly.ngrok-free.app/is-user-exists/3i7r4ybfwbatro387";
+
+        bool isExist = false;
 
         try
         {
@@ -33,22 +35,21 @@ public class APIClient : IAPIClient
             IsUserExistResponse deserializeResponse = JsonConvert.DeserializeObject<IsUserExistResponse>(await response.Content.ReadAsStringAsync())
                 ?? throw new InvalidOperationException("Deserialized response can't be null");
 
-            if (deserializeResponse is not null && deserializeResponse.Exists == "True")
-                MessageBox.Show("Есть такой пользователь");
-            else
-                MessageBox.Show("Нету такой пользователь");
+            isExist = deserializeResponse is not null && deserializeResponse.Exists == "True";
         }
         catch (HttpRequestException ex)
         {
             MessageBox.Show($"Возникла ошибка: сервер отключён или недоступен ({ex.Message})", "Ошибка");
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             MessageBox.Show($"Возникла неизвестная ошибка: {ex.Message}", "Ошибка");
         }
+
+        return isExist;
     }
 
-    public async Task AddUser(RegisterModel user) 
+    public async Task AddUser(RegisterModel user)
     {
         var json = JsonConvert.SerializeObject(new AddUserRequestModel(user.login, user.password, user.email));
         var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -66,7 +67,7 @@ public class APIClient : IAPIClient
             if (deserializeResponse is not null && deserializeResponse.Success)
                 MessageBox.Show("Успешно!");
             else
-                MessageBox.Show($"Ошибка: {deserializeResponse?.Message} ({deserializeResponse?.Code})"); 
+                MessageBox.Show($"Ошибка: {deserializeResponse?.Message} ({deserializeResponse?.Code})");
         }
         catch (HttpRequestException ex)
         {

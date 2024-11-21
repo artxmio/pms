@@ -1,17 +1,19 @@
 ﻿using ProjectManagementStudio.ViewModel.Windows;
 using ProjectManagementStudio.ViewModel.Command;
 using System.Windows.Input;
-using ProjectManagementStudio.ViewModel.ValidationsRules;
 using ProjectManagementStudio.Model.UserSavedData.Wrapper;
 using ProjectManagementStudio.Model.WindowModels.RegisterModel;
 using ProjectManagementStudio.Model.WindowModels.AuthModel;
+using ProjectManagementStudio.ViewModel.MenuWindow;
+using ProjectManagementStudio.ViewModel.APIClient;
 
 namespace ProjectManagementStudio.ViewModel.MainWindow;
 
 public class MainWindowViewModel : IMainWindowViewModel
 {
+    private readonly IAPIClient _client;
+    private readonly IMenuWindowViewModel _menuWindowViewModel;
     private readonly IWindowManager _windowManager;
-    private readonly APIClient.APIClient _client;
 
     #region
     public AuthModel LoginModel { get; set; }
@@ -25,17 +27,30 @@ public class MainWindowViewModel : IMainWindowViewModel
     #endregion
 
     public MainWindowViewModel(
-        IWindowManager windowManager, 
-        IUserDataMementoWrapper userDataMementoWrapper)
+        IAPIClient apiClient,
+        IMenuWindowViewModel menuWindowViewModel,
+        IWindowManager windowManager,
+        IUserDataMementoWrapper userDataMementoWrapper
+        )
     {
         LoginModel = new AuthModel(userDataMementoWrapper);
         RegistrationModel = new RegisterModel();
 
+        _menuWindowViewModel = menuWindowViewModel;
         _windowManager = windowManager;
-        _client = new APIClient.APIClient();
+        _client = apiClient;
 
         CloseCommand = new RelayCommand(() => _windowManager.Close(this));
-        AuthorizationCommand = new AsyncCommand(() => _client.IsUserExists(LoginModel));
+        AuthorizationCommand = new RelayCommand(AuthorizateUser);
         RegistrationCommand = new AsyncCommand(() => _client.AddUser(RegistrationModel));
+    }
+
+    private async void AuthorizateUser()
+    {
+        bool isExist = await _client.IsUserExists(LoginModel);
+        if (isExist)
+        {
+            _windowManager.Show(_menuWindowViewModel);
+        }
     }
 }
