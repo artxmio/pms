@@ -4,6 +4,7 @@ using ProjectManagementStudio.Model.ResponseModels;
 using ProjectManagementStudio.Model.Responses;
 using ProjectManagementStudio.Model.WindowModels.AuthModel;
 using ProjectManagementStudio.Model.WindowModels.RegisterModel;
+using ProjectManagementStudio.ViewModel.UrlService;
 using System.Net.Http;
 using System.Text;
 using System.Windows;
@@ -13,16 +14,21 @@ namespace ProjectManagementStudio.ViewModel.APIClient;
 public class APIClient : IAPIClient
 {
     private readonly HttpClient _client = new();
+    private readonly IUrlService _urlService;
 
-    public APIClient()
+    public APIClient(IUrlService urlService)
     {
+        _urlService = urlService;
     }
 
     public async Task<bool> IsUserExists(AuthModel user)
     {
         var json = JsonConvert.SerializeObject(new AuthRequestModel(user.login, user.password));
         var content = new StringContent(json, Encoding.UTF8, "application/json");
-        var url = $"https://magpie-concrete-clearly.ngrok-free.app/is-user-exists/3i7r4ybfwbatro387";
+
+        _urlService.SetUrlCommand(nameof(IsUserExists));
+
+        var url = _urlService.Url;
 
         bool isExist = false;
 
@@ -53,7 +59,10 @@ public class APIClient : IAPIClient
     {
         var json = JsonConvert.SerializeObject(new AddUserRequestModel(user.login, user.password, user.email));
         var content = new StringContent(json, Encoding.UTF8, "application/json");
-        var url = $"https://magpie-concrete-clearly.ngrok-free.app/add-user/3i7r4ybfwbatro387";
+        
+        _urlService.SetUrlCommand(nameof(AddUser));
+
+        var url = _urlService.Url;
 
         try
         {

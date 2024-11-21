@@ -6,6 +6,7 @@ using ProjectManagementStudio.Model.WindowModels.RegisterModel;
 using ProjectManagementStudio.Model.WindowModels.AuthModel;
 using ProjectManagementStudio.ViewModel.MenuWindow;
 using ProjectManagementStudio.ViewModel.APIClient;
+using System.Windows;
 
 namespace ProjectManagementStudio.ViewModel.MainWindow;
 
@@ -51,6 +52,11 @@ public class MainWindowViewModel : IMainWindowViewModel
         if (isExist)
         {
             _windowManager.Show(_menuWindowViewModel);
+            _windowManager.Close(this);
+        }
+        else
+        {
+            MessageBox.Show("Такого пользователя не существует", "Упс!");
         }
     }
 }

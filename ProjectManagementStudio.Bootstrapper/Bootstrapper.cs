@@ -1,5 +1,6 @@
 ﻿using Autofac;
-using ProjectManagementStudio.Bootstrapper.PathService;
+using ProjectManagementStudio.Bootstrapper.Services.PathService;
+using ProjectManagementStudio.Bootstrapper.Services.UrlService;
 using ProjectManagementStudio.Model.UserSavedData.Wrapper;
 using ProjectManagementStudio.ViewModel.MainWindow;
 using ProjectManagementStudio.ViewModel.Windows;
@@ -47,6 +48,7 @@ public class Bootstrapper : IDisposable
 
     private void InitializeDependencies()
     {
+        _container.Resolve<IUrlServiceInitializer>().Initialize();
         _container.Resolve<IPathServiceInitializer>().Initialize();
         _container.Resolve<IUserDataMementoWrapperInitializer>().Initialize();
     }
