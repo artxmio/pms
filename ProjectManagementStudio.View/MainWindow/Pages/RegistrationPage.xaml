@@ -141,9 +141,6 @@
                             Foreground="White" Text="Already have an account?"
                 />
                 <TextBlock Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Foreground="White">
-                    <Hyperlink NavigateUri="LoginPage.xaml" Foreground="#2883F8" RequestNavigate="Hyperlink_RequestNavigate">
-                        Log in
-                    </Hyperlink>
                 </TextBlock>
             </Grid>
         </StackPanel>

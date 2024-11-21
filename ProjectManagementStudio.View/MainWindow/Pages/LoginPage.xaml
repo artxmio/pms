@@ -135,13 +135,11 @@
                 <TextBlock FontFamily="Outfit" FontSize="20" FontWeight="Normal"
                         Foreground="White" Text="Don't have an account?"/>
 
-                <TextBlock Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Foreground="White">
-                
-                    <Hyperlink NavigateUri="RegistrationPage.xaml" Foreground="#2883F8" RequestNavigate="Hyperlink_RequestNavigate">
-                    Create new
-               
-                    </Hyperlink>
-                </TextBlock>
+                <Button Grid.Column="2" Command="{Binding NavigateToRegistrationPage}">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Foreground="White">
+                    </TextBlock>
+                </Button>
+
             </Grid>
         </StackPanel>
     </Border>

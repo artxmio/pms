@@ -3,6 +3,7 @@ using ProjectManagementStudio.Bootstrapper.Factories;
 using ProjectManagementStudio.Bootstrapper.Services.PathService;
 using ProjectManagementStudio.Bootstrapper.Services.UrlService;
 using ProjectManagementStudio.Model.PathService;
+using ProjectManagementStudio.View.PageFactory;
 using ProjectManagementStudio.View.WindowFactory;
 using ProjectManagementStudio.ViewModel.UrlService;
 
@@ -15,6 +16,7 @@ public class RegistrationModule : Module
         base.Load(builder);
 
         builder.RegisterType<WindowFactory>().As<IWindowFactory>().SingleInstance();
+        builder.RegisterType<PageFactory>().As<IPageFactory>().SingleInstance();
 
         builder.RegisterType<PathService>()
             .As<IPathService>()

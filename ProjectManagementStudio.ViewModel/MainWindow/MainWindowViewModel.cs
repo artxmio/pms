@@ -7,12 +7,16 @@ using ProjectManagementStudio.Model.WindowModels.AuthModel;
 using ProjectManagementStudio.ViewModel.MenuWindow;
 using ProjectManagementStudio.ViewModel.APIClient;
 using System.Windows;
+using ProjectManagementStudio.ViewModel.Pages;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace ProjectManagementStudio.ViewModel.MainWindow;
 
-public class MainWindowViewModel : IMainWindowViewModel
+public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
 {
     private readonly IAPIClient _client;
+    private readonly IPageManager _pageManager;
     private readonly IMenuWindowViewModel _menuWindowViewModel;
     private readonly IWindowManager _windowManager;
 
@@ -25,13 +29,30 @@ public class MainWindowViewModel : IMainWindowViewModel
     public ICommand CloseCommand { get; }
     public ICommand AuthorizationCommand { get; }
     public ICommand RegistrationCommand { get; }
+
+    public ICommand NavigateToRegistrationPage { get; }
     #endregion
+
+    private IPage _activePage;
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    public IPage ActivePage
+    {
+        get => _activePage;
+        set
+        {
+            _activePage = value;
+            OnPropertyChanged();
+        }
+    }
 
     public MainWindowViewModel(
         IAPIClient apiClient,
         IMenuWindowViewModel menuWindowViewModel,
         IWindowManager windowManager,
-        IUserDataMementoWrapper userDataMementoWrapper
+        IUserDataMementoWrapper userDataMementoWrapper,
+        IPageManager pageManager
         )
     {
         LoginModel = new AuthModel(userDataMementoWrapper);
@@ -40,10 +61,16 @@ public class MainWindowViewModel : IMainWindowViewModel
         _menuWindowViewModel = menuWindowViewModel;
         _windowManager = windowManager;
         _client = apiClient;
+        _pageManager = pageManager;
+
+        _activePage = _pageManager.ActivePage;
 
         CloseCommand = new RelayCommand(() => _windowManager.Close(this));
         AuthorizationCommand = new RelayCommand(AuthorizateUser);
         RegistrationCommand = new AsyncCommand(() => _client.AddUser(RegistrationModel));
+
+        NavigateToRegistrationPage = new RelayCommand(
+            () => ActivePage = _pageManager.NavigateTo(1));
     }
 
     private async void AuthorizateUser()
@@ -58,5 +85,10 @@ public class MainWindowViewModel : IMainWindowViewModel
         {
             MessageBox.Show("Такого пользователя не существует", "Упс!");
         }
+    }
+
+    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

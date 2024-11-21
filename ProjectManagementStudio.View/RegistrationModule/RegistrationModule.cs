@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using ProjectManagementStudio.View.MainWindow;
+using ProjectManagementStudio.View.MainWindow.Pages;
 using ProjectManagementStudio.View.MenuWindow;
+using ProjectManagementStudio.ViewModel.Pages;
 using ProjectManagementStudio.ViewModel.Windows;
 
 namespace ProjectManagementStudio.View.RegistrationModule;
@@ -13,7 +15,11 @@ public class RegistrationModule : Module
 
         builder.RegisterType<MainWindow.MainWindow>().As<IMainWindow>().InstancePerDependency();
         builder.RegisterType<MenuWindow.MenuWindow>().As<IMenuWindow>().InstancePerDependency();
+        
+        builder.RegisterType<RegistrationPage>().As<IRegistrationPage>().InstancePerDependency();
+        builder.RegisterType<LoginPage>().As<ILoginPage>().InstancePerDependency();
 
         builder.RegisterType<WindowManager.WindowsManager>().As<IWindowManager>().SingleInstance();
+        builder.RegisterType<PageManager.PageManager>().As<IPageManager>().SingleInstance();
     }
 }

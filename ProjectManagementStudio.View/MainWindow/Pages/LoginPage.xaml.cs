@@ -1,20 +1,11 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
+﻿using System.Windows.Controls;
 
 namespace ProjectManagementStudio.View.MainWindow.Pages;
 
-public partial class LoginPage : Page
+public partial class LoginPage : Page, ILoginPage
 {
     public LoginPage()
     {
         InitializeComponent();
-    }
-
-    private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
-    {
-        NavigationService.Navigate(new Uri("../ProjectManagementStudio.View;component/MainWindow/Pages/RegistrationPage.xaml", UriKind.Relative));
-
-        e.Handled = true;
     }
 }
