@@ -31,6 +31,7 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
     public ICommand RegistrationCommand { get; }
 
     public ICommand NavigateToRegistrationPage { get; }
+    public ICommand NavigateToLoginPage { get; }
     #endregion
 
     private IPage _activePage;
@@ -69,8 +70,8 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
         AuthorizationCommand = new RelayCommand(AuthorizateUser);
         RegistrationCommand = new AsyncCommand(() => _client.AddUser(RegistrationModel));
 
-        NavigateToRegistrationPage = new RelayCommand(
-            () => ActivePage = _pageManager.NavigateTo(1));
+        NavigateToRegistrationPage = new RelayCommand(() => ActivePage = _pageManager.NavigateTo(1));
+        NavigateToLoginPage = new RelayCommand(() => ActivePage = _pageManager.NavigateTo(0));
     }
 
     private async void AuthorizateUser()

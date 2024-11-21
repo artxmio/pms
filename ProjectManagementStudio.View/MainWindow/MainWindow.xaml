@@ -42,7 +42,7 @@
 
 
     <Grid>
-        <Frame Content="{Binding ActivePage}"/>
+        <Frame Content="{Binding ActivePage}" NavigationUIVisibility="Hidden"/>
 
         <Button Command="{Binding CloseCommand}"
                 BorderBrush="Transparent"

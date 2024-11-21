@@ -140,8 +140,11 @@
                 <TextBlock FontFamily="Outfit" FontSize="20" FontWeight="Normal"
                             Foreground="White" Text="Already have an account?"
                 />
-                <TextBlock Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Foreground="White">
-                </TextBlock>
+
+                <Button Grid.Column="1" Command="{Binding NavigateToLoginPage}" Margin="0,0,0,1">
+
+                </Button>
+
             </Grid>
         </StackPanel>
     </Border>
