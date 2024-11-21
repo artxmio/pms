@@ -1,14 +1,7 @@
-﻿using ProjectManagementStudio.View.MainWindow;
-using ProjectManagementStudio.View.WindowFactory;
-using ProjectManagementStudio.ViewModel.MainWindow;
+﻿using ProjectManagementStudio.View.WindowFactory;
 using ProjectManagementStudio.ViewModel.Windows;
-using System.Windows;
 
 namespace ProjectManagementStudio.View.WindowManager;
-
-/*
-    Менеджер отвечает за показ окна 
-*/
 
 public class WindowsManager : IWindowManager
 {
