@@ -11,6 +11,7 @@
         WindowState="Maximized"
         RenderOptions.BitmapScalingMode="HighQuality"
         >
+
     <Window.Resources>
         <Style x:Key="CloseButton" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#3D5754"/>
@@ -39,6 +40,7 @@
     </Window.Background>
 
     <Grid>
+        <Frame Name="ProfileFrame" NavigationUIVisibility="Hidden"/>
         <Frame x:Name="WelcomeFrame" NavigationUIVisibility="Hidden" Navigated="WelcomeFrame_Navigated"/>
         
         <!-- Верхнее меню -->
@@ -151,6 +153,7 @@
 
             <!-- Кнопка Ползователь -->
             <Button
+            Click="ProfileButton_Click"
             BorderBrush="Transparent"
             Margin="0,108,0,0" 
             Width="65" Height="65" 

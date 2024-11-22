@@ -23,6 +23,11 @@
                 <ResourceDictionary 
             Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <Storyboard x:Key="FadeOutStoryboard">
+                <DoubleAnimation
+                Storyboard.TargetProperty="Opacity"
+                From="1.0" To="0.0" Duration="0:0:0.5" />
+            </Storyboard>
         </ResourceDictionary>
     </Page.Resources>
 
@@ -121,25 +126,42 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            
+
             <Line X1="1" Y1="0" X2="366" Y2="0" 
               Stroke="White" StrokeThickness="1"
               Margin="41,16,0,0"  
             />
-            
-            <Grid Width="314" Height="23" Margin="0,6,0,0">
+
+            <Grid Width="314" Height="28" Margin="0,6,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="209"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <TextBlock FontFamily="Outfit" FontSize="20" FontWeight="Normal"
-                        Foreground="White" Text="Don't have an account?"/>
+                        Foreground="White" Text="Don't have an account?" Height="23" VerticalAlignment="Top"/>
+                
+                <Button VerticalAlignment="Top" Padding="0" Width="104" Height="28" HorizontalAlignment="Left" Grid.Column="2" Command="{Binding NavigateToRegistrationPage}" Background="Transparent" BorderBrush="Transparent" Margin="0,0,0,0">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <StackPanel Orientation="Vertical" Width="104" Height="28">
+                                <TextBlock x:Name="buttonText" Margin="0,0.3,0,0"
+                                           Text="Create new" 
+                                           Foreground="#4683F5"
+                                           FontSize="20"
+                                           FontFamily="Outfit"
+                                           FontWeight="Normal"/>
+                                <Border x:Name="bottomBorder" Width="104" Height="1" Margin="0,-4,0,0" HorizontalAlignment="Center" Background="#4683F5" />
+                            </StackPanel>
 
-                <Button Grid.Column="2" Command="{Binding NavigateToRegistrationPage}">
-                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Foreground="White">
-                    </TextBlock>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="buttonText" Property="Foreground" Value="#8A47D3"/>
+                                    <Setter TargetName="bottomBorder" Property="Background" Value="#8A47D3"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
                 </Button>
-
             </Grid>
         </StackPanel>
     </Border>

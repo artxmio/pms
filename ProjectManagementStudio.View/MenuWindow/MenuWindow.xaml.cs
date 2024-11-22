@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Navigation;
 
 namespace ProjectManagementStudio.View.MenuWindow;
 
@@ -18,5 +19,10 @@ public partial class MenuWindow : IMenuWindow
     private void CloseButton_Click(object sender, RoutedEventArgs e)
     {
         Close();
+    }
+
+    private void ProfileButton_Click(object sender, RoutedEventArgs e)
+    {
+        ProfileFrame.Navigate(new Uri("ProfilePage.xaml", UriKind.Relative));
     }
 }

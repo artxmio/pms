@@ -91,15 +91,15 @@
             </TextBox>
 
             <Button Background="#2C1B45" 
-        FontWeight="Normal" 
-        FontFamily="Outfit" 
-        FontSize="40" 
-        Margin="0,44,0,0" 
-        Content="Continue" 
-        Width="370" 
-        Height="60"
-        IsEnabled="{Binding RegistrationModel.IsValid}" 
-        Command="{Binding RegistrationCommand}">
+                    FontWeight="Normal" 
+                    FontFamily="Outfit" 
+                    FontSize="40" 
+                    Margin="0,44,0,0" 
+                    Content="Continue" 
+                    Width="370" 
+                    Height="60"
+                    IsEnabled="{Binding RegistrationModel.IsValid}" 
+                    Command="{Binding RegistrationCommand}">
 
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
@@ -132,19 +132,36 @@
                   Stroke="White" StrokeThickness="1"
                   Margin="41,16,0,0"  
             />
-            <Grid Width="290" Height="23" Margin="0,6,0,0">
+            <Grid Width="286" Height="28" Margin="0,6,0,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="234"/>
+                    <ColumnDefinition Width="231"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <TextBlock FontFamily="Outfit" FontSize="20" FontWeight="Normal"
                             Foreground="White" Text="Already have an account?"
                 />
 
-                <Button Grid.Column="1" Command="{Binding NavigateToLoginPage}" Margin="0,0,0,1">
-
+                <Button VerticalAlignment="Top" Padding="0" Width="55" Height="28" HorizontalAlignment="Left" Grid.Column="2" Command="{Binding NavigateToLoginPage}" Background="Transparent" BorderBrush="Transparent" Margin="0,0,0,0">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <StackPanel Orientation="Vertical" Width="54" Height="28">
+                                <TextBlock x:Name="buttonText" Margin="0,0.3,0,0"
+                                           Text="Log in" 
+                                           Foreground="#4683F5"
+                                           FontSize="20"
+                                           FontFamily="Outfit"
+                                           FontWeight="Normal"/>
+                                <Border x:Name="bottomBorder" Width="53" Height="1" Margin="0,0,0,0" HorizontalAlignment="Center" Background="#4683F5" />
+                            </StackPanel>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="buttonText" Property="Foreground" Value="#8A47D3"/>
+                                    <Setter TargetName="bottomBorder" Property="Background" Value="#8A47D3"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
                 </Button>
-
             </Grid>
         </StackPanel>
     </Border>

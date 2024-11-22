@@ -92,4 +92,6 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
+
+
 }
