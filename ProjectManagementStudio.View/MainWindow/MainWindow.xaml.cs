@@ -1,6 +1,4 @@
 ﻿using ProjectManagementStudio.ViewModel.MainWindow;
-using System.Windows.Controls;
-using System.Windows.Media.Animation;
 
 namespace ProjectManagementStudio.View.MainWindow;
 

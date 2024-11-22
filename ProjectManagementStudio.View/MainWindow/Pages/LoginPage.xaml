@@ -7,19 +7,17 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:validations="clr-namespace:ProjectManagementStudio.ViewModel.ValidationsRules;assembly=ProjectManagementStudio.ViewModel"
       xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MainWindow;assembly=ProjectManagementStudio.ViewModel"
-      
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1600"
       Title="LoginPage"
-      d:DataContext="{d:DesignInstance vm:MainWindowViewModel}" 
-      >
+      d:DataContext="{d:DesignInstance vm:MainWindowViewModel}">
+    
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <materialDesign:BundledTheme BaseTheme="Light" 
                                      PrimaryColor="DeepPurple" 
                                      SecondaryColor="Pink" />
-
                 <ResourceDictionary 
             Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
@@ -31,31 +29,41 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Border CornerRadius="30" Width="446" Height="500" 
-    HorizontalAlignment="Left" 
-    VerticalAlignment="Center" 
-    Margin="250,0,0,0"
-    Background="#80DBCBE8" 
-    >
+    <Border CornerRadius="30" 
+            Width="446"
+            Height="500" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center" 
+            Margin="250,0,0,0"
+            Background="#80DBCBE8">
+        
         <StackPanel>
+            
             <TextBlock Text="Log in"
-               Width="210"
-               Height="92"
-               FontSize="75"
-               Foreground="White"
-               FontWeight="SemiBold"
-               HorizontalAlignment="center"
-               VerticalAlignment="Center"
-               FontFamily="Outfit"
-               Margin="0,37,0,0"
-               />
-            <TextBox x:Name="login" MaxLength="20" FontSize="20" Foreground="white" Height="41" Width="365"
-                 materialDesign:HintAssist.Hint="login"
-                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                 HorizontalAlignment="Left"
-                 Margin="41,42,0,0"
-                 BorderBrush="white"
-                 FontWeight="Normal" FontFamily="Outfit">
+                       Width="210"
+                       Height="92"
+                       FontSize="75"
+                       Foreground="White"
+                       FontWeight="SemiBold"
+                       HorizontalAlignment="center"
+                       VerticalAlignment="Center"
+                       FontFamily="Outfit"
+                       Margin="0,37,0,0"/>
+            
+            <!-- // Login // -->
+            <TextBox x:Name="login" 
+                     MaxLength="20" 
+                     FontSize="20" 
+                     Foreground="white" 
+                     Height="41" 
+                     Width="365"
+                     materialDesign:HintAssist.Hint="login"                
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"            
+                     HorizontalAlignment="Left"               
+                     Margin="41,42,0,0"              
+                     BorderBrush="white"
+                     FontWeight="Normal" FontFamily="Outfit">
+                
                 <TextBox.Text>
                     <Binding Path="LoginModel.login" UpdateSourceTrigger="PropertyChanged" NotifyOnTargetUpdated="True">
                         <Binding.ValidationRules>
@@ -63,15 +71,22 @@
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
+                
             </TextBox>
 
-            <TextBox x:Name="password" MaxLength="24" FontSize="20" Foreground="white" Height="40" Width="365"
-            materialDesign:HintAssist.Hint="password"
-            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-            HorizontalAlignment="Left"
-            Margin="41,32,0,0"
-            BorderBrush="white"
-            FontWeight="Normal" FontFamily="Outfit">
+            <!-- // Password // -->
+            <TextBox x:Name="password"
+                     MaxLength="24"
+                     FontSize="20"
+                     Foreground="white" 
+                     Height="40" 
+                     Width="365"
+                     materialDesign:HintAssist.Hint="password"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     HorizontalAlignment="Left"
+                     Margin="41,32,0,0"
+                     BorderBrush="white"
+                     FontWeight="Normal" FontFamily="Outfit">
 
                 <TextBox.Text>
                     <Binding Path="LoginModel.password" UpdateSourceTrigger="PropertyChanged">
@@ -83,12 +98,21 @@
 
             </TextBox>
 
-            <CheckBox Width="123" Content="remember me" Margin="40,30,0,0" BorderBrush="#2C1B45"
-                      FontFamily="Outfit" FontWeight="Normal" Foreground="White"
-                      FontSize="16" VerticalContentAlignment="Center"
-                      VerticalAlignment="Center" HorizontalAlignment="Left"
-                      IsChecked="{Binding LoginModel.IsRememberMe}"
-            />
+            <!-- // Rememmber me // -->
+            <CheckBox Width="123"
+                      Content="remember me"
+                      Margin="40,30,0,0"
+                      BorderBrush="#2C1B45"
+                      FontFamily="Outfit"
+                      FontWeight="Normal"
+                      Foreground="White"
+                      FontSize="16"
+                      VerticalContentAlignment="Center"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Left"
+                      IsChecked="{Binding LoginModel.IsRememberMe}"/>
+
+            <!-- // Btn Continue // -->
             <Button Background="#2C1B45" 
             FontWeight="Normal" 
             FontFamily="Outfit"
