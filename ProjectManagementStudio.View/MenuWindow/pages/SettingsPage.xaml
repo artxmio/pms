@@ -202,7 +202,7 @@
                             </Style>
                         </ComboBox.Resources>
                         <!-- Пункты выбора -->
-                        <ComboBoxItem Content="Deafault"/>
+                        <ComboBoxItem Content="Default"/>
                         <ComboBoxItem Content="Red"/>
                         <ComboBoxItem Content="Blue"/>
                         <ComboBoxItem Content="Light"/>
