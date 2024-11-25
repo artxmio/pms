@@ -5,12 +5,20 @@ namespace ProjectManagementStudio.Model.Responses;
 [DataContract]
 public class IsUserExistResponse
 {
-    [DataMember(Name = "exists")]
-    public string Exists { get; set; }
+    [DataMember(Name = "Success")]
+    public bool Success { get; set; }
+
+    [DataMember(Name = "code")]
+    public int Code { get; set; }
+
+    [DataMember(Name = "data")]
+    public string Data { get; set; }
 
     public IsUserExistResponse()
     {
-        Exists = "";
+        Success = false;
+        Code = -1;
+        Data = "";
     }
 }
 

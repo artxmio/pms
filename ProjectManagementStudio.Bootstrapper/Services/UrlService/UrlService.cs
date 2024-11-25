@@ -15,9 +15,10 @@ public class UrlService : IUrlServiceInitializer, IUrlService
     };
 
     private bool _initialized = false;
+
     private string _urlBase = "";
     private string _token = "";
-    private string _urlCommand = "";
+    private string _urlEndpoint = "";
 
     public string URLBase
     {
@@ -52,13 +53,36 @@ public class UrlService : IUrlServiceInitializer, IUrlService
         }
     }
 
+    public string URLEndpoint
+    {
+        get
+        {
+            EnsureInitialized();
+
+            return _urlEndpoint;
+        }
+        set
+        {
+            EnsureInitialized();
+
+            if (_urlMap.TryGetValue(value, out string? s))
+            {
+                _urlEndpoint = _urlMap[value];
+            }
+            else
+            {
+                throw new ArgumentException("The list does not contain such commands");
+            }
+        }
+    }
+
     public void SetUrlCommand(string command)
     {
         EnsureInitialized();
 
         if (_urlMap.TryGetValue(command, out string? value))
         {
-            _urlCommand = _urlMap[command];
+            _urlEndpoint = _urlMap[command];
         }
         else
         {

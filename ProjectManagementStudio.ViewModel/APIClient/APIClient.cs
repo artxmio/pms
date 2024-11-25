@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using ProjectManagementStudio.Model.RequestsModels;
 using ProjectManagementStudio.Model.ResponseModels;
 using ProjectManagementStudio.Model.Responses;
@@ -7,7 +6,6 @@ using ProjectManagementStudio.Model.WindowModels.AuthModel;
 using ProjectManagementStudio.Model.WindowModels.RegisterModel;
 using ProjectManagementStudio.ViewModel.UrlService;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Windows;
 
@@ -31,13 +29,13 @@ public class APIClient : IAPIClient
         var json = JsonConvert.SerializeObject(new AuthRequestModel(user.login, user.password));
         var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-        _urlService.SetUrlCommand(nameof(IsUserExists));
+        _urlService.URLEndpoint = nameof(IsUserExists);
 
-        bool isExist = false;
+        bool isExist = true;
 
         try
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, "is-user-exists")
+            var request = new HttpRequestMessage(HttpMethod.Post, $"{_client.BaseAddress}{_urlService.URLEndpoint}")
             {
                 Content = content
             };
@@ -49,7 +47,7 @@ public class APIClient : IAPIClient
             IsUserExistResponse deserializeResponse = JsonConvert.DeserializeObject<IsUserExistResponse>(await response.Content.ReadAsStringAsync())
                 ?? throw new InvalidOperationException("Deserialized response can't be null");
 
-            isExist = deserializeResponse is not null && deserializeResponse.Exists == "True";
+            isExist = deserializeResponse is not null && deserializeResponse.Success;
         }
         catch (HttpRequestException ex)
         {
@@ -68,13 +66,16 @@ public class APIClient : IAPIClient
         var json = JsonConvert.SerializeObject(new AddUserRequestModel(user.login, user.password, user.email));
         var content = new StringContent(json, Encoding.UTF8, "application/json");
         
-        _urlService.SetUrlCommand(nameof(AddUser));
-
-        var url = _urlService.URLBase;
+        _urlService.URLEndpoint = nameof(AddUser);
 
         try
         {
-            var response = await _client.PostAsync(url, content);
+            var request = new HttpRequestMessage(HttpMethod.Post, $"{_client.BaseAddress}{_urlService.URLEndpoint}")
+            {
+                Content = content
+            };
+
+            var response = await _client.SendAsync(request);
 
             AddUserResponse deserializeResponse = JsonConvert.DeserializeObject<AddUserResponse>(await response.Content.ReadAsStringAsync())
                 ?? throw new InvalidOperationException("Deserialized response can't be null");
