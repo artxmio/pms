@@ -1,4 +1,5 @@
 ﻿using ProjectManagementStudio.View.MainWindow.Pages;
+using ProjectManagementStudio.View.MenuWindow.Pages;
 using ProjectManagementStudio.View.PageFactory;
 using ProjectManagementStudio.ViewModel.Pages;
 
@@ -12,6 +13,8 @@ internal class PageFactory : IPageFactory
         {
             Pages.LoginPage => new LoginPage(),
             Pages.RegistrationPage => new RegistrationPage(),
+            Pages.WelcomepPage => new WelcomePage(),
+            Pages.ProfilePage => new ProfilePage(),
             _ => throw new ArgumentException($"No such page: {pageKey}")
         };
     }

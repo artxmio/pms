@@ -64,7 +64,7 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
         _client = apiClient;
         _pageManager = pageManager;
 
-        _activePage = _pageManager.ActivePage;
+        _activePage = _pageManager.NavigateTo(0);
 
         CloseCommand = new RelayCommand(() => _windowManager.Close(this));
         AuthorizationCommand = new RelayCommand(AuthorizateUser);
@@ -79,7 +79,14 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
         bool isExist = await _client.IsUserExists(LoginModel);
         if (isExist)
         {
-            _windowManager.Show(_menuWindowViewModel);
+            var menuWindow = _windowManager.Show(_menuWindowViewModel) as Window;
+
+            if(menuWindow is not Window window)
+            {
+                throw new NotImplementedException();
+            }
+            window.DataContext = _menuWindowViewModel;
+
             _windowManager.Close(this);
         }
     }

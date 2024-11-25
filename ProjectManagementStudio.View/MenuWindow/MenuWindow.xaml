@@ -4,13 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectManagementStudio.View.MenuWindow"
+        xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MenuWindow;assembly=ProjectManagementStudio.ViewModel"
         mc:Ignorable="d"
         Title="MenuWindow" Height="900" Width="1600"
         ResizeMode="NoResize"
         WindowStyle="None"
         WindowState="Maximized"
         RenderOptions.BitmapScalingMode="HighQuality"
-        >
+        d:DataContext="{d:DesignInstance vm:MenuWindowViewModel}">
 
     <Window.Resources>
         <Style x:Key="CloseButton" TargetType="{x:Type Button}">
@@ -40,9 +41,8 @@
     </Window.Background>
 
     <Grid>
-        <Frame Name="ProfileFrame" NavigationUIVisibility="Hidden"/>
-        <Frame x:Name="WelcomeFrame" NavigationUIVisibility="Hidden" Navigated="WelcomeFrame_Navigated"/>
-        
+        <Frame Content="{Binding ActivePage}" NavigationUIVisibility="Hidden"/>
+
         <!-- Верхнее меню -->
         <Grid Height="87" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="100,0,0,0">
             <Grid.Background>
@@ -66,6 +66,7 @@
 
             <!-- Кнопка Профиля -->
             <Button Grid.Column="1"
+                    Command="{Binding NavigateToProfilePage}"
             BorderBrush="Transparent"
             Width="65" Height="65" 
             HorizontalAlignment="Left" VerticalAlignment="Center" 
@@ -97,7 +98,7 @@
 
             <!-- Кнопка закрытия -->
             <Button Grid.Column="3"
-            Click="CloseButton_Click"
+                    Command="{Binding CloseCommand}"
             Width="30" Height="30" 
             Background="Transparent"
             HorizontalAlignment="Right"
@@ -122,6 +123,7 @@
         <!-- Боковое меню -->
         <Grid Background="#2C1B47" Width="100" HorizontalAlignment="Left" VerticalAlignment="Stretch">
             <Button
+                Command="{Binding NavigateToWelcomePage}"
             BorderBrush="Transparent"
             Margin="0,18,0,0" 
             Width="65" Height="65" 
@@ -153,7 +155,7 @@
 
             <!-- Кнопка Ползователь -->
             <Button
-            Click="ProfileButton_Click"
+                Command="{Binding NavigateToProfilePage}"
             BorderBrush="Transparent"
             Margin="0,108,0,0" 
             Width="65" Height="65" 
@@ -245,7 +247,7 @@
                 </Image>
             </Button>
         </Grid>
-        
+
         <!-- Кнопка добавить проект-->
         <Button
         BorderBrush="Transparent"

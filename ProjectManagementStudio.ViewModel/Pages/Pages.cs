@@ -3,5 +3,7 @@
 public enum Pages
 {
     LoginPage,
-    RegistrationPage
+    RegistrationPage,
+    WelcomepPage,
+    ProfilePage
 }

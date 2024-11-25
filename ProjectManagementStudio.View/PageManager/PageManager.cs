@@ -10,7 +10,7 @@ public class PageManager : IPageManager
     private readonly IPageFactory _pageFactory;
     private readonly Stack<IPage> _history;
 
-    public IPage _activePage;
+    public required IPage _activePage;
 
     public IPage ActivePage
     {
@@ -25,8 +25,6 @@ public class PageManager : IPageManager
     {
         _history = new Stack<IPage>();
         _pageFactory = factory;
-
-        _activePage = factory.Create(0);
     }
 
     public IPage NavigateTo(int pages)
