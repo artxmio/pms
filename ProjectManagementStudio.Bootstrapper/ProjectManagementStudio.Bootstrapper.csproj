@@ -8,6 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\UrlService\HttpConfig.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Services\UrlService\HttpConfig.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Autofac" Version="8.1.1" />
   </ItemGroup>
 

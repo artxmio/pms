@@ -275,7 +275,33 @@
                            Height="20" Width="20"
                            VerticalAlignment="Top"
                            HorizontalAlignment="Right"
-                           Margin="0,14,14,0"/>
+                           Margin="0,14,14,0">
+                            <Image.Style>
+                                <Style TargetType="Image">
+                                    <Setter Property="Opacity" Value="1"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Opacity" Value="0.7"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                            <Image.ToolTip>
+                                <ToolTip Content="The user's rating is formed from the ratings 
+                                         used by the team leader to evaluate the employee.">
+                                    <ToolTip.Template>
+                                        <ControlTemplate TargetType="ToolTip">
+                                            <Border Width="230" Height="180" Background="#9357A1" CornerRadius="25">
+                                                <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=ToolTip}, Path=Content}" 
+                                                    FontFamily="Outfit" FontSize="20" FontWeight="Normal" 
+                                                    Foreground="white" TextWrapping="Wrap"
+                                                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </ToolTip.Template>
+                                </ToolTip>
+                            </Image.ToolTip>
+                        </Image>
 
                         <TextBlock Text="Rate"
                                FontFamily="outfit"

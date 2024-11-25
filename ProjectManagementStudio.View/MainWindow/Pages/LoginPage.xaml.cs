@@ -9,4 +9,9 @@ public partial class LoginPage : Page, ILoginPage
     {
         InitializeComponent();
     }
+
+    private void CheckBox_Checked(object sender, System.Windows.RoutedEventArgs e)
+    {
+
+    }
 }

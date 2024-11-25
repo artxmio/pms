@@ -1,0 +1,378 @@
+﻿<Page x:Class="ProjectManagementStudio.View.MenuWindow.pages.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjectManagementStudio.View.MenuWindow.pages"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="813" d:DesignWidth="1500"
+      Title="SettingsPage">
+
+    <Border Background="#724D9D" Height="750" Width="650" CornerRadius="25">
+        <Border.Effect>
+            <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
+        </Border.Effect>
+        <StackPanel>
+            <TextBlock Text="Settings" FontSize="75" Foreground="#FFFFFF"
+                       FontFamily="Outfit" FontWeight="Normal" Margin="0,22,0,0"
+                       HorizontalAlignment="Center"/>
+
+            <!-- Меню выбора языка -->
+            <Border Margin="0,17,0,0" Background="#271F3F" Width="530" Height="125" CornerRadius="10">
+                <Border.Effect>
+                    <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
+                </Border.Effect>
+                <Grid>
+                    <TextBlock Text="Language" FontSize="30" Foreground="#FFFFFF"
+                       FontFamily="Outfit" FontWeight="Normal" Margin="24,12,0,0"
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Top" 
+                       Width="134" Height="38"/>
+
+                    <ComboBox Width="480" Height="40"
+                       HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                       Background="#724D9D" Foreground="White"
+                       FontSize="20" FontFamily="Outfit"
+                       BorderBrush="Transparent"
+                       Padding="10,5" Margin="0,0,0,18"
+                       SelectedIndex="0">
+                        <ComboBox.Template>
+                            <ControlTemplate TargetType="ComboBox">
+                                <Grid>
+                                    <!-- Скруглённый фон ComboBox -->
+                                    <Border x:Name="BackgroundBorder"
+                                          Background="{TemplateBinding Background}"
+                                          CornerRadius="10"
+                                          BorderBrush="{TemplateBinding BorderBrush}"
+                                          BorderThickness="2" />
+                                    <!-- Отображение выбранного элемента -->
+                                    <ContentPresenter Margin="19,0,35,0" VerticalAlignment="Center" HorizontalAlignment="Left"
+                                          Content="{TemplateBinding SelectionBoxItem}" 
+                                          ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                          ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" />
+                                    <!-- Значок стрелки -->
+                                    <ToggleButton x:Name="DropDownToggle" Grid.Column="1"
+                                          Background="Transparent"
+                                          Focusable="False"
+                                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                          ClickMode="Press"
+                                          HorizontalAlignment="Right" Margin="0,0,10,0"
+                                          BorderThickness="0" 
+                                          FocusVisualStyle="{x:Null}"
+                                          Width="19" Height="14">
+                                        <Path Width="15" Height="8" Stroke="#361B48" StrokeThickness="3"
+                                            Data="M 0 0 L 8 10 L 16 0" Stretch="Fill" />
+                                    </ToggleButton>
+                                    <!-- Всплывающий список -->
+                                    <Popup x:Name="Popup" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True"
+                                        Placement="Bottom" Focusable="False">
+                                        <Border x:Name="PopupBorder" Background="#7232A8" BorderBrush="Transparent"
+                                            BorderThickness="1" CornerRadius="10">
+                                            <ScrollViewer>
+                                                <ItemsPresenter/>
+                                            </ScrollViewer>
+                                        </Border>
+                                    </Popup>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="BackgroundBorder" Property="Background" Value="#5D3576"/>
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter TargetName="BackgroundBorder" Property="Background" Value="#1A1230"/>
+                                        <Setter Property="Foreground" Value="#666666"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </ComboBox.Template>
+
+                        <ComboBox.Resources>
+                            <!-- Стиль для элементов выпадающего списка -->
+                            <Style TargetType="ComboBoxItem">
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="Background" Value="#7232A8"/>
+                                <Setter Property="FontSize" Value="20"/>
+                                <Setter Property="FontFamily" Value="Outfit"/>
+                                <Setter Property="Padding" Value="10,5"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#5D3576"/>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#512A6B"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ComboBox.Resources>
+                        <!-- Пункты выбора -->
+                        <ComboBoxItem Content="English"/>
+                        <ComboBoxItem Content="Русский"/>
+                        <ComboBoxItem Content="Беларускi"/>
+                    </ComboBox>
+                </Grid>
+            </Border>
+
+            <!-- Меню выбора темы -->
+            <Border Margin="0,17,0,0" Background="#271F3F" Width="530" Height="125" CornerRadius="10">
+                <Border.Effect>
+                    <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
+                </Border.Effect>
+                <Grid>
+                    <TextBlock Text="Theme" FontSize="30" Foreground="#FFFFFF"
+                       FontFamily="Outfit" FontWeight="Normal" Margin="24,12,0,0"
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Top"/>
+
+                    <ComboBox Width="480" Height="40"
+                       HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                       Background="#724D9D" Foreground="White"
+                       FontSize="20" FontFamily="Outfit"
+                       BorderBrush="Transparent"
+                       Padding="10,5" Margin="0,0,0,18"
+                       SelectedIndex="0">
+                        <ComboBox.Template>
+                            <ControlTemplate TargetType="ComboBox">
+                                <Grid>
+                                    <!-- Скруглённый фон ComboBox -->
+                                    <Border x:Name="BackgroundBorder"
+                                          Background="{TemplateBinding Background}"
+                                          CornerRadius="10"
+                                          BorderBrush="{TemplateBinding BorderBrush}"
+                                          BorderThickness="2" />
+                                    <!-- Отображение выбранного элемента -->
+                                    <ContentPresenter Margin="19,0,35,0" VerticalAlignment="Center" HorizontalAlignment="Left"
+                                          Content="{TemplateBinding SelectionBoxItem}" 
+                                          ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                          ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" />
+                                    <!-- Значок стрелки -->
+                                    <ToggleButton x:Name="DropDownToggle" Grid.Column="1"
+                                          Background="Transparent"
+                                          Focusable="False"
+                                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                          ClickMode="Press"
+                                          HorizontalAlignment="Right" Margin="0,0,10,0"
+                                          BorderThickness="0" 
+                                          FocusVisualStyle="{x:Null}"
+                                          Width="19" Height="14">
+                                        <Path Width="15" Height="8" Stroke="#361B48" StrokeThickness="3"
+                                            Data="M 0 0 L 8 10 L 16 0" Stretch="Fill" />
+                                    </ToggleButton>
+                                    <!-- Всплывающий список -->
+                                    <Popup x:Name="Popup" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True"
+                                        Placement="Bottom" Focusable="False">
+                                        <Border x:Name="PopupBorder" Background="#7232A8" BorderBrush="Transparent"
+                                            BorderThickness="1" CornerRadius="10">
+                                            <ScrollViewer>
+                                                <ItemsPresenter/>
+                                            </ScrollViewer>
+                                        </Border>
+                                    </Popup>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="BackgroundBorder" Property="Background" Value="#5D3576"/>
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter TargetName="BackgroundBorder" Property="Background" Value="#1A1230"/>
+                                        <Setter Property="Foreground" Value="#666666"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </ComboBox.Template>
+
+                        <ComboBox.Resources>
+                            <!-- Стиль для элементов выпадающего списка -->
+                            <Style TargetType="ComboBoxItem">
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="Background" Value="#7232A8"/>
+                                <Setter Property="FontSize" Value="20"/>
+                                <Setter Property="FontFamily" Value="Outfit"/>
+                                <Setter Property="Padding" Value="10,5"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#5D3576"/>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#512A6B"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ComboBox.Resources>
+                        <!-- Пункты выбора -->
+                        <ComboBoxItem Content="Deafault"/>
+                        <ComboBoxItem Content="Red"/>
+                        <ComboBoxItem Content="Blue"/>
+                        <ComboBoxItem Content="Light"/>
+                    </ComboBox>
+                </Grid>
+            </Border>
+
+            <!-- Меню выбора Разрешения экрана -->
+            <Border Margin="0,17,0,0" Background="#271F3F" Width="530" Height="125" CornerRadius="10">
+                <Border.Effect>
+                    <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
+                </Border.Effect>
+                <Grid>
+                    <TextBlock Text="Size" FontSize="30" Foreground="#FFFFFF"
+                       FontFamily="Outfit" FontWeight="Normal" Margin="24,12,0,0"
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Top"/>
+
+                    <ComboBox Width="480" Height="40"
+                       HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                       Background="#724D9D" Foreground="White"
+                       FontSize="20" FontFamily="Outfit"
+                       BorderBrush="Transparent"
+                       Padding="10,5" Margin="0,0,0,18"
+                       SelectedIndex="0">
+                        <ComboBox.Template>
+                            <ControlTemplate TargetType="ComboBox">
+                                <Grid>
+                                    <!-- Скруглённый фон ComboBox -->
+                                    <Border x:Name="BackgroundBorder"
+                                          Background="{TemplateBinding Background}"
+                                          CornerRadius="10"
+                                          BorderBrush="{TemplateBinding BorderBrush}"
+                                          BorderThickness="2" />
+                                    <!-- Отображение выбранного элемента -->
+                                    <ContentPresenter Margin="19,0,35,0" VerticalAlignment="Center" HorizontalAlignment="Left"
+                                          Content="{TemplateBinding SelectionBoxItem}" 
+                                          ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                          ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" />
+                                    <!-- Значок стрелки -->
+                                    <ToggleButton x:Name="DropDownToggle" Grid.Column="1"
+                                          Background="Transparent"
+                                          Focusable="False"
+                                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                          ClickMode="Press"
+                                          HorizontalAlignment="Right" Margin="0,0,10,0"
+                                          BorderThickness="0" 
+                                          FocusVisualStyle="{x:Null}"
+                                          Width="19" Height="14">
+                                        <Path Width="15" Height="8" Stroke="#361B48" StrokeThickness="3"
+                                            Data="M 0 0 L 8 10 L 16 0" Stretch="Fill" />
+                                    </ToggleButton>
+                                    <!-- Всплывающий список -->
+                                    <Popup x:Name="Popup" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True"
+                                         Placement="Bottom" Focusable="False">
+                                        <Border x:Name="PopupBorder" Background="#7232A8" BorderBrush="Transparent"
+                                            BorderThickness="1" CornerRadius="10">
+                                            <ScrollViewer>
+                                                <ItemsPresenter/>
+                                            </ScrollViewer>
+                                        </Border>
+                                    </Popup>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="BackgroundBorder" Property="Background" Value="#5D3576"/>
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter TargetName="BackgroundBorder" Property="Background" Value="#1A1230"/>
+                                        <Setter Property="Foreground" Value="#666666"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </ComboBox.Template>
+
+                        <ComboBox.Resources>
+                            <!-- Стиль для элементов выпадающего списка -->
+                            <Style TargetType="ComboBoxItem">
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="Background" Value="#7232A8"/>
+                                <Setter Property="FontSize" Value="20"/>
+                                <Setter Property="FontFamily" Value="Outfit"/>
+                                <Setter Property="Padding" Value="10,5"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#5D3576"/>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#512A6B"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ComboBox.Resources>
+                        <!-- Пункты выбора -->
+                        <ComboBoxItem Content="1920x1080"/>
+                        <ComboBoxItem Content="800x600"/>
+                        <ComboBoxItem Content="1280x1024"/>
+                    </ComboBox>
+                </Grid>
+            </Border>
+            
+            <!-- Версия приложения для людей с ограниченными возможностями -->
+            <Grid>
+                <CheckBox Width="23" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="84,18,0,0">
+                    <CheckBox.Style>
+                        <Style TargetType="CheckBox">
+                            <!-- Убираем фон и устанавливаем прозрачность -->
+                            <Setter Property="Background" Value="Transparent"/>
+                            <!-- Можно изменить цвет галочки, если нужно -->
+                            <Setter Property="Foreground" Value="#724D9D"/>
+                            <Setter Property="BorderBrush" Value="#2C1B45"/>
+                            <Setter Property="BorderThickness" Value="5"/>
+                        </Style>
+                    </CheckBox.Style>
+                </CheckBox>
+                <TextBlock Width="327" Height="51" Foreground="White" FontSize="20" FontWeight="Normal" FontFamily="Outfit"
+                       Text="Use the mode for people with limited opportunities"
+                       VerticalAlignment="Top" HorizontalAlignment="Left" Margin="112,17,0,0"
+                       TextWrapping="Wrap"/>
+                <!--Всплывающая подсказка-->
+                <Image Source="..\..\Source\DarkQuestionMark.png" Width="20" Height="20"
+                       HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,17,182,0">
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Setter Property="Opacity" Value="1"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Opacity" Value="0.7"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                    <Image.ToolTip>
+                        <ToolTip Content="Accessibility mode is specially designed features and settings 
+                                 that make computer applications more accessible to people with special needs.">
+                            <ToolTip.Template>
+                                <ControlTemplate TargetType="ToolTip">
+                                    <Border Width="230" Height="204" Background="#9357A1" CornerRadius="25">
+                                        <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=ToolTip}, Path=Content}" 
+                                                   FontFamily="Outfit" FontSize="20" FontWeight="Normal" 
+                                                   Foreground="white" TextWrapping="Wrap"
+                                                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </ToolTip.Template>
+                        </ToolTip>
+                    </Image.ToolTip>
+                </Image>
+            </Grid>
+
+            <Button Width="200" Height="65" VerticalAlignment="top" HorizontalAlignment="Right" Margin="0,52,22,0">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="buttonBorder"  Width="200" Height="65" Background="#2C1B47" CornerRadius="10">
+                            <Border.Effect>
+                                <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
+                            </Border.Effect>
+                            <TextBlock Text="Apply" Foreground="White" FontSize="30"
+                                       FontWeight="Normal" FontFamily="Outfit"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="buttonBorder" Property="Background" Value="#3B2B57"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+    </Border>
+</Page>
