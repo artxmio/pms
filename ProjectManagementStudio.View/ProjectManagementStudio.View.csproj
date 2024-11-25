@@ -1,74 +1,74 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <UseWPF>true</UseWPF>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="MainWindow\Source\**" />
-    <EmbeddedResource Remove="MainWindow\Source\**" />
-    <None Remove="MainWindow\Source\**" />
-    <Page Remove="MainWindow\Source\**" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Remove="MainWindow\Source\**" />
+		<EmbeddedResource Remove="MainWindow\Source\**" />
+		<None Remove="MainWindow\Source\**" />
+		<Page Remove="MainWindow\Source\**" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Source\backgroundImage.jpg" />
-    <None Remove="Source\Close_icon.png" />
-    <None Remove="Source\ExitAcc.png" />
-    <None Remove="Source\file.png" />
-    <None Remove="Source\home.png" />
-    <None Remove="Source\plus.png" />
-    <None Remove="Source\QuestionMark.png" />
-    <None Remove="Source\settings.png" />
-    <None Remove="Source\Star.png" />
-    <None Remove="Source\two_people.svg" />
-    <None Remove="Source\user.png" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="Source\backgroundImage.jpg" />
+		<None Remove="Source\Close_icon.png" />
+		<None Remove="Source\ExitAcc.png" />
+		<None Remove="Source\file.png" />
+		<None Remove="Source\home.png" />
+		<None Remove="Source\plus.png" />
+		<None Remove="Source\QuestionMark.png" />
+		<None Remove="Source\settings.png" />
+		<None Remove="Source\Star.png" />
+		<None Remove="Source\two_people.svg" />
+		<None Remove="Source\user.png" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Autofac" Version="8.1.1" />
-    <PackageReference Include="MaterialDesignColors" Version="3.1.0" />
-    <PackageReference Include="MaterialDesignThemes" Version="5.1.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Autofac" Version="8.1.1" />
+		<PackageReference Include="MaterialDesignColors" Version="3.1.0" />
+		<PackageReference Include="MaterialDesignThemes" Version="5.1.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ProjectManagementStudio.ViewModel\ProjectManagementStudio.ViewModel.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\ProjectManagementStudio.ViewModel\ProjectManagementStudio.ViewModel.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Resource Include="Source\backgroundImage.jpg">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Source\Close_icon.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Source\ExitAcc.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Source\file.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Source\home.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Source\plus.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Source\QuestionMark.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Source\settings.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Source\two_people.svg">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Source\user.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
+	<ItemGroup>
+		<Resource Include="Source\backgroundImage.jpg">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\Close_icon.png">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\ExitAcc.png">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\file.png">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\home.png">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\plus.png">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\QuestionMark.png">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\settings.png">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\two_people.svg">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\user.png">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+	</ItemGroup>
 
 </Project>

@@ -1,36 +1,54 @@
-﻿using ProjectManagementStudio.Model.PathService;
+﻿using Newtonsoft.Json;
+using ProjectManagementStudio.Model.PathService;
 using ProjectManagementStudio.ViewModel.UrlService;
+using System.IO;
 
 namespace ProjectManagementStudio.Bootstrapper.Services.UrlService;
 
 public class UrlService : IUrlServiceInitializer, IUrlService
 {
     //словарь со всеми названиями методов и кусочками url в соответствии к ним
-    private readonly Dictionary<string, string> _urlMap = new Dictionary<string, string>()
+    private readonly Dictionary<string, string> _urlMap = new()
     {
         { "IsUserExists", "is-user-exists" },
         { "AddUser", "add-user" },
     };
 
     private bool _initialized = false;
-    private readonly string _urlBase = @"https://extremedr2.eu.pythonanywhere.com";
-    private readonly string _urlSecretCode = "3i7r4ybfwbatro387";
+    private string _urlBase = "";
+    private string _token = "";
     private string _urlCommand = "";
 
-    public string Url
+    public string URLBase
     {
         get
         {
             EnsureInitialized();
 
-            if (_urlCommand is not "")
-            {
-                return $"{_urlBase}/{_urlCommand}/{_urlSecretCode}"; ;
-            }
-            else
-            {
-                throw new ArgumentNullException($"Null: {nameof(_urlCommand)}");
-            }
+            return $"{_urlBase}";
+        }
+
+        set
+        {
+            EnsureInitialized();
+
+            _urlBase = value;
+        }
+    }
+
+    public string Token
+    {
+        get
+        {
+            EnsureInitialized();
+
+            return _token;
+        }
+        set
+        {
+            EnsureInitialized();
+
+            _token = value;
         }
     }
 
@@ -54,11 +72,19 @@ public class UrlService : IUrlServiceInitializer, IUrlService
             throw new InvalidOperationException($"{nameof(IPathService)} is already initialized");
 
         _initialized = true;
+
+        var serializeObject = File.ReadAllText("http.config.json");
+
+        var deserializedObject = (JsonConvert.DeserializeObject<HttpConfig>(serializeObject)
+            ?? throw new InvalidOperationException("Deserialized response can't be null"));
+
+        URLBase = deserializedObject.URLBase;
+        Token = deserializedObject.Token;
     }
 
     private void EnsureInitialized()
     {
         if (!_initialized)
-            throw new InvalidOperationException($"{nameof(IPathService)} is not initialized");
+            throw new InvalidOperationException($"{nameof(IUrlService)} is not initialized");
     }
 }

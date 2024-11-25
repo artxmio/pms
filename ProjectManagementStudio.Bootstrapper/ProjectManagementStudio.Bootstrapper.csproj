@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0-windows</TargetFramework>
+	<TargetFramework>net8.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -15,6 +15,12 @@
     <ProjectReference Include="..\ProjectManagementStudio.Model\ProjectManagementStudio.Model.csproj" />
     <ProjectReference Include="..\ProjectManagementStudio.ViewModel\ProjectManagementStudio.ViewModel.csproj" />
     <ProjectReference Include="..\ProjectManagementStudio.View\ProjectManagementStudio.View.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Services\UrlService\http.config.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

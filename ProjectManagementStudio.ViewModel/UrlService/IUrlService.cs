@@ -2,6 +2,8 @@
 
 public interface IUrlService
 {
-    string Url { get; }
+    string URLBase { get; set; }
+    string Token { get; set; }
+
     void SetUrlCommand(string command);
 }

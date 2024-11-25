@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using ProjectManagementStudio.Model.RequestsModels;
 using ProjectManagementStudio.Model.ResponseModels;
 using ProjectManagementStudio.Model.Responses;
@@ -6,6 +7,7 @@ using ProjectManagementStudio.Model.WindowModels.AuthModel;
 using ProjectManagementStudio.Model.WindowModels.RegisterModel;
 using ProjectManagementStudio.ViewModel.UrlService;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Windows;
 
@@ -19,6 +21,9 @@ public class APIClient : IAPIClient
     public APIClient(IUrlService urlService)
     {
         _urlService = urlService;
+
+        _client.BaseAddress = new Uri($"{_urlService.URLBase}");
+        _client.DefaultRequestHeaders.Add("Authorization", $"{_urlService.Token}");
     }
 
     public async Task<bool> IsUserExists(AuthModel user)
@@ -28,13 +33,16 @@ public class APIClient : IAPIClient
 
         _urlService.SetUrlCommand(nameof(IsUserExists));
 
-        var url = _urlService.Url;
-
         bool isExist = false;
 
         try
         {
-            var response = await _client.PostAsync(url, content);
+            var request = new HttpRequestMessage(HttpMethod.Post, "is-user-exists")
+            {
+                Content = content
+            };
+
+            var response = await _client.SendAsync(request);
 
             response.EnsureSuccessStatusCode();
 
@@ -62,7 +70,7 @@ public class APIClient : IAPIClient
         
         _urlService.SetUrlCommand(nameof(AddUser));
 
-        var url = _urlService.Url;
+        var url = _urlService.URLBase;
 
         try
         {

@@ -82,16 +82,10 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
             _windowManager.Show(_menuWindowViewModel);
             _windowManager.Close(this);
         }
-        else
-        {
-            MessageBox.Show("Такого пользователя не существует", "Упс!");
-        }
     }
 
     protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
-
-
 }
