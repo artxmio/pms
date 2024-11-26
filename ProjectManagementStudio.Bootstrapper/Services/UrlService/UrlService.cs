@@ -99,8 +99,8 @@ public class UrlService : IUrlServiceInitializer, IUrlService
 
         var serializeObject = File.ReadAllText("http.config.json");
 
-        var deserializedObject = (JsonConvert.DeserializeObject<HttpConfig>(serializeObject)
-            ?? throw new InvalidOperationException("Deserialized response can't be null"));
+        var deserializedObject = JsonConvert.DeserializeObject<HttpConfig>(serializeObject)
+            ?? throw new InvalidOperationException("Deserialized response can't be null");
 
         URLBase = deserializedObject.URLBase;
         Token = deserializedObject.Token;

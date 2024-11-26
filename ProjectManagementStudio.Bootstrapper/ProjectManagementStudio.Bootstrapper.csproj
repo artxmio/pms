@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Services\UrlService\HttpConfig.cs" />
+    <None Include="Services\UrlService\HttpConfig\HttpConfig.cs" />
   </ItemGroup>
 
   <ItemGroup>

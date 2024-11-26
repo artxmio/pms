@@ -3,7 +3,7 @@
 namespace ProjectManagementStudio.Bootstrapper.Services.UrlService;
 
 [DataContract]
-internal class HttpConfig
+public class HttpConfig
 {
     [DataMember(Name = "token")]
     public required string Token { get; set; }
