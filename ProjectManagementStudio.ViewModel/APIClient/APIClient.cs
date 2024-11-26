@@ -31,7 +31,7 @@ public class APIClient : IAPIClient
 
         _urlService.URLEndpoint = nameof(IsUserExists);
 
-        bool isExist = true;
+        bool isExist = false;
 
         try
         {
