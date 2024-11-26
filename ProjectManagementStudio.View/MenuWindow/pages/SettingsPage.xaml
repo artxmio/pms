@@ -25,53 +25,73 @@
                 </Border.Effect>
                 <Grid>
                     <TextBlock Text="Language" FontSize="30" Foreground="#FFFFFF"
-                       FontFamily="Outfit" FontWeight="Normal" Margin="24,12,0,0"
-                       HorizontalAlignment="Left" 
-                       VerticalAlignment="Top" 
-                       Width="134" Height="38"/>
+                               FontFamily="Outfit" FontWeight="Normal" Margin="24,12,0,0"
+                               HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
                     <ComboBox Width="480" Height="40"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                       Background="#724D9D" Foreground="White"
-                       FontSize="20" FontFamily="Outfit"
-                       BorderBrush="Transparent"
-                       Padding="10,5" Margin="0,0,0,18"
-                       SelectedIndex="0">
+                              HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                              Background="#724D9D" Foreground="White"
+                              FontSize="20" FontFamily="Outfit"
+                              BorderBrush="Transparent"
+                              Padding="10,5" Margin="0,0,0,18"
+                              SelectedIndex="0">
                         <ComboBox.Template>
                             <ControlTemplate TargetType="ComboBox">
                                 <Grid>
-                                    <!-- Скруглённый фон ComboBox -->
+                                    <!-- Основной фон ComboBox -->
                                     <Border x:Name="BackgroundBorder"
-                                          Background="{TemplateBinding Background}"
-                                          CornerRadius="10"
-                                          BorderBrush="{TemplateBinding BorderBrush}"
-                                          BorderThickness="2" />
+                                            Background="{TemplateBinding Background}"
+                                            CornerRadius="10"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="0" />
                                     <!-- Отображение выбранного элемента -->
-                                    <ContentPresenter Margin="19,0,35,0" VerticalAlignment="Center" HorizontalAlignment="Left"
-                                          Content="{TemplateBinding SelectionBoxItem}" 
-                                          ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                                          ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" />
-                                    <!-- Значок стрелки -->
-                                    <ToggleButton x:Name="DropDownToggle" Grid.Column="1"
-                                          Background="Transparent"
-                                          Focusable="False"
-                                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                          ClickMode="Press"
-                                          HorizontalAlignment="Right" Margin="0,0,10,0"
-                                          BorderThickness="0" 
-                                          FocusVisualStyle="{x:Null}"
-                                          Width="19" Height="14">
-                                        <Path Width="15" Height="8" Stroke="#361B48" StrokeThickness="3"
-                                            Data="M 0 0 L 8 10 L 16 0" Stretch="Fill" />
+                                    <ContentPresenter Margin="15,0,35,0" VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                      Content="{TemplateBinding SelectionBoxItem}" 
+                                                      ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" />
+                                    <!-- Стрелка -->
+                                    <ToggleButton x:Name="DropDownToggle" 
+                                                  Background="Transparent"
+                                                  Focusable="False"
+                                                  IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                                  ClickMode="Press"
+                                                  HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"
+                                                  BorderThickness="0" 
+                                                  FocusVisualStyle="{x:Null}" 
+                                                  Width="480" Height="40">
+                                        <ToggleButton.Template>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Grid>
+                                                    <!-- Фон для нажатий -->
+                                                    <Border Background="Transparent" CornerRadius="10" />
+                                                    <!-- Значок стрелки -->
+                                                    <Path Width="15" Height="8" Stroke="#361B48" StrokeThickness="3"
+                                                          Data="M 0 0 L 8 10 L 16 0" Stretch="Fill" 
+                                                          HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                                </Grid>
+                                                <ControlTemplate.Triggers>
+                                                    <!-- Убираем любые эффекты при наведении -->
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Background" Value="Transparent" />
+                                                    </Trigger>
+                                                    <!-- Убираем фон при нажатии -->
+                                                    <Trigger Property="IsPressed" Value="True">
+                                                        <Setter Property="Background" Value="Transparent" />
+                                                    </Trigger>
+                                                    <!-- Если выделен -->
+                                                    <Trigger Property="IsChecked" Value="True">
+                                                        <Setter Property="Background" Value="Transparent" />
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </ToggleButton.Template>
                                     </ToggleButton>
-                                    <!-- Всплывающий список -->
+                                    <!-- Выпадающий список -->
                                     <Popup x:Name="Popup" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True"
-                                        Placement="Bottom" Focusable="False">
-                                        <Border x:Name="PopupBorder" Background="#7232A8" BorderBrush="Transparent"
-                                            BorderThickness="1" CornerRadius="10">
-                                            <ScrollViewer>
-                                                <ItemsPresenter/>
-                                            </ScrollViewer>
+                                           Placement="Bottom" Focusable="False" Margin="0">
+                                        <Border x:Name="PopupBorder" Background="#724D9D" BorderBrush="Transparent"
+                                                BorderThickness="0" CornerRadius="10" Width="480">
+                                            <ItemsPresenter />
                                         </Border>
                                     </Popup>
                                 </Grid>
@@ -88,31 +108,51 @@
                         </ComboBox.Template>
 
                         <ComboBox.Resources>
-                            <!-- Стиль для элементов выпадающего списка -->
+                            <!-- Стиль для элементов списка -->
                             <Style TargetType="ComboBoxItem">
                                 <Setter Property="Foreground" Value="White"/>
-                                <Setter Property="Background" Value="#7232A8"/>
+                                <Setter Property="Background" Value="#724D9D"/>
                                 <Setter Property="FontSize" Value="20"/>
                                 <Setter Property="FontFamily" Value="Outfit"/>
                                 <Setter Property="Padding" Value="10,5"/>
                                 <Setter Property="HorizontalContentAlignment" Value="Left"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#5D3576"/>
-                                    </Trigger>
-                                    <Trigger Property="IsSelected" Value="True">
-                                        <Setter Property="Background" Value="#512A6B"/>
-                                    </Trigger>
-                                </Style.Triggers>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                                <!-- Убираем синий фокус -->
+                                <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ComboBoxItem">
+                                            <Border x:Name="Border" Background="{TemplateBinding Background}" 
+                                                    BorderBrush="{TemplateBinding BorderBrush}" 
+                                                    BorderThickness="0">
+                                                <ContentPresenter Margin="15,0,0,0" VerticalAlignment="Center" 
+                                                     HorizontalAlignment="Left" />
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <!-- Эффект при наведении мыши -->
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="Border" Property="Background" Value="#5D3576" />
+                                                </Trigger>
+                                                <!-- Эффект при выделении -->
+                                                <Trigger Property="IsSelected" Value="True">
+                                                    <Setter TargetName="Border" Property="Background" Value="#512A6B" />
+                                                    <Setter Property="Foreground" Value="White" />
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
                             </Style>
                         </ComboBox.Resources>
-                        <!-- Пункты выбора -->
+
+                        <!-- Элементы выбора -->
                         <ComboBoxItem Content="English"/>
                         <ComboBoxItem Content="Русский"/>
-                        <ComboBoxItem Content="Беларускi"/>
+                        <ComboBoxItem Content="Беларускі"/>
                     </ComboBox>
                 </Grid>
             </Border>
+
 
             <!-- Меню выбора темы -->
             <Border Margin="0,17,0,0" Background="#271F3F" Width="530" Height="125" CornerRadius="10">
@@ -126,47 +166,69 @@
                        VerticalAlignment="Top"/>
 
                     <ComboBox Width="480" Height="40"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                       Background="#724D9D" Foreground="White"
-                       FontSize="20" FontFamily="Outfit"
-                       BorderBrush="Transparent"
-                       Padding="10,5" Margin="0,0,0,18"
-                       SelectedIndex="0">
+          HorizontalAlignment="Center" VerticalAlignment="Bottom"
+          Background="#724D9D" Foreground="White"
+          FontSize="20" FontFamily="Outfit"
+          BorderBrush="Transparent"
+          Padding="10,5" Margin="0,0,0,18"
+          SelectedIndex="0">
                         <ComboBox.Template>
                             <ControlTemplate TargetType="ComboBox">
                                 <Grid>
-                                    <!-- Скруглённый фон ComboBox -->
+                                    <!-- Основной фон ComboBox -->
                                     <Border x:Name="BackgroundBorder"
-                                          Background="{TemplateBinding Background}"
-                                          CornerRadius="10"
-                                          BorderBrush="{TemplateBinding BorderBrush}"
-                                          BorderThickness="2" />
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="10"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="0" />
                                     <!-- Отображение выбранного элемента -->
-                                    <ContentPresenter Margin="19,0,35,0" VerticalAlignment="Center" HorizontalAlignment="Left"
-                                          Content="{TemplateBinding SelectionBoxItem}" 
-                                          ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                                          ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" />
-                                    <!-- Значок стрелки -->
-                                    <ToggleButton x:Name="DropDownToggle" Grid.Column="1"
-                                          Background="Transparent"
-                                          Focusable="False"
-                                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                          ClickMode="Press"
-                                          HorizontalAlignment="Right" Margin="0,0,10,0"
-                                          BorderThickness="0" 
-                                          FocusVisualStyle="{x:Null}"
-                                          Width="19" Height="14">
-                                        <Path Width="15" Height="8" Stroke="#361B48" StrokeThickness="3"
-                                            Data="M 0 0 L 8 10 L 16 0" Stretch="Fill" />
+                                    <ContentPresenter Margin="15,0,35,0" VerticalAlignment="Center" HorizontalAlignment="Left"
+                                  Content="{TemplateBinding SelectionBoxItem}" 
+                                  ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" />
+                                    <!-- Стрелка -->
+                                    <ToggleButton x:Name="DropDownToggle" 
+                              Background="Transparent"
+                              Focusable="False"
+                              IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                              ClickMode="Press"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              BorderThickness="0" 
+                              FocusVisualStyle="{x:Null}" 
+                              Width="480" Height="40">
+                                        <ToggleButton.Template>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Grid>
+                                                    <!-- Фон для нажатий -->
+                                                    <Border Background="Transparent" CornerRadius="10" />
+                                                    <!-- Значок стрелки -->
+                                                    <Path Width="15" Height="8" Stroke="#361B48" StrokeThickness="3"
+                                      Data="M 0 0 L 8 10 L 16 0" Stretch="Fill" 
+                                      HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                                </Grid>
+                                                <ControlTemplate.Triggers>
+                                                    <!-- Убираем любые эффекты при наведении -->
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Background" Value="Transparent" />
+                                                    </Trigger>
+                                                    <!-- Убираем фон при нажатии -->
+                                                    <Trigger Property="IsPressed" Value="True">
+                                                        <Setter Property="Background" Value="Transparent" />
+                                                    </Trigger>
+                                                    <!-- Если выделен -->
+                                                    <Trigger Property="IsChecked" Value="True">
+                                                        <Setter Property="Background" Value="Transparent" />
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </ToggleButton.Template>
                                     </ToggleButton>
-                                    <!-- Всплывающий список -->
+                                    <!-- Выпадающий список -->
                                     <Popup x:Name="Popup" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True"
-                                        Placement="Bottom" Focusable="False">
-                                        <Border x:Name="PopupBorder" Background="#7232A8" BorderBrush="Transparent"
-                                            BorderThickness="1" CornerRadius="10">
-                                            <ScrollViewer>
-                                                <ItemsPresenter/>
-                                            </ScrollViewer>
+                       Placement="Bottom" Focusable="False" Margin="0">
+                                        <Border x:Name="PopupBorder" Background="#724D9D" BorderBrush="Transparent"
+                            BorderThickness="0" CornerRadius="10" Width="480">
+                                            <ItemsPresenter />
                                         </Border>
                                     </Popup>
                                 </Grid>
@@ -183,22 +245,40 @@
                         </ComboBox.Template>
 
                         <ComboBox.Resources>
-                            <!-- Стиль для элементов выпадающего списка -->
+                            <!-- Стиль для элементов списка -->
                             <Style TargetType="ComboBoxItem">
                                 <Setter Property="Foreground" Value="White"/>
-                                <Setter Property="Background" Value="#7232A8"/>
+                                <Setter Property="Background" Value="#724D9D"/>
                                 <Setter Property="FontSize" Value="20"/>
                                 <Setter Property="FontFamily" Value="Outfit"/>
                                 <Setter Property="Padding" Value="10,5"/>
                                 <Setter Property="HorizontalContentAlignment" Value="Left"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#5D3576"/>
-                                    </Trigger>
-                                    <Trigger Property="IsSelected" Value="True">
-                                        <Setter Property="Background" Value="#512A6B"/>
-                                    </Trigger>
-                                </Style.Triggers>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                                <!-- Убираем синий фокус -->
+                                <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ComboBoxItem">
+                                            <Border x:Name="Border" Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="0">
+                                                <ContentPresenter Margin="15,0,0,0" VerticalAlignment="Center" 
+                                 HorizontalAlignment="Left" />
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <!-- Эффект при наведении мыши -->
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="Border" Property="Background" Value="#5D3576" />
+                                                </Trigger>
+                                                <!-- Эффект при выделении -->
+                                                <Trigger Property="IsSelected" Value="True">
+                                                    <Setter TargetName="Border" Property="Background" Value="#512A6B" />
+                                                    <Setter Property="Foreground" Value="White" />
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
                             </Style>
                         </ComboBox.Resources>
                         <!-- Пункты выбора -->
@@ -222,47 +302,69 @@
                        VerticalAlignment="Top"/>
 
                     <ComboBox Width="480" Height="40"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                       Background="#724D9D" Foreground="White"
-                       FontSize="20" FontFamily="Outfit"
-                       BorderBrush="Transparent"
-                       Padding="10,5" Margin="0,0,0,18"
-                       SelectedIndex="0">
+          HorizontalAlignment="Center" VerticalAlignment="Bottom"
+          Background="#724D9D" Foreground="White"
+          FontSize="20" FontFamily="Outfit"
+          BorderBrush="Transparent"
+          Padding="10,5" Margin="0,0,0,18"
+          SelectedIndex="0">
                         <ComboBox.Template>
                             <ControlTemplate TargetType="ComboBox">
                                 <Grid>
-                                    <!-- Скруглённый фон ComboBox -->
+                                    <!-- Основной фон ComboBox -->
                                     <Border x:Name="BackgroundBorder"
-                                          Background="{TemplateBinding Background}"
-                                          CornerRadius="10"
-                                          BorderBrush="{TemplateBinding BorderBrush}"
-                                          BorderThickness="2" />
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="10"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="0" />
                                     <!-- Отображение выбранного элемента -->
-                                    <ContentPresenter Margin="19,0,35,0" VerticalAlignment="Center" HorizontalAlignment="Left"
-                                          Content="{TemplateBinding SelectionBoxItem}" 
-                                          ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                                          ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" />
-                                    <!-- Значок стрелки -->
-                                    <ToggleButton x:Name="DropDownToggle" Grid.Column="1"
-                                          Background="Transparent"
-                                          Focusable="False"
-                                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                          ClickMode="Press"
-                                          HorizontalAlignment="Right" Margin="0,0,10,0"
-                                          BorderThickness="0" 
-                                          FocusVisualStyle="{x:Null}"
-                                          Width="19" Height="14">
-                                        <Path Width="15" Height="8" Stroke="#361B48" StrokeThickness="3"
-                                            Data="M 0 0 L 8 10 L 16 0" Stretch="Fill" />
+                                    <ContentPresenter Margin="15,0,35,0" VerticalAlignment="Center" HorizontalAlignment="Left"
+                                  Content="{TemplateBinding SelectionBoxItem}" 
+                                  ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" />
+                                    <!-- Стрелка -->
+                                    <ToggleButton x:Name="DropDownToggle" 
+                              Background="Transparent"
+                              Focusable="False"
+                              IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                              ClickMode="Press"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              BorderThickness="0" 
+                              FocusVisualStyle="{x:Null}" 
+                              Width="480" Height="40">
+                                        <ToggleButton.Template>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Grid>
+                                                    <!-- Фон для нажатий -->
+                                                    <Border Background="Transparent" CornerRadius="10" />
+                                                    <!-- Значок стрелки -->
+                                                    <Path Width="15" Height="8" Stroke="#361B48" StrokeThickness="3"
+                                      Data="M 0 0 L 8 10 L 16 0" Stretch="Fill" 
+                                      HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                                </Grid>
+                                                <ControlTemplate.Triggers>
+                                                    <!-- Убираем любые эффекты при наведении -->
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Background" Value="Transparent" />
+                                                    </Trigger>
+                                                    <!-- Убираем фон при нажатии -->
+                                                    <Trigger Property="IsPressed" Value="True">
+                                                        <Setter Property="Background" Value="Transparent" />
+                                                    </Trigger>
+                                                    <!-- Если выделен -->
+                                                    <Trigger Property="IsChecked" Value="True">
+                                                        <Setter Property="Background" Value="Transparent" />
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </ToggleButton.Template>
                                     </ToggleButton>
-                                    <!-- Всплывающий список -->
+                                    <!-- Выпадающий список -->
                                     <Popup x:Name="Popup" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True"
-                                         Placement="Bottom" Focusable="False">
-                                        <Border x:Name="PopupBorder" Background="#7232A8" BorderBrush="Transparent"
-                                            BorderThickness="1" CornerRadius="10">
-                                            <ScrollViewer>
-                                                <ItemsPresenter/>
-                                            </ScrollViewer>
+                       Placement="Bottom" Focusable="False" Margin="0">
+                                        <Border x:Name="PopupBorder" Background="#724D9D" BorderBrush="Transparent"
+                            BorderThickness="0" CornerRadius="10" Width="480">
+                                            <ItemsPresenter />
                                         </Border>
                                     </Popup>
                                 </Grid>
@@ -279,22 +381,40 @@
                         </ComboBox.Template>
 
                         <ComboBox.Resources>
-                            <!-- Стиль для элементов выпадающего списка -->
+                            <!-- Стиль для элементов списка -->
                             <Style TargetType="ComboBoxItem">
                                 <Setter Property="Foreground" Value="White"/>
-                                <Setter Property="Background" Value="#7232A8"/>
+                                <Setter Property="Background" Value="#724D9D"/>
                                 <Setter Property="FontSize" Value="20"/>
                                 <Setter Property="FontFamily" Value="Outfit"/>
                                 <Setter Property="Padding" Value="10,5"/>
                                 <Setter Property="HorizontalContentAlignment" Value="Left"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#5D3576"/>
-                                    </Trigger>
-                                    <Trigger Property="IsSelected" Value="True">
-                                        <Setter Property="Background" Value="#512A6B"/>
-                                    </Trigger>
-                                </Style.Triggers>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                                <!-- Убираем синий фокус -->
+                                <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ComboBoxItem">
+                                            <Border x:Name="Border" Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="0">
+                                                <ContentPresenter Margin="15,0,0,0" VerticalAlignment="Center" 
+                                 HorizontalAlignment="Left" />
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <!-- Эффект при наведении мыши -->
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="Border" Property="Background" Value="#5D3576" />
+                                                </Trigger>
+                                                <!-- Эффект при выделении -->
+                                                <Trigger Property="IsSelected" Value="True">
+                                                    <Setter TargetName="Border" Property="Background" Value="#512A6B" />
+                                                    <Setter Property="Foreground" Value="White" />
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
                             </Style>
                         </ComboBox.Resources>
                         <!-- Пункты выбора -->
@@ -310,12 +430,49 @@
                 <CheckBox Width="23" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="84,18,0,0">
                     <CheckBox.Style>
                         <Style TargetType="CheckBox">
-                            <!-- Убираем фон и устанавливаем прозрачность -->
                             <Setter Property="Background" Value="Transparent"/>
-                            <!-- Можно изменить цвет галочки, если нужно -->
-                            <Setter Property="Foreground" Value="#724D9D"/>
+                            <Setter Property="Foreground" Value="#2C1B45"/>
                             <Setter Property="BorderBrush" Value="#2C1B45"/>
                             <Setter Property="BorderThickness" Value="5"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="CheckBox">
+                                        <Grid>
+                                            <Border x:Name="Border" 
+                                    Background="{TemplateBinding Background}" 
+                                    BorderBrush="{TemplateBinding BorderBrush}" 
+                                    BorderThickness="{TemplateBinding BorderThickness}" 
+                                    CornerRadius="2"/>
+                                            <Path x:Name="CheckMark" 
+                                  Data="M0,4 L4,8 L8,0" 
+                                  Stroke="{TemplateBinding Foreground}" 
+                                  StrokeThickness="2" 
+                                  Visibility="Collapsed" 
+                                  SnapsToDevicePixels="True" 
+                                  HorizontalAlignment="Center" 
+                                  VerticalAlignment="Center"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsChecked" Value="True">
+                                                <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
+                                            </Trigger>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="BorderBrush" Value="#432969"/>
+                                                <Setter Property="Foreground" Value="#432969"/>
+                                            </Trigger>
+                                            <Trigger Property="IsMouseOver" Value="False">
+                                                <Setter Property="BorderBrush" Value="#2C1B45"/>
+                                                <Setter Property="Foreground" Value="#2C1B45"/>
+                                            </Trigger>
+                                            <Trigger Property="IsFocused" Value="True">
+                                                <Setter Property="Background" Value="Transparent"/>
+                                                <Setter Property="BorderBrush" Value="#432969"/>
+                                                <Setter Property="Foreground" Value="#432969"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
                         </Style>
                     </CheckBox.Style>
                 </CheckBox>
@@ -345,7 +502,8 @@
                                         <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=ToolTip}, Path=Content}" 
                                                    FontFamily="Outfit" FontSize="20" FontWeight="Normal" 
                                                    Foreground="white" TextWrapping="Wrap"
-                                                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                   TextAlignment="Center"/>
                                     </Border>
                                 </ControlTemplate>
                             </ToolTip.Template>

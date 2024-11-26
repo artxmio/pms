@@ -25,10 +25,4 @@
     <ProjectReference Include="..\ProjectManagementStudio.View\ProjectManagementStudio.View.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="Services\UrlService\http.config.json">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

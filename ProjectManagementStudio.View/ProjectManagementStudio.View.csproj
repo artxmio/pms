@@ -17,6 +17,7 @@
 	<ItemGroup>
 		<None Remove="Source\backgroundImage.jpg" />
 		<None Remove="Source\Close_icon.png" />
+		<None Remove="Source\DarkQuestionMark.png" />
 		<None Remove="Source\ExitAcc.png" />
 		<None Remove="Source\file.png" />
 		<None Remove="Source\home.png" />
@@ -45,6 +46,9 @@
 		<Resource Include="Source\Close_icon.png">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
+		<Resource Include="Source\DarkQuestionMark.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
 		<Resource Include="Source\ExitAcc.png">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
@@ -58,10 +62,13 @@
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
 		<Resource Include="Source\QuestionMark.png">
-			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
 		<Resource Include="Source\settings.png">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\Star.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
 		<Resource Include="Source\two_people.svg">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>

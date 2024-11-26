@@ -8,7 +8,7 @@
       Title="ProfilePage" Height="900" Width="1600">
 
     <Grid>
-        <Border Background="#724D9D" CornerRadius="25" Margin="0,0,20,0">
+        <Border Width="1250" Height="750" Background="#724D9D" CornerRadius="25" Margin="0,0,20,0">
             <Border.Effect>
                 <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
             </Border.Effect>
@@ -19,7 +19,7 @@
                     HorizontalAlignment="Left" 
                     VerticalAlignment="Top" 
                     Width="733" Height="364" 
-                    Margin="339,159,0,0">
+                    Margin="78,59,0,0">
                     <Border.Effect>
                         <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
                     </Border.Effect>
@@ -57,7 +57,7 @@
                 HorizontalAlignment="Right" 
                 VerticalAlignment="Top" 
                 Width="300" Height="364" 
-                Margin="0,160,150,0">
+                Margin="0,59,112,0">
                     <Border.Effect>
                         <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
                     </Border.Effect>
@@ -201,7 +201,7 @@
                     HorizontalAlignment="Left" 
                     VerticalAlignment="Bottom" 
                     Width="479" Height="249" 
-                    Margin="341,0,0,100">
+                    Margin="79,0,0,51">
                     <Border.Effect>
                         <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
                     </Border.Effect>
@@ -228,7 +228,7 @@
                     HorizontalAlignment="Left" 
                     VerticalAlignment="Bottom" 
                     Width="351" Height="249" 
-                    Margin="849,0,0,100">
+                    Margin="585,0,0,51">
                     <Border.Effect>
                         <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
                     </Border.Effect>
@@ -264,17 +264,17 @@
                     HorizontalAlignment="Right" 
                     VerticalAlignment="Bottom" 
                     Width="175" Height="162" 
-                    Margin="0,0,155,188">
+                    Margin="0,0,112,138">
                     <Border.Effect>
                         <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
                     </Border.Effect>
 
                     <Grid>
                         <Image Source="..\..\Source\QuestionMark.png"
-                           Height="20" Width="20"
-                           VerticalAlignment="Top"
-                           HorizontalAlignment="Right"
-                           Margin="0,14,14,0">
+                               Height="20" Width="20"
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Right"
+                               Margin="0,14,14,0">
                             <Image.Style>
                                 <Style TargetType="Image">
                                     <Setter Property="Opacity" Value="1"/>
@@ -291,17 +291,17 @@
                                     <ToolTip.Template>
                                         <ControlTemplate TargetType="ToolTip">
                                             <Border Width="230" Height="180" Background="#9357A1" CornerRadius="25">
-                                                <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=ToolTip}, Path=Content}" 
-                                                    FontFamily="Outfit" FontSize="20" FontWeight="Normal" 
-                                                    Foreground="white" TextWrapping="Wrap"
-                                                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                                <TextBlock Text="{TemplateBinding Content}" 
+                                                           FontFamily="Outfit" FontSize="20" FontWeight="Normal" 
+                                                           Foreground="white" TextWrapping="Wrap"
+                                                           VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                           TextAlignment="Center"/>
                                             </Border>
                                         </ControlTemplate>
                                     </ToolTip.Template>
                                 </ToolTip>
                             </Image.ToolTip>
                         </Image>
-
                         <TextBlock Text="Rate"
                                FontFamily="outfit"
                                FontSize="35"
@@ -332,7 +332,7 @@
                 </Border>
 
                 <!-- Выйти из аккаунта -->
-                <Button Background="#2C1B47" Width="175" Height="60" Margin="0,0,160,115"
+                <Button Background="#2C1B47" Width="175" Height="60" Margin="0,0,112,51"
                     HorizontalAlignment="Right" VerticalAlignment="Bottom">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
