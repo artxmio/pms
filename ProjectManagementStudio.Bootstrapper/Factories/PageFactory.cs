@@ -13,7 +13,7 @@ internal class PageFactory : IPageFactory
         {
             Pages.LoginPage => new LoginPage(),
             Pages.RegistrationPage => new RegistrationPage(),
-            Pages.WelcomepPage => new WelcomePage(),
+            Pages.WelcomePage => new WelcomePage(),
             Pages.ProfilePage => new ProfilePage(),
             _ => throw new ArgumentException($"No such page: {pageKey}")
         };
