@@ -5,5 +5,6 @@ public enum Pages
     LoginPage,
     RegistrationPage,
     WelcomePage,
-    ProfilePage
+    ProfilePage,
+    SettingsPage
 }

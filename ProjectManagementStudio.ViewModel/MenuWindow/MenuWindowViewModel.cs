@@ -28,6 +28,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
     public ICommand NavigateToProfilePage { get; }
     public ICommand NavigateToWelcomePage { get; }
+    public ICommand NavigateToSettingsPage { get; }
 
     public MenuWindowViewModel(
         IWindowManager windowManager, 
@@ -39,13 +40,14 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         _activePage = _pageManager.NavigateTo(2);
 
         CloseCommand = new RelayCommand(() => _windowManager.Close(this));
-        NavigateToProfilePage = new RelayCommand(() => ActivePage = _pageManager.NavigateTo(3));
         NavigateToWelcomePage = new RelayCommand(() => ActivePage = _pageManager.NavigateTo(2));
+        NavigateToProfilePage = new RelayCommand(() => ActivePage = _pageManager.NavigateTo(3));
+        NavigateToSettingsPage = new RelayCommand(() => ActivePage = _pageManager.NavigateTo(4));
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }

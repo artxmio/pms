@@ -15,6 +15,7 @@ internal class PageFactory : IPageFactory
             Pages.RegistrationPage => new RegistrationPage(),
             Pages.WelcomePage => new WelcomePage(),
             Pages.ProfilePage => new ProfilePage(),
+            Pages.SettingsPage => new SettingsPage(),
             _ => throw new ArgumentException($"No such page: {pageKey}")
         };
     }

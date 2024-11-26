@@ -218,6 +218,7 @@
 
             <!-- Кнопка настройки -->
             <Button
+            Command="{Binding NavigateToSettingsPage}"
             BorderBrush="Transparent"
             Margin="0,0,0,21" 
             Width="54" Height="54" 

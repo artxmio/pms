@@ -21,6 +21,7 @@ public class RegistrationModule : Module
         builder.RegisterType<LoginPage>().As<ILoginPage>().InstancePerDependency();
         builder.RegisterType<WelcomePage>().As<IWelcomePage>().InstancePerDependency();
         builder.RegisterType<ProfilePage>().As<IProfilePage>().InstancePerDependency();
+        builder.RegisterType<SettingsPage>().As<ISettingsPage>().InstancePerDependency();
 
         builder.RegisterType<WindowManager.WindowsManager>().As<IWindowManager>().SingleInstance();
         builder.RegisterType<PageManager.PageManager>().As<IPageManager>().SingleInstance();

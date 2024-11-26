@@ -4,12 +4,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectManagementStudio.View.MenuWindow.Pages"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="ProfilePage">
+      mc:Ignorable="d"
+      Title="ProfilePage" Height="900" Width="1600">
 
     <Grid>
-        <Border Background="#724D9D" CornerRadius="25" Margin="0,0,-450,-300" Grid.RowSpan="2">
+        <Border Background="#724D9D" CornerRadius="25" Margin="0,0,20,0">
             <Border.Effect>
                 <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
             </Border.Effect>
@@ -20,7 +19,7 @@
                     HorizontalAlignment="Left" 
                     VerticalAlignment="Top" 
                     Width="733" Height="364" 
-                    Margin="79,59,0,0">
+                    Margin="339,159,0,0">
                     <Border.Effect>
                         <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
                     </Border.Effect>
@@ -45,7 +44,7 @@
                         <TextBlock FontSize="30" FontFamily="outfit"
                                FontWeight="Normal" Text="Email.example@gmail.com"
                                Width="356" Height="38"
-                               Margin="0,178,76,0"
+                               Margin="0,186,76,0"
                                HorizontalAlignment="Right"
                                VerticalAlignment="Top"
                                Foreground="#FFFFFF"/>
@@ -58,7 +57,7 @@
                 HorizontalAlignment="Right" 
                 VerticalAlignment="Top" 
                 Width="300" Height="364" 
-                Margin="0,59,112,0">
+                Margin="0,160,150,0">
                     <Border.Effect>
                         <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
                     </Border.Effect>
@@ -202,7 +201,7 @@
                     HorizontalAlignment="Left" 
                     VerticalAlignment="Bottom" 
                     Width="479" Height="249" 
-                    Margin="79,0,0,51">
+                    Margin="341,0,0,100">
                     <Border.Effect>
                         <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
                     </Border.Effect>
@@ -229,7 +228,7 @@
                     HorizontalAlignment="Left" 
                     VerticalAlignment="Bottom" 
                     Width="351" Height="249" 
-                    Margin="585,0,0,51">
+                    Margin="849,0,0,100">
                     <Border.Effect>
                         <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
                     </Border.Effect>
@@ -265,7 +264,7 @@
                     HorizontalAlignment="Right" 
                     VerticalAlignment="Bottom" 
                     Width="175" Height="162" 
-                    Margin="0,0,112,138">
+                    Margin="0,0,155,188">
                     <Border.Effect>
                         <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
                     </Border.Effect>
@@ -333,7 +332,7 @@
                 </Border>
 
                 <!-- Выйти из аккаунта -->
-                <Button Background="#2C1B47" Width="175" Height="60" Margin="0,0,112,51"
+                <Button Background="#2C1B47" Width="175" Height="60" Margin="0,0,160,115"
                     HorizontalAlignment="Right" VerticalAlignment="Bottom">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
