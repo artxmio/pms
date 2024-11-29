@@ -29,8 +29,8 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
     /* // Модели // */
     #region
 
-    public AuthModel LoginModel { get; set; }
-    public RegisterModel RegistrationModel { get; set; }
+    public IAuthModel LoginModel { get; set; }
+    public IRegisterModel RegistrationModel { get; set; }
 
     #endregion
 
@@ -61,11 +61,13 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
         IMenuWindowViewModel menuWindowViewModel,
         IWindowManager windowManager,
         IUserDataMementoWrapper userDataMementoWrapper,
-        IPageManager pageManager
+        IPageManager pageManager,
+        IAuthModel authModel,
+        IRegisterModel registerModel
         )
     {
-        LoginModel = new AuthModel(userDataMementoWrapper);
-        RegistrationModel = new RegisterModel();
+        LoginModel = authModel;
+        RegistrationModel = registerModel;
 
         _menuWindowViewModel = menuWindowViewModel;
         _windowManager = windowManager;

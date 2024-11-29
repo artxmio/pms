@@ -24,7 +24,7 @@ public class APIClient : IAPIClient
         _client.DefaultRequestHeaders.Add("Authorization", $"{_urlService.Token}");
     }
 
-    public async Task<bool> IsUserExists(AuthModel user)
+    public async Task<bool> IsUserExists(IAuthModel user)
     {
         var json = JsonConvert.SerializeObject(new AuthRequestModel(user.login, user.password));
         var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -61,7 +61,7 @@ public class APIClient : IAPIClient
         return isExist;
     }
 
-    public async Task AddUser(RegisterModel user)
+    public async Task AddUser(IRegisterModel user)
     {
         var json = JsonConvert.SerializeObject(new AddUserRequestModel(user.login, user.password, user.email));
         var content = new StringContent(json, Encoding.UTF8, "application/json");

@@ -38,6 +38,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     {
         get => _imageMementoWrapper;
     }
+
     #endregion
 
     /* // Команды //*/
@@ -48,7 +49,6 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     public ICommand NavigateToProfilePage { get; }
     public ICommand NavigateToWelcomePage { get; }
     public ICommand NavigateToSettingsPage { get; }
-
     #endregion
 
     public MenuWindowViewModel(
