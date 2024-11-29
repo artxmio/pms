@@ -19,6 +19,7 @@ namespace ProjectManagementStudio.Model.RegistrationModule
 
             builder.RegisterType<UserDataMementoWrapper>()
                 .As<IUserDataMementoWrapper>()
+                .As<IUserImageMementoWrapper>()
                 .As<IUserDataMementoWrapperInitializer>()
                 .SingleInstance();
         }

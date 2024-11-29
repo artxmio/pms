@@ -4,8 +4,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectManagementStudio.View.MenuWindow.Pages"
+      xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MenuWindow;assembly=ProjectManagementStudio.ViewModel"
       mc:Ignorable="d"
-      Title="ProfilePage" Height="900" Width="1600">
+      Title="ProfilePage" Height="900" Width="1600"
+      d:DataContext="{d:DesignInstance vm:MenuWindowViewModel}"
+      >
 
     <Grid>
         <Border Width="1250" Height="750" Background="#724D9D" CornerRadius="25" Margin="0,0,20,0">
@@ -26,7 +29,7 @@
 
                     <Grid>
                         <Image Width="200" Height="200" 
-                    Source="..\..\Source\user.png"
+                    Source="{Binding ImageMementoWrapper.AvatarImage}"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Margin="59,78,0,0"/>

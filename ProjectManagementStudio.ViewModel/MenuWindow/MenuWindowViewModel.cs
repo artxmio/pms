@@ -1,4 +1,5 @@
 ﻿using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel;
+using ProjectManagementStudio.Model.UserSavedData.Wrapper;
 using ProjectManagementStudio.ViewModel.Command;
 using ProjectManagementStudio.ViewModel.Pages;
 using ProjectManagementStudio.ViewModel.Windows;
@@ -15,9 +16,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
     private readonly IPageManager _pageManager;
     private readonly IWindowManager _windowManager;
-
-    private IProfileModel _profileModel;
-
+    private readonly IUserImageMementoWrapper _imageMementoWrapper;
     private IPage _activePage;
 
     #endregion
@@ -25,6 +24,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     /* // Свойства // */
     #region
 
+    public IProfileModel ProfileModel { get; set; }
     public IPage ActivePage
     {
         get => _activePage;
@@ -34,7 +34,10 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
-
+    public IUserImageMementoWrapper ImageMementoWrapper
+    {
+        get => _imageMementoWrapper;
+    }
     #endregion
 
     /* // Команды //*/
@@ -51,12 +54,14 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     public MenuWindowViewModel(
         IWindowManager windowManager, 
         IPageManager pageManager,
+        IUserImageMementoWrapper imageMementoWrapper,
         IProfileModel profileModel)
     {
         _pageManager = pageManager;
         _windowManager = windowManager;
+        _imageMementoWrapper = imageMementoWrapper;
 
-        _profileModel = profileModel;
+        ProfileModel = profileModel;
 
         _activePage = _pageManager.NavigateTo(2);
 

@@ -97,6 +97,10 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
 
             _windowManager.Close(this);
         }
+        else
+        {
+            MessageBox.Show("Такого пользователя не существует или возникла неизвестная ошибка", "Ошибка");
+        }
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

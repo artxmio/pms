@@ -1,6 +1,4 @@
-﻿using System.Runtime.Serialization;
-
-namespace ProjectManagementStudio.Model.UserSavedData.Memento;
+﻿namespace ProjectManagementStudio.Model.UserSavedData.Memento;
 
 public interface IUserDataMemento
 {
