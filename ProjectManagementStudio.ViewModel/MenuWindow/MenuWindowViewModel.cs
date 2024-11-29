@@ -1,9 +1,12 @@
-﻿using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel;
+﻿using Microsoft.Win32;
+using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel;
+using ProjectManagementStudio.Model.PathService;
 using ProjectManagementStudio.Model.UserSavedData.Wrapper;
 using ProjectManagementStudio.ViewModel.Command;
 using ProjectManagementStudio.ViewModel.Pages;
 using ProjectManagementStudio.ViewModel.Windows;
 using System.ComponentModel;
+using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
@@ -49,6 +52,9 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     public ICommand NavigateToProfilePage { get; }
     public ICommand NavigateToWelcomePage { get; }
     public ICommand NavigateToSettingsPage { get; }
+
+    public ICommand ChangeAvatarCommand { get; }
+
     #endregion
 
     public MenuWindowViewModel(
@@ -69,6 +75,30 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         NavigateToWelcomePage = new RelayCommand(() => ActivePage = _pageManager.NavigateTo(2));
         NavigateToProfilePage = new RelayCommand(() => ActivePage = _pageManager.NavigateTo(3));
         NavigateToSettingsPage = new RelayCommand(() => ActivePage = _pageManager.NavigateTo(4));
+        ChangeAvatarCommand = new RelayCommand(ChangeAvatar);
+    }
+
+    private void ChangeAvatar()
+    {
+        OpenFileDialog openFileDialog = new OpenFileDialog()
+        {
+            Title = "Выберите аватар",
+            InitialDirectory = "c:\\",
+            Filter = "Image files (*.png;*.jpg)|*.png;*.jpg",
+            FilterIndex = 2
+        };
+
+        if(openFileDialog.ShowDialog() is not null)
+        {
+            //var userDataFolderName = "user";
+
+            //var userDataPath = Path.Combine(_pathService.ApplicationFolder, userDataFolderName);
+
+            //_imageMementoWrapper.AvatarImage = new Uri(openFileDialog.FileName);
+            //File.Copy("data\\user.png", , true);
+        }
+
+        
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
