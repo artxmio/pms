@@ -1,4 +1,5 @@
-﻿using ProjectManagementStudio.ViewModel.Command;
+﻿using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel;
+using ProjectManagementStudio.ViewModel.Command;
 using ProjectManagementStudio.ViewModel.Pages;
 using ProjectManagementStudio.ViewModel.Windows;
 using System.ComponentModel;
@@ -9,10 +10,20 @@ namespace ProjectManagementStudio.ViewModel.MenuWindow;
 
 public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 {
+    /* // Поля // */
+    #region
+
     private readonly IPageManager _pageManager;
     private readonly IWindowManager _windowManager;
 
+    private IProfileModel _profileModel;
+
     private IPage _activePage;
+
+    #endregion
+
+    /* // Свойства // */
+    #region
 
     public IPage ActivePage
     {
@@ -24,18 +35,28 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         }
     }
 
+    #endregion
+
+    /* // Команды //*/
+    #region 
+
     public ICommand CloseCommand { get; }
 
     public ICommand NavigateToProfilePage { get; }
     public ICommand NavigateToWelcomePage { get; }
     public ICommand NavigateToSettingsPage { get; }
 
+    #endregion
+
     public MenuWindowViewModel(
         IWindowManager windowManager, 
-        IPageManager pageManager)
+        IPageManager pageManager,
+        IProfileModel profileModel)
     {
         _pageManager = pageManager;
         _windowManager = windowManager;
+
+        _profileModel = profileModel;
 
         _activePage = _pageManager.NavigateTo(2);
 

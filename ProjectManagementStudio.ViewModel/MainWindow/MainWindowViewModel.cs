@@ -15,28 +15,36 @@ namespace ProjectManagementStudio.ViewModel.MainWindow;
 
 public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
 {
+    /* // Поля // */
+    #region
+
     private readonly IAPIClient _client;
     private readonly IPageManager _pageManager;
     private readonly IMenuWindowViewModel _menuWindowViewModel;
     private readonly IWindowManager _windowManager;
 
-    #region
-    public AuthModel LoginModel { get; set; }
-    public RegisterModel RegistrationModel { get; set; }
+    private IPage _activePage;
     #endregion
 
+    /* // Модели // */
     #region
+
+    public AuthModel LoginModel { get; set; }
+    public RegisterModel RegistrationModel { get; set; }
+
+    #endregion
+
+    /* // Команды // */
+    #region
+    
     public ICommand CloseCommand { get; }
     public ICommand AuthorizationCommand { get; }
     public ICommand RegistrationCommand { get; }
 
     public ICommand NavigateToRegistrationPage { get; }
     public ICommand NavigateToLoginPage { get; }
+
     #endregion
-
-    private IPage _activePage;
-
-    public event PropertyChangedEventHandler? PropertyChanged;
 
     public IPage ActivePage
     {
@@ -90,6 +98,8 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
             _windowManager.Close(this);
         }
     }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
 
     protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
     {
