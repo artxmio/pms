@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using ProjectManagementStudio.Bootstrapper.Factories;
+using ProjectManagementStudio.Bootstrapper.Services.AvatarService;
 using ProjectManagementStudio.Bootstrapper.Services.PathService;
 using ProjectManagementStudio.Bootstrapper.Services.UrlService;
 using ProjectManagementStudio.Model.PathService;
@@ -26,6 +27,11 @@ public class RegistrationModule : Module
         builder.RegisterType<UrlService>()
             .As<IUrlService>()
             .As<IUrlServiceInitializer>()
+            .SingleInstance();
+
+        builder.RegisterType<AvatarService>()
+            .As<IAvatarService>()
+            .As<IAvatarServiceInitializer>()
             .SingleInstance();
     }
 }

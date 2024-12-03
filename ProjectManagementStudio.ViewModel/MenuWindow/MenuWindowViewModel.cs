@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using ProjectManagementStudio.Bootstrapper.Services.AvatarService;
 using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel;
 using ProjectManagementStudio.Model.PathService;
 using ProjectManagementStudio.Model.UserSavedData.Wrapper;
@@ -8,7 +9,10 @@ using ProjectManagementStudio.ViewModel.Windows;
 using System.ComponentModel;
 using System.IO;
 using System.Runtime.CompilerServices;
+using System.Security.Policy;
+using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace ProjectManagementStudio.ViewModel.MenuWindow;
 
@@ -19,7 +23,10 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
     private readonly IPageManager _pageManager;
     private readonly IWindowManager _windowManager;
-    private readonly IUserImageMementoWrapper _imageMementoWrapper;
+
+    private readonly IPathService _pathService;
+    private readonly IAvatarService _avatarService;
+
     private IPage _activePage;
 
     #endregion
@@ -28,6 +35,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     #region
 
     public IProfileModel ProfileModel { get; set; }
+    
     public IPage ActivePage
     {
         get => _activePage;
@@ -37,9 +45,15 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
-    public IUserImageMementoWrapper ImageMementoWrapper
+
+    public BitmapImage AvatarImage
     {
-        get => _imageMementoWrapper;
+        get => _avatarService.AvatarImage;
+        set
+        {
+            _avatarService.AvatarImage = value;
+            OnPropertyChanged();
+        }
     }
 
     #endregion
@@ -58,14 +72,16 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     #endregion
 
     public MenuWindowViewModel(
-        IWindowManager windowManager, 
+        IWindowManager windowManager,
         IPageManager pageManager,
-        IUserImageMementoWrapper imageMementoWrapper,
-        IProfileModel profileModel)
+        IProfileModel profileModel,
+        IPathService pathService,
+        IAvatarService avatarService)
     {
         _pageManager = pageManager;
         _windowManager = windowManager;
-        _imageMementoWrapper = imageMementoWrapper;
+        _pathService = pathService;
+        _avatarService = avatarService; 
 
         ProfileModel = profileModel;
 
@@ -88,17 +104,19 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
             FilterIndex = 2
         };
 
-        if(openFileDialog.ShowDialog() is not null)
+        if (openFileDialog.ShowDialog() is not null)
         {
-            //var userDataFolderName = "user";
+            var userDataPath = _avatarService.AvatarFilePath;
 
-            //var userDataPath = Path.Combine(_pathService.ApplicationFolder, userDataFolderName);
-
-            //_imageMementoWrapper.AvatarImage = new Uri(openFileDialog.FileName);
-            //File.Copy("data\\user.png", , true);
+            try
+            {
+                _avatarService.ChangeAvatar(openFileDialog.FileName);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
-
-        
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

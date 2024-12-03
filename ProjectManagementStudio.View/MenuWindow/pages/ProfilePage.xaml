@@ -29,7 +29,7 @@
 
                     <Grid>
                         <Image Width="200" Height="200" 
-                    Source="{Binding ImageMementoWrapper.AvatarImage}"
+                    Source="{Binding AvatarImage}"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Margin="59,78,0,0"/>

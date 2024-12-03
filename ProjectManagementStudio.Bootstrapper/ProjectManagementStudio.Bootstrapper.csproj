@@ -25,4 +25,10 @@
     <ProjectReference Include="..\ProjectManagementStudio.View\ProjectManagementStudio.View.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="images\user.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

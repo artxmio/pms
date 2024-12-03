@@ -8,12 +8,10 @@ namespace ProjectManagementStudio.Model.UserSavedData.Wrapper;
 
 internal class UserDataMementoWrapper :
     IUserDataMementoWrapper,
-    IUserImageMementoWrapper,
     IUserDataMementoWrapperInitializer
 {
     private UserDataMemento _userDataMemento;
-    private string _userAvatarImageFilePath = "";
-    private IPathService _pathService;
+    private readonly IPathService _pathService;
     private bool _initialized = false;
     private string _userDataFilePath = "";
 
@@ -71,20 +69,6 @@ internal class UserDataMementoWrapper :
         }
     }
 
-    public Uri AvatarImage
-    {
-        get
-        {
-            EnsureInitialized();
-            return _userDataMemento.AvatarImage;
-        }
-        set
-        {
-            EnsureInitialized();
-            _userDataMemento.AvatarImage = value;
-        }
-    }
-
     public UserDataMementoWrapper(IPathService pathService)
     {
         _pathService = pathService;
@@ -117,16 +101,6 @@ internal class UserDataMementoWrapper :
 
         _userDataMemento = JsonConvert.DeserializeObject<UserDataMemento>(jsonString)
             ?? throw new InvalidOperationException("Deserialized memento can't be null");
-
-        _userAvatarImageFilePath = Path.Combine(userDataPath, "avatar.jpg");
-
-        if (!File.Exists(_userAvatarImageFilePath))
-        {
-            File.Copy("data\\user.png", _userAvatarImageFilePath, true);
-            return;
-        }
-
-        _userDataMemento.AvatarImage = new Uri(_userAvatarImageFilePath);
     }
 
     private void EnsureInitialized()
