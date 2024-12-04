@@ -35,7 +35,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     #region
 
     public IProfileModel ProfileModel { get; set; }
-    
+
     public IPage ActivePage
     {
         get => _activePage;
@@ -46,14 +46,17 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         }
     }
 
-    private BitmapImage _image;
+    private BitmapImage _avatarImage;
     public BitmapImage AvatarImage
     {
-        get => _image;
+        get => _avatarImage;
         set
         {
-            _image = value;
-            OnPropertyChanged();
+            if (value is not null)
+            {
+                _avatarImage = value;
+                OnPropertyChanged();
+            }
         }
     }
 
@@ -82,12 +85,18 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         _pageManager = pageManager;
         _windowManager = windowManager;
         _pathService = pathService;
-        _avatarService = avatarService; 
+        _avatarService = avatarService;
 
         ProfileModel = profileModel;
 
         _activePage = _pageManager.NavigateTo(2);
-        _image = new BitmapImage(new Uri(_avatarService.AvatarFilePath));
+
+        /* // Загрузка аватарки // */
+        _avatarImage = new BitmapImage();
+        _avatarImage.BeginInit();
+        _avatarImage.UriSource = new Uri(_avatarService.AvatarFilePath);
+        _avatarImage.CacheOption = BitmapCacheOption.OnLoad;
+        _avatarImage.EndInit();
 
         CloseCommand = new RelayCommand(() => _windowManager.Close(this));
         NavigateToWelcomePage = new RelayCommand(() => ActivePage = _pageManager.NavigateTo(2));
@@ -106,18 +115,9 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
             FilterIndex = 2
         };
 
-        if (openFileDialog.ShowDialog() is not null)
+        if (openFileDialog.ShowDialog() is not null && openFileDialog.FileName != string.Empty)
         {
-            var userDataPath = _avatarService.AvatarFilePath;
-
-            try
-            {
-                AvatarImage = _avatarService.ChangeAvatar(openFileDialog.FileName);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            AvatarImage = _avatarService.ChangeAvatar(openFileDialog.FileName);
         }
     }
 

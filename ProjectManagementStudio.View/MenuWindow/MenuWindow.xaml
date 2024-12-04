@@ -78,7 +78,7 @@
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
-                <Image Height="60" Width="60" Source="{Binding AvatarImage}">
+                <Image Height="60" Width="60" Source="{Binding AvatarImage, Mode=OneWay}">
                     <Image.Style>
                         <Style TargetType="Image">
                             <Setter Property="Opacity" Value="0.7"/>

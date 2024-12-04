@@ -50,11 +50,11 @@ internal class AvatarService : IAvatarService, IAvatarServiceInitializer, INotif
             Directory.CreateDirectory(avatarFolderName);
         }
 
-        AvatarFilePath = Path.Combine(avatarFolderName.ToString(), "avatar.jpg");
+        AvatarFilePath = Path.Combine(avatarFolderName, "avatar.jpg");
 
-        if (!File.Exists(AvatarFilePath.ToString()))
+        if (!File.Exists(AvatarFilePath))
         {
-            File.Copy("images\\user.png", AvatarFilePath);
+            File.Copy("images\\avatar.png", AvatarFilePath);
         }
     }
 
@@ -62,12 +62,44 @@ internal class AvatarService : IAvatarService, IAvatarServiceInitializer, INotif
     {
         try
         {
-            AvatarFilePath = newImagePath;
-            File.Copy(newImagePath, AvatarFilePath, true);
+            var newAvatar = new BitmapImage();
+            newAvatar.BeginInit();
+            newAvatar.UriSource = new Uri(newImagePath);
+            newAvatar.CacheOption = BitmapCacheOption.OnDemand;
+            newAvatar.EndInit();
+
+            File.Copy(newImagePath, AvatarFilePath, overwrite: true);
+            return newAvatar;
         }
-        catch (Exception ex)
+        catch (FileNotFoundException ex)
         {
-            MessageBox.Show(ex.Message);
+            MessageBox.Show($"Файл не найден: {ex.Message}");
+            return null;
+        }
+        catch (UriFormatException ex)
+        {
+            MessageBox.Show($"Неправильный формат URI: {ex.Message}");
+            return null;
+        }
+        catch (ArgumentException ex)
+        {
+            MessageBox.Show($"Некорректный аргумент: {ex.Message}");
+            return null;
+        }
+        catch (IOException ex)
+        {
+            MessageBox.Show($"Ошибка ввода-вывода: {ex.Message}");
+            return null;
+        }
+        catch (NotSupportedException ex)
+        {
+            MessageBox.Show($"Формат изображения не поддерживается: {ex.Message}");
+            return null;
+        }
+        catch (InvalidOperationException ex)
+        {
+            MessageBox.Show($"Неверная операция: {ex.Message}");
+            return null;
         }
 
         return new BitmapImage(new Uri(AvatarFilePath));
