@@ -1,18 +1,21 @@
 ﻿using Microsoft.Win32;
 using ProjectManagementStudio.Model.PathService;
+using System.ComponentModel;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
 namespace ProjectManagementStudio.Bootstrapper.Services.AvatarService;
 
-internal class AvatarService : IAvatarService, IAvatarServiceInitializer
+internal class AvatarService : IAvatarService, IAvatarServiceInitializer, INotifyPropertyChanged
 {
     private string _avatarFilePath = "";
-    private BitmapImage _avatarImage;
 
     private bool _initialized;
     private readonly IPathService _pathService;
+
+    public event PropertyChangedEventHandler? PropertyChanged;
 
     public string AvatarFilePath
     {
@@ -24,19 +27,7 @@ internal class AvatarService : IAvatarService, IAvatarServiceInitializer
         set
         {
             _avatarFilePath = value;
-        }
-    }
-
-    public BitmapImage AvatarImage
-    {
-        get
-        {
-            return _avatarImage;
-        }
-
-        set
-        {
-            _avatarImage = value;
+            OnPropertyChanged();
         }
     }
 
@@ -59,26 +50,32 @@ internal class AvatarService : IAvatarService, IAvatarServiceInitializer
             Directory.CreateDirectory(avatarFolderName);
         }
 
-        _avatarFilePath = Path.Combine(avatarFolderName.ToString(), "avatar.jpg");
+        AvatarFilePath = Path.Combine(avatarFolderName.ToString(), "avatar.jpg");
 
-        if (!File.Exists(_avatarFilePath.ToString()))
+        if (!File.Exists(AvatarFilePath.ToString()))
         {
-            File.Copy("images\\user.png", _avatarFilePath, overwrite: true);
+            File.Copy("images\\user.png", AvatarFilePath);
         }
-
-        AvatarImage = new BitmapImage(new Uri(AvatarFilePath));
     }
 
-    public void ChangeAvatar(string newImagePath)
+    public BitmapImage ChangeAvatar(string newImagePath)
     {
         try
         {
-            File.Copy(newImagePath, $"{AvatarFilePath}", true);
+            AvatarFilePath = newImagePath;
+            File.Copy(newImagePath, AvatarFilePath, true);
         }
         catch (Exception ex)
         {
             MessageBox.Show(ex.Message);
         }
+
+        return new BitmapImage(new Uri(AvatarFilePath));
+    }
+
+    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
     private void EnsureInitialized()

@@ -46,12 +46,13 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         }
     }
 
+    private BitmapImage _image;
     public BitmapImage AvatarImage
     {
-        get => _avatarService.AvatarImage;
+        get => _image;
         set
         {
-            _avatarService.AvatarImage = value;
+            _image = value;
             OnPropertyChanged();
         }
     }
@@ -86,6 +87,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         ProfileModel = profileModel;
 
         _activePage = _pageManager.NavigateTo(2);
+        _image = new BitmapImage(new Uri(_avatarService.AvatarFilePath));
 
         CloseCommand = new RelayCommand(() => _windowManager.Close(this));
         NavigateToWelcomePage = new RelayCommand(() => ActivePage = _pageManager.NavigateTo(2));
@@ -96,7 +98,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
     private void ChangeAvatar()
     {
-        OpenFileDialog openFileDialog = new OpenFileDialog()
+        OpenFileDialog openFileDialog = new()
         {
             Title = "Выберите аватар",
             InitialDirectory = "c:\\",
@@ -110,7 +112,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
             try
             {
-                _avatarService.ChangeAvatar(openFileDialog.FileName);
+                AvatarImage = _avatarService.ChangeAvatar(openFileDialog.FileName);
             }
             catch (Exception ex)
             {

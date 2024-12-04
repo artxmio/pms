@@ -7,7 +7,5 @@ public interface IAvatarService
 {
     string AvatarFilePath { get; set; }
 
-    BitmapImage AvatarImage { get; set; }
-
-    void ChangeAvatar(string newImagePath);
+    BitmapImage ChangeAvatar(string newImagePath);
 }
