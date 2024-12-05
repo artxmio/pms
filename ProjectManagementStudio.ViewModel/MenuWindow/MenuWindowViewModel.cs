@@ -2,15 +2,13 @@
 using ProjectManagementStudio.Bootstrapper.Services.AvatarService;
 using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel;
 using ProjectManagementStudio.Model.PathService;
-using ProjectManagementStudio.Model.UserSavedData.Wrapper;
+using ProjectManagementStudio.Model.WindowModels.AuthModel;
+using ProjectManagementStudio.ViewModel.APIClient;
 using ProjectManagementStudio.ViewModel.Command;
 using ProjectManagementStudio.ViewModel.Pages;
 using ProjectManagementStudio.ViewModel.Windows;
 using System.ComponentModel;
-using System.IO;
 using System.Runtime.CompilerServices;
-using System.Security.Policy;
-using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
@@ -21,20 +19,22 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     /* // Поля // */
     #region
 
+    private readonly IAPIClient _client;
     private readonly IPageManager _pageManager;
     private readonly IWindowManager _windowManager;
 
-    private readonly IPathService _pathService;
     private readonly IAvatarService _avatarService;
 
     private IPage _activePage;
 
+    private BitmapImage _avatarImage;
     #endregion
 
     /* // Свойства // */
     #region
 
     public IProfileModel ProfileModel { get; set; }
+    public IAuthModel CurrentUser { get; set; }
 
     public IPage ActivePage
     {
@@ -46,7 +46,6 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         }
     }
 
-    private BitmapImage _avatarImage;
     public BitmapImage AvatarImage
     {
         get => _avatarImage;
@@ -72,22 +71,25 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     public ICommand NavigateToSettingsPage { get; }
 
     public ICommand ChangeAvatarCommand { get; }
+    public ICommand ChangeLoginCommand { get; }
 
     #endregion
 
     public MenuWindowViewModel(
+        IAPIClient APIClient,
         IWindowManager windowManager,
         IPageManager pageManager,
         IProfileModel profileModel,
-        IPathService pathService,
-        IAvatarService avatarService)
+        IAvatarService avatarService,
+        IAuthModel currentUser)
     {
+        _client = APIClient;
         _pageManager = pageManager;
         _windowManager = windowManager;
-        _pathService = pathService;
         _avatarService = avatarService;
 
         ProfileModel = profileModel;
+        CurrentUser = currentUser;
 
         _activePage = _pageManager.NavigateTo(2);
 
@@ -103,6 +105,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         NavigateToProfilePage = new RelayCommand(() => ActivePage = _pageManager.NavigateTo(3));
         NavigateToSettingsPage = new RelayCommand(() => ActivePage = _pageManager.NavigateTo(4));
         ChangeAvatarCommand = new RelayCommand(ChangeAvatar);
+        ChangeLoginCommand = new RelayCommand(() => _client.GetUserByLogin(CurrentUser));
     }
 
     private void ChangeAvatar()

@@ -97,7 +97,7 @@ public class APIClient : IAPIClient
         }
     }
 
-    private string MessagePerCode(int code)
+    private static string MessagePerCode(int code)
     {
         string message = "успешно";
         switch (code)
@@ -107,5 +107,33 @@ public class APIClient : IAPIClient
         }
 
         return message;
+    }
+
+    public async Task GetUserByLogin(IAuthModel currentUser)
+    {
+        try
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{_client.BaseAddress}get_user?login={currentUser.login}");
+
+            var response = await _client.SendAsync(request);
+
+            MessageBox.Show(await response.Content.ReadAsStringAsync());
+
+            GetUserResponse deserializeResponse = JsonConvert.DeserializeObject<GetUserResponse>(await response.Content.ReadAsStringAsync()) 
+                ?? throw new InvalidOperationException("Deserialized response can't be null");
+        }
+        catch (HttpRequestException ex)
+        {
+            MessageBox.Show($"Возникла ошибка: сервер отключён или недоступен ({ex.Message})", "Ошибка");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message); 
+        }
+    }
+
+    public async Task ChangeLogin(IAuthModel currentUser)
+    {
+        
     }
 }

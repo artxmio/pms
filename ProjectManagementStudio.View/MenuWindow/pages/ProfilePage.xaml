@@ -106,6 +106,7 @@
 
                         <!-- СДЕЛАТЬ КОГДА СЕРВАК! -->
                         <Button Width="260" Height="39"
+                                Command="{Binding ChangeLoginCommand}"
                             Margin="0,20,0,0"
                             Background="#724D9D"
                             Content="Change login"
