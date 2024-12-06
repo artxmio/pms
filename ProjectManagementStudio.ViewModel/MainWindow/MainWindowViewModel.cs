@@ -10,7 +10,6 @@ using System.Windows;
 using ProjectManagementStudio.ViewModel.Pages;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using ProjectManagementStudio.Model.CurrentUserModel;
 using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 
 namespace ProjectManagementStudio.ViewModel.MainWindow;
@@ -92,10 +91,10 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
     private async void AuthorizateUser()
     {
         bool isExist = await _client.IsUserExists(LoginModel);
-        _currentUserService.CurrentUser = await _client.GetUserByLogin(LoginModel);
 
         if (isExist)
-        {
+        {        
+            _currentUserService.CurrentUser = await _client.GetUserByLogin(LoginModel);
             var menuWindow = _windowManager.Show(_menuWindowViewModel) as Window;
 
             if(menuWindow is not Window window)
