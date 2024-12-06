@@ -7,6 +7,7 @@ using ProjectManagementStudio.Model.PathService;
 using ProjectManagementStudio.Model.WindowModels.AuthModel;
 using ProjectManagementStudio.ViewModel.APIClient;
 using ProjectManagementStudio.ViewModel.Command;
+using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows;
 using ProjectManagementStudio.ViewModel.Pages;
 using ProjectManagementStudio.ViewModel.Windows;
 using System.ComponentModel;
@@ -28,7 +29,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     private readonly IAvatarService _avatarService;
     private readonly ICurrentUserService _currentUserService;
     private IPage _activePage;
-
+    private ILoginChangeDialogViewModel _loginChangeDialogViewModel;
     private BitmapImage _avatarImage;
     #endregion
 
@@ -95,7 +96,8 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         IPageManager pageManager,
         IProfileModel profileModel,
         IAvatarService avatarService,
-        ICurrentUserService currentUserService)
+        ICurrentUserService currentUserService,
+        ILoginChangeDialogViewModel loginChangeDialogViewModel)
     {
         _client = APIClient;
         _pageManager = pageManager;
@@ -106,6 +108,8 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         ProfileModel = profileModel;
 
         _activePage = _pageManager.NavigateTo(2);
+
+        _loginChangeDialogViewModel = loginChangeDialogViewModel;
 
         /* // Загрузка аватарки // */
         _avatarImage = new BitmapImage();
@@ -120,7 +124,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         NavigateToSettingsPage = new RelayCommand(() => ActivePage = _pageManager.NavigateTo(4));
         ChangeAvatarCommand = new RelayCommand(ChangeAvatar);
 
-        ChangeLoginCommand = new RelayCommand(() => _client.ChangeLogin(CurrentUser, "login321"));
+        ChangeLoginCommand = new AsyncCommand(ChangeLogin);
     }
         
     private void ChangeAvatar()
@@ -137,6 +141,12 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         {
             AvatarImage = _avatarService.ChangeAvatar(openFileDialog.FileName);
         }
+    }
+
+    private async Task ChangeLogin()
+    {
+        _windowManager.Show(_loginChangeDialogViewModel, true);
+        await _client.ChangeLogin(CurrentUser, "login321");
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

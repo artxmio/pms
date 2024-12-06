@@ -2,6 +2,7 @@
 using ProjectManagementStudio.View.MainWindow;
 using ProjectManagementStudio.View.MainWindow.Pages;
 using ProjectManagementStudio.View.MenuWindow;
+using ProjectManagementStudio.View.MenuWindow.ModalWindows;
 using ProjectManagementStudio.View.MenuWindow.Pages;
 using ProjectManagementStudio.ViewModel.Pages;
 using ProjectManagementStudio.ViewModel.Windows;
@@ -22,6 +23,8 @@ public class RegistrationModule : Module
         builder.RegisterType<WelcomePage>().As<IWelcomePage>().InstancePerDependency();
         builder.RegisterType<ProfilePage>().As<IProfilePage>().InstancePerDependency();
         builder.RegisterType<SettingsPage>().As<ISettingsPage>().InstancePerDependency();
+
+        builder.RegisterType<LoginChangeDialog>().As<ILoginChangeDialog>().InstancePerDependency();
 
         builder.RegisterType<WindowManager.WindowsManager>().As<IWindowManager>().SingleInstance();
         builder.RegisterType<PageManager.PageManager>().As<IPageManager>().SingleInstance();

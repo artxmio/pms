@@ -1,27 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿namespace ProjectManagementStudio.View.MenuWindow.ModalWindows;
 
-namespace ProjectManagementStudio.View.MenuWindow.ModalWindows
+public partial class LoginChangeDialog : ILoginChangeDialog
 {
-    /// <summary>
-    /// Interaction logic for LoginChangeDialog.xaml
-    /// </summary>
-    public partial class LoginChangeDialog : Window
+    public LoginChangeDialog()
     {
-        public LoginChangeDialog()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

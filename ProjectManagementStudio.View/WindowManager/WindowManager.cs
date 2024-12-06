@@ -1,5 +1,6 @@
 ﻿using ProjectManagementStudio.View.WindowFactory;
 using ProjectManagementStudio.ViewModel.Windows;
+using System.Windows;
 
 namespace ProjectManagementStudio.View.WindowManager;
 
@@ -14,17 +15,25 @@ public class WindowsManager : IWindowManager
         _windowFactory = windowFactory;
     }
 
-    public IWindow Show<T>(T viewModel)
+    public IWindow Show<T>(T viewModel, bool isDialog = false)
         where T : IWindowViewModel
     {
-        var window = _windowFactory.Create(viewModel);
+        var newWindow = _windowFactory.Create(viewModel);
 
         if (!_viewModelToWindowMap.ContainsKey(viewModel))
-            _viewModelToWindowMap.Add(viewModel, window);
+            _viewModelToWindowMap.Add(viewModel, newWindow);
 
-        window.Show();
+        if(newWindow is not Window window)
+        {
+            throw new NotImplementedException();
+        }
 
-        return window;
+        if(isDialog)
+            window.ShowDialog(); 
+        else
+            window.Show();
+
+        return newWindow;
     }
 
     public void Close<T>(T viewModel)

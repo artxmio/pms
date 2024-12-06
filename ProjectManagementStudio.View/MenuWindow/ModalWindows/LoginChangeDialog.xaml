@@ -5,8 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectManagementStudio.View.MenuWindow.ModalWindows"
         mc:Ignorable="d"
-        Title="LoginChangeDialog" Height="450" Width="800">
-    <Grid>
+        Title="LoginChangeDialog" Height="150" Width="250">
+    <StackPanel Orientation="Vertical" Margin="10">
+        <TextBlock Text="Enter new login"
+                   Width="150"/>
+        <TextBox
+            Height="10"
+            Width="100"/>
         
-    </Grid>
+        <TextBlock Text="Enter your password"
+                   Width="150"/>
+        <TextBox
+            Height="10"
+            Width="100"/>
+
+        <Button 
+            Content="ok"
+            Margin="10"
+            Height="20"
+            Width="100"/>
+    </StackPanel>
 </Window>
