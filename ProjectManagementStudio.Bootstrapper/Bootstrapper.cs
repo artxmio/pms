@@ -48,7 +48,7 @@ public class Bootstrapper : IDisposable
             viewModel = _container.Resolve<IMenuWindowViewModel>();
         }
 
-        var mainWindow = _windowManager.Show((IMainWindowViewModel)viewModel);
+        var mainWindow = _windowManager.Show(viewModel);
 
         if (mainWindow is not Window window)
         {
@@ -59,6 +59,7 @@ public class Bootstrapper : IDisposable
 
         return window;
     }
+
 
     private void InitializeDependencies()
     {
