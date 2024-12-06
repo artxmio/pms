@@ -1,5 +1,6 @@
 ﻿using ProjectManagementStudio.Model.CurrentUserModel;
 using ProjectManagementStudio.Model.PathService;
+using ProjectManagementStudio.Model.WindowModels.AuthModel;
 
 namespace ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 

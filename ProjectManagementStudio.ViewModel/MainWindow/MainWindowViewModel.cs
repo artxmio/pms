@@ -11,6 +11,7 @@ using ProjectManagementStudio.ViewModel.Pages;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using ProjectManagementStudio.Model.CurrentUserModel;
+using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 
 namespace ProjectManagementStudio.ViewModel.MainWindow;
 
@@ -21,6 +22,7 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
 
     private readonly IAPIClient _client;
     private readonly IPageManager _pageManager;
+    private readonly ICurrentUserService _currentUserService;
     private readonly IMenuWindowViewModel _menuWindowViewModel;
     private readonly IWindowManager _windowManager;
 
@@ -64,7 +66,8 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
         IUserDataMementoWrapper userDataMementoWrapper,
         IPageManager pageManager,
         IAuthModel authModel,
-        IRegisterModel registerModel
+        IRegisterModel registerModel,
+        ICurrentUserService currentUserService
         )
     {
         LoginModel = authModel;
@@ -74,6 +77,7 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
         _windowManager = windowManager;
         _client = apiClient;
         _pageManager = pageManager;
+        _currentUserService = currentUserService;
 
         _activePage = _pageManager.NavigateTo(0);
 
@@ -88,6 +92,7 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
     private async void AuthorizateUser()
     {
         bool isExist = await _client.IsUserExists(LoginModel);
+        _currentUserService.CurrentUser = await _client.GetUserByLogin(LoginModel);
 
         if (isExist)
         {

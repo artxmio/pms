@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using ProjectManagementStudio.Bootstrapper.Services.AvatarService;
+using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 using ProjectManagementStudio.Model.CurrentUserModel;
 using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel;
 using ProjectManagementStudio.Model.PathService;
@@ -25,7 +26,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     private readonly IWindowManager _windowManager;
 
     private readonly IAvatarService _avatarService;
-
+    private readonly ICurrentUserService _currentUserService;
     private IPage _activePage;
 
     private BitmapImage _avatarImage;
@@ -35,7 +36,19 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     #region
 
     public IProfileModel ProfileModel { get; set; }
-    public ICurrentUserModel CurrentUser { get; set; }
+
+    public ICurrentUserModel CurrentUser
+    {
+        get
+        {
+            return _currentUserService.CurrentUser;
+        }
+        set
+        {
+            _currentUserService.CurrentUser = value;
+            OnPropertyChanged();
+        }
+    }
 
     public IPage ActivePage
     {
@@ -82,18 +95,17 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         IPageManager pageManager,
         IProfileModel profileModel,
         IAvatarService avatarService,
-        IAuthModel currentUser)
+        ICurrentUserService currentUserService)
     {
         _client = APIClient;
         _pageManager = pageManager;
         _windowManager = windowManager;
         _avatarService = avatarService;
+        _currentUserService = currentUserService;
 
         ProfileModel = profileModel;
 
         _activePage = _pageManager.NavigateTo(2);
-
-        SetCurrentUser(currentUser);
 
         /* // Загрузка аватарки // */
         _avatarImage = new BitmapImage();
@@ -109,7 +121,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         ChangeAvatarCommand = new RelayCommand(ChangeAvatar);
         //ChangeLoginCommand = new RelayCommand();
     }
-
+        
     private void ChangeAvatar()
     {
         OpenFileDialog openFileDialog = new()
@@ -124,11 +136,6 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         {
             AvatarImage = _avatarService.ChangeAvatar(openFileDialog.FileName);
         }
-    }
-
-    private async void SetCurrentUser(IAuthModel currentUser)
-    {
-        CurrentUser = await _client.GetUserByLogin(currentUser);
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
