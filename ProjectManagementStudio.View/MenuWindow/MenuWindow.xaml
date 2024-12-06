@@ -11,6 +11,7 @@
         WindowStyle="None"
         WindowState="Maximized"
         RenderOptions.BitmapScalingMode="HighQuality"
+        
         d:DataContext="{d:DesignInstance vm:MenuWindowViewModel}">
 
     <Window.Resources>
@@ -93,7 +94,7 @@
             </Button>
 
             <!-- Логин пользователя -->
-            <TextBlock Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,86,0" 
+            <TextBlock Text="{Binding CurrentUser.Login}" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,86,0" 
                Height="38" Width="190"/>
 
             <!-- Кнопка закрытия -->

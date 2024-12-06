@@ -36,7 +36,7 @@
 
                         <!-- СДЕЛАТЬ КОГДА СЕРВАК! -->
                         <TextBlock FontSize="35" FontFamily="outfit"
-                               FontWeight="Normal" Text="LoginExample"
+                               FontWeight="Normal" Text="{Binding CurrentUser.Login}"
                                Width="221" Height="44"
                                Margin="0,134,211,0"
                                HorizontalAlignment="Right"
@@ -45,7 +45,7 @@
 
                         <!-- СДЕЛАТЬ КОГДА СЕРВАК! -->
                         <TextBlock FontSize="30" FontFamily="outfit"
-                               FontWeight="Normal" Text="Email.example@gmail.com"
+                               FontWeight="Normal" Text="{Binding CurrentUser.Email}"
                                Width="356" Height="38"
                                Margin="0,186,76,0"
                                HorizontalAlignment="Right"

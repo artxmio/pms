@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using ProjectManagementStudio.Model.CurrentUserModel;
 using ProjectManagementStudio.Model.RequestsModels;
 using ProjectManagementStudio.Model.ResponseModels;
 using ProjectManagementStudio.Model.Responses;
@@ -109,18 +110,26 @@ public class APIClient : IAPIClient
         return message;
     }
 
-    public async Task GetUserByLogin(IAuthModel currentUser)
+    public async Task<ICurrentUserModel> GetUserByLogin(IAuthModel authUser)
     {
         try
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, $"{_client.BaseAddress}get_user?login={currentUser.login}");
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{_client.BaseAddress}get_user?login={authUser.login}");
 
             var response = await _client.SendAsync(request);
 
-            MessageBox.Show(await response.Content.ReadAsStringAsync());
-
             GetUserResponse deserializeResponse = JsonConvert.DeserializeObject<GetUserResponse>(await response.Content.ReadAsStringAsync()) 
                 ?? throw new InvalidOperationException("Deserialized response can't be null");
+
+            ICurrentUserModel user = new CurrentUserModel()
+            {
+                UserId = (long)deserializeResponse.Data["id"],
+                Login = (string)deserializeResponse.Data["login"],
+                Password = authUser.password,
+                Email = (string)deserializeResponse.Data["email"],
+            };
+
+            return user;
         }
         catch (HttpRequestException ex)
         {
@@ -130,6 +139,7 @@ public class APIClient : IAPIClient
         {
             MessageBox.Show(ex.Message); 
         }
+        throw new InvalidOperationException();
     }
 
     public async Task ChangeLogin(IAuthModel currentUser)

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using ProjectManagementStudio.Bootstrapper.Services.AvatarService;
+using ProjectManagementStudio.Model.CurrentUserModel;
 using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel;
 using ProjectManagementStudio.Model.PathService;
 using ProjectManagementStudio.Model.WindowModels.AuthModel;
@@ -34,7 +35,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     #region
 
     public IProfileModel ProfileModel { get; set; }
-    public IAuthModel CurrentUser { get; set; }
+    public ICurrentUserModel CurrentUser { get; set; }
 
     public IPage ActivePage
     {
@@ -89,9 +90,10 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         _avatarService = avatarService;
 
         ProfileModel = profileModel;
-        CurrentUser = currentUser;
 
         _activePage = _pageManager.NavigateTo(2);
+
+        SetCurrentUser(currentUser);
 
         /* // Загрузка аватарки // */
         _avatarImage = new BitmapImage();
@@ -105,7 +107,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         NavigateToProfilePage = new RelayCommand(() => ActivePage = _pageManager.NavigateTo(3));
         NavigateToSettingsPage = new RelayCommand(() => ActivePage = _pageManager.NavigateTo(4));
         ChangeAvatarCommand = new RelayCommand(ChangeAvatar);
-        ChangeLoginCommand = new RelayCommand(() => _client.GetUserByLogin(CurrentUser));
+        //ChangeLoginCommand = new RelayCommand();
     }
 
     private void ChangeAvatar()
@@ -122,6 +124,11 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         {
             AvatarImage = _avatarService.ChangeAvatar(openFileDialog.FileName);
         }
+    }
+
+    private async void SetCurrentUser(IAuthModel currentUser)
+    {
+        CurrentUser = await _client.GetUserByLogin(currentUser);
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
