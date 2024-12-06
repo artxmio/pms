@@ -119,7 +119,8 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         NavigateToProfilePage = new RelayCommand(() => ActivePage = _pageManager.NavigateTo(3));
         NavigateToSettingsPage = new RelayCommand(() => ActivePage = _pageManager.NavigateTo(4));
         ChangeAvatarCommand = new RelayCommand(ChangeAvatar);
-        //ChangeLoginCommand = new RelayCommand();
+
+        ChangeLoginCommand = new RelayCommand(()=> _client.ChangeLogin(CurrentUser, "login321"));
     }
         
     private void ChangeAvatar()

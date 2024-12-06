@@ -12,10 +12,17 @@ using System.Windows;
 
 namespace ProjectManagementStudio.ViewModel.APIClient;
 
-public class APIClient : IAPIClient
+public partial class APIClient : IAPIClient
 {
     private readonly HttpClient _client = new();
     private readonly IUrlService _urlService;
+
+    private Dictionary<ChangeableParams, string> _paramNames = new()
+    {
+        { ChangeableParams.Login, "login" },
+        { ChangeableParams.Password, "password" },
+        { ChangeableParams.Email, "email" }
+    };
 
     public APIClient(IUrlService urlService)
     {
@@ -66,7 +73,7 @@ public class APIClient : IAPIClient
     {
         var json = JsonConvert.SerializeObject(new AddUserRequestModel(user.login, user.password, user.email));
         var content = new StringContent(json, Encoding.UTF8, "application/json");
-        
+
         _urlService.URLEndpoint = nameof(AddUser);
 
         try
@@ -118,7 +125,7 @@ public class APIClient : IAPIClient
 
             var response = await _client.SendAsync(request);
 
-            GetUserResponse deserializeResponse = JsonConvert.DeserializeObject<GetUserResponse>(await response.Content.ReadAsStringAsync()) 
+            GetUserResponse deserializeResponse = JsonConvert.DeserializeObject<GetUserResponse>(await response.Content.ReadAsStringAsync())
                 ?? throw new InvalidOperationException("Deserialized response can't be null");
 
             ICurrentUserModel user = new CurrentUserModel()
@@ -137,13 +144,34 @@ public class APIClient : IAPIClient
         }
         catch (Exception ex)
         {
-            MessageBox.Show(ex.Message); 
+            MessageBox.Show(ex.Message);
         }
         throw new InvalidOperationException();
     }
 
-    public async Task ChangeLogin(IAuthModel currentUser)
+    public async Task ChangeLogin(ICurrentUserModel currentUser, string newValue)
     {
-        
+        var json = JsonConvert.SerializeObject(new ChangeUserParamsRequestModel(currentUser.UserId, _paramNames[ChangeableParams.Login], newValue));
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        _urlService.URLEndpoint = "ChangeUserParams";
+
+        try
+        {
+
+            var request = new HttpRequestMessage(HttpMethod.Post, $"{_client.BaseAddress}{_urlService.URLEndpoint}")
+            {
+                Content = content
+            };
+
+            var response = await _client.SendAsync(request);
+
+            ChangeUserParamsResponseModel deserializeResponse = JsonConvert.DeserializeObject<ChangeUserParamsResponseModel>(await response.Content.ReadAsStringAsync())
+                ?? throw new InvalidOperationException("Deserialized response can't be null");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
     }
 }
