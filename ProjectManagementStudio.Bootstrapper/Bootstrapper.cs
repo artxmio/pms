@@ -5,6 +5,7 @@ using ProjectManagementStudio.Bootstrapper.Services.PathService;
 using ProjectManagementStudio.Bootstrapper.Services.UrlService;
 using ProjectManagementStudio.Model.UserSavedData.Wrapper;
 using ProjectManagementStudio.ViewModel.MainWindow;
+using ProjectManagementStudio.ViewModel.MenuWindow;
 using ProjectManagementStudio.ViewModel.Windows;
 using System.Windows;
 
@@ -26,7 +27,7 @@ public class Bootstrapper : IDisposable
             .RegisterModule<View.RegistrationModule.RegistrationModule>();
 
         _container = container.Build();
-        
+
         _windowManager = _container.Resolve<IWindowManager>();
     }
 
@@ -34,16 +35,27 @@ public class Bootstrapper : IDisposable
     {
         InitializeDependencies();
 
-        var mainWindowViewModel = _container.Resolve<IMainWindowViewModel>();
+        var _userDataMementoWrapper = _container.Resolve<IUserDataMementoWrapper>();
 
-        var mainWindow = _windowManager.Show(mainWindowViewModel);
+        IWindowViewModel viewModel;
+
+        if (_userDataMementoWrapper != null && !_userDataMementoWrapper.IsRememberMe)
+        {
+            viewModel = _container.Resolve<IMainWindowViewModel>();
+        }
+        else
+        {
+            viewModel = _container.Resolve<IMenuWindowViewModel>();
+        }
+
+        var mainWindow = _windowManager.Show((IMainWindowViewModel)viewModel);
 
         if (mainWindow is not Window window)
         {
             throw new NotImplementedException();
         }
 
-        window.DataContext = mainWindowViewModel;
+        window.DataContext = viewModel;
 
         return window;
     }

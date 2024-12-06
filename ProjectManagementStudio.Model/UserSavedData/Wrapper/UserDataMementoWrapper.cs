@@ -44,21 +44,19 @@ internal class UserDataMementoWrapper :
         }
     }
 
-    private bool _isRememberMe;
-
     public bool IsRememberMe
     {
         get
         {
             EnsureInitialized();
-            return _isRememberMe;
+            return _userDataMemento.IsRememberMe;
         }
         set
         {
             EnsureInitialized();
-            _isRememberMe = value;
+            _userDataMemento.IsRememberMe = value;
 
-            if (_isRememberMe)
+            if (_userDataMemento.IsRememberMe)
             {
                 SaveUserData();
             }

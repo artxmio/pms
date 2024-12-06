@@ -12,9 +12,13 @@ public class UserDataMemento : IUserDataMemento
     [DataMember(Name = "userPassword")]
     public string UserPassword { get; set; }
 
+    [DataMember(Name = "isRememberMe")]
+    public bool IsRememberMe { get; set; }
+
     public UserDataMemento()
     {
         UserLogin = ""; 
         UserPassword = "";
+        IsRememberMe = false;
     }
 }
