@@ -10,6 +10,7 @@ using ProjectManagementStudio.ViewModel.Pages;
 using ProjectManagementStudio.ViewModel.Windows;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
@@ -124,7 +125,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
         ChangeLoginCommand = new AsyncCommand(ChangeLogin);
     }
-        
+
     private void ChangeAvatar()
     {
         OpenFileDialog openFileDialog = new()
@@ -143,8 +144,15 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
     private async Task ChangeLogin()
     {
-        _windowManager.Show(_loginChangeDialogViewModel, true);
-        await _client.ChangeLogin(CurrentUser, "login321");
+        var dialogWindow = _windowManager.Show(_loginChangeDialogViewModel, true);
+
+        if (dialogWindow is not Window window)
+        {
+            throw new NotImplementedException();
+        }
+
+        if(window.DialogResult == true)
+            await _client.ChangeLogin(CurrentUser, "login321");
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
