@@ -9,6 +9,6 @@ public interface IAPIClient
     Task<bool> IsUserExists(IAuthModel user);
     Task AddUser(IRegisterModel user);
 
-    Task<ICurrentUserModel> GetUserByLogin(IAuthModel currentUser);
+    Task<ICurrentUserModel> GetUserByLogin(IAuthModel authModel);
     Task ChangeLogin(ICurrentUserModel currentUser, string newValue);
 }

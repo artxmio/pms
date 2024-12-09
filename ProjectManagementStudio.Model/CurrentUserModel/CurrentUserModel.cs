@@ -1,6 +1,4 @@
-﻿using ProjectManagementStudio.Model.WindowModels.AuthModel;
-
-namespace ProjectManagementStudio.Model.CurrentUserModel;
+﻿namespace ProjectManagementStudio.Model.CurrentUserModel;
 
 public class CurrentUserModel : ICurrentUserModel
 {

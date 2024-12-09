@@ -26,7 +26,6 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
     private readonly IWindowManager _windowManager;
 
     private IPage _activePage;
-    private bool _isEnabled;
 
     #endregion
 
@@ -65,7 +64,6 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
         IAPIClient apiClient,
         IMenuWindowViewModel menuWindowViewModel,
         IWindowManager windowManager,
-        IUserDataMementoWrapper userDataMementoWrapper,
         IPageManager pageManager,
         IAuthModel authModel,
         IRegisterModel registerModel,

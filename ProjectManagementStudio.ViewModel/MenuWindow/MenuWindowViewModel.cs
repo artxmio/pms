@@ -3,8 +3,6 @@ using ProjectManagementStudio.Bootstrapper.Services.AvatarService;
 using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 using ProjectManagementStudio.Model.CurrentUserModel;
 using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel;
-using ProjectManagementStudio.Model.PathService;
-using ProjectManagementStudio.Model.WindowModels.AuthModel;
 using ProjectManagementStudio.ViewModel.APIClient;
 using ProjectManagementStudio.ViewModel.Command;
 using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows;
@@ -28,8 +26,8 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
     private readonly IAvatarService _avatarService;
     private readonly ICurrentUserService _currentUserService;
+    private readonly ILoginChangeDialogViewModel _loginChangeDialogViewModel;
     private IPage _activePage;
-    private ILoginChangeDialogViewModel _loginChangeDialogViewModel;
     private BitmapImage _avatarImage;
     #endregion
 
