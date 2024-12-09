@@ -5,6 +5,7 @@ using ProjectManagementStudio.Model.CurrentUserModel;
 using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel;
 using ProjectManagementStudio.ViewModel.APIClient;
 using ProjectManagementStudio.ViewModel.Command;
+using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.ChangeEmail;
 using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.ChangeLogin;
 using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.ChangePassword;
 using ProjectManagementStudio.ViewModel.Pages;
@@ -30,6 +31,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     private readonly ICurrentUserService _currentUserService;
     private readonly ILoginChangeDialogViewModel _loginChangeDialogViewModel;
     private readonly IPasswordChangeDialogViewModel _passwordChangeDialogViewModel;
+    private readonly IEmailChangeDialogViewModel _emailChangeDialogViewModel;
     private IPage _activePage;
     private BitmapImage _avatarImage;
     #endregion
@@ -101,7 +103,8 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         IAvatarService avatarService,
         ICurrentUserService currentUserService,
         ILoginChangeDialogViewModel loginChangeDialogViewModel,
-        IPasswordChangeDialogViewModel passwordChangeDialogViewModel)
+        IPasswordChangeDialogViewModel passwordChangeDialogViewModel,
+        IEmailChangeDialogViewModel emailChangeDialogViewModel)
     {
         _client = APIClient;
         _pageManager = pageManager;
@@ -115,6 +118,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
         _loginChangeDialogViewModel = loginChangeDialogViewModel;
         _passwordChangeDialogViewModel = passwordChangeDialogViewModel;
+        _emailChangeDialogViewModel = emailChangeDialogViewModel;
 
         /* // Загрузка аватарки // */
         _avatarImage = new BitmapImage();
@@ -178,7 +182,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
     private async Task ChangeEmail()
     {
-        var dialogWindow = _windowManager.Show(_passwordChangeDialogViewModel, true);
+        var dialogWindow = _windowManager.Show(_emailChangeDialogViewModel, true);
 
         if (dialogWindow is not Window window)
         {
