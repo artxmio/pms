@@ -10,12 +10,11 @@ public abstract class BaseModel : INotifyPropertyChanged
     protected readonly Regex _passwordRegex = new("^[a-zA-Z0-9@#$%&*()<>[\\]{}]{6,24}$");
     protected readonly Regex _emailRegex = new("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,50}$");
 
-    public virtual string login { get; set; }
-    public virtual string password { get; set; }
-    public virtual string email { get; set; }
+    public virtual string Login { get; set; }
+    public virtual string Password { get; set; }
+    public virtual string Email { get; set; }
 
     protected bool _isValid = false;
-    protected abstract void Validate();
 
     public event PropertyChangedEventHandler? PropertyChanged;
 

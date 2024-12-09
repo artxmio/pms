@@ -65,7 +65,7 @@
                      FontWeight="Normal" FontFamily="Outfit">
                 
                 <TextBox.Text>
-                    <Binding Path="LoginModel.login" UpdateSourceTrigger="PropertyChanged" NotifyOnTargetUpdated="True">
+                    <Binding Path="LoginModel.Login" UpdateSourceTrigger="PropertyChanged" NotifyOnTargetUpdated="True">
                         <Binding.ValidationRules>
                             <validations:LoginValidationRules ValidationStep="ConvertedProposedValue"/>
                         </Binding.ValidationRules>
@@ -89,7 +89,7 @@
                      FontWeight="Normal" FontFamily="Outfit">
 
                 <TextBox.Text>
-                    <Binding Path="LoginModel.password" UpdateSourceTrigger="PropertyChanged">
+                    <Binding Path="LoginModel.Password" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
                             <validations:PasswordValidationRules ValidationStep="ConvertedProposedValue"/>
                         </Binding.ValidationRules>
@@ -126,11 +126,11 @@
 
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="buttonBorder" 
+                    <Border x:Name="buttonBorder" 
                     Background="{TemplateBinding Background}" 
                     BorderBrush="{TemplateBinding BorderBrush}" 
                     CornerRadius="30">
-                            <ContentPresenter 
+                    <ContentPresenter 
                     HorizontalAlignment="Center" 
                     VerticalAlignment="Center"/>
                         </Border>

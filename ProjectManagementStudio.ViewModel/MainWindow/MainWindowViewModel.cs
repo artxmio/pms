@@ -26,6 +26,8 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
     private readonly IWindowManager _windowManager;
 
     private IPage _activePage;
+    private bool _isEnabled;
+
     #endregion
 
     /* // Модели // */
@@ -38,7 +40,7 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
 
     /* // Команды // */
     #region
-    
+
     public ICommand CloseCommand { get; }
     public ICommand AuthorizationCommand { get; }
     public ICommand RegistrationCommand { get; }
@@ -57,6 +59,7 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
+
 
     public MainWindowViewModel(
         IAPIClient apiClient,
@@ -90,14 +93,16 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
 
     private async void AuthorizateUser()
     {
+        LoginModel.IsValid = false;
+        
         bool isExist = await _client.IsUserExists(LoginModel);
 
         if (isExist)
-        {        
+        {
             _currentUserService.CurrentUser = await _client.GetUserByLogin(LoginModel);
             var menuWindow = _windowManager.Show(_menuWindowViewModel) as Window;
 
-            if(menuWindow is not Window window)
+            if (menuWindow is not Window window)
             {
                 throw new NotImplementedException();
             }
@@ -108,6 +113,7 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
         else
         {
             MessageBox.Show("Такого пользователя не существует или возникла неизвестная ошибка", "Ошибка");
+            LoginModel.IsValid = true;
         }
     }
 

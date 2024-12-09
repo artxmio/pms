@@ -6,7 +6,7 @@ public class RegisterModel : BaseModel.BaseModel, IRegisterModel
     private string _password = "";
     private string _email = "";
 
-    public override string login
+    public override string Login
     {
         get => _login;
         set
@@ -16,7 +16,7 @@ public class RegisterModel : BaseModel.BaseModel, IRegisterModel
             Validate();
         }
     }
-    public override string password
+    public override string Password
     {
         get => _password;
         set
@@ -26,7 +26,7 @@ public class RegisterModel : BaseModel.BaseModel, IRegisterModel
             Validate();
         }
     }
-    public override string email
+    public override string Email
     {
         get => _email;
         set
@@ -47,9 +47,9 @@ public class RegisterModel : BaseModel.BaseModel, IRegisterModel
         }
     }
 
-    protected override void Validate()
+    public void Validate()
     {
-        if (_loginRegex.IsMatch(login) && _passwordRegex.IsMatch(password) && _emailRegex.IsMatch(email))
+        if (_loginRegex.IsMatch(Login) && _passwordRegex.IsMatch(Password) && _emailRegex.IsMatch(Email))
             IsValid = true;
         else
             IsValid = false;

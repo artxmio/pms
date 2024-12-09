@@ -7,7 +7,7 @@ public class AuthModel : BaseModel.BaseModel, IAuthModel
 {
     private readonly IUserDataMementoWrapper _wrapper;
 
-    public override string login
+    public override string Login
     {
         get => _wrapper.UserLogin;
         set
@@ -17,7 +17,7 @@ public class AuthModel : BaseModel.BaseModel, IAuthModel
             Validate();
         }
     }
-    public override string password
+    public override string Password
     {
         get => _wrapper.UserPassword;
         set
@@ -53,9 +53,9 @@ public class AuthModel : BaseModel.BaseModel, IAuthModel
         _wrapper = wrapper;
     }
 
-    protected override void Validate()
+    public void Validate()
     {
-        if (_loginRegex.IsMatch(login) && _passwordRegex.IsMatch(password))
+        if (_loginRegex.IsMatch(Login) && _passwordRegex.IsMatch(Password))
             IsValid = true;
         else
             IsValid = false;

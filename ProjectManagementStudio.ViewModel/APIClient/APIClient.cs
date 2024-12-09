@@ -34,7 +34,7 @@ public partial class APIClient : IAPIClient
 
     public async Task<bool> IsUserExists(IAuthModel user)
     {
-        var json = JsonConvert.SerializeObject(new AuthRequestModel(user.login, user.password));
+        var json = JsonConvert.SerializeObject(new AuthRequestModel(user.Login, user.Password));
         var content = new StringContent(json, Encoding.UTF8, "application/json");
 
         _urlService.URLEndpoint = nameof(IsUserExists);
@@ -71,7 +71,7 @@ public partial class APIClient : IAPIClient
 
     public async Task AddUser(IRegisterModel user)
     {
-        var json = JsonConvert.SerializeObject(new AddUserRequestModel(user.login, user.password, user.email));
+        var json = JsonConvert.SerializeObject(new AddUserRequestModel(user.Login, user.Password, user.Email));
         var content = new StringContent(json, Encoding.UTF8, "application/json");
 
         _urlService.URLEndpoint = nameof(AddUser);
@@ -121,7 +121,7 @@ public partial class APIClient : IAPIClient
     {
         try
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, $"{_client.BaseAddress}get_user?login={authUser.login}");
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{_client.BaseAddress}get_user?login={authUser.Login}");
 
             var response = await _client.SendAsync(request);
 
@@ -132,7 +132,7 @@ public partial class APIClient : IAPIClient
             {
                 UserId = (long)deserializeResponse.Data["id"],
                 Login = (string)deserializeResponse.Data["login"],
-                Password = authUser.password,
+                Password = authUser.Password,
                 Email = (string)deserializeResponse.Data["email"],
             };
 
