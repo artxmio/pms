@@ -186,7 +186,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         }
 
         if (window.DialogResult == true)
-            await _client.ChangeEmail(CurrentUser, "password123");
+            await _client.ChangeEmail(CurrentUser, "email321@gmail.com");
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
