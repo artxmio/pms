@@ -36,7 +36,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     #region
 
     public IProfileModel ProfileModel { get; set; }
-
+    
     public ICurrentUserModel CurrentUser
     {
         get

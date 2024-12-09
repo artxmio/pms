@@ -5,7 +5,7 @@ using ProjectManagementStudio.View.MenuWindow.ModalWindows;
 using ProjectManagementStudio.View.WindowFactory;
 using ProjectManagementStudio.ViewModel.MainWindow;
 using ProjectManagementStudio.ViewModel.MenuWindow;
-using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows;
+using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.ChangeLogin;
 using ProjectManagementStudio.ViewModel.Windows;
 
 namespace ProjectManagementStudio.Bootstrapper.Factories;
