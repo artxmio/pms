@@ -170,7 +170,9 @@
                         </Button>
 
                         <!-- СДЕЛАТЬ КОГДА СЕРВАК! -->
-                        <Button Width="260" Height="39"
+                        <Button 
+                            Command="{Binding ChangeEmailCommand}"
+                            Width="260" Height="39"
                             Margin="0,20,0,0"
                             Background="#724D9D"
                             Content="Change email"

@@ -198,4 +198,29 @@ public partial class APIClient : IAPIClient
             MessageBox.Show(ex.Message);
         }
     }
+
+    public async Task ChangeEmail(ICurrentUserModel currentUser, string newValue)
+    {
+        var json = JsonConvert.SerializeObject(new ChangeUserParamsRequestModel(currentUser.UserId, _paramNames[ChangeableParams.Email], newValue));
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        _urlService.URLEndpoint = "ChangeUserParams";
+
+        try
+        {
+            var request = new HttpRequestMessage(HttpMethod.Post, $"{_client.BaseAddress}{_urlService.URLEndpoint}")
+            {
+                Content = content
+            };
+
+            var response = await _client.SendAsync(request);
+
+            ChangeUserParamsResponseModel deserializeResponse = JsonConvert.DeserializeObject<ChangeUserParamsResponseModel>(await response.Content.ReadAsStringAsync())
+                ?? throw new InvalidOperationException("Deserialized response can't be null");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+    }
 }

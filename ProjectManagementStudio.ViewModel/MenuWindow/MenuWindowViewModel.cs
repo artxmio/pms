@@ -89,6 +89,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     public ICommand ChangeAvatarCommand { get; }
     public ICommand ChangeLoginCommand { get; }
     public ICommand ChangePasswordCommand { get; }
+    public ICommand ChangeEmailCommand { get; }
 
     #endregion
 
@@ -126,9 +127,11 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         NavigateToWelcomePage = new RelayCommand(() => ActivePage = _pageManager.NavigateTo(2));
         NavigateToProfilePage = new RelayCommand(() => ActivePage = _pageManager.NavigateTo(3));
         NavigateToSettingsPage = new RelayCommand(() => ActivePage = _pageManager.NavigateTo(4));
+
         ChangeAvatarCommand = new RelayCommand(ChangeAvatar);
         ChangeLoginCommand = new AsyncCommand(ChangeLogin);
         ChangePasswordCommand = new AsyncCommand(ChangePassword);
+        ChangeEmailCommand = new AsyncCommand(ChangeEmail);
     }
 
     private void ChangeAvatar()
@@ -172,6 +175,20 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         if (window.DialogResult == true)
             await _client.ChangePassword(CurrentUser, "password123");
     }
+
+    private async Task ChangeEmail()
+    {
+        var dialogWindow = _windowManager.Show(_passwordChangeDialogViewModel, true);
+
+        if (dialogWindow is not Window window)
+        {
+            throw new NotImplementedException();
+        }
+
+        if (window.DialogResult == true)
+            await _client.ChangeEmail(CurrentUser, "password123");
+    }
+
     public event PropertyChangedEventHandler? PropertyChanged;
 
     protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
