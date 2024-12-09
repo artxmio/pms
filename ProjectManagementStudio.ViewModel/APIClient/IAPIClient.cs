@@ -11,4 +11,5 @@ public interface IAPIClient
 
     Task<ICurrentUserModel> GetUserByLogin(IAuthModel authModel);
     Task ChangeLogin(ICurrentUserModel currentUser, string newValue);
+    Task ChangePassword(ICurrentUserModel currentUser, string newValue);
 }

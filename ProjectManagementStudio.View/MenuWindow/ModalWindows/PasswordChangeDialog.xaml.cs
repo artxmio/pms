@@ -1,8 +1,6 @@
-﻿using ProjectManagementStudio.ViewModel.Windows;
+﻿namespace ProjectManagementStudio.View.MenuWindow.ModalWindows;
 
-namespace ProjectManagementStudio.View.MenuWindow.ModalWindows;
-
-public partial class PasswordChangeDialog : IWindow
+public partial class PasswordChangeDialog : IPasswordChangeDialog
 {
     public PasswordChangeDialog()
     {

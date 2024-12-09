@@ -6,6 +6,7 @@ using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel;
 using ProjectManagementStudio.ViewModel.APIClient;
 using ProjectManagementStudio.ViewModel.Command;
 using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.ChangeLogin;
+using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.ChangePassword;
 using ProjectManagementStudio.ViewModel.Pages;
 using ProjectManagementStudio.ViewModel.Windows;
 using System.ComponentModel;
@@ -28,6 +29,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     private readonly IAvatarService _avatarService;
     private readonly ICurrentUserService _currentUserService;
     private readonly ILoginChangeDialogViewModel _loginChangeDialogViewModel;
+    private readonly IPasswordChangeDialogViewModel _passwordChangeDialogViewModel;
     private IPage _activePage;
     private BitmapImage _avatarImage;
     #endregion
@@ -86,6 +88,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
     public ICommand ChangeAvatarCommand { get; }
     public ICommand ChangeLoginCommand { get; }
+    public ICommand ChangePasswordCommand { get; }
 
     #endregion
 
@@ -96,7 +99,8 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         IProfileModel profileModel,
         IAvatarService avatarService,
         ICurrentUserService currentUserService,
-        ILoginChangeDialogViewModel loginChangeDialogViewModel)
+        ILoginChangeDialogViewModel loginChangeDialogViewModel,
+        IPasswordChangeDialogViewModel passwordChangeDialogViewModel)
     {
         _client = APIClient;
         _pageManager = pageManager;
@@ -109,6 +113,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         _activePage = _pageManager.NavigateTo(2);
 
         _loginChangeDialogViewModel = loginChangeDialogViewModel;
+        _passwordChangeDialogViewModel = passwordChangeDialogViewModel;
 
         /* // Загрузка аватарки // */
         _avatarImage = new BitmapImage();
@@ -122,8 +127,8 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         NavigateToProfilePage = new RelayCommand(() => ActivePage = _pageManager.NavigateTo(3));
         NavigateToSettingsPage = new RelayCommand(() => ActivePage = _pageManager.NavigateTo(4));
         ChangeAvatarCommand = new RelayCommand(ChangeAvatar);
-
         ChangeLoginCommand = new AsyncCommand(ChangeLogin);
+        ChangePasswordCommand = new AsyncCommand(ChangePassword);
     }
 
     private void ChangeAvatar()
@@ -155,6 +160,18 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
             await _client.ChangeLogin(CurrentUser, "login321");
     }
 
+    private async Task ChangePassword()
+    {
+        var dialogWindow = _windowManager.Show(_passwordChangeDialogViewModel, true);
+
+        if (dialogWindow is not Window window)
+        {
+            throw new NotImplementedException();
+        }
+
+        if (window.DialogResult == true)
+            await _client.ChangePassword(CurrentUser, "password123");
+    }
     public event PropertyChangedEventHandler? PropertyChanged;
 
     protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")

@@ -6,13 +6,10 @@ using ProjectManagementStudio.View.WindowFactory;
 using ProjectManagementStudio.ViewModel.MainWindow;
 using ProjectManagementStudio.ViewModel.MenuWindow;
 using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.ChangeLogin;
+using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.ChangePassword;
 using ProjectManagementStudio.ViewModel.Windows;
 
 namespace ProjectManagementStudio.Bootstrapper.Factories;
-
-/*
-    Фабрика отвечает за создание окон исходя из их ViewModel
-*/
 
 internal class WindowFactory : IWindowFactory
 {
@@ -22,7 +19,8 @@ internal class WindowFactory : IWindowFactory
         {
             { typeof(IMainWindowViewModel), typeof(IMainWindow) },
             { typeof(IMenuWindowViewModel), typeof(IMenuWindow) },
-            { typeof(ILoginChangeDialogViewModel), typeof(ILoginChangeDialog) }
+            { typeof(ILoginChangeDialogViewModel), typeof(ILoginChangeDialog) },
+            { typeof(IPasswordChangeDialogViewModel), typeof(IPasswordChangeDialog) }
         };
 
     public WindowFactory(IComponentContext componentContext)

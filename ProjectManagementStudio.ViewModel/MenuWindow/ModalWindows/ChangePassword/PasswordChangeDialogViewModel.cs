@@ -1,5 +1,5 @@
 ﻿namespace ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.ChangePassword;
 
-public class PasswordChangeDialogViewModel
+public class PasswordChangeDialogViewModel : IPasswordChangeDialogViewModel
 {
 }
