@@ -37,20 +37,24 @@ public class Bootstrapper : IDisposable
 
         var _userDataMementoWrapper = _container.Resolve<IUserDataMementoWrapper>();
 
-        IWindowViewModel viewModel;
+        var viewModel = ChangeViewModelByRememberMe(_userDataMementoWrapper.IsRememberMe);
 
-        if (_userDataMementoWrapper != null && !_userDataMementoWrapper.IsRememberMe)
+        IWindow startWindow;
+
+        if (viewModel is IMainWindowViewModel mainWindowViewModel)
         {
-            viewModel = _container.Resolve<IMainWindowViewModel>();
+            startWindow = _windowManager.Show(mainWindowViewModel);
+        }
+        else if (viewModel is IMenuWindowViewModel menuWindowViewModel)
+        {
+            startWindow = _windowManager.Show(menuWindowViewModel);
         }
         else
         {
-            viewModel = _container.Resolve<IMenuWindowViewModel>();
+            throw new InvalidOperationException("Unknown ViewModel type");
         }
 
-        var mainWindow = _windowManager.Show(viewModel);
-
-        if (mainWindow is not Window window)
+        if (startWindow is not Window window)
         {
             throw new NotImplementedException();
         }
@@ -60,6 +64,8 @@ public class Bootstrapper : IDisposable
         return window;
     }
 
+    public IWindowViewModel ChangeViewModelByRememberMe(bool IsRememberMe)
+        => IsRememberMe ? _container.Resolve<IMenuWindowViewModel>() : _container.Resolve<IMainWindowViewModel>();
 
     private void InitializeDependencies()
     {
