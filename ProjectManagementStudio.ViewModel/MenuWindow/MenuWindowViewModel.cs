@@ -5,7 +5,7 @@ using ProjectManagementStudio.Model.CurrentUserModel;
 using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel;
 using ProjectManagementStudio.ViewModel.APIClient;
 using ProjectManagementStudio.ViewModel.Command;
-using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows;
+using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.ChangeLogin;
 using ProjectManagementStudio.ViewModel.Pages;
 using ProjectManagementStudio.ViewModel.Windows;
 using System.ComponentModel;
