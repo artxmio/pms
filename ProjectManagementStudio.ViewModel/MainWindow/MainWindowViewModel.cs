@@ -81,12 +81,12 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
 
         _activePage = _pageManager.NavigateTo(0);
 
-        CloseCommand = new RelayCommand(() => _windowManager.Close(this));
-        AuthorizationCommand = new RelayCommand(AuthorizateUser);
+        CloseCommand = new RelayCommand(o => _windowManager.Close(this));
+        AuthorizationCommand = new RelayCommand(o => AuthorizateUser());
         RegistrationCommand = new AsyncCommand(() => _client.AddUser(RegistrationModel));
 
-        NavigateToRegistrationPage = new RelayCommand(() => ActivePage = _pageManager.NavigateTo(1));
-        NavigateToLoginPage = new RelayCommand(() => ActivePage = _pageManager.NavigateTo(0));
+        NavigateToRegistrationPage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(1));
+        NavigateToLoginPage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(0));
     }
 
     private async void AuthorizateUser()

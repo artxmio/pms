@@ -4,22 +4,28 @@ namespace ProjectManagementStudio.ViewModel.Command;
 
 public class RelayCommand : ICommand
 {
-    private readonly Action _execute;
+    private Action<object> execute;
+    private Func<object, bool> canExecute;
 
-    public RelayCommand(Action execute)
+    public event EventHandler CanExecuteChanged
     {
-        _execute = execute;
+        add { CommandManager.RequerySuggested += value; }
+        remove { CommandManager.RequerySuggested -= value; }
     }
 
-    public bool CanExecute(object? parameter)
+    public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
     {
-        return true;
+        this.execute = execute;
+        this.canExecute = canExecute;
     }
 
-    public void Execute(object? parameter)
+    public bool CanExecute(object parameter)
     {
-        _execute.Invoke();
+        return this.canExecute == null || this.canExecute(parameter);
     }
 
-    public event EventHandler? CanExecuteChanged;
+    public void Execute(object parameter)
+    {
+        this.execute(parameter);
+    }
 }
