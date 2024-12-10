@@ -6,6 +6,7 @@ using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel;
 using ProjectManagementStudio.Model.ModalWindowsModels.LoginChangeModel;
 using ProjectManagementStudio.ViewModel.APIClient;
 using ProjectManagementStudio.ViewModel.Command;
+using ProjectManagementStudio.ViewModel.MainWindow;
 using ProjectManagementStudio.ViewModel.Pages;
 using ProjectManagementStudio.ViewModel.Windows;
 using System.ComponentModel;
@@ -97,6 +98,8 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     public ICommand ChangePasswordCommand { get; }
     public ICommand ChangeEmailCommand { get; }
 
+    public ICommand LogOutCommand { get; }
+
     #endregion
 
     public MenuWindowViewModel(
@@ -136,6 +139,8 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         ChangeLoginCommand = new AsyncCommand(ChangeLogin);
         ChangePasswordCommand = new AsyncCommand(ChangePassword);
         ChangeEmailCommand = new AsyncCommand(ChangeEmail);
+
+        LogOutCommand = new RelayCommand(o => LogOut());
     }
 
     private void ChangeAvatar()
@@ -154,6 +159,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         }
     }
 
+    // доделать попозже
     private async Task ChangeLogin()
     {
         var dialogWindow = _windowManager.Show(this, true) as Window;
@@ -167,7 +173,6 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         if(window.DialogResult == true)
             await _client.ChangeUserParametr(CurrentUser, ChangeableParams.Login, _loginChangeModel.NewLogin);
     }
-
     private async Task ChangePassword()
     {
         //var dialogWindow = _windowManager.Show(_passwordChangeDialogViewModel, true);
@@ -180,7 +185,6 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         //if (window.DialogResult == true)
         //    await _client.ChangePassword(CurrentUser, "password123");
     }
-
     private async Task ChangeEmail()
     {
         //var dialogWindow = _windowManager.Show(_emailChangeDialogViewModel, true);
@@ -193,6 +197,13 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         //if (window.DialogResult == true)
         //    await _client.ChangeEmail(CurrentUser, "email321@gmail.com");
     }
+    //////////////////////////////////////
+
+    private void LogOut()
+    {
+
+    }
+
 
     public event PropertyChangedEventHandler? PropertyChanged;
 

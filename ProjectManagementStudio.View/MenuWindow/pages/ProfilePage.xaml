@@ -341,7 +341,7 @@
                 </Border>
 
                 <!-- Выйти из аккаунта -->
-                <Button Background="#2C1B47" Width="175" Height="60" Margin="0,0,112,51"
+                <Button Command="{Binding LogOutCommand}" Background="#2C1B47" Width="175" Height="60" Margin="0,0,112,51"
                     HorizontalAlignment="Right" VerticalAlignment="Bottom">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
