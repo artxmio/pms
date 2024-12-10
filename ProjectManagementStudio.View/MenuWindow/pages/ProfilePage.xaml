@@ -10,6 +10,60 @@
       d:DataContext="{d:DesignInstance vm:MenuWindowViewModel}"
       >
 
+    <Page.Resources>
+        <ResourceDictionary>
+            <!-- Стиль для ScrollBar -->
+            <Style x:Key="CustomScrollBar" TargetType="{x:Type ScrollBar}">
+                <Setter Property="Width" Value="14"/>
+                <Setter Property="Height" Value="160"/>
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="Margin" Value="0,0,16,0"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ScrollBar}">
+                            <Grid>
+                                <Border 
+                                    Background="#724D9D" 
+                                    CornerRadius="10" />
+                                <Track Name="PART_Track" 
+                                Orientation="{TemplateBinding Orientation}">
+                                    <Track.Thumb>
+                                        <Thumb>
+                                            <Thumb.Template>
+                                                <ControlTemplate TargetType="Thumb">
+                                                    <Border VerticalAlignment="Top" Margin="0,0,0,0">
+                                                        
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Thumb.Template>
+                                        </Thumb>
+                                    </Track.Thumb>
+                                </Track>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="ScrollViewerStyle" TargetType="{x:Type ScrollViewer}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                            <Grid>
+                                <ScrollContentPresenter/>
+                                <ScrollBar Style="{StaticResource CustomScrollBar}" 
+                                       Orientation="Vertical"
+                                       Visibility="Visible"
+                                       />
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Page.Resources>
+
     <Grid>
         <Border Width="1250" Height="750" Background="#724D9D" CornerRadius="25" Margin="0,0,20,0">
             <Border.Effect>
@@ -222,7 +276,29 @@
                        Margin="0,14,0,0"/>
 
                         <!-- Прокручиваемая область !!!НУЖНО СОЗДАТЬ КОГДА БУДЕТ СЕРВАК!!!-->
-
+                        <Grid Width="479" Height="185"
+                              VerticalAlignment="Bottom"
+                              HorizontalAlignment="Center">
+                            <ScrollViewer VerticalScrollBarVisibility="Visible" Style="{StaticResource ScrollViewerStyle}">
+                                <!-- Ваш контент -->
+                                <Border Width="140" Height="140"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        Margin="35,0,0,0"
+                                        CornerRadius="10"
+                                        Background="#724D9D">
+                                    <Grid>
+                                        <TextBlock Text="Project-1" 
+                                                   FontFamily="Outfit"
+                                                   FontSize="20"
+                                                   FontWeight="Normal"
+                                                   Foreground="White"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"/>
+                                    </Grid>
+                                </Border>
+                            </ScrollViewer>
+                        </Grid>
                     </Grid>
                 </Border>
 
