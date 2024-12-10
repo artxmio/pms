@@ -127,12 +127,12 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         _avatarImage.CacheOption = BitmapCacheOption.OnLoad;
         _avatarImage.EndInit();
 
-        CloseCommand = new RelayCommand(() => _windowManager.Close(this));
-        NavigateToWelcomePage = new RelayCommand(() => ActivePage = _pageManager.NavigateTo(2));
-        NavigateToProfilePage = new RelayCommand(() => ActivePage = _pageManager.NavigateTo(3));
-        NavigateToSettingsPage = new RelayCommand(() => ActivePage = _pageManager.NavigateTo(4));
+        CloseCommand = new RelayCommand(o => _windowManager.Close(this));
+        NavigateToWelcomePage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(2));
+        NavigateToProfilePage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(3));
+        NavigateToSettingsPage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(4));
 
-        ChangeAvatarCommand = new RelayCommand(ChangeAvatar);
+        ChangeAvatarCommand = new RelayCommand(o => ChangeAvatar());
         ChangeLoginCommand = new AsyncCommand(ChangeLogin);
         ChangePasswordCommand = new AsyncCommand(ChangePassword);
         ChangeEmailCommand = new AsyncCommand(ChangeEmail);
@@ -156,15 +156,16 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
     private async Task ChangeLogin()
     {
-        var dialogWindow = _windowManager.Show(_loginChangeDialogViewModel, true);
+        var dialogWindow = _windowManager.Show(_loginChangeDialogViewModel, true) as Window;
 
         if (dialogWindow is not Window window)
         {
             throw new NotImplementedException();
         }
+        window.DataContext = _loginChangeDialogViewModel;
 
         if(window.DialogResult == true)
-            await _client.ChangeLogin(CurrentUser, "login321");
+            await _client.ChangeUserParametr(CurrentUser, ChangeableParams.Login, _loginChangeDialogViewModel.LoginChangeModel.NewLogin);
     }
 
     private async Task ChangePassword()

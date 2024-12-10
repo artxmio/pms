@@ -13,4 +13,5 @@ public interface IAPIClient
     Task ChangeLogin(ICurrentUserModel currentUser, string newValue);
     Task ChangePassword(ICurrentUserModel currentUser, string newValue);
     Task ChangeEmail(ICurrentUserModel currentUser, string newValue);
+    Task ChangeUserParametr(ICurrentUserModel currentUser, ChangeableParams parametr, string newValue);
 }

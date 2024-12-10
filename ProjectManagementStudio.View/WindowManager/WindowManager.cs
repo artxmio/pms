@@ -23,13 +23,16 @@ public class WindowsManager : IWindowManager
         if (!_viewModelToWindowMap.ContainsKey(viewModel))
             _viewModelToWindowMap.Add(viewModel, newWindow);
 
-        if(newWindow is not Window window)
+        if (newWindow is not Window window)
         {
             throw new NotImplementedException();
         }
 
-        if(isDialog)
-            window.ShowDialog(); 
+        if (isDialog)
+        {
+            window.DataContext = viewModel;
+            window.ShowDialog();
+        }
         else
             window.Show();
 
