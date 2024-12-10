@@ -1,11 +1,8 @@
 ﻿namespace ProjectManagementStudio.ViewModel.APIClient;
 
-public partial class APIClient
+public enum ChangeableParams
 {
-    enum ChangeableParams
-    {
-        Login,
-        Password,
-        Email
-    }
+    Login,
+    Password,
+    Email
 }

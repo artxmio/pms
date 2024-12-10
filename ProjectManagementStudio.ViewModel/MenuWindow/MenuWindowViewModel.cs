@@ -156,15 +156,16 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
     private async Task ChangeLogin()
     {
-        var dialogWindow = _windowManager.Show(_loginChangeDialogViewModel, true);
+        var dialogWindow = _windowManager.Show(_loginChangeDialogViewModel, true) as Window;
 
         if (dialogWindow is not Window window)
         {
             throw new NotImplementedException();
         }
+        window.DataContext = _loginChangeDialogViewModel;
 
         if(window.DialogResult == true)
-            await _client.ChangeLogin(CurrentUser, "login321");
+            await _client.ChangeUserParametr(CurrentUser, ChangeableParams.Login, _loginChangeDialogViewModel.LoginChangeModel.NewLogin);
     }
 
     private async Task ChangePassword()
