@@ -29,10 +29,7 @@ public class WindowsManager : IWindowManager
         }
 
         if (isDialog)
-        {
-            window.DataContext = viewModel;
-            window.ShowDialog();
-        }
+            window.ShowDialog();   
         else
             window.Show();
 

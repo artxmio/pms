@@ -101,9 +101,9 @@
                        Foreground="AliceBlue" Grid.Column="2" 
                        HorizontalAlignment="Left" 
                        VerticalAlignment="Center" 
-                       Margin="10,0,86,0" 
+                       Margin="10,0,0,0" 
                        Height="38" 
-                       Width="190"/>
+                       Width="241" Grid.ColumnSpan="2"/>
 
             <!-- Кнопка закрытия -->
             <Button Grid.Column="2"

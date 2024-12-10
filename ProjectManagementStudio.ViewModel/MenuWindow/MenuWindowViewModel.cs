@@ -3,11 +3,9 @@ using ProjectManagementStudio.Bootstrapper.Services.AvatarService;
 using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 using ProjectManagementStudio.Model.CurrentUserModel;
 using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel;
+using ProjectManagementStudio.Model.ModalWindowsModels.LoginChangeModel;
 using ProjectManagementStudio.ViewModel.APIClient;
 using ProjectManagementStudio.ViewModel.Command;
-using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.ChangeEmail;
-using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.ChangeLogin;
-using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.ChangePassword;
 using ProjectManagementStudio.ViewModel.Pages;
 using ProjectManagementStudio.ViewModel.Windows;
 using System.ComponentModel;
@@ -29,9 +27,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
     private readonly IAvatarService _avatarService;
     private readonly ICurrentUserService _currentUserService;
-    private readonly ILoginChangeDialogViewModel _loginChangeDialogViewModel;
-    private readonly IPasswordChangeDialogViewModel _passwordChangeDialogViewModel;
-    private readonly IEmailChangeDialogViewModel _emailChangeDialogViewModel;
+    private readonly ILoginChangeModel _loginChangeModel;
     private IPage _activePage;
     private BitmapImage _avatarImage;
     #endregion
@@ -77,6 +73,14 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         }
     }
 
+    public ILoginChangeModel loginChangeModel
+    {
+        get
+        {
+            return _loginChangeModel;
+        }
+    }
+
     #endregion
 
     /* // Команды //*/
@@ -102,9 +106,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         IProfileModel profileModel,
         IAvatarService avatarService,
         ICurrentUserService currentUserService,
-        ILoginChangeDialogViewModel loginChangeDialogViewModel,
-        IPasswordChangeDialogViewModel passwordChangeDialogViewModel,
-        IEmailChangeDialogViewModel emailChangeDialogViewModel)
+        ILoginChangeModel loginChangeModel)
     {
         _client = APIClient;
         _pageManager = pageManager;
@@ -116,9 +118,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
         _activePage = _pageManager.NavigateTo(2);
 
-        _loginChangeDialogViewModel = loginChangeDialogViewModel;
-        _passwordChangeDialogViewModel = passwordChangeDialogViewModel;
-        _emailChangeDialogViewModel = emailChangeDialogViewModel;
+        _loginChangeModel = loginChangeModel;
 
         /* // Загрузка аватарки // */
         _avatarImage = new BitmapImage();
@@ -156,42 +156,42 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
     private async Task ChangeLogin()
     {
-        var dialogWindow = _windowManager.Show(_loginChangeDialogViewModel, true) as Window;
+        var dialogWindow = _windowManager.Show(this, true) as Window;
 
         if (dialogWindow is not Window window)
         {
             throw new NotImplementedException();
         }
-        window.DataContext = _loginChangeDialogViewModel;
+        window.DataContext = this;
 
         if(window.DialogResult == true)
-            await _client.ChangeUserParametr(CurrentUser, ChangeableParams.Login, _loginChangeDialogViewModel.LoginChangeModel.NewLogin);
+            await _client.ChangeUserParametr(CurrentUser, ChangeableParams.Login, _loginChangeModel.NewLogin);
     }
 
     private async Task ChangePassword()
     {
-        var dialogWindow = _windowManager.Show(_passwordChangeDialogViewModel, true);
+        //var dialogWindow = _windowManager.Show(_passwordChangeDialogViewModel, true);
 
-        if (dialogWindow is not Window window)
-        {
-            throw new NotImplementedException();
-        }
+        //if (dialogWindow is not Window window)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        if (window.DialogResult == true)
-            await _client.ChangePassword(CurrentUser, "password123");
+        //if (window.DialogResult == true)
+        //    await _client.ChangePassword(CurrentUser, "password123");
     }
 
     private async Task ChangeEmail()
     {
-        var dialogWindow = _windowManager.Show(_emailChangeDialogViewModel, true);
+        //var dialogWindow = _windowManager.Show(_emailChangeDialogViewModel, true);
 
-        if (dialogWindow is not Window window)
-        {
-            throw new NotImplementedException();
-        }
+        //if (dialogWindow is not Window window)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        if (window.DialogResult == true)
-            await _client.ChangeEmail(CurrentUser, "email321@gmail.com");
+        //if (window.DialogResult == true)
+        //    await _client.ChangeEmail(CurrentUser, "email321@gmail.com");
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
