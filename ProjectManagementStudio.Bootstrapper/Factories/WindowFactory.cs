@@ -1,16 +1,16 @@
 ﻿using Autofac;
 using ProjectManagementStudio.View.MainWindow;
 using ProjectManagementStudio.View.MenuWindow;
+using ProjectManagementStudio.View.MenuWindow.ModalWindows;
 using ProjectManagementStudio.View.WindowFactory;
 using ProjectManagementStudio.ViewModel.MainWindow;
 using ProjectManagementStudio.ViewModel.MenuWindow;
+using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.ChangeEmail;
+using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.ChangeLogin;
+using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.ChangePassword;
 using ProjectManagementStudio.ViewModel.Windows;
 
 namespace ProjectManagementStudio.Bootstrapper.Factories;
-
-/*
-    Фабрика отвечает за создание окон исходя из их ViewModel
-*/
 
 internal class WindowFactory : IWindowFactory
 {
@@ -19,7 +19,10 @@ internal class WindowFactory : IWindowFactory
     private readonly Dictionary<Type, Type> _typeMap = new()
         {
             { typeof(IMainWindowViewModel), typeof(IMainWindow) },
-            { typeof(IMenuWindowViewModel), typeof(IMenuWindow) }
+            { typeof(IMenuWindowViewModel), typeof(IMenuWindow) },
+            { typeof(ILoginChangeDialogViewModel), typeof(ILoginChangeDialog) },
+            { typeof(IPasswordChangeDialogViewModel), typeof(IPasswordChangeDialog) },
+            { typeof(IEmailChangeDialogViewModel), typeof(IEmailChangeDialog) }
         };
 
     public WindowFactory(IComponentContext componentContext)

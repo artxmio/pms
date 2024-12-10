@@ -2,7 +2,7 @@
 
 public interface IWindowManager
 {
-    IWindow Show<T>(T viewModel)
+    IWindow Show<T>(T viewModel, bool isDialog = false)
         where T : IWindowViewModel;
 
     void Close<T>(T viewModel)

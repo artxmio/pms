@@ -10,6 +10,7 @@ using System.Windows;
 using ProjectManagementStudio.ViewModel.Pages;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 
 namespace ProjectManagementStudio.ViewModel.MainWindow;
 
@@ -20,10 +21,12 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
 
     private readonly IAPIClient _client;
     private readonly IPageManager _pageManager;
+    private readonly ICurrentUserService _currentUserService;
     private readonly IMenuWindowViewModel _menuWindowViewModel;
     private readonly IWindowManager _windowManager;
 
     private IPage _activePage;
+
     #endregion
 
     /* // Модели // */
@@ -36,7 +39,7 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
 
     /* // Команды // */
     #region
-    
+
     public ICommand CloseCommand { get; }
     public ICommand AuthorizationCommand { get; }
     public ICommand RegistrationCommand { get; }
@@ -56,14 +59,15 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
         }
     }
 
+
     public MainWindowViewModel(
         IAPIClient apiClient,
         IMenuWindowViewModel menuWindowViewModel,
         IWindowManager windowManager,
-        IUserDataMementoWrapper userDataMementoWrapper,
         IPageManager pageManager,
         IAuthModel authModel,
-        IRegisterModel registerModel
+        IRegisterModel registerModel,
+        ICurrentUserService currentUserService
         )
     {
         LoginModel = authModel;
@@ -73,6 +77,7 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
         _windowManager = windowManager;
         _client = apiClient;
         _pageManager = pageManager;
+        _currentUserService = currentUserService;
 
         _activePage = _pageManager.NavigateTo(0);
 
@@ -86,12 +91,16 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
 
     private async void AuthorizateUser()
     {
+        LoginModel.IsValid = false;
+        
         bool isExist = await _client.IsUserExists(LoginModel);
+
         if (isExist)
         {
+            _currentUserService.CurrentUser = await _client.GetUserByLogin(LoginModel);
             var menuWindow = _windowManager.Show(_menuWindowViewModel) as Window;
 
-            if(menuWindow is not Window window)
+            if (menuWindow is not Window window)
             {
                 throw new NotImplementedException();
             }
@@ -102,6 +111,7 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
         else
         {
             MessageBox.Show("Такого пользователя не существует или возникла неизвестная ошибка", "Ошибка");
+            LoginModel.IsValid = true;
         }
     }
 

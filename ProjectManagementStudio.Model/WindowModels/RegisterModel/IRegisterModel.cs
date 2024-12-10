@@ -1,8 +1,12 @@
-﻿namespace ProjectManagementStudio.Model.WindowModels.RegisterModel;
+﻿using ProjectManagementStudio.Model.WindowModels.BaseModel;
+
+namespace ProjectManagementStudio.Model.WindowModels.RegisterModel;
 
 public interface IRegisterModel
 {
-    string login { get; set; }
-    string password { get; set; }
-    string email { get; set; }
+    string Login { get; set; }
+    string Password { get; set; }
+    string Email { get; set; }
+
+    void Validate();
 }

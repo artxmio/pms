@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using ProjectManagementStudio.Model.CurrentUserModel;
 using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel;
 using ProjectManagementStudio.Model.UserSavedData.Wrapper;
 using ProjectManagementStudio.Model.WindowModels.AuthModel;
@@ -14,12 +15,12 @@ namespace ProjectManagementStudio.Model.RegistrationModule
 
             builder.RegisterType<AuthModel>().As<IAuthModel>().SingleInstance();
             builder.RegisterType<RegisterModel>().As<IRegisterModel>().SingleInstance();
+            builder.RegisterType<CurrentUserModel.CurrentUserModel>().As<ICurrentUserModel>().SingleInstance();
 
             builder.RegisterType<ProfileModel>().As<IProfileModel>().SingleInstance();
 
             builder.RegisterType<UserDataMementoWrapper>()
                 .As<IUserDataMementoWrapper>()
-                .As<IUserImageMementoWrapper>()
                 .As<IUserDataMementoWrapperInitializer>()
                 .SingleInstance();
         }

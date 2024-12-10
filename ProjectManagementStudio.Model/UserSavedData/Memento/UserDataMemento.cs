@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace ProjectManagementStudio.Model.UserSavedData.Memento;
 
 [DataContract]
-public class UserDataMemento : IUserDataMemento, IUserImageMementoWrapper
+public class UserDataMemento : IUserDataMemento
 {
     [DataMember(Name = "userLogin")]
     public string UserLogin { get; set; }
@@ -12,11 +12,13 @@ public class UserDataMemento : IUserDataMemento, IUserImageMementoWrapper
     [DataMember(Name = "userPassword")]
     public string UserPassword { get; set; }
 
-    public Uri? AvatarImage { get; set; }
+    [DataMember(Name = "isRememberMe")]
+    public bool IsRememberMe { get; set; }
 
     public UserDataMemento()
     {
         UserLogin = ""; 
         UserPassword = "";
+        IsRememberMe = false;
     }
 }

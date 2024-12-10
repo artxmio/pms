@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using ProjectManagementStudio.Model.CurrentUserModel;
 using ProjectManagementStudio.Model.RequestsModels;
 using ProjectManagementStudio.Model.ResponseModels;
 using ProjectManagementStudio.Model.Responses;
@@ -11,10 +12,17 @@ using System.Windows;
 
 namespace ProjectManagementStudio.ViewModel.APIClient;
 
-public class APIClient : IAPIClient
+public partial class APIClient : IAPIClient
 {
     private readonly HttpClient _client = new();
     private readonly IUrlService _urlService;
+
+    private Dictionary<ChangeableParams, string> _paramNames = new()
+    {
+        { ChangeableParams.Login, "login" },
+        { ChangeableParams.Password, "password" },
+        { ChangeableParams.Email, "email" }
+    };
 
     public APIClient(IUrlService urlService)
     {
@@ -26,7 +34,7 @@ public class APIClient : IAPIClient
 
     public async Task<bool> IsUserExists(IAuthModel user)
     {
-        var json = JsonConvert.SerializeObject(new AuthRequestModel(user.login, user.password));
+        var json = JsonConvert.SerializeObject(new AuthRequestModel(user.Login, user.Password));
         var content = new StringContent(json, Encoding.UTF8, "application/json");
 
         _urlService.URLEndpoint = nameof(IsUserExists);
@@ -63,9 +71,9 @@ public class APIClient : IAPIClient
 
     public async Task AddUser(IRegisterModel user)
     {
-        var json = JsonConvert.SerializeObject(new AddUserRequestModel(user.login, user.password, user.email));
+        var json = JsonConvert.SerializeObject(new AddUserRequestModel(user.Login, user.Password, user.Email));
         var content = new StringContent(json, Encoding.UTF8, "application/json");
-        
+
         _urlService.URLEndpoint = nameof(AddUser);
 
         try
@@ -97,7 +105,7 @@ public class APIClient : IAPIClient
         }
     }
 
-    private string MessagePerCode(int code)
+    private static string MessagePerCode(int code)
     {
         string message = "успешно";
         switch (code)
@@ -107,5 +115,112 @@ public class APIClient : IAPIClient
         }
 
         return message;
+    }
+
+    public async Task<ICurrentUserModel> GetUserByLogin(IAuthModel authUser)
+    {
+        try
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{_client.BaseAddress}get_user?login={authUser.Login}");
+
+            var response = await _client.SendAsync(request);
+
+            GetUserResponse deserializeResponse = JsonConvert.DeserializeObject<GetUserResponse>(await response.Content.ReadAsStringAsync())
+                ?? throw new InvalidOperationException("Deserialized response can't be null");
+
+            ICurrentUserModel user = new CurrentUserModel()
+            {
+                UserId = (long)deserializeResponse.Data["id"],
+                Login = (string)deserializeResponse.Data["login"],
+                Password = authUser.Password,
+                Email = (string)deserializeResponse.Data["email"],
+            };
+
+            return user;
+        }
+        catch (HttpRequestException ex)
+        {
+            MessageBox.Show($"Возникла ошибка: сервер отключён или недоступен ({ex.Message})", "Ошибка");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        throw new InvalidOperationException();
+    }
+
+    public async Task ChangeLogin(ICurrentUserModel currentUser, string newValue)
+    {
+        var json = JsonConvert.SerializeObject(new ChangeUserParamsRequestModel(currentUser.UserId, _paramNames[ChangeableParams.Login], newValue));
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        _urlService.URLEndpoint = "ChangeUserParams";
+
+        try
+        {
+            var request = new HttpRequestMessage(HttpMethod.Post, $"{_client.BaseAddress}{_urlService.URLEndpoint}")
+            {
+                Content = content
+            };
+
+            var response = await _client.SendAsync(request);
+
+            ChangeUserParamsResponseModel deserializeResponse = JsonConvert.DeserializeObject<ChangeUserParamsResponseModel>(await response.Content.ReadAsStringAsync())
+                ?? throw new InvalidOperationException("Deserialized response can't be null");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+    }
+
+    public async Task ChangePassword(ICurrentUserModel currentUser, string newValue)
+    {
+        var json = JsonConvert.SerializeObject(new ChangeUserParamsRequestModel(currentUser.UserId, _paramNames[ChangeableParams.Password], newValue));
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        _urlService.URLEndpoint = "ChangeUserParams";
+
+        try
+        {
+            var request = new HttpRequestMessage(HttpMethod.Post, $"{_client.BaseAddress}{_urlService.URLEndpoint}")
+            {
+                Content = content
+            };
+
+            var response = await _client.SendAsync(request);
+
+            ChangeUserParamsResponseModel deserializeResponse = JsonConvert.DeserializeObject<ChangeUserParamsResponseModel>(await response.Content.ReadAsStringAsync())
+                ?? throw new InvalidOperationException("Deserialized response can't be null");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+    }
+
+    public async Task ChangeEmail(ICurrentUserModel currentUser, string newValue)
+    {
+        var json = JsonConvert.SerializeObject(new ChangeUserParamsRequestModel(currentUser.UserId, _paramNames[ChangeableParams.Email], newValue));
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        _urlService.URLEndpoint = "ChangeUserParams";
+
+        try
+        {
+            var request = new HttpRequestMessage(HttpMethod.Post, $"{_client.BaseAddress}{_urlService.URLEndpoint}")
+            {
+                Content = content
+            };
+
+            var response = await _client.SendAsync(request);
+
+            ChangeUserParamsResponseModel deserializeResponse = JsonConvert.DeserializeObject<ChangeUserParamsResponseModel>(await response.Content.ReadAsStringAsync())
+                ?? throw new InvalidOperationException("Deserialized response can't be null");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
     }
 }

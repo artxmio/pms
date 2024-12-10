@@ -1,10 +1,16 @@
-﻿using ProjectManagementStudio.Model.WindowModels.AuthModel;
+﻿using ProjectManagementStudio.Model.CurrentUserModel;
+using ProjectManagementStudio.Model.WindowModels.AuthModel;
 using ProjectManagementStudio.Model.WindowModels.RegisterModel;
 
 namespace ProjectManagementStudio.ViewModel.APIClient;
 
 public interface IAPIClient
 {
-    public Task<bool> IsUserExists(IAuthModel user);
-    public Task AddUser(IRegisterModel user);
+    Task<bool> IsUserExists(IAuthModel user);
+    Task AddUser(IRegisterModel user);
+
+    Task<ICurrentUserModel> GetUserByLogin(IAuthModel authModel);
+    Task ChangeLogin(ICurrentUserModel currentUser, string newValue);
+    Task ChangePassword(ICurrentUserModel currentUser, string newValue);
+    Task ChangeEmail(ICurrentUserModel currentUser, string newValue);
 }

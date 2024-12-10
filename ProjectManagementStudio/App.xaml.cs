@@ -1,5 +1,4 @@
 ﻿using ProjectManagementStudio.Bootstrapper;
-using ProjectManagementStudio.ViewModel.MainWindow;
 using System.Windows;
 
 namespace ProjectManagmentStudio;

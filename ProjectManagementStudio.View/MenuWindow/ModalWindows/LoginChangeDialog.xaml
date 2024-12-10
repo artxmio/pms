@@ -1,0 +1,30 @@
+﻿<Window x:Class="ProjectManagementStudio.View.MenuWindow.ModalWindows.LoginChangeDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectManagementStudio.View.MenuWindow.ModalWindows"
+        mc:Ignorable="d"
+        Title="LoginChangeDialog" Height="300" Width="550">
+    <StackPanel Orientation="Vertical" Margin="10">
+        <TextBlock Text="Enter new login"
+                   Width="150"/>
+        <TextBox
+            FontSize="20"
+            Height="20"
+            Width="100"/>
+        
+        <TextBlock Text="Enter your password"
+                   Width="150"/>
+        <TextBox
+            FontSize="20"
+            Height="20"
+            Width="100"/>
+
+        <Button 
+            Content="ok"
+            Margin="10"
+            Height="20"
+            Width="100"/>
+    </StackPanel>
+</Window>

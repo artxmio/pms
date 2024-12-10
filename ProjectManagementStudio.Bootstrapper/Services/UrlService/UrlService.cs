@@ -12,6 +12,7 @@ public class UrlService : IUrlServiceInitializer, IUrlService
     {
         { "IsUserExists", "is-user-exists" },
         { "AddUser", "add-user" },
+        { "ChangeUserParams", "change_user_params" }
     };
 
     private bool _initialized = false;
@@ -73,20 +74,6 @@ public class UrlService : IUrlServiceInitializer, IUrlService
             {
                 throw new ArgumentException("The list does not contain such commands");
             }
-        }
-    }
-
-    public void SetUrlCommand(string command)
-    {
-        EnsureInitialized();
-
-        if (_urlMap.TryGetValue(command, out string? value))
-        {
-            _urlEndpoint = _urlMap[command];
-        }
-        else
-        {
-            throw new ArgumentException("The list does not contain such commands");
         }
     }
 

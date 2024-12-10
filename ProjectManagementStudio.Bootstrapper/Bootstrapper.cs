@@ -1,4 +1,6 @@
 ﻿using Autofac;
+using ProjectManagementStudio.Bootstrapper.Services.AvatarService;
+using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 using ProjectManagementStudio.Bootstrapper.Services.PathService;
 using ProjectManagementStudio.Bootstrapper.Services.UrlService;
 using ProjectManagementStudio.Model.UserSavedData.Wrapper;
@@ -25,7 +27,7 @@ public class Bootstrapper : IDisposable
             .RegisterModule<View.RegistrationModule.RegistrationModule>();
 
         _container = container.Build();
-        
+
         _windowManager = _container.Resolve<IWindowManager>();
     }
 
@@ -33,25 +35,45 @@ public class Bootstrapper : IDisposable
     {
         InitializeDependencies();
 
-        var mainWindowViewModel = _container.Resolve<IMainWindowViewModel>();
+        var _userDataMementoWrapper = _container.Resolve<IUserDataMementoWrapper>();
 
-        var mainWindow = _windowManager.Show(mainWindowViewModel);
+        var viewModel = ChangeViewModelByRememberMe(_userDataMementoWrapper.IsRememberMe);
 
-        if (mainWindow is not Window window)
+        IWindow startWindow;
+
+        if (viewModel is IMainWindowViewModel mainWindowViewModel)
+        {
+            startWindow = _windowManager.Show(mainWindowViewModel);
+        }
+        else if (viewModel is IMenuWindowViewModel menuWindowViewModel)
+        {
+            startWindow = _windowManager.Show(menuWindowViewModel);
+        }
+        else
+        {
+            throw new InvalidOperationException("Unknown ViewModel type");
+        }
+
+        if (startWindow is not Window window)
         {
             throw new NotImplementedException();
         }
 
-        window.DataContext = mainWindowViewModel;
+        window.DataContext = viewModel;
 
         return window;
     }
+
+    public IWindowViewModel ChangeViewModelByRememberMe(bool IsRememberMe)
+        => IsRememberMe ? _container.Resolve<IMenuWindowViewModel>() : _container.Resolve<IMainWindowViewModel>();
 
     private void InitializeDependencies()
     {
         _container.Resolve<IUrlServiceInitializer>().Initialize();
         _container.Resolve<IPathServiceInitializer>().Initialize();
+        _container.Resolve<IAvatarServiceInitializer>().Initialize();
         _container.Resolve<IUserDataMementoWrapperInitializer>().Initialize();
+        _container.Resolve<ICurrentUserServiceInitializer>().Initialize();
     }
 
     public void Dispose() => GC.SuppressFinalize(_container);

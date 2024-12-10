@@ -83,14 +83,14 @@
 
                     <Grid>
                         <Image Width="200" Height="200" 
-                    Source="{Binding ImageMementoWrapper.AvatarImage}"
+                    Source="{Binding AvatarImage, Mode=OneWay}"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Margin="59,78,0,0"/>
 
                         <!-- СДЕЛАТЬ КОГДА СЕРВАК! -->
                         <TextBlock FontSize="35" FontFamily="outfit"
-                               FontWeight="Normal" Text="LoginExample"
+                               FontWeight="Normal" Text="{Binding CurrentUser.Login}"
                                Width="221" Height="44"
                                Margin="0,134,211,0"
                                HorizontalAlignment="Right"
@@ -99,7 +99,7 @@
 
                         <!-- СДЕЛАТЬ КОГДА СЕРВАК! -->
                         <TextBlock FontSize="30" FontFamily="outfit"
-                               FontWeight="Normal" Text="Email.example@gmail.com"
+                               FontWeight="Normal" Text="{Binding CurrentUser.Email}"
                                Width="356" Height="38"
                                Margin="0,186,76,0"
                                HorizontalAlignment="Right"
@@ -160,6 +160,7 @@
 
                         <!-- СДЕЛАТЬ КОГДА СЕРВАК! -->
                         <Button Width="260" Height="39"
+                                Command="{Binding ChangeLoginCommand}"
                             Margin="0,20,0,0"
                             Background="#724D9D"
                             Content="Change login"
@@ -190,7 +191,9 @@
                         </Button>
 
                         <!-- СДЕЛАТЬ КОГДА СЕРВАК! -->
-                        <Button Width="260" Height="39"
+                        <Button 
+                            Command="{Binding ChangePasswordCommand}"
+                            Width="260" Height="39"
                             Margin="0,20,0,0"
                             Background="#724D9D"
                             Content="Change password"
@@ -221,7 +224,9 @@
                         </Button>
 
                         <!-- СДЕЛАТЬ КОГДА СЕРВАК! -->
-                        <Button Width="260" Height="39"
+                        <Button 
+                            Command="{Binding ChangeEmailCommand}"
+                            Width="260" Height="39"
                             Margin="0,20,0,0"
                             Background="#724D9D"
                             Content="Change email"
