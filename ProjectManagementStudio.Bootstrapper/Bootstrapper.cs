@@ -76,5 +76,5 @@ public class Bootstrapper : IDisposable
         _container.Resolve<ICurrentUserServiceInitializer>().Initialize();
     }
 
-    public void Dispose() => GC.SuppressFinalize(_container);
+    public void Dispose() => _container.Dispose();
 }
