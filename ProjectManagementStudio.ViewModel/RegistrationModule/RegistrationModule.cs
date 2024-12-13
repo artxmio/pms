@@ -15,5 +15,7 @@ public class RegistrationModule : Module
         builder.RegisterType<MenuWindowViewModel>().As<IMenuWindowViewModel>().InstancePerDependency();
 
         builder.RegisterType<APIClient.APIClient>().As<IAPIClient>().SingleInstance();
+
+        builder.RegisterType<WindowMediator.WindowMediator>().As<IWindowMediator>().SingleInstance();
     }
 }
