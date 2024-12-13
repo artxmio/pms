@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using ProjectManagementStudio.View.MainWindow;
 using ProjectManagementStudio.View.MenuWindow;
-using ProjectManagementStudio.View.MenuWindow.ModalWindows;
 using ProjectManagementStudio.View.WindowFactory;
 using ProjectManagementStudio.ViewModel.MainWindow;
 using ProjectManagementStudio.ViewModel.MenuWindow;

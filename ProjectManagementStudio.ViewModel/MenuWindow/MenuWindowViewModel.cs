@@ -4,9 +4,9 @@ using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 using ProjectManagementStudio.Model.CurrentUserModel;
 using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel;
 using ProjectManagementStudio.Model.ModalWindowsModels.LoginChangeModel;
+using ProjectManagementStudio.Model.UserSavedData.Wrapper;
 using ProjectManagementStudio.ViewModel.APIClient;
 using ProjectManagementStudio.ViewModel.Command;
-using ProjectManagementStudio.ViewModel.MainWindow;
 using ProjectManagementStudio.ViewModel.Pages;
 using ProjectManagementStudio.ViewModel.Windows;
 using System.ComponentModel;
@@ -28,6 +28,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
     private readonly IAvatarService _avatarService;
     private readonly ICurrentUserService _currentUserService;
+    private readonly IUserDataMementoWrapper _userDataMementoWrapper;
     private readonly ILoginChangeModel _loginChangeModel;
     private IPage _activePage;
     private BitmapImage _avatarImage;
@@ -37,7 +38,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     #region
 
     public IProfileModel ProfileModel { get; set; }
-    
+
     public ICurrentUserModel CurrentUser
     {
         get
@@ -109,14 +110,15 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         IProfileModel profileModel,
         IAvatarService avatarService,
         ICurrentUserService currentUserService,
-        ILoginChangeModel loginChangeModel)
+        ILoginChangeModel loginChangeModel,
+        IUserDataMementoWrapper userDataMementoWrapper)
     {
         _client = APIClient;
         _pageManager = pageManager;
         _windowManager = windowManager;
         _avatarService = avatarService;
         _currentUserService = currentUserService;
-
+        _userDataMementoWrapper = userDataMementoWrapper;
         ProfileModel = profileModel;
 
         _activePage = _pageManager.NavigateTo(2);
@@ -170,7 +172,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         }
         window.DataContext = this;
 
-        if(window.DialogResult == true)
+        if (window.DialogResult == true)
             await _client.ChangeUserParametr(CurrentUser, ChangeableParams.Login, _loginChangeModel.NewLogin);
     }
     private async Task ChangePassword()
@@ -201,9 +203,13 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
     private void LogOut()
     {
-
+        var result = MessageBox.Show("Нажмите 'да', чтобы выйти из аккаунта", "Внимание", MessageBoxButton.YesNo);
+        if (result == MessageBoxResult.Yes)
+        {
+            _userDataMementoWrapper.DeleteUserData();
+            _windowManager.Close(this);
+        }
     }
-
 
     public event PropertyChangedEventHandler? PropertyChanged;
 

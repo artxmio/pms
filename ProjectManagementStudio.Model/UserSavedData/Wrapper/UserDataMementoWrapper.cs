@@ -109,7 +109,7 @@ internal class UserDataMementoWrapper :
         }
     }
 
-    private void SaveUserData()
+    public void SaveUserData()
     {
         EnsureInitialized();
 
@@ -118,9 +118,14 @@ internal class UserDataMementoWrapper :
         File.WriteAllText(_userDataFilePath, json);
     }
 
-    private void DeleteUserData()
+    public void DeleteUserData()
     {
         EnsureInitialized();
-        File.Delete(_userDataFilePath);
+
+        _userDataMemento.IsRememberMe = false;
+
+        var json = JsonConvert.SerializeObject(_userDataMemento);
+
+        File.WriteAllText(_userDataFilePath, json);
     }
 }
