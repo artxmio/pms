@@ -1,10 +1,9 @@
-﻿using System.Collections.Specialized;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace ProjectManagementStudio.Model.ModalWindowsModels.LoginChangeModel;
+namespace ProjectManagementStudio.Model.ModalWindowsModels.ChangeLoginModel;
 
-public class LoginChangeModel : ILoginChangeModel, INotifyPropertyChanged
+public class ChangeLoginModel : IChangeLoginModel, INotifyPropertyChanged
 {
     private string _newLogin = string.Empty;
     private string _password = string.Empty;

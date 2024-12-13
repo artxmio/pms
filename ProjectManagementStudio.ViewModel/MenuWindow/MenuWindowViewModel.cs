@@ -3,10 +3,11 @@ using ProjectManagementStudio.Bootstrapper.Services.AvatarService;
 using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 using ProjectManagementStudio.Model.CurrentUserModel;
 using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel;
-using ProjectManagementStudio.Model.ModalWindowsModels.LoginChangeModel;
+using ProjectManagementStudio.Model.ModalWindowsModels.ChangeLoginModel;
 using ProjectManagementStudio.Model.UserSavedData.Wrapper;
 using ProjectManagementStudio.ViewModel.APIClient;
 using ProjectManagementStudio.ViewModel.Command;
+using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows;
 using ProjectManagementStudio.ViewModel.Pages;
 using ProjectManagementStudio.ViewModel.Windows;
 using System.ComponentModel;
@@ -29,7 +30,8 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     private readonly IAvatarService _avatarService;
     private readonly ICurrentUserService _currentUserService;
     private readonly IUserDataMementoWrapper _userDataMementoWrapper;
-    private readonly ILoginChangeModel _loginChangeModel;
+    private readonly IChangeLoginModalWindowViewModel _changeLoginModalWindowViewModel;
+    private readonly IChangeLoginModel _loginChangeModel;
     private IPage _activePage;
     private BitmapImage _avatarImage;
     #endregion
@@ -75,7 +77,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         }
     }
 
-    public ILoginChangeModel loginChangeModel
+    public IChangeLoginModel loginChangeModel
     {
         get
         {
@@ -110,7 +112,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         IProfileModel profileModel,
         IAvatarService avatarService,
         ICurrentUserService currentUserService,
-        ILoginChangeModel loginChangeModel,
+        IChangeLoginModalWindowViewModel changeLoginModalWindowViewModel,
         IUserDataMementoWrapper userDataMementoWrapper)
     {
         _client = APIClient;
@@ -119,6 +121,8 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         _avatarService = avatarService;
         _currentUserService = currentUserService;
         _userDataMementoWrapper = userDataMementoWrapper;
+        _changeLoginModalWindowViewModel = changeLoginModalWindowViewModel;
+
         ProfileModel = profileModel;
 
         _activePage = _pageManager.NavigateTo(2);
@@ -164,7 +168,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     // доделать попозже
     private async Task ChangeLogin()
     {
-        var dialogWindow = _windowManager.Show(this, true) as Window;
+        var dialogWindow = _windowManager.Show(_changeLoginModalWindowViewModel, true) as Window;
 
         if (dialogWindow is not Window window)
         {

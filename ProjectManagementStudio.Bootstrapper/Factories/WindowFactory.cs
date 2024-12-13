@@ -1,9 +1,11 @@
 ﻿using Autofac;
 using ProjectManagementStudio.View.MainWindow;
 using ProjectManagementStudio.View.MenuWindow;
+using ProjectManagementStudio.View.MenuWindow.ModalWindows;
 using ProjectManagementStudio.View.WindowFactory;
 using ProjectManagementStudio.ViewModel.MainWindow;
 using ProjectManagementStudio.ViewModel.MenuWindow;
+using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows;
 using ProjectManagementStudio.ViewModel.Windows;
 
 namespace ProjectManagementStudio.Bootstrapper.Factories;
@@ -15,7 +17,9 @@ internal class WindowFactory : IWindowFactory
     private readonly Dictionary<Type, Type> _typeMap = new()
         {
             { typeof(IMainWindowViewModel), typeof(IMainWindow) },
-            { typeof(IMenuWindowViewModel), typeof(IMenuWindow) }
+            { typeof(IMenuWindowViewModel), typeof(IMenuWindow) },
+            { typeof(IChangeLoginModalWindowViewModel), typeof(ILoginChangeDialog) },
+   
         };
 
     public WindowFactory(IComponentContext componentContext)
