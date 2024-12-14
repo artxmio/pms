@@ -3,6 +3,7 @@ using System.IO;
 using Newtonsoft.Json;
 using ProjectManagementStudio.Model.PathService;
 using System.Windows.Media.Imaging;
+using System.Windows;
 
 namespace ProjectManagementStudio.Model.UserSavedData.Wrapper;
 
@@ -111,21 +112,76 @@ internal class UserDataMementoWrapper :
 
     public void SaveUserData()
     {
-        EnsureInitialized();
+        try
+        {
+            EnsureInitialized();
 
-        var json = JsonConvert.SerializeObject(_userDataMemento);
+            var json = JsonConvert.SerializeObject(_userDataMemento)
+                ?? throw new InvalidOperationException("Deserialized memento can't be null");
 
-        File.WriteAllText(_userDataFilePath, json);
+            File.WriteAllText(_userDataFilePath, json);
+        }
+        catch (JsonSerializationException ex)
+        {
+            MessageBox.Show("Ошибка сериализации JSON: " + ex.Message, "Внимание");
+        }
+        catch (JsonWriterException ex)
+        {
+            MessageBox.Show("Ошибка записи JSON: " + ex.Message, "Внимание");
+        }
+        catch (InvalidOperationException ex)
+        {
+            MessageBox.Show("Ошибка: " + ex.Message, "Внимание");
+        }
+        catch (IOException ex)
+        {
+            MessageBox.Show("Ошибка ввода-вывода при записи в файл: " + ex.Message, "Внимание");
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            Console.WriteLine("Ошибка доступа при записи в файл: " + ex.Message, "Внимание");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show("Произошла неожиданная ошибка: " + ex.Message, "Внимание");
+        }
     }
 
     public void DeleteUserData()
     {
-        EnsureInitialized();
+        try
+        {
+            EnsureInitialized();
 
-        _userDataMemento.IsRememberMe = false;
+            _userDataMemento.IsRememberMe = false;
 
-        var json = JsonConvert.SerializeObject(_userDataMemento);
+            var json = JsonConvert.SerializeObject(_userDataMemento);
 
-        File.WriteAllText(_userDataFilePath, json);
+            File.WriteAllText(_userDataFilePath, json);
+        }
+        catch (JsonSerializationException ex)
+        {
+            MessageBox.Show("Ошибка сериализации JSON: " + ex.Message, "Внимание");
+        }
+        catch (JsonWriterException ex)
+        {   
+            MessageBox.Show("Ошибка записи JSON: " + ex.Message, "Внимание");
+        }
+        catch (InvalidOperationException ex)
+        {
+            MessageBox.Show("Ошибка инициализации: " + ex.Message, "Внимание");
+        }
+        catch (IOException ex)
+        {
+            MessageBox.Show("Ошибка ввода-вывода при записи в файл: " + ex.Message, "Внимание");
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            MessageBox.Show("Ошибка доступа при записи в файл: " + ex.Message, "Внимание");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show("Произошла неожиданная ошибка: " + ex.Message, "Внимание");
+        }
     }
 }

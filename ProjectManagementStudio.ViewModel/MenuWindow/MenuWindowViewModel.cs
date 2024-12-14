@@ -207,7 +207,9 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
     private void LogOut()
     {
+        //надо сделать собственное окно вот с таким выбором
         var result = MessageBox.Show("Нажмите 'да', чтобы выйти из аккаунта", "Внимание", MessageBoxButton.YesNo);
+
         if (result == MessageBoxResult.Yes)
         {
             _userDataMementoWrapper.DeleteUserData();
