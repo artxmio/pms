@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using ProjectManagementStudio.Model.CurrentUserModel;
 using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel;
-using ProjectManagementStudio.Model.ModalWindowsModels.ChangeLoginModel;
+using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel.ModalWindowModels;
 using ProjectManagementStudio.Model.UserSavedData.Wrapper;
 using ProjectManagementStudio.Model.WindowModels.AuthModel;
 using ProjectManagementStudio.Model.WindowModels.RegisterModel;

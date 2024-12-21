@@ -12,9 +12,9 @@ public class RegistrationModule : Module
     {
         base.Load(builder);
 
-        builder.RegisterType<MainWindowViewModel>().As<IMainWindowViewModel>().InstancePerDependency();
-        builder.RegisterType<MenuWindowViewModel>().As<IMenuWindowViewModel>().InstancePerDependency();
-        builder.RegisterType<ChangeLoginModalWindowViewModel>().As<IChangeLoginModalWindowViewModel>().InstancePerDependency();
+        builder.RegisterType<MainWindowViewModel>().As<IMainWindowViewModel>().SingleInstance();
+        builder.RegisterType<MenuWindowViewModel>().As<IMenuWindowViewModel>().SingleInstance();
+        builder.RegisterType<ChangeLoginModalWindowViewModel>().As<IChangeLoginModalWindowViewModel>().SingleInstance();
 
         builder.RegisterType<APIClient.APIClient>().As<IAPIClient>().SingleInstance();
 

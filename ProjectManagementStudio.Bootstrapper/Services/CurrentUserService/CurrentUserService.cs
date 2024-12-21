@@ -5,6 +5,7 @@ using ProjectManagementStudio.Model.WindowModels.AuthModel;
 using ProjectManagementStudio.ViewModel.APIClient;
 using System.Net.Http;
 using System.Windows;
+using System.Windows.Data;
 
 namespace ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 
@@ -14,7 +15,7 @@ internal class CurrentUserService : ICurrentUserService, ICurrentUserServiceInit
     private bool _initialized;
 
     private readonly IAPIClient _apiClient;
-    IUserDataMementoWrapper _userDataMementoWrapper;
+    private readonly IUserDataMementoWrapper _userDataMementoWrapper;
 
     public ICurrentUserModel CurrentUser
     {
@@ -31,9 +32,9 @@ internal class CurrentUserService : ICurrentUserService, ICurrentUserServiceInit
         }
     }
 
-    public CurrentUserService(IAPIClient client, IUserDataMementoWrapper userDataMementoWrapper)
+    public CurrentUserService(IAPIClient client, IUserDataMementoWrapper userDataMementoWrapper, ICurrentUserModel currentUserModel)
     {
-        _currentUser = new CurrentUserModel();
+        _currentUser = currentUserModel;
         _apiClient = client;
         _userDataMementoWrapper = userDataMementoWrapper;
     }

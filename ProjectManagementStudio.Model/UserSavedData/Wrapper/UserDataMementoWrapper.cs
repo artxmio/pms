@@ -93,7 +93,7 @@ internal class UserDataMementoWrapper :
 
         if (!File.Exists(_userDataFilePath))
         {
-            return;
+            File.Create(_userDataFilePath);
         }
 
         string jsonString = File.ReadAllText(_userDataFilePath);

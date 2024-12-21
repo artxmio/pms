@@ -3,7 +3,6 @@ using ProjectManagementStudio.Bootstrapper.Services.AvatarService;
 using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 using ProjectManagementStudio.Model.CurrentUserModel;
 using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel;
-using ProjectManagementStudio.Model.ModalWindowsModels.ChangeLoginModel;
 using ProjectManagementStudio.Model.UserSavedData.Wrapper;
 using ProjectManagementStudio.ViewModel.APIClient;
 using ProjectManagementStudio.ViewModel.Command;
@@ -31,7 +30,6 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     private readonly ICurrentUserService _currentUserService;
     private readonly IUserDataMementoWrapper _userDataMementoWrapper;
     private readonly IChangeLoginModalWindowViewModel _changeLoginModalWindowViewModel;
-    private readonly IChangeLoginModel _loginChangeModel;
     private IPage _activePage;
     private BitmapImage _avatarImage;
     #endregion
@@ -50,6 +48,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         set
         {
             _currentUserService.CurrentUser = value;
+            
             OnPropertyChanged();
         }
     }
@@ -74,14 +73,6 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
                 _avatarImage = value;
                 OnPropertyChanged();
             }
-        }
-    }
-
-    public IChangeLoginModel loginChangeModel
-    {
-        get
-        {
-            return _loginChangeModel;
         }
     }
 
@@ -112,8 +103,8 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         IProfileModel profileModel,
         IAvatarService avatarService,
         ICurrentUserService currentUserService,
-        IChangeLoginModalWindowViewModel changeLoginModalWindowViewModel,
-        IUserDataMementoWrapper userDataMementoWrapper)
+        IUserDataMementoWrapper userDataMementoWrapper,
+        IChangeLoginModalWindowViewModel changeLoginModalWindowViewModel)
     {
         _client = APIClient;
         _pageManager = pageManager;
@@ -126,8 +117,6 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         ProfileModel = profileModel;
 
         _activePage = _pageManager.NavigateTo(2);
-
-        _loginChangeModel = loginChangeModel;
 
         /* // Загрузка аватарки // */
         _avatarImage = new BitmapImage();
@@ -142,7 +131,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         NavigateToSettingsPage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(4));
 
         ChangeAvatarCommand = new RelayCommand(o => ChangeAvatar());
-        ChangeLoginCommand = new AsyncCommand(ChangeLogin);
+        ChangeLoginCommand = new RelayCommand(o => ChangeLogin());
         ChangePasswordCommand = new AsyncCommand(ChangePassword);
         ChangeEmailCommand = new AsyncCommand(ChangeEmail);
 
@@ -166,18 +155,16 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     }
 
     // доделать попозже
-    private async Task ChangeLogin()
+    private void ChangeLogin()
     {
         var dialogWindow = _windowManager.Show(_changeLoginModalWindowViewModel, true) as Window;
 
-        if (dialogWindow is not Window window)
+        if (dialogWindow is not null)
         {
-            throw new NotImplementedException();
+            dialogWindow.DataContext = _changeLoginModalWindowViewModel;
         }
-        window.DataContext = this;
-
-        if (window.DialogResult == true)
-            await _client.ChangeUserParametr(CurrentUser, ChangeableParams.Login, _loginChangeModel.NewLogin);
+        
+        
     }
     private async Task ChangePassword()
     {
