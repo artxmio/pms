@@ -101,8 +101,6 @@ internal class AvatarService : IAvatarService, IAvatarServiceInitializer, INotif
             MessageBox.Show($"Неверная операция: {ex.Message}");
             return null;
         }
-
-        return new BitmapImage(new Uri(AvatarFilePath));
     }
 
     protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")

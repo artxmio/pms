@@ -1,4 +1,4 @@
-﻿namespace ProjectManagementStudio.Model.MenuWindowModels.ProfileModel.ModalWindowModels;
+﻿namespace ProjectManagementStudio.Model.MenuWindowModels.ProfileModel.ModalWindowModels.NewLogin;
 
 class ChangeLoginModel : IChangeLoginModel
 {

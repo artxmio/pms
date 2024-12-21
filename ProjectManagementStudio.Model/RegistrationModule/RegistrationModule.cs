@@ -1,7 +1,8 @@
 ﻿using Autofac;
 using ProjectManagementStudio.Model.CurrentUserModel;
 using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel;
-using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel.ModalWindowModels;
+using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel.ModalWindowModels.NewLogin;
+using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel.ModalWindowModels.NewPassword;
 using ProjectManagementStudio.Model.UserSavedData.Wrapper;
 using ProjectManagementStudio.Model.WindowModels.AuthModel;
 using ProjectManagementStudio.Model.WindowModels.RegisterModel;
@@ -19,8 +20,7 @@ namespace ProjectManagementStudio.Model.RegistrationModule
             builder.RegisterType<CurrentUserModel.CurrentUserModel>().As<ICurrentUserModel>().SingleInstance();
 
             builder.RegisterType<ChangeLoginModel>().As<IChangeLoginModel>().SingleInstance();
-
-            builder.RegisterType<ProfileModel>().As<IProfileModel>().SingleInstance();
+            builder.RegisterType<ChangePasswordModel>().As<IChangePasswordModel>().SingleInstance();
 
             builder.RegisterType<UserDataMementoWrapper>()
                 .As<IUserDataMementoWrapper>()

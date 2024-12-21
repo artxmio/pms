@@ -4,11 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectManagementStudio.View.MenuWindow.ModalWindows"
-        xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows;assembly=ProjectManagementStudio.ViewModel"
+        xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewLogin;assembly=ProjectManagementStudio.ViewModel"
         xmlns:validations="clr-namespace:ProjectManagementStudio.ViewModel.ValidationsRules;assembly=ProjectManagementStudio.ViewModel"
         mc:Ignorable="d"
         Title="LoginChangeDialog" Height="300" Width="550"
         WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
         
         d:DataContext="{d:DesignInstance vm:ChangeLoginModalWindowViewModel}">
 

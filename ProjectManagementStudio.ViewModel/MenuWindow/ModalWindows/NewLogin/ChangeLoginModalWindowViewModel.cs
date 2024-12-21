@@ -1,5 +1,5 @@
 ﻿using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
-using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel.ModalWindowModels;
+using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel.ModalWindowModels.NewLogin;
 using ProjectManagementStudio.Model.UserSavedData.Wrapper;
 using ProjectManagementStudio.ViewModel.APIClient;
 using ProjectManagementStudio.ViewModel.Command;
@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 
-namespace ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows;
+namespace ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewLogin;
 
 public class ChangeLoginModalWindowViewModel : IChangeLoginModalWindowViewModel
 {
@@ -53,7 +53,7 @@ public class ChangeLoginModalWindowViewModel : IChangeLoginModalWindowViewModel
     private async Task ChangeLogin()
     {
         //проверка на ввода текущего логина
-        if(NewLogin.Equals(_currentUserService.CurrentUser.Login))
+        if (NewLogin.Equals(_currentUserService.CurrentUser.Login))
         {
             MessageBox.Show($"Логин должен отличаться от текущего!", "Ошибка!");
             return;

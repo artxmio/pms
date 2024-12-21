@@ -5,7 +5,8 @@ using ProjectManagementStudio.View.MenuWindow.ModalWindows;
 using ProjectManagementStudio.View.WindowFactory;
 using ProjectManagementStudio.ViewModel.MainWindow;
 using ProjectManagementStudio.ViewModel.MenuWindow;
-using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows;
+using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewLogin;
+using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewPassword;
 using ProjectManagementStudio.ViewModel.Windows;
 
 namespace ProjectManagementStudio.Bootstrapper.Factories;
@@ -19,7 +20,7 @@ internal class WindowFactory : IWindowFactory
             { typeof(IMainWindowViewModel), typeof(IMainWindow) },
             { typeof(IMenuWindowViewModel), typeof(IMenuWindow) },
             { typeof(IChangeLoginModalWindowViewModel), typeof(ILoginChangeDialog) },
-   
+            { typeof(IChangePasswordModalWindowViewModel), typeof(IPasswordChangeDialog) },
         };
 
     public WindowFactory(IComponentContext componentContext)

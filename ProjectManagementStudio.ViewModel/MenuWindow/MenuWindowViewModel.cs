@@ -6,7 +6,8 @@ using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel;
 using ProjectManagementStudio.Model.UserSavedData.Wrapper;
 using ProjectManagementStudio.ViewModel.APIClient;
 using ProjectManagementStudio.ViewModel.Command;
-using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows;
+using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewLogin;
+using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewPassword;
 using ProjectManagementStudio.ViewModel.Pages;
 using ProjectManagementStudio.ViewModel.Windows;
 using System.ComponentModel;
@@ -30,14 +31,13 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     private readonly ICurrentUserService _currentUserService;
     private readonly IUserDataMementoWrapper _userDataMementoWrapper;
     private readonly IChangeLoginModalWindowViewModel _changeLoginModalWindowViewModel;
+    private readonly IChangePasswordModalWindowViewModel _changePasswordModalWindowViewModel;
     private IPage _activePage;
     private BitmapImage _avatarImage;
     #endregion
 
     /* // Свойства // */
     #region
-
-    public IProfileModel ProfileModel { get; set; }
 
     public ICurrentUserModel CurrentUser
     {
@@ -100,11 +100,11 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         IAPIClient APIClient,
         IWindowManager windowManager,
         IPageManager pageManager,
-        IProfileModel profileModel,
         IAvatarService avatarService,
         ICurrentUserService currentUserService,
         IUserDataMementoWrapper userDataMementoWrapper,
-        IChangeLoginModalWindowViewModel changeLoginModalWindowViewModel)
+        IChangeLoginModalWindowViewModel changeLoginModalWindowViewModel,
+        IChangePasswordModalWindowViewModel changePasswordModalWindowViewModel)
     {
         _client = APIClient;
         _pageManager = pageManager;
@@ -113,8 +113,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         _currentUserService = currentUserService;
         _userDataMementoWrapper = userDataMementoWrapper;
         _changeLoginModalWindowViewModel = changeLoginModalWindowViewModel;
-
-        ProfileModel = profileModel;
+        _changePasswordModalWindowViewModel = changePasswordModalWindowViewModel;
 
         _activePage = _pageManager.NavigateTo(2);
 
@@ -132,7 +131,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
         ChangeAvatarCommand = new RelayCommand(o => ChangeAvatar());
         ChangeLoginCommand = new RelayCommand(o => ChangeLogin());
-        ChangePasswordCommand = new AsyncCommand(ChangePassword);
+        ChangePasswordCommand = new RelayCommand(o => ChangePassword());
         ChangeEmailCommand = new AsyncCommand(ChangeEmail);
 
         LogOutCommand = new RelayCommand(o => LogOut());
@@ -154,29 +153,13 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         }
     }
 
-    // доделать попозже
     private void ChangeLogin()
     {
-        var dialogWindow = _windowManager.Show(_changeLoginModalWindowViewModel, true) as Window;
-
-        if (dialogWindow is not null)
-        {
-            dialogWindow.DataContext = _changeLoginModalWindowViewModel;
-        }
-        
-        
+        _windowManager.Show(_changeLoginModalWindowViewModel, true);
     }
-    private async Task ChangePassword()
+    private void ChangePassword()
     {
-        //var dialogWindow = _windowManager.Show(_passwordChangeDialogViewModel, true);
-
-        //if (dialogWindow is not Window window)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //if (window.DialogResult == true)
-        //    await _client.ChangePassword(CurrentUser, "password123");
+        _windowManager.Show(_changePasswordModalWindowViewModel, true);
     }
     private async Task ChangeEmail()
     {
