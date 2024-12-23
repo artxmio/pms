@@ -2,7 +2,6 @@
 using System.IO;
 using Newtonsoft.Json;
 using ProjectManagementStudio.Model.PathService;
-using System.Windows.Media.Imaging;
 using System.Windows;
 
 namespace ProjectManagementStudio.Model.UserSavedData.Wrapper;
@@ -68,6 +67,12 @@ internal class UserDataMementoWrapper :
         }
     }
 
+    public bool IsFileNull
+    {
+        get;
+        set;
+    } = false;
+
     public UserDataMementoWrapper(IPathService pathService)
     {
         _pathService = pathService;
@@ -94,10 +99,17 @@ internal class UserDataMementoWrapper :
         if (!File.Exists(_userDataFilePath))
         {
             File.Create(_userDataFilePath);
+            IsFileNull = true;
+            return;
         }
 
         string jsonString = File.ReadAllText(_userDataFilePath);
 
+        if (string.IsNullOrEmpty(jsonString))
+        {
+            IsFileNull = true;
+            return;
+        }
         _userDataMemento = JsonConvert.DeserializeObject<UserDataMemento>(jsonString)
             ?? throw new InvalidOperationException("Deserialized memento can't be null");
     }
@@ -164,7 +176,7 @@ internal class UserDataMementoWrapper :
             MessageBox.Show("Ошибка сериализации JSON: " + ex.Message, "Внимание");
         }
         catch (JsonWriterException ex)
-        {   
+        {
             MessageBox.Show("Ошибка записи JSON: " + ex.Message, "Внимание");
         }
         catch (InvalidOperationException ex)

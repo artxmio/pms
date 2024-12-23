@@ -97,7 +97,7 @@
             <TextBlock FontSize="30" 
                        FontFamily="outfit" 
                        FontWeight="Normal" 
-                       Text="{Binding CurrentUser.Login, Mode=OneWayToSource}"
+                       Text="{Binding CurrentUser.Login}"
                        Foreground="AliceBlue" Grid.Column="2" 
                        HorizontalAlignment="Left" 
                        VerticalAlignment="Center" 

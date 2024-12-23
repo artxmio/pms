@@ -46,9 +46,11 @@ internal class CurrentUserService : ICurrentUserService, ICurrentUserServiceInit
 
         try
         {
-            var authModel = new AuthModel(_userDataMementoWrapper);
-            CurrentUser = await _apiClient.GetUserByLogin(authModel);
-            MessageBox.Show("");
+            if (!_userDataMementoWrapper.IsFileNull)
+            {
+                var authModel = new AuthModel(_userDataMementoWrapper);
+                CurrentUser = await _apiClient.GetUserByLogin(authModel);
+            }
         }
         catch (HttpRequestException ex)
         {
