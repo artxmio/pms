@@ -4,25 +4,57 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectManagementStudio.View.MenuWindow.ModalWindows"
+        xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewEmail;assembly=ProjectManagementStudio.ViewModel"
+        xmlns:validations="clr-namespace:ProjectManagementStudio.ViewModel.ValidationsRules;assembly=ProjectManagementStudio.ViewModel"
         mc:Ignorable="d"
-        Title="EmailChangeDialog" Height="300" Width="550">
+        Title="EmailChangeDialog" Height="300" Width="550"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        
+        d:DataContext="{d:DesignInstance vm:ChangeEmailModalWindowViewModel}">
     <StackPanel Orientation="Vertical" Margin="10">
         <TextBlock Text="Enter new email"
                    Width="150"/>
         <TextBox
-            FontSize="20"
+            FontSize="14"
             Height="20"
-            Width="100"/>
+            Width="100">
+            
+            <TextBox.Text>
+                <Binding Path="NewEmail" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                    <Binding.ValidationRules>
+                        <validations:EmailValidationRules ValidationStep="ConvertedProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
 
         <TextBlock Text="Enter your password"
                    Width="150"/>
         <TextBox
-            FontSize="20"
+            FontSize="14"
+            Height="20"
+            Width="100">
+            
+            <TextBox.Text>
+                <Binding Path="Password" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                    <Binding.ValidationRules>
+                        <validations:PasswordValidationRules ValidationStep="ConvertedProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <Button
+            Command="{Binding CangeEmailCommand}"
+            Content="ok"
+            Margin="10"
             Height="20"
             Width="100"/>
 
         <Button 
-            Content="ok"
+            Command="{Binding CloseCommand}"
+            Content="Cancel"
             Margin="10"
             Height="20"
             Width="100"/>

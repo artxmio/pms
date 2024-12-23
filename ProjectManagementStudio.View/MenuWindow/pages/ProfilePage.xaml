@@ -36,7 +36,8 @@
 
                         <!-- СДЕЛАТЬ КОГДА СЕРВАК! -->
                         <TextBlock FontSize="35" FontFamily="outfit"
-                               FontWeight="Normal" Text="{Binding CurrentUser.Login}"
+                               FontWeight="Normal" 
+                               Text="{Binding CurrentUser.Login, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}"
                                Width="221" Height="44"
                                Margin="0,134,211,0"
                                HorizontalAlignment="Right"
