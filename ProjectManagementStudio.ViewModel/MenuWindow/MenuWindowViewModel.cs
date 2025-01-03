@@ -2,7 +2,6 @@
 using ProjectManagementStudio.Bootstrapper.Services.AvatarService;
 using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 using ProjectManagementStudio.Model.CurrentUserModel;
-using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel;
 using ProjectManagementStudio.Model.UserSavedData.Wrapper;
 using ProjectManagementStudio.ViewModel.APIClient;
 using ProjectManagementStudio.ViewModel.Command;
@@ -24,7 +23,6 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     /* // Поля // */
     #region
 
-    private readonly IAPIClient _client;
     private readonly IPageManager _pageManager;
     private readonly IWindowManager _windowManager;
 
@@ -35,7 +33,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     private readonly IChangePasswordModalWindowViewModel _changePasswordModalWindowViewModel;
     private readonly IChangeEmailModalWindowViewModel _changeEmailModalWindowViewModel;
     private IPage _activePage;
-    private BitmapImage _avatarImage;
+    private BitmapImage _avatarImage = new();
     #endregion
 
     /* // Свойства // */
@@ -99,7 +97,6 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     #endregion
 
     public MenuWindowViewModel(
-        IAPIClient APIClient,
         IWindowManager windowManager,
         IPageManager pageManager,
         IAvatarService avatarService,
@@ -109,7 +106,6 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         IChangePasswordModalWindowViewModel changePasswordModalWindowViewModel,
         IChangeEmailModalWindowViewModel changeEmailModalWindowViewModel)
     {
-        _client = APIClient;
         _pageManager = pageManager;
         _windowManager = windowManager;
         _avatarService = avatarService;
@@ -121,12 +117,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
         _activePage = _pageManager.NavigateTo(2);
 
-        /* // Загрузка аватарки // */
-        _avatarImage = new BitmapImage();
-        _avatarImage.BeginInit();
-        _avatarImage.UriSource = new Uri(_avatarService.AvatarFilePath);
-        _avatarImage.CacheOption = BitmapCacheOption.OnLoad;
-        _avatarImage.EndInit();
+        LoadAvatarImage();
 
         CloseCommand = new RelayCommand(o => _windowManager.Close(this));
         NavigateToWelcomePage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(2));
@@ -134,13 +125,22 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         NavigateToSettingsPage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(4));
 
         ChangeAvatarCommand = new RelayCommand(o => ChangeAvatar());
-        ChangeLoginCommand = new RelayCommand(o => ChangeLogin());
-        ChangePasswordCommand = new RelayCommand(o => ChangePassword());
-        ChangeEmailCommand = new RelayCommand(o => ChangeEmail());
+        ChangeLoginCommand = new RelayCommand(o => _windowManager.Show(_changeLoginModalWindowViewModel, true));
+        ChangePasswordCommand = new RelayCommand(o => _windowManager.Show(_changePasswordModalWindowViewModel, true));
+        ChangeEmailCommand = new RelayCommand(o => _windowManager.Show(_changeEmailModalWindowViewModel, true));
 
         LogOutCommand = new RelayCommand(o => LogOut());
     }
 
+    private void LoadAvatarImage()
+    {
+        _avatarImage = new BitmapImage();
+        _avatarImage.BeginInit();
+        _avatarImage.UriSource = new Uri(_avatarService.AvatarFilePath);
+        _avatarImage.CacheOption = BitmapCacheOption.OnLoad;
+        _avatarImage.EndInit();
+    }
+    
     private void ChangeAvatar()
     {
         OpenFileDialog openFileDialog = new()
@@ -155,21 +155,6 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         {
             AvatarImage = _avatarService.ChangeAvatar(openFileDialog.FileName);
         }
-    }
-
-    private void ChangeLogin()
-    {
-        _windowManager.Show(_changeLoginModalWindowViewModel, true);
-    }
-
-    private void ChangePassword()
-    {
-        _windowManager.Show(_changePasswordModalWindowViewModel, true);
-    }
-
-    private void ChangeEmail()
-    {
-        _windowManager.Show(_changeEmailModalWindowViewModel, true);
     }
 
     private void LogOut()

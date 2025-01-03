@@ -110,6 +110,7 @@ internal class UserDataMementoWrapper :
             IsFileNull = true;
             return;
         }
+
         _userDataMemento = JsonConvert.DeserializeObject<UserDataMemento>(jsonString)
             ?? throw new InvalidOperationException("Deserialized memento can't be null");
     }
