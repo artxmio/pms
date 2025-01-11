@@ -1,4 +1,5 @@
 ﻿using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
+using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel.ModalWindowModels.NewEmail;
 using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel.ModalWindowModels.NewLogin;
 using ProjectManagementStudio.Model.UserSavedData.Wrapper;
 using ProjectManagementStudio.ViewModel.APIClient;
@@ -11,7 +12,7 @@ namespace ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewEmail;
 
 public class ChangeEmailModalWindowViewModel : IChangeEmailModalWindowViewModel
 {
-    private readonly IChangeLoginModel _model;
+    private readonly IChangeEmailModel _model;
     private readonly IWindowManager _windowManager;
     private readonly IAPIClient _client;
     private readonly ICurrentUserService _currentUserService;
@@ -19,8 +20,8 @@ public class ChangeEmailModalWindowViewModel : IChangeEmailModalWindowViewModel
 
     public string NewEmail
     {
-        get => _model.NewLogin;
-        set => _model.NewLogin = value;
+        get => _model.NewEmail;
+        set => _model.NewEmail = value;
     }
 
     public string Password
@@ -33,7 +34,7 @@ public class ChangeEmailModalWindowViewModel : IChangeEmailModalWindowViewModel
     public ICommand CangeEmailCommand { get; }
 
     public ChangeEmailModalWindowViewModel(
-        IChangeLoginModel model,
+        IChangeEmailModel model,
         IWindowManager manager,
         IAPIClient client,
         ICurrentUserService currentUserService,
@@ -62,7 +63,7 @@ public class ChangeEmailModalWindowViewModel : IChangeEmailModalWindowViewModel
         {
             // Отправляем запрос на изменение логина
             await _client.ChangeUserParametr(_currentUserService.CurrentUser, ChangeableParams.Email, NewEmail);
-            MessageBox.Show($"Почта изменён на {NewEmail}", "Успех!");
+            MessageBox.Show($"Почта изменена на {NewEmail}", "Успех!");
 
             //обновляем локальные данные о пользователе
             _currentUserService.CurrentUser.Email = NewEmail;
