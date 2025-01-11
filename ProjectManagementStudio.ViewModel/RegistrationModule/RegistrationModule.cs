@@ -2,6 +2,7 @@
 using ProjectManagementStudio.ViewModel.APIClient;
 using ProjectManagementStudio.ViewModel.MainWindow;
 using ProjectManagementStudio.ViewModel.MenuWindow;
+using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.AboutText;
 using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewEmail;
 using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewLogin;
 using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewPassword;
@@ -19,6 +20,7 @@ public class RegistrationModule : Module
         builder.RegisterType<ChangeLoginModalWindowViewModel>().As<IChangeLoginModalWindowViewModel>().SingleInstance();
         builder.RegisterType<ChangePasswordModalWindowViewModel>().As<IChangePasswordModalWindowViewModel>().SingleInstance();
         builder.RegisterType<ChangeEmailModalWindowViewModel>().As<IChangeEmailModalWindowViewModel>().SingleInstance();
+        builder.RegisterType<ChangeAboutTextModalWindowViewModel>().As<IChangeAboutTextModalWindowViewModel>().SingleInstance();
 
         builder.RegisterType<APIClient.APIClient>().As<IAPIClient>().SingleInstance();
 

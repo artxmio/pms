@@ -254,7 +254,7 @@
                         VerticalAlignment="Top"
                         Margin="0,14,0,0"/>
 
-                        <TextBlock Text="Pellentesque commodo ipsum orci, a dignissim metus convallis ut."
+                        <TextBlock Text="{Binding CurrentUser.AboutText, Mode=TwoWay}"
                                FontFamily="outfit"
                                FontSize="30"
                                TextWrapping="Wrap"
@@ -264,7 +264,8 @@
                                Foreground="White"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Top"
-                               Margin="0,91,0,0"/>
+                               Margin="0,80,0,0"/>
+                        <Button Command="{Binding ChangeAboutTextCommand}" Content="Change" Margin="50 200 50 10"/>
                     </Grid>
                 </Border>
 

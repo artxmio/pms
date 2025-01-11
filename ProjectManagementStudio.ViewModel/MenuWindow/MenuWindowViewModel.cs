@@ -1,18 +1,11 @@
-﻿using Microsoft.Win32;
-using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
+﻿using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 using ProjectManagementStudio.Model.CurrentUserModel;
-using ProjectManagementStudio.Model.UserSavedData.Wrapper;
-using ProjectManagementStudio.ViewModel.AvatarService;
 using ProjectManagementStudio.ViewModel.Command;
-using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewEmail;
-using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewLogin;
-using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewPassword;
 using ProjectManagementStudio.ViewModel.Pages;
 using ProjectManagementStudio.ViewModel.PageServices.IProfilePageService;
 using ProjectManagementStudio.ViewModel.Windows;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
@@ -44,7 +37,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         set
         {
             _currentUserService.CurrentUser = value;
-            
+
             OnPropertyChanged();
         }
     }
@@ -71,10 +64,9 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
             }
         }
     }
-
     #endregion
 
-    /* // Команды //*/
+    /* // Команды // */
     #region 
 
     public ICommand CloseCommand { get; }
@@ -87,6 +79,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     public ICommand ChangeLoginCommand { get; }
     public ICommand ChangePasswordCommand { get; }
     public ICommand ChangeEmailCommand { get; }
+    public ICommand ChangeAboutTextCommand { get; }
 
     public ICommand LogOutCommand { get; }
 
@@ -119,6 +112,8 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         ChangeLoginCommand = new RelayCommand(o => _profilePageService.OpenChangeLoginWindow());
         ChangePasswordCommand = new RelayCommand(o => _profilePageService.OpenChangePasswordWindow());
         ChangeEmailCommand = new RelayCommand(o => _profilePageService.OpenChangeEmailWindow());
+        ChangeAboutTextCommand = new RelayCommand(o => _profilePageService.OpenChangeAboutTextWindow());
+
         LogOutCommand = new RelayCommand(o => _profilePageService.Logout(this));
         #endregion
     }

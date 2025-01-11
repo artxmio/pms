@@ -3,6 +3,8 @@ using System.IO;
 using Newtonsoft.Json;
 using ProjectManagementStudio.Model.PathService;
 using System.Windows;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace ProjectManagementStudio.Model.UserSavedData.Wrapper;
 
@@ -41,6 +43,19 @@ internal class UserDataMementoWrapper :
         {
             EnsureInitialized();
             _userDataMemento.UserPassword = value;
+        }
+    }
+    public string AboutText
+    {
+        get
+        {
+            EnsureInitialized();
+            return _userDataMemento.AboutText;
+        }
+        set
+        {
+            EnsureInitialized();
+            _userDataMemento.AboutText = value;
         }
     }
 

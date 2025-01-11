@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using ProjectManagementStudio.Bootstrapper.Services.AvatarService;
 using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
-using ProjectManagementStudio.Bootstrapper.Services.PageServices;
+using ProjectManagementStudio.Bootstrapper.Services.PageServices.ProfilePageService;
 using ProjectManagementStudio.Bootstrapper.Services.PathService;
 using ProjectManagementStudio.Bootstrapper.Services.UrlService;
 using ProjectManagementStudio.Model.UserSavedData.Wrapper;
@@ -74,11 +74,9 @@ public class Bootstrapper : IDisposable
         _container.Resolve<IUrlServiceInitializer>().Initialize();
         _container.Resolve<IPathServiceInitializer>().Initialize();
         _container.Resolve<IAvatarServiceInitializer>().Initialize();
-
-        _container.Resolve<IProfilePageServiceInitializer>().Initialize();
-
         _container.Resolve<IUserDataMementoWrapperInitializer>().Initialize();
         _container.Resolve<ICurrentUserServiceInitializer>().Initialize();
+        _container.Resolve<IProfilePageServiceInitializer>().Initialize();
     }
 
     public void Dispose() => _container.Dispose();

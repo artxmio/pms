@@ -15,10 +15,14 @@ public class UserDataMemento : IUserDataMemento
     [DataMember(Name = "isRememberMe")]
     public bool IsRememberMe { get; set; }
 
+    [DataMember(Name = "aboutText")]
+    public string AboutText { get; set; }
+
     public UserDataMemento()
     {
         UserLogin = ""; 
         UserPassword = "";
         IsRememberMe = false;
+        AboutText = "";
     }
 }

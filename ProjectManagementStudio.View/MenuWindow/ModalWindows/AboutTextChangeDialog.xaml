@@ -1,0 +1,56 @@
+﻿<Window x:Class="ProjectManagementStudio.View.MenuWindow.ModalWindows.AboutTextChangeDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectManagementStudio.View.MenuWindow.ModalWindows"
+        xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.AboutText;assembly=ProjectManagementStudio.ViewModel"
+        mc:Ignorable="d"
+        Title="AboutTextChangeDialog" Height="300" Width="550"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        
+        d:DataContext="{d:DesignInstance vm:ChangeAboutTextModalWindowViewModel}">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Margin="10 10 0 10"
+            Text="Enter about text and click on the button"
+            />
+
+        <Border
+            Grid.Row="1">
+            <TextBox
+                Text="{Binding AboutText}"
+            Margin="10"/>
+        </Border>
+
+
+        <StackPanel
+            Grid.Row="2"
+            Orientation="Horizontal"
+            HorizontalAlignment="Center">
+
+            <Button 
+                Command="{Binding ChangeAboutTextCommand}"
+                Width="100"
+                Height="50"
+                Margin="10"
+                Content="ok"/>
+
+            <Button 
+                Command="{Binding CloseCommand}"
+                Width="100"
+                Height="50"
+                Margin="10"
+                Content="cancel"/>
+            
+        </StackPanel>
+    </Grid>
+</Window>

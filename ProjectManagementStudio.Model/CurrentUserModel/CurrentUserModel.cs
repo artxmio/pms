@@ -9,6 +9,7 @@ public class CurrentUserModel : ICurrentUserModel, INotifyPropertyChanged
     private string _userLogin = "";
     private string _userPassword = "";
     private string _userEmail = "";
+    private string _aboutText = "";
 
     public long UserId
     {
@@ -55,6 +56,18 @@ public class CurrentUserModel : ICurrentUserModel, INotifyPropertyChanged
         set
         {
             _userEmail = value;
+            OnPropertyChanged();
+        }
+    }
+    public string AboutText
+    {
+        get
+        {
+            return _aboutText;
+        }
+        set
+        {
+            _aboutText = value;
             OnPropertyChanged();
         }
     }

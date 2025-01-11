@@ -1,6 +1,5 @@
 ﻿using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel.ModalWindowModels.NewEmail;
-using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel.ModalWindowModels.NewLogin;
 using ProjectManagementStudio.Model.UserSavedData.Wrapper;
 using ProjectManagementStudio.ViewModel.APIClient;
 using ProjectManagementStudio.ViewModel.Command;
@@ -16,7 +15,6 @@ public class ChangeEmailModalWindowViewModel : IChangeEmailModalWindowViewModel
     private readonly IWindowManager _windowManager;
     private readonly IAPIClient _client;
     private readonly ICurrentUserService _currentUserService;
-    private readonly IUserDataMementoWrapper _userDataMementoWrapper;
 
     public string NewEmail
     {
@@ -37,14 +35,12 @@ public class ChangeEmailModalWindowViewModel : IChangeEmailModalWindowViewModel
         IChangeEmailModel model,
         IWindowManager manager,
         IAPIClient client,
-        ICurrentUserService currentUserService,
-        IUserDataMementoWrapper userDataMementoWrapper)
+        ICurrentUserService currentUserService)
     {
         _model = model;
         _windowManager = manager;
         _client = client;
         _currentUserService = currentUserService;
-        _userDataMementoWrapper = userDataMementoWrapper;
 
         CloseCommand = new RelayCommand(o => CloseDialog());
         CangeEmailCommand = new AsyncCommand(ChangeEmail);

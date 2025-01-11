@@ -6,4 +6,5 @@ public interface ICurrentUserModel
     string Login { get; set; }
     string Password { get; set; }
     string Email { get; set; }
+    string AboutText { get; set; }
 }
