@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using ProjectManagementStudio.Model.UserSavedData.Wrapper;
 using ProjectManagementStudio.ViewModel.AvatarService;
+using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.AboutText;
 using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewEmail;
 using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewLogin;
 using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewPassword;
@@ -11,7 +12,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
-namespace ProjectManagementStudio.Bootstrapper.Services.PageServices;
+namespace ProjectManagementStudio.Bootstrapper.Services.PageServices.ProfilePageService;
 
 internal class ProfilePageService : IProfilePageService, IProfilePageServiceInitializer, INotifyPropertyChanged
 {
@@ -22,6 +23,7 @@ internal class ProfilePageService : IProfilePageService, IProfilePageServiceInit
     private readonly IChangeLoginModalWindowViewModel _changeLoginModalWindowViewModel;
     private readonly IChangePasswordModalWindowViewModel _changePasswordModalWindowViewModel;
     private readonly IChangeEmailModalWindowViewModel _changeEmailModalWindowViewModel;
+    private readonly IChangeAboutTextModalWindowViewModel _changeAboutTextModalWindowViewModel;
 
     private BitmapImage? _avatarImage;
 
@@ -42,13 +44,31 @@ internal class ProfilePageService : IProfilePageService, IProfilePageServiceInit
         }
     }
 
+    public string AboutText
+    {
+        get
+        {
+            EnsureInitialized();
+            return _userDataMementoWrapper.AboutText ?? throw new NullReferenceException();
+        }
+        set
+        {
+            if (value is not null)
+            {
+                _userDataMementoWrapper.AboutText = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
     public ProfilePageService(
         IWindowManager windowManager,
         IAvatarService avatarService,
         IUserDataMementoWrapper userDataMementoWrapper,
         IChangeLoginModalWindowViewModel changeLoginModalWindowViewModel,
         IChangePasswordModalWindowViewModel changePasswordModalWindowViewModel,
-        IChangeEmailModalWindowViewModel changeEmailModalWindowViewModel)
+        IChangeEmailModalWindowViewModel changeEmailModalWindowViewModel,
+        IChangeAboutTextModalWindowViewModel changeAboutTextModalWindowViewModel)
     {
         _windowManager = windowManager;
         _avatarService = avatarService;
@@ -57,6 +77,7 @@ internal class ProfilePageService : IProfilePageService, IProfilePageServiceInit
         _changeLoginModalWindowViewModel = changeLoginModalWindowViewModel;
         _changePasswordModalWindowViewModel = changePasswordModalWindowViewModel;
         _changeEmailModalWindowViewModel = changeEmailModalWindowViewModel;
+        _changeAboutTextModalWindowViewModel = changeAboutTextModalWindowViewModel;
     }
 
     public void Initialize()
@@ -107,6 +128,11 @@ internal class ProfilePageService : IProfilePageService, IProfilePageServiceInit
     public void OpenChangeEmailWindow()
     {
         _windowManager.Show(_changeEmailModalWindowViewModel, true);
+    }
+
+    public void OpenChangeAboutTextWindow()
+    {
+        _windowManager.Show(_changeAboutTextModalWindowViewModel, true);
     }
 
     public void Logout(IWindowViewModel viewModel)

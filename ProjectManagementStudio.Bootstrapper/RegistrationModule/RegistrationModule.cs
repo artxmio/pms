@@ -2,7 +2,7 @@
 using ProjectManagementStudio.Bootstrapper.Factories;
 using ProjectManagementStudio.Bootstrapper.Services.AvatarService;
 using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
-using ProjectManagementStudio.Bootstrapper.Services.PageServices;
+using ProjectManagementStudio.Bootstrapper.Services.PageServices.ProfilePageService;
 using ProjectManagementStudio.Bootstrapper.Services.PathService;
 using ProjectManagementStudio.Bootstrapper.Services.UrlService;
 using ProjectManagementStudio.Model.PathService;
