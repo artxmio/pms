@@ -45,33 +45,6 @@ internal class UserDataMementoWrapper :
             _userDataMemento.UserPassword = value;
         }
     }
-    public string Email
-    {
-        get
-        {
-            EnsureInitialized();
-            return _userDataMemento.UserPassword;
-        }
-
-        set
-        {
-            EnsureInitialized();
-            _userDataMemento.UserPassword = value;
-        }
-    }
-    public string AboutText
-    {
-        get
-        {
-            EnsureInitialized();
-            return _userDataMemento.AboutText;
-        }
-        set
-        {
-            EnsureInitialized();
-            _userDataMemento.AboutText = value;
-        }
-    }
 
     public bool IsRememberMe
     {
