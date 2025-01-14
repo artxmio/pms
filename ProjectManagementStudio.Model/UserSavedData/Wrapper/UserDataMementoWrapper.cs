@@ -46,6 +46,20 @@ internal class UserDataMementoWrapper :
         }
     }
 
+    public string AboutText
+    {
+        get
+        {
+            EnsureInitialized();
+            return _userDataMemento.AboutText;
+        }
+        set
+        {
+            EnsureInitialized();
+            _userDataMemento.AboutText = value;
+        }
+    }
+
     public bool IsRememberMe
     {
         get
