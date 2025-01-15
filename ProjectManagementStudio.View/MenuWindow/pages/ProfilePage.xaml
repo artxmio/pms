@@ -320,7 +320,7 @@
                     </Border.Effect>
 
                     <Grid>
-                        <!--Конпка изменения дыннах о себе-->
+                        <!--Конпка изменения даннах о себе-->
                         <Button Height="25" Width="25"
                                 Background="Transparent"
                                 BorderBrush="Transparent"

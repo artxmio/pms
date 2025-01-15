@@ -8,49 +8,118 @@
         mc:Ignorable="d"
         Title="AboutTextChangeDialog" Height="300" Width="550"
         WindowStyle="None"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        Background="Transparent"
         WindowStartupLocation="CenterScreen"
-        
         d:DataContext="{d:DesignInstance vm:ChangeAboutTextModalWindowViewModel}">
-    <Grid>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+    <Window.Resources>
+        <!-- Полностью переопределяем шаблон TextBox -->
+        <Style TargetType="TextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ScrollViewer x:Name="PART_ContentHost" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <!-- Сбрасываем стандартные свойства обводки -->
+            <Setter Property="Background" Value="White" />
+            <Setter Property="BorderBrush" Value="Gray" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        </Style>
+    </Window.Resources>
 
-        <TextBlock
+    <Border CornerRadius="20" Background="#724D9D">
+        <Grid Background="Transparent">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock
             Margin="10 10 0 10"
+            FontFamily="Outfit"
+            Foreground="#FFFFFF"
+            FontSize="14"
+            FontWeight="Normal"
             Text="Enter about text and click on the button"
             />
 
-        <Border
-            Grid.Row="1">
-            <TextBox
-                Text="{Binding AboutText}"
-            Margin="10"/>
-        </Border>
+            <Border Margin="0,35,0,0"
+                    Height="200" Width="530" CornerRadius="20"
+                    Background="#2C1B47">
+            <TextBox  Background="#2C1B47"
+                      BorderBrush="Transparent"
+                      FontFamily="Outfit"
+                      FontSize="14"
+                      Foreground="#FFFFFF"
+                      Text="{Binding AboutText}"
+                      Margin="10"/>
+            </Border>
 
 
-        <StackPanel
+            <StackPanel
             Grid.Row="2"
             Orientation="Horizontal"
             HorizontalAlignment="Center">
 
-            <Button 
+                <Button 
                 Command="{Binding ChangeAboutTextCommand}"
-                Width="100"
-                Height="50"
-                Margin="10"
-                Content="ok"/>
+                FontFamily="outfit"
+                Foreground="#FFFFFF"
+                FontSize="14"
+                FontWeight="Normal">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border" Width="100" Height="50" Margin="10" 
+                                    Background="#512f78" CornerRadius="10">
+                                <ContentPresenter Content="ok"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="#482f66"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
 
-            <Button 
-                Command="{Binding CloseCommand}"
-                Width="100"
-                Height="50"
-                Margin="10"
-                Content="cancel"/>
-            
-        </StackPanel>
-    </Grid>
+                <Button
+                    FontFamily="outfit"
+                    Foreground="#FFFFFF"
+                    FontSize="14"
+                    FontWeight="Normal"
+                    Command="{Binding CloseCommand}">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border" Width="100" Height="50" Margin="10" 
+                                    Background="#512f78" CornerRadius="10">
+                                <ContentPresenter Content="cancel"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="#482f66"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+            </StackPanel>
+        </Grid>
+    </Border>
 </Window>
+    
