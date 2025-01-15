@@ -18,6 +18,7 @@
 		<None Remove="Source\backgroundImage.jpg" />
 		<None Remove="Source\Close_icon.png" />
 		<None Remove="Source\DarkQuestionMark.png" />
+		<None Remove="Source\Edit_pencil.png" />
 		<None Remove="Source\ExitAcc.png" />
 		<None Remove="Source\file.png" />
 		<None Remove="Source\home.png" />
@@ -27,6 +28,12 @@
 		<None Remove="Source\Star.png" />
 		<None Remove="Source\two_people.svg" />
 		<None Remove="Source\user.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Source\Edit_pencil.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
 	</ItemGroup>
 
 	<ItemGroup>
