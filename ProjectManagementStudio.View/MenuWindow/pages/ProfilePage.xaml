@@ -32,7 +32,7 @@
                                         <Thumb>
                                             <Thumb.Template>
                                                 <ControlTemplate TargetType="Thumb">
-                                                    <Border VerticalAlignment="Top" Margin="0,0,0,0">
+                                                    <Border Height="120" Width="40" VerticalAlignment="Top" Margin="0,0,0,0">
                                                         
                                                     </Border>
                                                 </ControlTemplate>
@@ -319,6 +319,21 @@
                     </Border.Effect>
 
                     <Grid>
+                        <!--Конпка изменения дыннах о себе-->
+                        <Button Height="40" Width="40"
+                                Background="Transparent"
+                                BorderBrush="Transparent"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                Margin="0,10,10,0"
+                                >
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Image Source =""></Image>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        
                         <TextBlock Text="About"
                         FontFamily="outfit"
                         FontSize="35"

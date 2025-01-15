@@ -64,14 +64,15 @@
                 <ColumnDefinition Width="Auto" />
                 <!-- Кнопка закрытия -->
             </Grid.ColumnDefinitions>
-
+            
             <!-- Кнопка Профиля -->
             <Button Grid.Column="1"
                     Command="{Binding NavigateToProfilePage}"
-            BorderBrush="Transparent"
-            Width="65" Height="65" 
-            HorizontalAlignment="Left" VerticalAlignment="Center" 
-            Background="Transparent">
+                    BorderBrush="Transparent"
+                    Width="65" Height="65" 
+                    HorizontalAlignment="Left" VerticalAlignment="Center" 
+                    Background="Transparent"
+                    Margin="0,0,10,0">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}">
@@ -79,7 +80,8 @@
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
-                <Image Height="60" Width="60" Source="{Binding AvatarImage, Mode=OneWay}">
+                <Image Height="60" Width="60" Source="{Binding AvatarImage, Mode=OneWay}"
+                       x:Name="ProfimeImage">
                     <Image.Style>
                         <Style TargetType="Image">
                             <Setter Property="Opacity" Value="0.7"/>
@@ -94,16 +96,45 @@
             </Button>
 
             <!-- Логин пользователя -->
-            <TextBlock FontSize="30" 
-                       FontFamily="outfit" 
-                       FontWeight="Normal" 
-                       Text="{Binding CurrentUser.Login}"
-                       Foreground="AliceBlue" Grid.Column="2" 
-                       HorizontalAlignment="Left" 
-                       VerticalAlignment="Center" 
-                       Margin="10,0,86,0" 
-                       Height="38" 
-                       Width="190"/>
+            <Button Width="190" Height="38"
+                    Command="{Binding NavigateToProfilePage}"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Grid.Column="2"
+                    Margin="0,0,86,0"
+                    Panel.ZIndex="5"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Content="{Binding CurrentUser.Login}">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="BorderElement"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    CornerRadius="5">
+                            <!-- TextBlock для отображения текста -->
+                            <TextBlock x:Name="TextElement"
+                           Foreground="#FFFFFF"
+                           FontFamily="Outfit"
+                           FontWeight="Normal"
+                           FontSize="30"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Text="{TemplateBinding Content}"
+                           Opacity="0.8" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <!-- Изменение прозрачности текста при наведении -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="TextElement" Property="Opacity" Value="1" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="False">
+                                <Setter TargetName="TextElement" Property="Opacity" Value="0.8" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
 
             <!-- Кнопка закрытия -->
             <Button Grid.Column="2"

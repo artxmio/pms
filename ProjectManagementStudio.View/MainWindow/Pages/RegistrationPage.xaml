@@ -50,7 +50,7 @@
              BorderBrush="White"
              FontWeight="Normal" FontFamily="Outfit">
                 <TextBox.Text>
-                    <Binding Path="RegistrationModel.login" UpdateSourceTrigger="PropertyChanged">
+                    <Binding Path="RegistrationModel.Login" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
                             <validations:LoginValidationRules ValidationStep="ConvertedProposedValue"/>
                         </Binding.ValidationRules>
@@ -66,7 +66,7 @@
              BorderBrush="White"
              FontWeight="Normal" FontFamily="Outfit">
                 <TextBox.Text>
-                    <Binding Path="RegistrationModel.email" UpdateSourceTrigger="PropertyChanged">
+                    <Binding Path="RegistrationModel.Email" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
                             <validations:EmailValidationRules ValidationStep="ConvertedProposedValue"/>
                         </Binding.ValidationRules>
@@ -82,7 +82,7 @@
              BorderBrush="White"
              FontWeight="Normal" FontFamily="Outfit">
                 <TextBox.Text>
-                    <Binding Path="RegistrationModel.password" UpdateSourceTrigger="PropertyChanged">
+                    <Binding Path="RegistrationModel.Password" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
                             <validations:PasswordValidationRules ValidationStep="ConvertedProposedValue"/>
                         </Binding.ValidationRules>
