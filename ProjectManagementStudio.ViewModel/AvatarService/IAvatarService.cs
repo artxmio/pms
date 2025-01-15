@@ -1,7 +1,6 @@
-﻿using System.Windows.Media;
-using System.Windows.Media.Imaging;
+﻿using System.Windows.Media.Imaging;
 
-namespace ProjectManagementStudio.Bootstrapper.Services.AvatarService;
+namespace ProjectManagementStudio.ViewModel.AvatarService;
 
 public interface IAvatarService
 {

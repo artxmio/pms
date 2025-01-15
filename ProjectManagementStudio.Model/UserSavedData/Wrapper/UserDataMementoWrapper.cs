@@ -2,7 +2,9 @@
 using System.IO;
 using Newtonsoft.Json;
 using ProjectManagementStudio.Model.PathService;
-using System.Windows.Media.Imaging;
+using System.Windows;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace ProjectManagementStudio.Model.UserSavedData.Wrapper;
 
@@ -44,6 +46,20 @@ internal class UserDataMementoWrapper :
         }
     }
 
+    public string AboutText
+    {
+        get
+        {
+            EnsureInitialized();
+            return _userDataMemento.AboutText;
+        }
+        set
+        {
+            EnsureInitialized();
+            _userDataMemento.AboutText = value;
+        }
+    }
+
     public bool IsRememberMe
     {
         get
@@ -66,6 +82,12 @@ internal class UserDataMementoWrapper :
             }
         }
     }
+
+    public bool IsFileNull
+    {
+        get;
+        set;
+    } = false;
 
     public UserDataMementoWrapper(IPathService pathService)
     {
@@ -92,10 +114,18 @@ internal class UserDataMementoWrapper :
 
         if (!File.Exists(_userDataFilePath))
         {
+            File.Create(_userDataFilePath);
+            IsFileNull = true;
             return;
         }
 
         string jsonString = File.ReadAllText(_userDataFilePath);
+
+        if (string.IsNullOrEmpty(jsonString))
+        {
+            IsFileNull = true;
+            return;
+        }
 
         _userDataMemento = JsonConvert.DeserializeObject<UserDataMemento>(jsonString)
             ?? throw new InvalidOperationException("Deserialized memento can't be null");
@@ -109,18 +139,78 @@ internal class UserDataMementoWrapper :
         }
     }
 
-    private void SaveUserData()
+    public void SaveUserData()
     {
-        EnsureInitialized();
+        try
+        {
+            EnsureInitialized();
 
-        var json = JsonConvert.SerializeObject(_userDataMemento);
+            var json = JsonConvert.SerializeObject(_userDataMemento)
+                ?? throw new InvalidOperationException("Deserialized memento can't be null");
 
-        File.WriteAllText(_userDataFilePath, json);
+            File.WriteAllText(_userDataFilePath, json);
+        }
+        catch (JsonSerializationException ex)
+        {
+            MessageBox.Show("Ошибка сериализации JSON: " + ex.Message, "Внимание");
+        }
+        catch (JsonWriterException ex)
+        {
+            MessageBox.Show("Ошибка записи JSON: " + ex.Message, "Внимание");
+        }
+        catch (InvalidOperationException ex)
+        {
+            MessageBox.Show("Ошибка: " + ex.Message, "Внимание");
+        }
+        catch (IOException ex)
+        {
+            MessageBox.Show("Ошибка ввода-вывода при записи в файл: " + ex.Message, "Внимание");
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            Console.WriteLine("Ошибка доступа при записи в файл: " + ex.Message, "Внимание");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show("Произошла неожиданная ошибка: " + ex.Message, "Внимание");
+        }
     }
 
-    private void DeleteUserData()
+    public void DeleteUserData()
     {
-        EnsureInitialized();
-        File.Delete(_userDataFilePath);
+        try
+        {
+            EnsureInitialized();
+
+            _userDataMemento.IsRememberMe = false;
+
+            var json = JsonConvert.SerializeObject(_userDataMemento);
+
+            File.WriteAllText(_userDataFilePath, json);
+        }
+        catch (JsonSerializationException ex)
+        {
+            MessageBox.Show("Ошибка сериализации JSON: " + ex.Message, "Внимание");
+        }
+        catch (JsonWriterException ex)
+        {
+            MessageBox.Show("Ошибка записи JSON: " + ex.Message, "Внимание");
+        }
+        catch (InvalidOperationException ex)
+        {
+            MessageBox.Show("Ошибка инициализации: " + ex.Message, "Внимание");
+        }
+        catch (IOException ex)
+        {
+            MessageBox.Show("Ошибка ввода-вывода при записи в файл: " + ex.Message, "Внимание");
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            MessageBox.Show("Ошибка доступа при записи в файл: " + ex.Message, "Внимание");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show("Произошла неожиданная ошибка: " + ex.Message, "Внимание");
+        }
     }
 }

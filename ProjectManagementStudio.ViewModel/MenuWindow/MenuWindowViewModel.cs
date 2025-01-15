@@ -1,18 +1,11 @@
-﻿using Microsoft.Win32;
-using ProjectManagementStudio.Bootstrapper.Services.AvatarService;
-using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
+﻿using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 using ProjectManagementStudio.Model.CurrentUserModel;
-using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel;
-using ProjectManagementStudio.ViewModel.APIClient;
 using ProjectManagementStudio.ViewModel.Command;
-using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.ChangeEmail;
-using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.ChangeLogin;
-using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.ChangePassword;
 using ProjectManagementStudio.ViewModel.Pages;
+using ProjectManagementStudio.ViewModel.PageServices.IProfilePageService;
 using ProjectManagementStudio.ViewModel.Windows;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
@@ -23,24 +16,18 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     /* // Поля // */
     #region
 
-    private readonly IAPIClient _client;
     private readonly IPageManager _pageManager;
     private readonly IWindowManager _windowManager;
 
-    private readonly IAvatarService _avatarService;
     private readonly ICurrentUserService _currentUserService;
-    private readonly ILoginChangeDialogViewModel _loginChangeDialogViewModel;
-    private readonly IPasswordChangeDialogViewModel _passwordChangeDialogViewModel;
-    private readonly IEmailChangeDialogViewModel _emailChangeDialogViewModel;
+    private readonly IProfilePageService _profilePageService;
     private IPage _activePage;
-    private BitmapImage _avatarImage;
+    private BitmapImage _avatarImage = new();
     #endregion
 
     /* // Свойства // */
     #region
 
-    public IProfileModel ProfileModel { get; set; }
-    
     public ICurrentUserModel CurrentUser
     {
         get
@@ -50,6 +37,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         set
         {
             _currentUserService.CurrentUser = value;
+
             OnPropertyChanged();
         }
     }
@@ -76,10 +64,9 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
             }
         }
     }
-
     #endregion
 
-    /* // Команды //*/
+    /* // Команды // */
     #region 
 
     public ICommand CloseCommand { get; }
@@ -92,106 +79,43 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     public ICommand ChangeLoginCommand { get; }
     public ICommand ChangePasswordCommand { get; }
     public ICommand ChangeEmailCommand { get; }
+    public ICommand ChangeAboutTextCommand { get; }
+
+    public ICommand LogOutCommand { get; }
 
     #endregion
 
     public MenuWindowViewModel(
-        IAPIClient APIClient,
         IWindowManager windowManager,
         IPageManager pageManager,
-        IProfileModel profileModel,
-        IAvatarService avatarService,
         ICurrentUserService currentUserService,
-        ILoginChangeDialogViewModel loginChangeDialogViewModel,
-        IPasswordChangeDialogViewModel passwordChangeDialogViewModel,
-        IEmailChangeDialogViewModel emailChangeDialogViewModel)
+        IProfilePageService profilePageService)
     {
-        _client = APIClient;
         _pageManager = pageManager;
         _windowManager = windowManager;
-        _avatarService = avatarService;
         _currentUserService = currentUserService;
 
-        ProfileModel = profileModel;
+        _profilePageService = profilePageService;
 
         _activePage = _pageManager.NavigateTo(2);
 
-        _loginChangeDialogViewModel = loginChangeDialogViewModel;
-        _passwordChangeDialogViewModel = passwordChangeDialogViewModel;
-        _emailChangeDialogViewModel = emailChangeDialogViewModel;
-
-        /* // Загрузка аватарки // */
-        _avatarImage = new BitmapImage();
-        _avatarImage.BeginInit();
-        _avatarImage.UriSource = new Uri(_avatarService.AvatarFilePath);
-        _avatarImage.CacheOption = BitmapCacheOption.OnLoad;
-        _avatarImage.EndInit();
+        AvatarImage = profilePageService.AvatarImage;
 
         CloseCommand = new RelayCommand(o => _windowManager.Close(this));
         NavigateToWelcomePage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(2));
         NavigateToProfilePage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(3));
         NavigateToSettingsPage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(4));
 
-        ChangeAvatarCommand = new RelayCommand(o => ChangeAvatar());
-        ChangeLoginCommand = new AsyncCommand(ChangeLogin);
-        ChangePasswordCommand = new AsyncCommand(ChangePassword);
-        ChangeEmailCommand = new AsyncCommand(ChangeEmail);
-    }
+        // Profile's functions //
+        #region 
+        ChangeAvatarCommand = new RelayCommand(o => AvatarImage = _profilePageService.ChangeAvatar());
+        ChangeLoginCommand = new RelayCommand(o => _profilePageService.OpenChangeLoginWindow());
+        ChangePasswordCommand = new RelayCommand(o => _profilePageService.OpenChangePasswordWindow());
+        ChangeEmailCommand = new RelayCommand(o => _profilePageService.OpenChangeEmailWindow());
+        ChangeAboutTextCommand = new RelayCommand(o => _profilePageService.OpenChangeAboutTextWindow());
 
-    private void ChangeAvatar()
-    {
-        OpenFileDialog openFileDialog = new()
-        {
-            Title = "Выберите аватар",
-            InitialDirectory = "c:\\",
-            Filter = "Image files (*.png;*.jpg)|*.png;*.jpg",
-            FilterIndex = 2
-        };
-
-        if (openFileDialog.ShowDialog() is not null && openFileDialog.FileName != string.Empty)
-        {
-            AvatarImage = _avatarService.ChangeAvatar(openFileDialog.FileName);
-        }
-    }
-
-    private async Task ChangeLogin()
-    {
-        var dialogWindow = _windowManager.Show(_loginChangeDialogViewModel, true) as Window;
-
-        if (dialogWindow is not Window window)
-        {
-            throw new NotImplementedException();
-        }
-        window.DataContext = _loginChangeDialogViewModel;
-
-        if(window.DialogResult == true)
-            await _client.ChangeUserParametr(CurrentUser, ChangeableParams.Login, _loginChangeDialogViewModel.LoginChangeModel.NewLogin);
-    }
-
-    private async Task ChangePassword()
-    {
-        var dialogWindow = _windowManager.Show(_passwordChangeDialogViewModel, true);
-
-        if (dialogWindow is not Window window)
-        {
-            throw new NotImplementedException();
-        }
-
-        if (window.DialogResult == true)
-            await _client.ChangePassword(CurrentUser, "password123");
-    }
-
-    private async Task ChangeEmail()
-    {
-        var dialogWindow = _windowManager.Show(_emailChangeDialogViewModel, true);
-
-        if (dialogWindow is not Window window)
-        {
-            throw new NotImplementedException();
-        }
-
-        if (window.DialogResult == true)
-            await _client.ChangeEmail(CurrentUser, "email321@gmail.com");
+        LogOutCommand = new RelayCommand(o => _profilePageService.Logout(this));
+        #endregion
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

@@ -1,5 +1,4 @@
 ﻿using ProjectManagementStudio.Model.CurrentUserModel;
-using ProjectManagementStudio.Model.PathService;
 using ProjectManagementStudio.Model.UserSavedData.Wrapper;
 using ProjectManagementStudio.Model.WindowModels.AuthModel;
 using ProjectManagementStudio.ViewModel.APIClient;
@@ -14,7 +13,7 @@ internal class CurrentUserService : ICurrentUserService, ICurrentUserServiceInit
     private bool _initialized;
 
     private readonly IAPIClient _apiClient;
-    IUserDataMementoWrapper _userDataMementoWrapper;
+    private readonly IUserDataMementoWrapper _userDataMementoWrapper;
 
     public ICurrentUserModel CurrentUser
     {
@@ -31,9 +30,9 @@ internal class CurrentUserService : ICurrentUserService, ICurrentUserServiceInit
         }
     }
 
-    public CurrentUserService(IAPIClient client, IUserDataMementoWrapper userDataMementoWrapper)
+    public CurrentUserService(IAPIClient client, IUserDataMementoWrapper userDataMementoWrapper, ICurrentUserModel currentUserModel)
     {
-        _currentUser = new CurrentUserModel();
+        _currentUser = currentUserModel;
         _apiClient = client;
         _userDataMementoWrapper = userDataMementoWrapper;
     }
@@ -47,8 +46,12 @@ internal class CurrentUserService : ICurrentUserService, ICurrentUserServiceInit
 
         try
         {
-            var authModel = new AuthModel(_userDataMementoWrapper);
-            CurrentUser = await _apiClient.GetUserByLogin(authModel);
+            if (!_userDataMementoWrapper.IsFileNull)
+            {
+                var authModel = new AuthModel(_userDataMementoWrapper);
+                CurrentUser = await _apiClient.GetUserByLogin(authModel);
+                CurrentUser.AboutText = _userDataMementoWrapper.AboutText;
+            }
         }
         catch (HttpRequestException ex)
         {

@@ -1,7 +1,6 @@
 ﻿using ProjectManagementStudio.ViewModel.Windows;
 using ProjectManagementStudio.ViewModel.Command;
 using System.Windows.Input;
-using ProjectManagementStudio.Model.UserSavedData.Wrapper;
 using ProjectManagementStudio.Model.WindowModels.RegisterModel;
 using ProjectManagementStudio.Model.WindowModels.AuthModel;
 using ProjectManagementStudio.ViewModel.MenuWindow;

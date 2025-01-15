@@ -10,8 +10,5 @@ public interface IAPIClient
     Task AddUser(IRegisterModel user);
 
     Task<ICurrentUserModel> GetUserByLogin(IAuthModel authModel);
-    Task ChangeLogin(ICurrentUserModel currentUser, string newValue);
-    Task ChangePassword(ICurrentUserModel currentUser, string newValue);
-    Task ChangeEmail(ICurrentUserModel currentUser, string newValue);
     Task ChangeUserParametr(ICurrentUserModel currentUser, ChangeableParams parametr, string newValue);
 }

@@ -34,7 +34,9 @@ public class WindowsManager : IWindowManager
             window.ShowDialog();
         }
         else
+        {
             window.Show();
+        }
 
         return newWindow;
     }

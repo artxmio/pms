@@ -1,26 +1,75 @@
-﻿namespace ProjectManagementStudio.Model.CurrentUserModel;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
-public class CurrentUserModel : ICurrentUserModel
+namespace ProjectManagementStudio.Model.CurrentUserModel;
+
+public class CurrentUserModel : ICurrentUserModel, INotifyPropertyChanged
 {
+    private long _userId = 0;
+    private string _userLogin = "";
+    private string _userPassword = "";
+    private string _userEmail = "";
+    private string _aboutText = "";
+
     public long UserId
     {
-        get;
-        set;
+        get
+        {
+            return _userId;
+        }
+        set
+        {
+            _userId = value;
+            OnPropertyChanged();
+        }
     }
     public string Login
     {
-        get;
-        set;
+        get
+        {
+            return _userLogin;
+        }
+        set
+        {
+            _userLogin = value;
+            OnPropertyChanged();
+        }
     }
     public string Password
     {
-        get;
-        set;
+        get
+        {
+            return _userPassword;
+        }
+        set
+        {
+            _userPassword = value;
+            OnPropertyChanged();
+        }
     }
     public string Email
     {
-        get;
-        set;
+        get
+        {
+            return _userEmail;
+        }
+        set
+        {
+            _userEmail = value;
+            OnPropertyChanged();
+        }
+    }
+    public string AboutText
+    {
+        get
+        {
+            return _aboutText;
+        }
+        set
+        {
+            _aboutText = value;
+            OnPropertyChanged();
+        }
     }
 
     public CurrentUserModel()
@@ -29,5 +78,12 @@ public class CurrentUserModel : ICurrentUserModel
         Login = string.Empty;
         Password = string.Empty;
         Email = string.Empty;
+    }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

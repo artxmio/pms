@@ -90,7 +90,8 @@
 
                         <!-- СДЕЛАТЬ КОГДА СЕРВАК! -->
                         <TextBlock FontSize="35" FontFamily="outfit"
-                               FontWeight="Normal" Text="{Binding CurrentUser.Login}"
+                               FontWeight="Normal" 
+                               Text="{Binding CurrentUser.Login, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}"
                                Width="221" Height="44"
                                Margin="0,134,211,0"
                                HorizontalAlignment="Right"
@@ -344,7 +345,7 @@
                         VerticalAlignment="Top"
                         Margin="0,14,0,0"/>
 
-                        <TextBlock Text="Pellentesque commodo ipsum orci, a dignissim metus convallis ut."
+                        <TextBlock Text="{Binding CurrentUser.AboutText, Mode=TwoWay}"
                                FontFamily="outfit"
                                FontSize="30"
                                TextWrapping="Wrap"
@@ -354,7 +355,8 @@
                                Foreground="White"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Top"
-                               Margin="0,91,0,0"/>
+                               Margin="0,80,0,0"/>
+                        <Button Command="{Binding ChangeAboutTextCommand}" Content="Change" Margin="50 200 50 10"/>
                     </Grid>
                 </Border>
 
@@ -432,7 +434,7 @@
                 </Border>
 
                 <!-- Выйти из аккаунта -->
-                <Button Background="#2C1B47" Width="175" Height="60" Margin="0,0,112,51"
+                <Button Command="{Binding LogOutCommand}" Background="#2C1B47" Width="175" Height="60" Margin="0,0,112,51"
                     HorizontalAlignment="Right" VerticalAlignment="Bottom">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using ProjectManagementStudio.Model.PathService;
+using ProjectManagementStudio.ViewModel.AvatarService;
 using System.ComponentModel;
 using System.IO;
 using System.Runtime.CompilerServices;
@@ -39,7 +40,9 @@ internal class AvatarService : IAvatarService, IAvatarServiceInitializer, INotif
     public void Initialize()
     {
         if (_initialized)
+        {
             throw new InvalidOperationException($"{nameof(IAvatarService)} is already initialized");
+        }
 
         _initialized = true;
 
@@ -101,8 +104,6 @@ internal class AvatarService : IAvatarService, IAvatarServiceInitializer, INotif
             MessageBox.Show($"Неверная операция: {ex.Message}");
             return null;
         }
-
-        return new BitmapImage(new Uri(AvatarFilePath));
     }
 
     protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
