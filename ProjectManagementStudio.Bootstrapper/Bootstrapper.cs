@@ -3,11 +3,11 @@ using ProjectManagementStudio.Bootstrapper.Services.AvatarService;
 using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 using ProjectManagementStudio.Bootstrapper.Services.PageServices.ProfilePageService;
 using ProjectManagementStudio.Bootstrapper.Services.PathService;
+using ProjectManagementStudio.Bootstrapper.Services.Settings.SettingSizeService;
 using ProjectManagementStudio.Bootstrapper.Services.UrlService;
 using ProjectManagementStudio.Model.UserSavedData.Wrapper;
 using ProjectManagementStudio.ViewModel.MainWindow;
 using ProjectManagementStudio.ViewModel.MenuWindow;
-using ProjectManagementStudio.ViewModel.PageServices.IProfilePageService;
 using ProjectManagementStudio.ViewModel.Windows;
 using System.Windows;
 
@@ -71,6 +71,7 @@ public class Bootstrapper : IDisposable
 
     private void InitializeDependencies()
     {
+        _container.Resolve<ISettingSizeInitialize>().Initialize();
         _container.Resolve<IUrlServiceInitializer>().Initialize();
         _container.Resolve<IPathServiceInitializer>().Initialize();
         _container.Resolve<IAvatarServiceInitializer>().Initialize();
