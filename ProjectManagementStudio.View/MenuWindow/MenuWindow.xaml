@@ -6,12 +6,16 @@
         xmlns:local="clr-namespace:ProjectManagementStudio.View.MenuWindow"
         xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MenuWindow;assembly=ProjectManagementStudio.ViewModel"
         mc:Ignorable="d"
-        Title="MenuWindow" Height="{Binding Height}" Width="{Binding Width}"
+        Title="MenuWindow" 
+        Height="{Binding Current.Height, Mode=OneWay}" 
+        Width="{Binding Current.Width, Mode=OneWay}"
         ResizeMode="NoResize"
         WindowStyle="None"
         RenderOptions.BitmapScalingMode="HighQuality"
         
-        d:DataContext="{d:DesignInstance vm:MenuWindowViewModel}">
+        d:DataContext="{d:DesignInstance vm:MenuWindowViewModel}"
+        d:Width="1920"
+        d:Height="1080">
 
     <Window.Resources>
         <Style x:Key="CloseButton" TargetType="{x:Type Button}">

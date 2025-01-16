@@ -9,6 +9,7 @@ using ProjectManagementStudio.ViewModel.Windows;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
@@ -87,23 +88,11 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         set
         {
             _settingSizeService.Current = value;
+            UpdateWindowSize(Current);
             OnPropertyChanged();
         }
     }
-    public int Width
-    {
-        get
-        {
-            return _settingSizeService.Current.Width;
-        }
-    }
-    public int Height
-    {
-        get
-        {
-            return _settingSizeService.Current.Height;
-        }
-    }
+
     #endregion
 
     /* // Команды // */
@@ -164,6 +153,17 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         _settingSizeService = settingSizeService;
 
         #endregion
+    }
+
+    private void UpdateWindowSize(IWindowSizes newSize)
+    {
+        var currentWindow = Application.Current.MainWindow;
+
+        if (currentWindow is not null)
+        {
+            currentWindow.Width = newSize.Width;
+            currentWindow.Height = newSize.Height;
+        }
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

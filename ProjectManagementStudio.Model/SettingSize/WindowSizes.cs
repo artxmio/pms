@@ -1,4 +1,7 @@
-﻿namespace ProjectManagementStudio.Model.SettingSize;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
+namespace ProjectManagementStudio.Model.SettingSize;
 
 public class WindowSizes : IWindowSizes
 {
