@@ -63,14 +63,16 @@
             <Border Margin="0,67,0,0"
                     Height="155" Width="410" CornerRadius="10"
                     Background="#724D9D">
-                <TextBox  Background="#724D9D"
-                      BorderBrush="Transparent"
-                      FontFamily="Outfit"
-                      FontSize="14"
-                      Foreground="#FFFFFF"
-                      Text="{Binding AboutText}"
-                      Margin="10"
-                      ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+                <TextBox
+                    x:Name="TextBoxInput"
+                    Background="#724D9D"
+                    BorderBrush="Transparent"
+                    FontFamily="Outfit"
+                    FontSize="14"
+                    Foreground="#FFFFFF"
+                    Margin="10"
+                    TextWrapping="Wrap"
+                />
             </Border>
 
 

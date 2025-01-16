@@ -10,7 +10,7 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         RenderOptions.BitmapScalingMode="HighQuality"
-        
+        WindowState="Maximized"
         d:DataContext="{d:DesignInstance vm:MenuWindowViewModel}">
 
     <Window.Resources>

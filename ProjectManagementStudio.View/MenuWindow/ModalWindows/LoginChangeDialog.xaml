@@ -106,21 +106,23 @@
                 </TextBox>
             </Border>
 
-            <Button
-                Margin="70,0,0,24"
+            <Button 
+                Command="{Binding CangeLoginCommand}"
                 HorizontalAlignment="Left"
+                Margin="70,0,0,24"
+                VerticalAlignment="Bottom"
                 FontFamily="outfit"
                 Foreground="#FFFFFF"
                 FontSize="25"
                 FontWeight="Normal"
-                Command="{Binding CangeLoginCommand}">
+                Width="191" Height="39">
                 <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border x:Name="border" Width="191" Height="39"
-                            Background="#724D9D" CornerRadius="10" VerticalAlignment="Bottom">
-                            <ContentPresenter Content="Apply"
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center"/>
+                    <ControlTemplate>
+                        <Border x:Name="border"  Width="191" Height="39"
+                            Background="#724D9D" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                VerticalAlignment="Center" 
+                                Content="Apply"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
@@ -131,21 +133,23 @@
                 </Button.Template>
             </Button>
 
-            <Button
+            <Button 
+                Command="{Binding CloseCommand}"
                 HorizontalAlignment="Right"
                 Margin="0,0,70,24"
+                VerticalAlignment="Bottom"
                 FontFamily="outfit"
                 Foreground="#FFFFFF"
                 FontSize="25"
                 FontWeight="Normal"
-                Command="{Binding CloseCommand}">
+                Width="191" Height="39">
                 <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border x:Name="border" Width="191" Height="39"
-                            Background="#724D9D" CornerRadius="10" VerticalAlignment="Bottom">
-                            <ContentPresenter Content="Cancel"
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center"/>
+                    <ControlTemplate>
+                        <Border x:Name="border"  Width="191" Height="39"
+                            Background="#724D9D" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                VerticalAlignment="Center" 
+                                Content="Cancel"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
@@ -155,6 +159,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
+            
         </Grid>
     </Border>
 </Window>
