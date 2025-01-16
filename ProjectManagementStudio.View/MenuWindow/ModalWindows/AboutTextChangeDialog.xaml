@@ -69,7 +69,8 @@
                       FontSize="14"
                       Foreground="#FFFFFF"
                       Text="{Binding AboutText}"
-                      Margin="10"/>
+                      Margin="10"
+                      ScrollViewer.VerticalScrollBarVisibility="Visible"/>
             </Border>
 
 

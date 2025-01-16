@@ -1,9 +1,12 @@
 ﻿using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 using ProjectManagementStudio.Model.CurrentUserModel;
+using ProjectManagementStudio.Model.SettingSize;
 using ProjectManagementStudio.ViewModel.Command;
 using ProjectManagementStudio.ViewModel.Pages;
 using ProjectManagementStudio.ViewModel.PageServices.IProfilePageService;
+using ProjectManagementStudio.ViewModel.SettingSizeService;
 using ProjectManagementStudio.ViewModel.Windows;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
@@ -23,6 +26,8 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     private readonly IProfilePageService _profilePageService;
     private IPage _activePage;
     private BitmapImage _avatarImage = new();
+    private ISettingSizeService _settingSizeService;
+
     #endregion
 
     /* // Свойства // */
@@ -64,6 +69,41 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
             }
         }
     }
+
+    public ObservableCollection<IWindowSizes> Sizes
+    {
+        get
+        {
+            return _settingSizeService.Sizes;
+        }
+    }
+
+    public IWindowSizes Current
+    {
+        get
+        {
+            return _settingSizeService.Current;
+        }
+        set
+        {
+            _settingSizeService.Current = value;
+            OnPropertyChanged();
+        }
+    }
+    public int Width
+    {
+        get
+        {
+            return _settingSizeService.Current.Width;
+        }
+    }
+    public int Height
+    {
+        get
+        {
+            return _settingSizeService.Current.Height;
+        }
+    }
     #endregion
 
     /* // Команды // */
@@ -89,7 +129,8 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         IWindowManager windowManager,
         IPageManager pageManager,
         ICurrentUserService currentUserService,
-        IProfilePageService profilePageService)
+        IProfilePageService profilePageService,
+        ISettingSizeService settingSizeService)
     {
         _pageManager = pageManager;
         _windowManager = windowManager;
@@ -115,6 +156,13 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         ChangeAboutTextCommand = new RelayCommand(o => _profilePageService.OpenChangeAboutTextWindow());
 
         LogOutCommand = new RelayCommand(o => _profilePageService.Logout(this));
+        #endregion
+
+        // Setting's functions //
+        #region
+
+        _settingSizeService = settingSizeService;
+
         #endregion
     }
 

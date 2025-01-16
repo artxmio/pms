@@ -6,10 +6,9 @@
         xmlns:local="clr-namespace:ProjectManagementStudio.View.MenuWindow"
         xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MenuWindow;assembly=ProjectManagementStudio.ViewModel"
         mc:Ignorable="d"
-        Title="MenuWindow" Height="900" Width="1600"
+        Title="MenuWindow" Height="{Binding Height}" Width="{Binding Width}"
         ResizeMode="NoResize"
         WindowStyle="None"
-        WindowState="Maximized"
         RenderOptions.BitmapScalingMode="HighQuality"
         
         d:DataContext="{d:DesignInstance vm:MenuWindowViewModel}">
