@@ -11,7 +11,9 @@
         WindowStyle="None"
         RenderOptions.BitmapScalingMode="HighQuality"
         WindowState="Maximized"
-        d:DataContext="{d:DesignInstance vm:MenuWindowViewModel}">
+        d:DataContext="{d:DesignInstance vm:MenuWindowViewModel}"
+        d:Width="1920"
+        d:Height="1080">
 
     <Window.Resources>
         <Style x:Key="CloseButton" TargetType="{x:Type Button}">
@@ -63,15 +65,14 @@
                 <ColumnDefinition Width="Auto" />
                 <!-- Кнопка закрытия -->
             </Grid.ColumnDefinitions>
-            
+
             <!-- Кнопка Профиля -->
             <Button Grid.Column="1"
-                    Command="{Binding NavigateToProfilePage}"
-                    BorderBrush="Transparent"
-                    Width="65" Height="65" 
-                    HorizontalAlignment="Left" VerticalAlignment="Center" 
-                    Background="Transparent"
-                    Margin="0,0,10,0">
+                BorderBrush="Transparent"
+                Width="65" Height="65"
+                HorizontalAlignment="Left" VerticalAlignment="Center"
+                Background="Transparent"
+                Margin="0,0,10,0">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}">
@@ -79,15 +80,19 @@
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
-                <Image Height="60" Width="60" Source="{Binding AvatarImage, Mode=OneWay}"
-                       x:Name="ProfimeImage">
+                <Image Height="60" Width="60" Source="{Binding AvatarImage, Mode=OneWay}">
                     <Image.Style>
                         <Style TargetType="Image">
                             <Setter Property="Opacity" Value="0.7"/>
                             <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
+                                <!-- Когда курсор над кнопкой профиля -->
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=ProfileButton}" Value="True">
                                     <Setter Property="Opacity" Value="1"/>
-                                </Trigger>
+                                </DataTrigger>
+                                <!-- Когда курсор над кнопкой логина -->
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=LoginButton}" Value="True">
+                                    <Setter Property="Opacity" Value="1"/>
+                                </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </Image.Style>
@@ -96,40 +101,44 @@
 
             <!-- Логин пользователя -->
             <Button Width="190" Height="38"
-                    Command="{Binding NavigateToProfilePage}"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Center"
-                    Grid.Column="2"
-                    Margin="0,0,86,0"
-                    Panel.ZIndex="5"
-                    Background="Transparent"
-                    BorderBrush="Transparent"
-                    Content="{Binding CurrentUser.Login}">
+                Command="{Binding NavigateToProfilePage}"
+                x:Name="LoginButton"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Grid.Column="2"
+                Margin="0,0,86,0"
+                Panel.ZIndex="5"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                Content="{Binding CurrentUser.Login}">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border x:Name="BorderElement"
-                    Background="{TemplateBinding Background}"
-                    BorderBrush="{TemplateBinding BorderBrush}"
-                    CornerRadius="5">
-                            <!-- TextBlock для отображения текста -->
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        CornerRadius="5">
                             <TextBlock x:Name="TextElement"
-                           Foreground="#FFFFFF"
-                           FontFamily="Outfit"
-                           FontWeight="Normal"
-                           FontSize="30"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Left"
-                           Text="{TemplateBinding Content}"
-                           Opacity="0.8" />
+                               Foreground="#FFFFFF"
+                               FontFamily="Outfit"
+                               FontWeight="Normal"
+                               FontSize="30"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               Text="{TemplateBinding Content}"
+                               Opacity="0.8" />
                         </Border>
                         <ControlTemplate.Triggers>
-                            <!-- Изменение прозрачности текста при наведении -->
+                            <!-- Когда курсор над текстом логина -->
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="TextElement" Property="Opacity" Value="1" />
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="False">
                                 <Setter TargetName="TextElement" Property="Opacity" Value="0.8" />
                             </Trigger>
+                            <!-- Когда курсор над кнопкой логина, выделяем фото -->
+                            <DataTrigger Binding="{Binding IsMouseOver, ElementName=LoginButton}" Value="True">
+                                <Setter TargetName="TextElement" Property="Opacity" Value="1" />
+                            </DataTrigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Button.Template>

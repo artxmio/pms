@@ -57,7 +57,7 @@
                 Width="153" Height="25"
                 />
 
-            <Border Width="410" Height="30" Background="#724D9D" CornerRadius="10"
+            <Border Width="410" Height="30" CornerRadius="10" Background="#724D9D"
                 VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,81,0,0">
                 <TextBox
                     VerticalContentAlignment="Center"
