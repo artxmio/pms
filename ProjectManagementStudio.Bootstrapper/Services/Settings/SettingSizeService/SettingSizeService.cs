@@ -1,4 +1,5 @@
 ﻿using ProjectManagementStudio.Model.SettingSize;
+using ProjectManagementStudio.Model.WindowSavedData.Wrapper;
 using ProjectManagementStudio.ViewModel.SettingSizeService;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -11,6 +12,7 @@ internal class SettingSizeService : ISettingSizeService, ISettingSizeInitialize,
 {
     private ObservableCollection<IWindowSizes> _sizes;
     private IWindowSizes _current;
+    private IWindowDataMementoWrapper _windowDataMementoWrapper;
 
     public IWindowSizes Current
     {
@@ -43,10 +45,12 @@ internal class SettingSizeService : ISettingSizeService, ISettingSizeInitialize,
 
     private bool _initialized;
 
-    public SettingSizeService()
+    public SettingSizeService(IWindowDataMementoWrapper windowDataMementoWrapper)
     {
         _sizes = [];
         _current = new WindowSizes(0, 0);
+
+        _windowDataMementoWrapper = windowDataMementoWrapper;
     }
 
     public void Initialize()
@@ -63,7 +67,8 @@ internal class SettingSizeService : ISettingSizeService, ISettingSizeInitialize,
             new WindowSizes(1920, 1080)
         ];
 
-        Current = Sizes[2];
+        Current = new WindowSizes(_windowDataMementoWrapper.Width, _windowDataMementoWrapper.Height);
+        _windowDataMementoWrapper.SaveWindowData();
         UpdateWindowSize(Current);
     }
 

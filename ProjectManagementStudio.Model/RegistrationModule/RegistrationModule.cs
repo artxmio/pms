@@ -9,6 +9,7 @@ using ProjectManagementStudio.Model.SettingSize;
 using ProjectManagementStudio.Model.UserSavedData.Wrapper;
 using ProjectManagementStudio.Model.WindowModels.AuthModel;
 using ProjectManagementStudio.Model.WindowModels.RegisterModel;
+using ProjectManagementStudio.Model.WindowSavedData.Wrapper;
 
 namespace ProjectManagementStudio.Model.RegistrationModule
 {
@@ -32,6 +33,11 @@ namespace ProjectManagementStudio.Model.RegistrationModule
             builder.RegisterType<UserDataMementoWrapper>()
                 .As<IUserDataMementoWrapper>()
                 .As<IUserDataMementoWrapperInitializer>()
+                .SingleInstance();
+
+            builder.RegisterType<WindowDataMementoWrapper>()
+                .As<IWindowDataMementoWrapper>()
+                .As<IWindowDataMementoWrapperInitializer>()
                 .SingleInstance();
         }
     }

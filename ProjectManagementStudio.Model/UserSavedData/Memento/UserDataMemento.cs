@@ -1,5 +1,4 @@
-﻿using ProjectManagementStudio.Model.UserSavedData.Wrapper;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace ProjectManagementStudio.Model.UserSavedData.Memento;
 
