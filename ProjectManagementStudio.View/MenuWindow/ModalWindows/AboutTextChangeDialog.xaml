@@ -73,7 +73,6 @@
                     Foreground="#FFFFFF"
                     Margin="10"
                     TextWrapping="Wrap"
-                    Text="{Binding AboutText}"
                 />
             </Border>
 
