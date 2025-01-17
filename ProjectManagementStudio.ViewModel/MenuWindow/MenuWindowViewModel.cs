@@ -154,6 +154,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         #region
 
         _settingSizeService = settingSizeService;
+
         #endregion
     }
 

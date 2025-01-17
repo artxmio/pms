@@ -23,7 +23,5 @@ public class RegistrationModule : Module
         builder.RegisterType<ChangeAboutTextModalWindowViewModel>().As<IChangeAboutTextModalWindowViewModel>().SingleInstance();
 
         builder.RegisterType<APIClient.APIClient>().As<IAPIClient>().SingleInstance();
-
-        builder.RegisterType<WindowMediator.WindowMediator>().As<IWindowMediator>().SingleInstance();
     }
 }

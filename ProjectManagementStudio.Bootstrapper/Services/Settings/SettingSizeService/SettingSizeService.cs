@@ -69,10 +69,9 @@ internal class SettingSizeService : ISettingSizeService, ISettingSizeInitialize,
 
         Current = new WindowSizes(_windowDataMementoWrapper.Width, _windowDataMementoWrapper.Height);
         _windowDataMementoWrapper.SaveWindowData();
-        UpdateWindowSize(Current);
     }
 
-    private static void UpdateWindowSize(IWindowSizes newSize)
+    public void UpdateWindowSize(IWindowSizes newSize)
     {
         var currentWindow = Application.Current.MainWindow;
 
