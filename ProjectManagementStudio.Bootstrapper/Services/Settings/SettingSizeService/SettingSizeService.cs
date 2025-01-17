@@ -1,8 +1,10 @@
 ﻿using ProjectManagementStudio.Model.SettingSize;
+using ProjectManagementStudio.Model.WindowSavedData.Wrapper;
 using ProjectManagementStudio.ViewModel.SettingSizeService;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 
 namespace ProjectManagementStudio.Bootstrapper.Services.Settings.SettingSizeService;
 
@@ -10,6 +12,7 @@ internal class SettingSizeService : ISettingSizeService, ISettingSizeInitialize,
 {
     private ObservableCollection<IWindowSizes> _sizes;
     private IWindowSizes _current;
+    private IWindowDataMementoWrapper _windowDataMementoWrapper;
 
     public IWindowSizes Current
     {
@@ -22,6 +25,7 @@ internal class SettingSizeService : ISettingSizeService, ISettingSizeInitialize,
         {
             EnsureInitialized();
             _current = value;
+            UpdateWindowSize(Current);
             OnPropertyChanged();
         }
     }
@@ -41,10 +45,12 @@ internal class SettingSizeService : ISettingSizeService, ISettingSizeInitialize,
 
     private bool _initialized;
 
-    public SettingSizeService()
+    public SettingSizeService(IWindowDataMementoWrapper windowDataMementoWrapper)
     {
-        _sizes = new ObservableCollection<IWindowSizes>();
+        _sizes = [];
         _current = new WindowSizes(0, 0);
+
+        _windowDataMementoWrapper = windowDataMementoWrapper;
     }
 
     public void Initialize()
@@ -61,7 +67,20 @@ internal class SettingSizeService : ISettingSizeService, ISettingSizeInitialize,
             new WindowSizes(1920, 1080)
         ];
 
-        Current = Sizes[2];
+        Current = new WindowSizes(_windowDataMementoWrapper.Width, _windowDataMementoWrapper.Height);
+        _windowDataMementoWrapper.SaveWindowData();
+        UpdateWindowSize(Current);
+    }
+
+    private static void UpdateWindowSize(IWindowSizes newSize)
+    {
+        var currentWindow = Application.Current.MainWindow;
+
+        if (currentWindow is not null)
+        {
+            currentWindow.Width = newSize.Width;
+            currentWindow.Height = newSize.Height;
+        }
     }
 
     private void EnsureInitialized()

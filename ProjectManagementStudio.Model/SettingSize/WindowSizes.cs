@@ -1,10 +1,13 @@
-﻿namespace ProjectManagementStudio.Model.SettingSize;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
+namespace ProjectManagementStudio.Model.SettingSize;
 
 public class WindowSizes : IWindowSizes
 {
-    public int Width { get; }
+    public int Width { get; set; }
 
-    public int Height { get; }
+    public int Height { get; set; }
 
     public WindowSizes(int width, int heigt)
     {

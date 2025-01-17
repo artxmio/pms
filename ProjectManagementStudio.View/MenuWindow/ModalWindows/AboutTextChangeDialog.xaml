@@ -64,6 +64,7 @@
                     Height="155" Width="410" CornerRadius="10"
                     Background="#724D9D">
                 <TextBox
+                    Text="{Binding AboutText}"
                     x:Name="TextBoxInput"
                     Background="#724D9D"
                     BorderBrush="Transparent"

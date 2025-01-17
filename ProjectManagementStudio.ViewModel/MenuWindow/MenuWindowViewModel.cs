@@ -9,6 +9,7 @@ using ProjectManagementStudio.ViewModel.Windows;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
@@ -26,7 +27,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     private readonly IProfilePageService _profilePageService;
     private IPage _activePage;
     private BitmapImage _avatarImage = new();
-    private ISettingSizeService _settingSizeService;
+    private readonly ISettingSizeService _settingSizeService;
 
     #endregion
 
@@ -90,20 +91,10 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
-    public int Width
-    {
-        get
-        {
-            return _settingSizeService.Current.Width;
-        }
-    }
-    public int Height
-    {
-        get
-        {
-            return _settingSizeService.Current.Height;
-        }
-    }
+
+    public int Wigth => _settingSizeService.Current.Width = 1920;
+    public int Height => _settingSizeService.Current.Height = 1080;
+
     #endregion
 
     /* // Команды // */
@@ -143,6 +134,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         AvatarImage = profilePageService.AvatarImage;
 
         CloseCommand = new RelayCommand(o => _windowManager.Close(this));
+
         NavigateToWelcomePage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(2));
         NavigateToProfilePage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(3));
         NavigateToSettingsPage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(4));
@@ -162,7 +154,6 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         #region
 
         _settingSizeService = settingSizeService;
-
         #endregion
     }
 

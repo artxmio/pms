@@ -2,6 +2,6 @@
 
 public interface IWindowSizes
 {
-    int Width { get; }
-    int Height { get; }
+    public int Width { get; set; }
+    public int Height { get; set; }
 }
