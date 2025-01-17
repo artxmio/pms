@@ -7,10 +7,11 @@
         xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MenuWindow;assembly=ProjectManagementStudio.ViewModel"
         mc:Ignorable="d"
         Title="MenuWindow" 
-        Height="{Binding Current.Height, Mode=OneWay}" 
-        Width="{Binding Current.Width, Mode=OneWay}"
+        Height="{Binding Height, Mode=OneWay}" 
+        Width="{Binding Wigth, Mode=OneWay}"
         ResizeMode="NoResize"
         WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
         RenderOptions.BitmapScalingMode="HighQuality"
         
         d:DataContext="{d:DesignInstance vm:MenuWindowViewModel}"

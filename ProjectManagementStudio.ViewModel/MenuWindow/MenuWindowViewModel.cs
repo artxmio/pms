@@ -27,7 +27,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     private readonly IProfilePageService _profilePageService;
     private IPage _activePage;
     private BitmapImage _avatarImage = new();
-    private ISettingSizeService _settingSizeService;
+    private readonly ISettingSizeService _settingSizeService;
 
     #endregion
 
@@ -93,6 +93,9 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         }
     }
 
+    public int Wigth => _settingSizeService.Current.Width = 1920;
+    public int Height => _settingSizeService.Current.Height = 1080;
+
     #endregion
 
     /* // Команды // */
@@ -151,7 +154,6 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         #region
 
         _settingSizeService = settingSizeService;
-
         #endregion
     }
 
