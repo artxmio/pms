@@ -7,63 +7,159 @@
         xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewLogin;assembly=ProjectManagementStudio.ViewModel"
         xmlns:validations="clr-namespace:ProjectManagementStudio.ViewModel.ValidationsRules;assembly=ProjectManagementStudio.ViewModel"
         mc:Ignorable="d"
-        Title="LoginChangeDialog" Height="300" Width="550"
-        WindowStartupLocation="CenterScreen"
+        Title="LoginChangeDialog" Height="310" Width="560"
         WindowStyle="None"
-        
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen"
         d:DataContext="{d:DesignInstance vm:ChangeLoginModalWindowViewModel}">
 
-    <StackPanel Orientation="Vertical" Margin="10">
+    <Window.Resources>
+        <!-- Полностью переопределяем шаблон TextBox -->
+        <Style TargetType="TextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                            <ScrollViewer x:Name="PART_ContentHost" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <!-- Сбрасываем стандартные свойства обводки -->
+            <Setter Property="Background" Value="White" />
+            <Setter Property="BorderBrush" Value="Gray" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        </Style>
+    </Window.Resources>
 
-        <TextBlock 
-            Text="Enter new login"
-            Width="150"/>
-
-        <TextBox
-            FontSize="14"
-            Height="20"
-            Width="100">
-
-            <TextBox.Text>
-                <Binding Path="NewLogin" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
-                    <Binding.ValidationRules>
-                        <validations:LoginValidationRules ValidationStep="ConvertedProposedValue"/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-            
-        </TextBox>
-
-        <TextBlock Text="Enter your password"
-                   Width="150"/>
+    <Border Width="550" Height="300" Background="#2C1B47" CornerRadius="25">
+        <Border.Effect>
+            <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="0" Opacity="0.5"/>
+        </Border.Effect>
         
-        <TextBox
-            FontSize="14"
-            Height="20"
-            Width="100">
-            
-            <TextBox.Text>
-                <Binding Path="Password" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
-                    <Binding.ValidationRules>
-                        <validations:PasswordValidationRules ValidationStep="ConvertedProposedValue"/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-            
-        </TextBox>
+        <Grid>
 
-        <Button
-            Command="{Binding CangeLoginCommand}"
-            Content="ok"
-            Margin="10"
-            Height="20"
-            Width="100"/>
-        
-        <Button
-            Command="{Binding CloseCommand}"
-            Content="Cancel"
-            Margin="10"
-            Height="20"
-            Width="100"/>
-    </StackPanel>
+            <TextBlock Text="Change login" Margin="0,9,0,0"
+                VerticalAlignment="Top" HorizontalAlignment="Center"
+                FontFamily="Outfit" FontSize="35"
+                Foreground="#FFFFFF" FontWeight="Normal"/>
+
+            <TextBlock FontFamily="Outfit" FontSize="20"
+                VerticalAlignment="Top" HorizontalAlignment="Left"
+                Foreground="#FFFFFF" FontWeight="Normal"
+                Text="Enter a new login"
+                Margin="73,50,0,0"
+                Width="153" Height="25"
+                />
+
+            <Border Width="410" Height="30" Background="#724D9D" CornerRadius="10"
+                VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,81,0,0">
+                <TextBox
+                    VerticalContentAlignment="Center"
+                    Width="400" Height="25"
+                    Background="#724D9D"
+                    BorderBrush="Transparent"
+                    FontFamily="Outfit"
+                    FontSize="14"
+                    Foreground="#FFFFFF">
+                    <TextBox.Text>
+                        <Binding Path="NewLogin" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                            <Binding.ValidationRules>
+                                <validations:LoginValidationRules ValidationStep="ConvertedProposedValue"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+            </Border>
+
+            <TextBlock Text="Enter your password"
+                Width="183" Height="25"
+                FontFamily="Outfit" FontSize="20"
+                Foreground="#FFFFFF" FontWeight="Normal"
+                HorizontalAlignment="Left"
+                Margin="73,0,0,0"
+                />
+
+            <Border Width="410" Height="30" Background="#724D9D" CornerRadius="10"
+                    Margin="0,66,0,0">
+                <TextBox
+                    VerticalContentAlignment="Center"
+                    Width="400" Height="25"
+                    Background="#724D9D"
+                    BorderBrush="Transparent"
+                    FontFamily="Outfit"
+                    FontSize="14"
+                    Foreground="#FFFFFF">
+
+                    <TextBox.Text>
+                        <Binding Path="Password" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                            <Binding.ValidationRules>
+                                <validations:PasswordValidationRules ValidationStep="ConvertedProposedValue"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+            </Border>
+
+            <Button 
+                Command="{Binding CangeLoginCommand}"
+                HorizontalAlignment="Left"
+                Margin="70,0,0,24"
+                VerticalAlignment="Bottom"
+                FontFamily="outfit"
+                Foreground="#FFFFFF"
+                FontSize="25"
+                FontWeight="Normal"
+                Width="191" Height="39">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border x:Name="border"  Width="191" Height="39"
+                            Background="#724D9D" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                VerticalAlignment="Center" 
+                                Content="Apply"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#482f66"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button 
+                Command="{Binding CloseCommand}"
+                HorizontalAlignment="Right"
+                Margin="0,0,70,24"
+                VerticalAlignment="Bottom"
+                FontFamily="outfit"
+                Foreground="#FFFFFF"
+                FontSize="25"
+                FontWeight="Normal"
+                Width="191" Height="39">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border x:Name="border"  Width="191" Height="39"
+                            Background="#724D9D" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                VerticalAlignment="Center" 
+                                Content="Cancel"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#482f66"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            
+        </Grid>
+    </Border>
 </Window>

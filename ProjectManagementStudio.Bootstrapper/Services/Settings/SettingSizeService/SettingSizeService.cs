@@ -3,6 +3,7 @@ using ProjectManagementStudio.ViewModel.SettingSizeService;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 
 namespace ProjectManagementStudio.Bootstrapper.Services.Settings.SettingSizeService;
 
@@ -22,6 +23,7 @@ internal class SettingSizeService : ISettingSizeService, ISettingSizeInitialize,
         {
             EnsureInitialized();
             _current = value;
+            UpdateWindowSize(Current);
             OnPropertyChanged();
         }
     }
@@ -43,7 +45,7 @@ internal class SettingSizeService : ISettingSizeService, ISettingSizeInitialize,
 
     public SettingSizeService()
     {
-        _sizes = new ObservableCollection<IWindowSizes>();
+        _sizes = [];
         _current = new WindowSizes(0, 0);
     }
 
@@ -62,6 +64,18 @@ internal class SettingSizeService : ISettingSizeService, ISettingSizeInitialize,
         ];
 
         Current = Sizes[2];
+        UpdateWindowSize(Current);
+    }
+
+    private static void UpdateWindowSize(IWindowSizes newSize)
+    {
+        var currentWindow = Application.Current.MainWindow;
+
+        if (currentWindow is not null)
+        {
+            currentWindow.Width = newSize.Width;
+            currentWindow.Height = newSize.Height;
+        }
     }
 
     private void EnsureInitialized()

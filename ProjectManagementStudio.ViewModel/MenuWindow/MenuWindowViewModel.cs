@@ -88,7 +88,6 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         set
         {
             _settingSizeService.Current = value;
-            UpdateWindowSize(Current);
             OnPropertyChanged();
         }
     }
@@ -135,6 +134,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         AvatarImage = profilePageService.AvatarImage;
 
         CloseCommand = new RelayCommand(o => _windowManager.Close(this));
+
         NavigateToWelcomePage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(2));
         NavigateToProfilePage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(3));
         NavigateToSettingsPage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(4));
@@ -155,17 +155,6 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
         _settingSizeService = settingSizeService;
         #endregion
-    }
-
-    private void UpdateWindowSize(IWindowSizes newSize)
-    {
-        var currentWindow = Application.Current.MainWindow;
-
-        if (currentWindow is not null)
-        {
-            currentWindow.Width = newSize.Width;
-            currentWindow.Height = newSize.Height;
-        }
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

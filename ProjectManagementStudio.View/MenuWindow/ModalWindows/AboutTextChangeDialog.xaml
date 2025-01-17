@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ProjectManagementStudio.View.MenuWindow.ModalWindows"
         xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.AboutText;assembly=ProjectManagementStudio.ViewModel"
         mc:Ignorable="d"
-        Title="AboutTextChangeDialog" Height="300" Width="550"
+        Title="AboutTextChangeDialog" Height="310" Width="560"
         WindowStyle="None"
         ResizeMode="NoResize"
         AllowsTransparency="True"
@@ -36,7 +36,11 @@
         </Style>
     </Window.Resources>
 
-    <Border CornerRadius="20" Background="#724D9D">
+    <Border Height="300" Width="550" CornerRadius="25" Background="#2C1B47">
+        <Border.Effect>
+            <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="0" Opacity="0.5"/>
+        </Border.Effect>
+
         <Grid Background="Transparent">
 
             <Grid.RowDefinitions>
@@ -46,25 +50,30 @@
             </Grid.RowDefinitions>
 
             <TextBlock
-            Margin="10 10 0 10"
+            Margin="0,10,0,0"
             FontFamily="Outfit"
             Foreground="#FFFFFF"
-            FontSize="14"
+            FontSize="35"
             FontWeight="Normal"
-            Text="Enter about text and click on the button"
+            Text="Change info"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Center"
             />
 
-            <Border Margin="0,35,0,0"
-                    Height="200" Width="530" CornerRadius="20"
-                    Background="#2C1B47">
-            <TextBox  Background="#2C1B47"
-                      BorderBrush="Transparent"
-                      FontFamily="Outfit"
-                      FontSize="14"
-                      Foreground="#FFFFFF"
-                      Text="{Binding AboutText}"
-                      Margin="10"
-                      ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+            <Border Margin="0,67,0,0"
+                    Height="155" Width="410" CornerRadius="10"
+                    Background="#724D9D">
+                <TextBox
+                    Text="{Binding AboutText}"
+                    x:Name="TextBoxInput"
+                    Background="#724D9D"
+                    BorderBrush="Transparent"
+                    FontFamily="Outfit"
+                    FontSize="14"
+                    Foreground="#FFFFFF"
+                    Margin="10"
+                    TextWrapping="Wrap"
+                />
             </Border>
 
 
@@ -77,13 +86,13 @@
                 Command="{Binding ChangeAboutTextCommand}"
                 FontFamily="outfit"
                 Foreground="#FFFFFF"
-                FontSize="14"
+                FontSize="25"
                 FontWeight="Normal">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
-                            <Border x:Name="border" Width="100" Height="50" Margin="10" 
-                                    Background="#512f78" CornerRadius="10">
-                                <ContentPresenter Content="ok"
+                            <Border x:Name="border" Width="191" Height="39" VerticalAlignment="Bottom"
+                                    Background="#724D9D" CornerRadius="10" Margin="0,0,14,24" >
+                                <ContentPresenter Content="Apply"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center"/>
                             </Border>
@@ -99,14 +108,14 @@
                 <Button
                     FontFamily="outfit"
                     Foreground="#FFFFFF"
-                    FontSize="14"
+                    FontSize="25"
                     FontWeight="Normal"
                     Command="{Binding CloseCommand}">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
-                            <Border x:Name="border" Width="100" Height="50" Margin="10" 
-                                    Background="#512f78" CornerRadius="10">
-                                <ContentPresenter Content="cancel"
+                            <Border x:Name="border" Width="191" Height="39" Margin="14,0,0,24" 
+                                Background="#724D9D" CornerRadius="10" VerticalAlignment="Bottom">
+                                <ContentPresenter Content="Cancel"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center"/>
                             </Border>
