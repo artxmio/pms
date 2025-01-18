@@ -161,6 +161,11 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         #endregion
     }
 
+    private void CloseWindow(object parametr)
+    {
+       _windowManager.Close(this);
+    }
+
     private static void RollWindow(object parametr)
     {
         if (parametr is Window window)
