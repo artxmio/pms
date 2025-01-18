@@ -13,7 +13,7 @@ public class WindowDataMemento : IWindowDataMemento
 
     public WindowDataMemento()
     {
-        Width = 1056;
-        Height = 600;
+        Width = 0;
+        Height = 0;
     }
 }

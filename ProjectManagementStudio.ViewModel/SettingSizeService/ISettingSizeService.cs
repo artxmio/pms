@@ -5,7 +5,9 @@ namespace ProjectManagementStudio.ViewModel.SettingSizeService;
 
 public interface ISettingSizeService
 {
-    public IWindowSizes Current { get; set; }
+    public int Width { get; set; }
+    public int Height { get; set; }
+    public IWindowSizes SelectedWindowSize { get; set; }
     public ObservableCollection<IWindowSizes> Sizes { get; set; }
 
     void ApplySettings();

@@ -12,8 +12,8 @@
         MinHeight="600"
         MinWidth="1056"
         
-        Height="{Binding Height, Mode=OneWay}" 
-        Width="{Binding Wigth, Mode=OneWay}"
+        Height="{Binding Heigth, Mode=TwoWay}" 
+        Width="{Binding Width, Mode=TwoWay}"
         
         WindowStyle="None"
         WindowStartupLocation="Manual"

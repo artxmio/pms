@@ -1,5 +1,6 @@
 ﻿using ProjectManagementStudio.ViewModel.MenuWindow;
 using ProjectManagementStudio.ViewModel.SettingSizeService;
+using ProjectManagementStudio.ViewModel.Windows;
 using System.Windows;
 using System.Windows.Input;
 
@@ -31,12 +32,19 @@ public partial class MenuWindow : IMenuWindow
 
     private void DoubleClick(object sender, RoutedEventArgs e)
     {
-        this.WindowState = WindowState.Maximized;
+        if (this.WindowState != WindowState.Maximized)
+        {
+            this.WindowState = WindowState.Maximized;
+        }
+        else
+        {
+            this.WindowState = WindowState.Normal;
+        }
     }
 
     private void OnLoad(object sender, RoutedEventArgs e)
     {
-        this.Width = _settingSizeService.Current.Width;
-        this.Height = _settingSizeService.Current.Height;
+        this.Width = _settingSizeService.Width;
+        this.Height = _settingSizeService.Height;
      }
 }

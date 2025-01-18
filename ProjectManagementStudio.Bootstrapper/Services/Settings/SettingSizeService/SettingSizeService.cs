@@ -10,23 +10,21 @@ namespace ProjectManagementStudio.Bootstrapper.Services.Settings.SettingSizeServ
 
 internal class SettingSizeService : ISettingSizeService, ISettingSizeInitialize, INotifyPropertyChanged
 {
+    private IWindowSizes _selectedWindowSize;
     private ObservableCollection<IWindowSizes> _sizes;
-    private IWindowSizes _current;
     private readonly IWindowDataMementoWrapper _windowDataMementoWrapper;
 
-    public IWindowSizes Current
+    public IWindowSizes SelectedWindowSize
     {
         get
         {
-            EnsureInitialized();
-            return _current;
+            return _selectedWindowSize;
         }
         set
         {
-            EnsureInitialized();
-            _current = value;
-            UpdateWindowSize(Current);
+            _selectedWindowSize = value;
             OnPropertyChanged();
+            UpdateWindowSize(SelectedWindowSize);
         }
     }
 
@@ -39,6 +37,18 @@ internal class SettingSizeService : ISettingSizeService, ISettingSizeInitialize,
         set
         {
             _windowDataMementoWrapper.Width = value;
+        }
+    }
+
+    public int Height
+    {
+        get
+        {
+            return _windowDataMementoWrapper.Height;
+        }
+        set
+        {
+            _windowDataMementoWrapper.Height = value;
         }
     }
 
@@ -60,8 +70,8 @@ internal class SettingSizeService : ISettingSizeService, ISettingSizeInitialize,
 
     public SettingSizeService(IWindowDataMementoWrapper windowDataMementoWrapper)
     {
+        _selectedWindowSize = new WindowSizes(0,0);
         _sizes = [];
-        _current = new WindowSizes(0, 0);
 
         _windowDataMementoWrapper = windowDataMementoWrapper;
     }
@@ -75,12 +85,22 @@ internal class SettingSizeService : ISettingSizeService, ISettingSizeInitialize,
 
         _sizes =
         [
-            new WindowSizes(800,600),
+            new WindowSizes(1056,600),
             new WindowSizes(1280, 1024),
             new WindowSizes(1920, 1080)
         ];
 
-        Current = new WindowSizes(_windowDataMementoWrapper.Width, _windowDataMementoWrapper.Height);
+        LoadLastSelectedItem(); 
+    }
+
+    private void LoadLastSelectedItem()
+    {
+        IWindowSizes? selectedSize = _sizes.FirstOrDefault(p => p.Width == Width && p.Height == Height);
+
+        if (selectedSize is not null)
+        {
+            _selectedWindowSize = selectedSize;
+        }
     }
 
     public void UpdateWindowSize(IWindowSizes newSize)
@@ -97,6 +117,7 @@ internal class SettingSizeService : ISettingSizeService, ISettingSizeInitialize,
     public void ApplySettings()
     {
         _windowDataMementoWrapper.SaveWindowData();
+        MessageBox.Show("Настройки успешно сохранены!"); 
     }
 
     private void EnsureInitialized()

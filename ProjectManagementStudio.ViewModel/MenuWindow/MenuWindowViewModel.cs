@@ -79,15 +79,41 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         }
     }
 
-    public IWindowSizes Current
+    public IWindowSizes SelectedWindowSize
     {
         get
         {
-            return _settingSizeService.Current;
+            return _settingSizeService.SelectedWindowSize;
         }
         set
         {
-            _settingSizeService.Current = value;
+            _settingSizeService.SelectedWindowSize = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public int Width
+    {
+        get
+        {
+            return _settingSizeService.Width;
+        }
+        set
+        {
+            _settingSizeService.Width = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public int Heigth
+    {
+        get
+        {
+            return _settingSizeService.Width;
+        }
+        set
+        {
+            _settingSizeService.Height = value;
             OnPropertyChanged();
         }
     }

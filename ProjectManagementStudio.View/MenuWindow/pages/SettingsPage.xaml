@@ -311,7 +311,8 @@
                        HorizontalAlignment="Left" 
                        VerticalAlignment="Top"/>
 
-                    <ComboBox Width="480"
+                    <ComboBox   
+                              Width="480"
                               Height="40"
                               HorizontalAlignment="Center" 
                               VerticalAlignment="Bottom"
@@ -324,7 +325,7 @@
                               Margin="0,0,0,18"
                               SelectedIndex="0"
                               ItemsSource="{Binding Sizes}"
-                              SelectedItem="{Binding Current}">
+                              SelectedItem="{Binding SelectedWindowSize}">
                         <ComboBox.Template>
                             <ControlTemplate TargetType="ComboBox">
                                 <Grid>
