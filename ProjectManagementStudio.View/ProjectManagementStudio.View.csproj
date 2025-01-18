@@ -24,10 +24,12 @@
 		<None Remove="Source\home.png" />
 		<None Remove="Source\plus.png" />
 		<None Remove="Source\QuestionMark.png" />
+		<None Remove="Source\roll_window.png" />
 		<None Remove="Source\settings.png" />
 		<None Remove="Source\Star.png" />
 		<None Remove="Source\two_people.svg" />
 		<None Remove="Source\user.png" />
+		<None Remove="Source\window_restore.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -71,6 +73,7 @@
 		<Resource Include="Source\QuestionMark.png">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
+		<Resource Include="Source\roll_window.png" />
 		<Resource Include="Source\settings.png">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
@@ -83,6 +86,7 @@
 		<Resource Include="Source\user.png">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
+		<Resource Include="Source\window_restore.png" />
 	</ItemGroup>
 
 </Project>

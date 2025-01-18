@@ -18,7 +18,7 @@
         WindowStyle="None"
         WindowStartupLocation="Manual"
         RenderOptions.BitmapScalingMode="HighQuality"
-
+        WindowState="Maximized"
         d:DataContext="{d:DesignInstance vm:MenuWindowViewModel}"
         d:Width="1920"
         d:Height="1080">
@@ -64,24 +64,25 @@
 
             <!-- Определение столбцов и строк для верхнего меню -->
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition />
                 <!-- Основное пространство -->
                 <ColumnDefinition Width="Auto" />
                 <!-- Кнопка профиля -->
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="335" />
                 <!-- Логин пользователя -->
                 <ColumnDefinition Width="Auto" />
                 <!-- Кнопка закрытия -->
             </Grid.ColumnDefinitions>
 
             <!-- Кнопка Профиля -->
-            <Button Grid.Column="1"
-            Command="{Binding NavigateToProfilePage}"
-            BorderBrush="Transparent"
-            Width="65" Height="65" 
-            HorizontalAlignment="Left" VerticalAlignment="Center" 
-            Background="Transparent"
-            Margin="0,0,10,0">
+            <Button x:Name="ProfileButton"
+                Grid.Column="1"
+                Command="{Binding NavigateToProfilePage}"
+                BorderBrush="Transparent"
+                Width="65" Height="65" 
+                HorizontalAlignment="Left" VerticalAlignment="Center" 
+                Background="Transparent"
+                Margin="0,0,10,0">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}">
@@ -89,15 +90,19 @@
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
-                <Image Height="60" Width="60" Source="{Binding AvatarImage, Mode=OneWay}"
-               x:Name="ProfimeImage">
+                <Image Height="60" Width="60" Source="{Binding AvatarImage, Mode=OneWay}">
                     <Image.Style>
                         <Style TargetType="Image">
                             <Setter Property="Opacity" Value="0.7"/>
                             <Style.Triggers>
+                                <!-- Когда курсор над кнопкой профиля -->
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="Opacity" Value="1"/>
                                 </Trigger>
+                                <!-- Когда курсор над кнопкой логина -->
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=LoginButton}" Value="True">
+                                    <Setter Property="Opacity" Value="1"/>
+                                </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </Image.Style>
@@ -105,41 +110,42 @@
             </Button>
 
             <!-- Логин пользователя -->
-            <Button Width="190" Height="38"
-            Command="{Binding NavigateToProfilePage}"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Center"
-            Grid.Column="2"
-            Margin="0,0,86,0"
-            Panel.ZIndex="5"
-            Background="Transparent"
-            BorderBrush="Transparent"
-            Content="{Binding CurrentUser.Login}">
+            <Button x:Name="LoginButton"
+                Width="190" Height="38"
+                Command="{Binding NavigateToProfilePage}"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Grid.Column="2"
+                Margin="0,0,86,0"
+                Panel.ZIndex="5"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                Content="{Binding CurrentUser.Login}">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border x:Name="BorderElement"
-            Background="{TemplateBinding Background}"
-            BorderBrush="{TemplateBinding BorderBrush}"
-            CornerRadius="5">
-                            <!-- TextBlock для отображения текста -->
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            CornerRadius="5">
                             <TextBlock x:Name="TextElement"
-                   Foreground="#FFFFFF"
-                   FontFamily="Outfit"
-                   FontWeight="Normal"
-                   FontSize="30"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Left"
-                   Text="{TemplateBinding Content}"
-                   Opacity="0.8" />
+                               Foreground="#FFFFFF"
+                               FontFamily="Outfit"
+                               FontWeight="Normal"
+                               FontSize="30"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               Text="{TemplateBinding Content}"
+                               Opacity="0.8" />
                         </Border>
                         <ControlTemplate.Triggers>
-                            <!-- Изменение прозрачности текста при наведении -->
+                            <!-- Когда курсор над текстом логина -->
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="TextElement" Property="Opacity" Value="1" />
                             </Trigger>
-                            <Trigger Property="IsMouseOver" Value="False">
-                                <Setter TargetName="TextElement" Property="Opacity" Value="0.8" />
-                            </Trigger>
+                            <!-- Когда курсор над кнопкой профиля -->
+                            <DataTrigger Binding="{Binding IsMouseOver, ElementName=ProfileButton}" Value="True">
+                                <Setter TargetName="TextElement" Property="Opacity" Value="1" />
+                            </DataTrigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Button.Template>
@@ -147,13 +153,13 @@
 
             <!-- Кнопка закрытия -->
             <Button Grid.Column="2"
-            Command="{Binding CloseCommand}"
-    Width="30" Height="30" 
-    Background="Transparent"
-    HorizontalAlignment="Right"
-    VerticalAlignment="Top"
-    Margin="0,30,25,0"
-    Style="{StaticResource ResourceKey=CloseButton}" Grid.ColumnSpan="2">
+                Command="{Binding CloseCommand}"
+                Width="30" Height="30" 
+                Background="Transparent"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Margin="0,0,25,0"
+                Style="{StaticResource ResourceKey=CloseButton}" Grid.ColumnSpan="2">
                 <Image x:Name="close" Source="..\Source\Close_icon.png">
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
@@ -167,23 +173,70 @@
                     </Image.Style>
                 </Image>
             </Button>
+
+            <!--Кнопка перехода в оконный режим-->
+            <Button Grid.Column="2"
+                Width="30" Height="30" 
+                Background="Transparent"
+                BorderBrush="Transparent"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Margin="0,0,65,0"
+                Style="{StaticResource ResourceKey=CloseButton}">
+                <Image x:Name="windowModeSwitch" Source="..\Source\window_restore.png">
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Setter Property="Opacity" Value="0.5"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Opacity" Value="1"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Button>
+
+            <!--Кнопка перехода в оконный режим-->
+            <Button Grid.Column="2"
+                Width="30" Height="30" 
+                Background="Transparent"
+                BorderBrush="Transparent"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Margin="0,0,105,0"
+                Style="{StaticResource ResourceKey=CloseButton}">
+                <Image x:Name="rollUp_window" Source="..\Source\roll_window.png">
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Setter Property="Opacity" Value="0.5"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Opacity" Value="1"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Button>
+
         </Grid>
 
         <!-- Боковое меню -->
         <Grid Background="#2C1B47" Width="100" HorizontalAlignment="Left" VerticalAlignment="Stretch">
             <Button
                 Command="{Binding NavigateToWelcomePage}"
-            BorderBrush="Transparent"
-            Margin="0,18,0,0" 
-            Width="65" Height="65" 
-            VerticalAlignment="Top"
-            HorizontalAlignment="Center"
-            Background="Transparent">
+                BorderBrush="Transparent"
+                Margin="0,18,0,0" 
+                Width="65" Height="65" 
+                VerticalAlignment="Top"
+                HorizontalAlignment="Center"
+                Background="Transparent">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border 
-                    Background="{TemplateBinding Background}" 
-                    BorderBrush="{TemplateBinding BorderBrush}">
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
@@ -205,17 +258,17 @@
             <!-- Кнопка Ползователь -->
             <Button
                 Command="{Binding NavigateToProfilePage}"
-            BorderBrush="Transparent"
-            Margin="0,108,0,0" 
-            Width="65" Height="65" 
-            VerticalAlignment="Top"
-            HorizontalAlignment="Center"
-            Background="Transparent">
+                BorderBrush="Transparent"
+                Margin="0,108,0,0" 
+                Width="65" Height="65" 
+                VerticalAlignment="Top"
+                HorizontalAlignment="Center"
+                Background="Transparent">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border 
-                        Background="{TemplateBinding Background}" 
-                        BorderBrush="{TemplateBinding BorderBrush}">
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
@@ -236,17 +289,17 @@
 
             <!-- Кнопка Файл -->
             <Button
-            BorderBrush="Transparent"
-            Margin="0,198,0,0" 
-            Width="65" Height="65" 
-            VerticalAlignment="Top"
-            HorizontalAlignment="Center"
-            Background="Transparent">
+                BorderBrush="Transparent"
+                Margin="0,198,0,0" 
+                Width="65" Height="65" 
+                VerticalAlignment="Top"
+                HorizontalAlignment="Center"
+                Background="Transparent">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border 
-                        Background="{TemplateBinding Background}" 
-                        BorderBrush="{TemplateBinding BorderBrush}">
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
@@ -267,18 +320,18 @@
 
             <!-- Кнопка настройки -->
             <Button
-            Command="{Binding NavigateToSettingsPage}"
-            BorderBrush="Transparent"
-            Margin="0,0,0,21" 
-            Width="54" Height="54" 
-            VerticalAlignment="Bottom"
-            HorizontalAlignment="Center"
-            Background="Transparent">
+                Command="{Binding NavigateToSettingsPage}"
+                BorderBrush="Transparent"
+                Margin="0,0,0,21" 
+                Width="54" Height="54" 
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Center"
+                Background="Transparent">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border 
-                        Background="{TemplateBinding Background}" 
-                        BorderBrush="{TemplateBinding BorderBrush}">
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
@@ -300,16 +353,16 @@
 
         <!-- Кнопка добавить проект-->
         <Button
-        BorderBrush="Transparent"
-        Margin="0,0,24,24"
-        Width="54" Height="54" 
-        HorizontalAlignment="Right" VerticalAlignment="Bottom" 
-        Background="Transparent">
+            BorderBrush="Transparent"
+            Margin="0,0,24,24"
+            Width="54" Height="54" 
+            HorizontalAlignment="Right" VerticalAlignment="Bottom" 
+            Background="Transparent">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border 
-                    Background="{TemplateBinding Background}" 
-                    BorderBrush="{TemplateBinding BorderBrush}">
+                        Background="{TemplateBinding Background}" 
+                        BorderBrush="{TemplateBinding BorderBrush}">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                 </ControlTemplate>
