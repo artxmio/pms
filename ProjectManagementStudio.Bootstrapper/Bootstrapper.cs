@@ -2,6 +2,7 @@
 using ProjectManagementStudio.Bootstrapper.Services.AvatarService;
 using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 using ProjectManagementStudio.Bootstrapper.Services.PageServices.ProfilePageService;
+using ProjectManagementStudio.Bootstrapper.Services.PageServices.SettingsPageService;
 using ProjectManagementStudio.Bootstrapper.Services.PathService;
 using ProjectManagementStudio.Bootstrapper.Services.Settings.SettingSizeService;
 using ProjectManagementStudio.Bootstrapper.Services.UrlService;
@@ -81,6 +82,7 @@ public class Bootstrapper : IDisposable
         _container.Resolve<IUserDataMementoWrapperInitializer>().Initialize();
         _container.Resolve<ICurrentUserServiceInitializer>().Initialize();
         _container.Resolve<IProfilePageServiceInitializer>().Initialize();
+        _container.Resolve<ISettingsPageServiceInitializer>().Initialize();
     }
 
     public void Dispose() => _container.Dispose();

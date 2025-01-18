@@ -454,6 +454,7 @@
             </Border>
 
             <Button 
+                IsEnabled="{Binding ApplyButtonEnabled}"
                 Command="{Binding ApplySettings}"
                 Width="200" Height="65" VerticalAlignment="top" HorizontalAlignment="Right" Margin="0,52,22,0">
                 <Button.Template>

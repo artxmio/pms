@@ -4,6 +4,7 @@ using ProjectManagementStudio.Model.SettingSize;
 using ProjectManagementStudio.ViewModel.Command;
 using ProjectManagementStudio.ViewModel.Pages;
 using ProjectManagementStudio.ViewModel.PageServices.IProfilePageService;
+using ProjectManagementStudio.ViewModel.PageServices.ISettingsPageService;
 using ProjectManagementStudio.ViewModel.SettingSizeService;
 using ProjectManagementStudio.ViewModel.Windows;
 using System.Collections.ObjectModel;
@@ -27,7 +28,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     private readonly IProfilePageService _profilePageService;
     private IPage _activePage;
     private BitmapImage _avatarImage = new();
-    private readonly ISettingSizeService _settingSizeService;
+    private readonly ISettingsPageService _settingPageService;
 
     #endregion
 
@@ -75,7 +76,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     {
         get
         {
-            return _settingSizeService.Sizes;
+            return _settingPageService.SettingSizeService.Sizes;
         }
     }
 
@@ -83,11 +84,11 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     {
         get
         {
-            return _settingSizeService.SelectedWindowSize;
+            return _settingPageService.SettingSizeService.SelectedWindowSize;
         }
         set
         {
-            _settingSizeService.SelectedWindowSize = value;
+            _settingPageService.SettingSizeService.SelectedWindowSize = value;
             OnPropertyChanged();
         }
     }
@@ -96,24 +97,24 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     {
         get
         {
-            return _settingSizeService.Width;
+            return _settingPageService.SettingSizeService.Width;
         }
         set
         {
-            _settingSizeService.Width = value;
+            _settingPageService.SettingSizeService.Width = value;
             OnPropertyChanged();
         }
     }
 
-    public int Heigth
+    public int Heigth   
     {
         get
         {
-            return _settingSizeService.Width;
+            return _settingPageService.SettingSizeService.Width;
         }
         set
         {
-            _settingSizeService.Height = value;
+            _settingPageService.SettingSizeService.Height = value;
             OnPropertyChanged();
         }
     }
@@ -148,13 +149,14 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         IPageManager pageManager,
         ICurrentUserService currentUserService,
         IProfilePageService profilePageService,
-        ISettingSizeService settingSizeService)
+        ISettingsPageService settingPageService)
     {
         _pageManager = pageManager;
         _windowManager = windowManager;
         _currentUserService = currentUserService;
 
         _profilePageService = profilePageService;
+        _settingPageService = settingPageService;
 
         _activePage = _pageManager.NavigateTo(2);
 
@@ -182,8 +184,8 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         // Setting's functions //
         #region
 
-        _settingSizeService = settingSizeService;
-        ApplySettings = new RelayCommand(o => _settingSizeService.ApplySettings());
+        ApplySettings = new RelayCommand(o => _settingPageService.SettingSizeService.ApplySettings());
+
         #endregion
     }
 

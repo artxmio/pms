@@ -3,6 +3,7 @@ using ProjectManagementStudio.Bootstrapper.Factories;
 using ProjectManagementStudio.Bootstrapper.Services.AvatarService;
 using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 using ProjectManagementStudio.Bootstrapper.Services.PageServices.ProfilePageService;
+using ProjectManagementStudio.Bootstrapper.Services.PageServices.SettingsPageService;
 using ProjectManagementStudio.Bootstrapper.Services.PathService;
 using ProjectManagementStudio.Bootstrapper.Services.Settings.SettingSizeService;
 using ProjectManagementStudio.Bootstrapper.Services.UrlService;
@@ -11,6 +12,7 @@ using ProjectManagementStudio.View.PageFactory;
 using ProjectManagementStudio.View.WindowFactory;
 using ProjectManagementStudio.ViewModel.AvatarService;
 using ProjectManagementStudio.ViewModel.PageServices.IProfilePageService;
+using ProjectManagementStudio.ViewModel.PageServices.ISettingsPageService;
 using ProjectManagementStudio.ViewModel.SettingSizeService;
 using ProjectManagementStudio.ViewModel.UrlService;
 
@@ -48,6 +50,11 @@ public class RegistrationModule : Module
         builder.RegisterType<ProfilePageService>()
             .As<IProfilePageService>()
             .As<IProfilePageServiceInitializer>()
+            .SingleInstance();
+
+        builder.RegisterType<SettingsPageService>()
+            .As<ISettingsPageService>()
+            .As<ISettingsPageServiceInitializer>()
             .SingleInstance();
 
         builder.RegisterType<SettingSizeService>()
