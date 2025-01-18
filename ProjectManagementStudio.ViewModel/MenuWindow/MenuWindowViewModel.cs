@@ -134,7 +134,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
         AvatarImage = profilePageService.AvatarImage;
 
-        CloseCommand = new RelayCommand(o => _windowManager.Close(this));
+        CloseCommand = new RelayCommand(o => CloseWindow());
         RollCommand = new RelayCommand(o => RollWindow(o));
         RestoreCommand = new RelayCommand(o => RestoreWindow(o));
 
@@ -161,9 +161,9 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         #endregion
     }
 
-    private void CloseWindow(object parametr)
+    private void CloseWindow()
     {
-       _windowManager.Close(this);
+        _windowManager.Close(this);
     }
 
     private static void RollWindow(object parametr)

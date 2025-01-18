@@ -18,6 +18,7 @@ public partial class MenuWindow : IMenuWindow
         _settingSizeService = settingSizeService;
 
         Loaded += OnLoad;
+        MouseDoubleClick += DoubleClick;
     }
 
     private void DragWindow(object sender, MouseButtonEventArgs e)
@@ -28,7 +29,12 @@ public partial class MenuWindow : IMenuWindow
         }
     }
 
-    protected void OnLoad(object sender, RoutedEventArgs e)
+    private void DoubleClick(object sender, RoutedEventArgs e)
+    {
+        this.WindowState = WindowState.Maximized;
+    }
+
+    private void OnLoad(object sender, RoutedEventArgs e)
     {
         this.Width = _settingSizeService.Current.Width;
         this.Height = _settingSizeService.Current.Height;
