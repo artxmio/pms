@@ -18,7 +18,6 @@
         WindowStyle="None"
         WindowStartupLocation="Manual"
         RenderOptions.BitmapScalingMode="HighQuality"
-        WindowState="Maximized"
         d:DataContext="{d:DesignInstance vm:MenuWindowViewModel}"
         d:Width="1920"
         d:Height="1080">
@@ -175,7 +174,10 @@
             </Button>
 
             <!--Кнопка перехода в оконный режим-->
-            <Button Grid.Column="2"
+            <Button
+                Command="{Binding RestoreCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                Grid.Column="2"
                 Width="30" Height="30" 
                 Background="Transparent"
                 BorderBrush="Transparent"
@@ -198,7 +200,10 @@
             </Button>
 
             <!--Кнопка перехода в оконный режим-->
-            <Button Grid.Column="2"
+            <Button 
+                Command="{Binding RollCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                Grid.Column="2"
                 Width="30" Height="30" 
                 Background="Transparent"
                 BorderBrush="Transparent"

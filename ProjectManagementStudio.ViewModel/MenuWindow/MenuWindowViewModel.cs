@@ -98,6 +98,8 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     #region 
 
     public ICommand CloseCommand { get; }
+    public ICommand RollCommand { get; }
+    public ICommand RestoreCommand { get; }
 
     public ICommand NavigateToProfilePage { get; }
     public ICommand NavigateToWelcomePage { get; }
@@ -133,6 +135,8 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         AvatarImage = profilePageService.AvatarImage;
 
         CloseCommand = new RelayCommand(o => _windowManager.Close(this));
+        RollCommand = new RelayCommand(o => RollWindow(o));
+        RestoreCommand = new RelayCommand(o => RestoreWindow(o));
 
         NavigateToWelcomePage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(2));
         NavigateToProfilePage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(3));
@@ -155,6 +159,29 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         _settingSizeService = settingSizeService;
         ApplySettings = new RelayCommand(o => _settingSizeService.ApplySettings());
         #endregion
+    }
+
+    private static void RollWindow(object parametr)
+    {
+        if (parametr is Window window)
+        {
+            window.WindowState = WindowState.Minimized;
+        }
+    }
+
+    private static void RestoreWindow(object parametr)
+    {
+        if (parametr is Window window)
+        {
+            if (window.WindowState != WindowState.Maximized)
+            {
+                window.WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                window.WindowState = WindowState.Normal;
+            }
+        }
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

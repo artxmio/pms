@@ -12,7 +12,7 @@ internal class SettingSizeService : ISettingSizeService, ISettingSizeInitialize,
 {
     private ObservableCollection<IWindowSizes> _sizes;
     private IWindowSizes _current;
-    private IWindowDataMementoWrapper _windowDataMementoWrapper;
+    private readonly IWindowDataMementoWrapper _windowDataMementoWrapper;
 
     public IWindowSizes Current
     {
