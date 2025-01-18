@@ -8,5 +8,6 @@ public interface ISettingSizeService
     public IWindowSizes Current { get; set; }
     public ObservableCollection<IWindowSizes> Sizes { get; set; }
 
+    void ApplySettings();
     void UpdateWindowSize(IWindowSizes newSize);
 }

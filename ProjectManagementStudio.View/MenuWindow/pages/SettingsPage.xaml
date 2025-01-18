@@ -5,9 +5,12 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectManagementStudio.View.MenuWindow.Pages"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MenuWindow;assembly=ProjectManagementStudio.ViewModel"
       mc:Ignorable="d" 
       d:DesignHeight="813" d:DesignWidth="1500"
-      Title="SettingsPage">
+      Title="SettingsPage"
+      d:DataContext="{d:DesignInstance vm:MenuWindowViewModel}"
+      >
 
     <Border Background="#724D9D" Height="750" Width="650" CornerRadius="25">
         <Border.Effect>
@@ -449,7 +452,9 @@
                 </Grid>
             </Border>
 
-            <Button Width="200" Height="65" VerticalAlignment="top" HorizontalAlignment="Right" Margin="0,52,22,0">
+            <Button 
+                Command="{Binding ApplySettings}"
+                Width="200" Height="65" VerticalAlignment="top" HorizontalAlignment="Right" Margin="0,52,22,0">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border x:Name="buttonBorder"  Width="200" Height="65" Background="#2C1B47" CornerRadius="10">

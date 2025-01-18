@@ -92,9 +92,6 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         }
     }
 
-    public int Wigth => _settingSizeService.Current.Width = 1920;
-    public int Height => _settingSizeService.Current.Height = 1080;
-
     #endregion
 
     /* // Команды // */
@@ -111,6 +108,8 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     public ICommand ChangePasswordCommand { get; }
     public ICommand ChangeEmailCommand { get; }
     public ICommand ChangeAboutTextCommand { get; }
+
+    public ICommand ApplySettings { get; }
 
     public ICommand LogOutCommand { get; }
 
@@ -154,7 +153,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         #region
 
         _settingSizeService = settingSizeService;
-
+        ApplySettings = new RelayCommand(o => _settingSizeService.ApplySettings());
         #endregion
     }
 

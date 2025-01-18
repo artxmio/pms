@@ -29,6 +29,19 @@ internal class SettingSizeService : ISettingSizeService, ISettingSizeInitialize,
             OnPropertyChanged();
         }
     }
+
+    public int Width
+    {
+        get
+        {
+            return _windowDataMementoWrapper.Width;
+        }
+        set
+        {
+            _windowDataMementoWrapper.Width = value;
+        }
+    }
+
     public ObservableCollection<IWindowSizes> Sizes
     {
         get
@@ -68,7 +81,6 @@ internal class SettingSizeService : ISettingSizeService, ISettingSizeInitialize,
         ];
 
         Current = new WindowSizes(_windowDataMementoWrapper.Width, _windowDataMementoWrapper.Height);
-        _windowDataMementoWrapper.SaveWindowData();
     }
 
     public void UpdateWindowSize(IWindowSizes newSize)
@@ -80,6 +92,11 @@ internal class SettingSizeService : ISettingSizeService, ISettingSizeInitialize,
             currentWindow.Width = newSize.Width;
             currentWindow.Height = newSize.Height;
         }
+    }
+
+    public void ApplySettings()
+    {
+        _windowDataMementoWrapper.SaveWindowData();
     }
 
     private void EnsureInitialized()
