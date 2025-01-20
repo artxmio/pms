@@ -5,7 +5,6 @@ using ProjectManagementStudio.ViewModel.Command;
 using ProjectManagementStudio.ViewModel.Pages;
 using ProjectManagementStudio.ViewModel.PageServices.IProfilePageService;
 using ProjectManagementStudio.ViewModel.PageServices.ISettingsPageService;
-using ProjectManagementStudio.ViewModel.SettingSizeService;
 using ProjectManagementStudio.ViewModel.Windows;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
