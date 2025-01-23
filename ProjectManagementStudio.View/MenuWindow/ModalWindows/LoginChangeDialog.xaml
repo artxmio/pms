@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:ProjectManagementStudio.View.MenuWindow.ModalWindows"
         xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewLogin;assembly=ProjectManagementStudio.ViewModel"
         xmlns:validations="clr-namespace:ProjectManagementStudio.ViewModel.ValidationsRules;assembly=ProjectManagementStudio.ViewModel"
+        xmlns:uc="clr-namespace:ProjectManagementStudio.View.UserControls.TextPasswordBox"
         mc:Ignorable="d"
         Title="LoginChangeDialog" Height="310" Width="560"
         WindowStyle="None"
@@ -87,24 +88,30 @@
 
             <Border Width="410" Height="30" Background="#724D9D" CornerRadius="10"
                     Margin="0,66,0,0">
-                <TextBox
+                <uc:TextPasswordBox
+                    x:Name="password"
+                    Text="{Binding Password, Mode=OneWay}"
                     VerticalContentAlignment="Center"
                     Width="400" Height="25"
                     Background="#724D9D"
                     BorderBrush="Transparent"
                     FontFamily="Outfit"
                     FontSize="14"
-                    Foreground="#FFFFFF">
+                    Foreground="#FFFFFF">   
 
-                    <TextBox.Text>
+                    <uc:TextPasswordBox.Password>
                         <Binding Path="Password" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                             <Binding.ValidationRules>
                                 <validations:PasswordValidationRules ValidationStep="ConvertedProposedValue"/>
                             </Binding.ValidationRules>
                         </Binding>
-                    </TextBox.Text>
-                </TextBox>
+                    </uc:TextPasswordBox.Password>
+
+                </uc:TextPasswordBox>
             </Border>
+
+            <Button Content="Показать пароль" Margin="0 150 0 0 " Width="100" Height="20"
+                    Click="ShowPassword"/>
 
             <Button 
                 Command="{Binding CangeLoginCommand}"

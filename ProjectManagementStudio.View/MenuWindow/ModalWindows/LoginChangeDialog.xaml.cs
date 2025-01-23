@@ -7,8 +7,8 @@ public partial class LoginChangeDialog : ILoginChangeDialog
         InitializeComponent();
     }
 
-    private void TextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+    private void ShowPassword(object sender, System.Windows.RoutedEventArgs e)
     {
-
+        password.IsPasswordVisible = !password.IsPasswordVisible;
     }
 }
