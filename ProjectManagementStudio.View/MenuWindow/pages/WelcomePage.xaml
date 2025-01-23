@@ -10,15 +10,12 @@
 
     <Grid>
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                   Width="573" Height="380"
-                   Foreground="#FFFFFF"
-                   FontSize="75"
-                   FontFamily="Outfit"
-                   FontWeight="Normal"
-                   TextWrapping="Wrap"
-                   TextAlignment="Center"
-                   Opacity="0.5"
-                   >
+            Foreground="#FFFFFF" FontSize="75"
+            FontFamily="Outfit" FontWeight="Normal"
+            Width="573" Height="380"
+            TextWrapping="Wrap"
+            TextAlignment="Center"
+            Opacity="0.5">
             Welcome to Project Management Studio!
         </TextBlock>
     </Grid>

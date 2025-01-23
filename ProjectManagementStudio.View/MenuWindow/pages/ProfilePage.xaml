@@ -27,14 +27,12 @@
                                     Background="#724D9D" 
                                     CornerRadius="10" />
                                 <Track Name="PART_Track" 
-                                Orientation="{TemplateBinding Orientation}">
+                                    Orientation="{TemplateBinding Orientation}">
                                     <Track.Thumb>
                                         <Thumb>
                                             <Thumb.Template>
                                                 <ControlTemplate TargetType="Thumb">
-                                                    <Border Height="120" Width="40" VerticalAlignment="Top" Margin="0,0,0,0">
-                                                        
-                                                    </Border>
+                                                    <Border Height="120" Width="40" VerticalAlignment="Top" Margin="0,0,0,0"/>
                                                 </ControlTemplate>
                                             </Thumb.Template>
                                         </Thumb>
@@ -53,9 +51,7 @@
                             <Grid>
                                 <ScrollContentPresenter/>
                                 <ScrollBar Style="{StaticResource CustomScrollBar}" 
-                                       Orientation="Vertical"
-                                       Visibility="Visible"
-                                       />
+                                    Orientation="Vertical" Visibility="Visible"/>
                             </Grid>
                         </ControlTemplate>
                     </Setter.Value>
@@ -83,53 +79,50 @@
 
                     <Grid>
                         <Image Width="200" Height="200" 
-                    Source="{Binding AvatarImage, Mode=OneWay}"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Margin="59,78,0,0"/>
+                            Source="{Binding AvatarImage, Mode=OneWay}"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Margin="59,78,0,0"/>
 
-                        <!-- СДЕЛАТЬ КОГДА СЕРВАК! -->
                         <TextBlock FontSize="35" FontFamily="outfit"
-                               FontWeight="Normal" 
-                               Text="{Binding CurrentUser.Login, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}"
-                               Width="221" Height="44"
-                               Margin="0,134,211,0"
-                               HorizontalAlignment="Right"
-                               VerticalAlignment="Top"
-                               Foreground="#FFFFFF"/>
+                            FontWeight="Normal" 
+                            Text="{Binding CurrentUser.Login, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}"
+                            Width="221" Height="44"
+                            Margin="0,134,211,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Foreground="#FFFFFF"/>
 
-                        <!-- СДЕЛАТЬ КОГДА СЕРВАК! -->
                         <TextBlock FontSize="30" FontFamily="outfit"
-                               FontWeight="Normal" Text="{Binding CurrentUser.Email}"
-                               Width="356" Height="38"
-                               Margin="0,186,76,0"
-                               HorizontalAlignment="Right"
-                               VerticalAlignment="Top"
-                               Foreground="#FFFFFF"/>
+                            FontWeight="Normal" Text="{Binding CurrentUser.Email}"
+                            Width="356" Height="38"
+                            Margin="0,186,76,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Foreground="#FFFFFF"/>
                     </Grid>
                 </Border>
 
                 <!-- Опции -->
                 <Border CornerRadius="25"
-                Background="#2C1B47"
-                HorizontalAlignment="Right" 
-                VerticalAlignment="Top" 
-                Width="300" Height="364" 
-                Margin="0,59,112,0">
+                    Background="#2C1B47"
+                    HorizontalAlignment="Right" 
+                    VerticalAlignment="Top" 
+                    Width="300" Height="364" 
+                    Margin="0,59,112,0">
                     <Border.Effect>
                         <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
                     </Border.Effect>
 
                     <StackPanel Orientation="Vertical">
                         <TextBlock FontFamily="outfit" FontSize="35" 
-                               Foreground="#FFFFFF" FontWeight="Normal"
-                               Margin="0,31,0,0" Text="Options"
-                               Width="127" Height="42"
-                               HorizontalAlignment="Center"/>
+                            Foreground="#FFFFFF" FontWeight="Normal"
+                            Margin="0,31,0,0" Text="Options"
+                            Width="127" Height="42"
+                            HorizontalAlignment="Center"/>
 
-                        <!-- СДЕЛАТЬ КОГДА СЕРВАК! -->
                         <Button Width="260" Height="39"
-                                Command="{Binding ChangeAvatarCommand}"
+                            Command="{Binding ChangeAvatarCommand}"
                             Margin="0,31,0,0"
                             Background="#724D9D"
                             Content="Change avatar"
@@ -139,16 +132,14 @@
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Border x:Name="buttonBorder" 
-                                    CornerRadius="10" 
-                                    Background="{TemplateBinding Background}">
-                                        <ContentPresenter 
-                                    HorizontalAlignment="Center" 
-                                    VerticalAlignment="Center"
-                                    ContentSource="Content" 
-                                    TextElement.FontFamily="{TemplateBinding FontFamily}" 
-                                    TextElement.FontSize="{TemplateBinding FontSize}" 
-                                    TextElement.FontWeight="{TemplateBinding FontWeight}"
-                                    TextElement.Foreground="{TemplateBinding Foreground}"/>
+                                        CornerRadius="10" 
+                                        Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center" ContentSource="Content" 
+                                            TextElement.FontFamily="{TemplateBinding FontFamily}" 
+                                            TextElement.FontSize="{TemplateBinding FontSize}" 
+                                            TextElement.FontWeight="{TemplateBinding FontWeight}"
+                                            TextElement.Foreground="{TemplateBinding Foreground}"/>
                                     </Border>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
@@ -159,9 +150,9 @@
                             </Button.Template>
                         </Button>
 
-                        <!-- СДЕЛАТЬ КОГДА СЕРВАК! -->
+
                         <Button Width="260" Height="39"
-                                Command="{Binding ChangeLoginCommand}"
+                            Command="{Binding ChangeLoginCommand}"
                             Margin="0,20,0,0"
                             Background="#724D9D"
                             Content="Change login"
@@ -171,16 +162,14 @@
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Border x:Name="buttonBorder" 
-                                    CornerRadius="10" 
-                                    Background="{TemplateBinding Background}">
-                                        <ContentPresenter 
-                                    HorizontalAlignment="Center" 
-                                    VerticalAlignment="Center"
-                                    ContentSource="Content" 
-                                    TextElement.FontFamily="{TemplateBinding FontFamily}" 
-                                    TextElement.FontSize="{TemplateBinding FontSize}" 
-                                    TextElement.FontWeight="{TemplateBinding FontWeight}"
-                                    TextElement.Foreground="{TemplateBinding Foreground}"/>
+                                        CornerRadius="10" 
+                                        Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center" ContentSource="Content" 
+                                            TextElement.FontFamily="{TemplateBinding FontFamily}" 
+                                            TextElement.FontSize="{TemplateBinding FontSize}" 
+                                            TextElement.FontWeight="{TemplateBinding FontWeight}"
+                                            TextElement.Foreground="{TemplateBinding Foreground}"/>
                                     </Border>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
@@ -191,7 +180,6 @@
                             </Button.Template>
                         </Button>
 
-                        <!-- СДЕЛАТЬ КОГДА СЕРВАК! -->
                         <Button 
                             Command="{Binding ChangePasswordCommand}"
                             Width="260" Height="39"
@@ -204,16 +192,14 @@
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Border x:Name="buttonBorder" 
-                                    CornerRadius="10" 
-                                    Background="{TemplateBinding Background}">
-                                        <ContentPresenter 
-                                        HorizontalAlignment="Center" 
-                                        VerticalAlignment="Center"
-                                        ContentSource="Content" 
-                                        TextElement.FontFamily="{TemplateBinding FontFamily}" 
-                                        TextElement.FontSize="{TemplateBinding FontSize}" 
-                                        TextElement.FontWeight="{TemplateBinding FontWeight}"
-                                        TextElement.Foreground="{TemplateBinding Foreground}"/>
+                                        CornerRadius="10" 
+                                        Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center" ContentSource="Content" 
+                                            TextElement.FontFamily="{TemplateBinding FontFamily}" 
+                                            TextElement.FontSize="{TemplateBinding FontSize}" 
+                                            TextElement.FontWeight="{TemplateBinding FontWeight}"
+                                            TextElement.Foreground="{TemplateBinding Foreground}"/>
                                     </Border>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
@@ -237,16 +223,14 @@
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Border x:Name="buttonBorder" 
-                                    CornerRadius="10" 
-                                    Background="{TemplateBinding Background}">
-                                        <ContentPresenter 
-                                        HorizontalAlignment="Center" 
-                                        VerticalAlignment="Center"
-                                        ContentSource="Content" 
-                                        TextElement.FontFamily="{TemplateBinding FontFamily}" 
-                                        TextElement.FontSize="{TemplateBinding FontSize}" 
-                                        TextElement.FontWeight="{TemplateBinding FontWeight}"
-                                        TextElement.Foreground="{TemplateBinding Foreground}"/>
+                                        CornerRadius="10" 
+                                        Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center" ContentSource="Content" 
+                                            TextElement.FontFamily="{TemplateBinding FontFamily}" 
+                                            TextElement.FontSize="{TemplateBinding FontSize}" 
+                                            TextElement.FontWeight="{TemplateBinding FontWeight}"
+                                            TextElement.Foreground="{TemplateBinding Foreground}"/>
                                     </Border>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
@@ -271,36 +255,27 @@
                     </Border.Effect>
 
                     <Grid>
-                        <TextBlock Text="Projects"
-                       FontFamily="outfit"
-                       FontSize="35"
-                       Width="126" Height="44"
-                       FontWeight="Normal"
-                       Foreground="White"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Top"
-                       Margin="0,14,0,0"/>
+                       <TextBlock Text="Projects" FontFamily="outfit" FontSize="35"
+                           FontWeight="Normal" Foreground="White"
+                           HorizontalAlignment="Center" VerticalAlignment="Top"
+                           Width="126" Height="44"
+                           Margin="0,14,0,0"/>
 
-                        <!-- Прокручиваемая область !!!НУЖНО СОЗДАТЬ КОГДА БУДЕТ СЕРВАК!!!-->
+                        <!-- Прокручиваемая область !!!НУЖНО ДОДЕЛАТЬ!!! -->
                         <Grid Width="479" Height="185"
-                              VerticalAlignment="Bottom"
-                              HorizontalAlignment="Center">
+                            VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                            
                             <ScrollViewer VerticalScrollBarVisibility="Visible" Style="{StaticResource ScrollViewerStyle}">
                                 <!-- Ваш контент -->
                                 <Border Width="140" Height="140"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Top"
-                                        Margin="35,0,0,0"
-                                        CornerRadius="10"
-                                        Background="#724D9D">
+                                    HorizontalAlignment="Left" VerticalAlignment="Top"
+                                    Margin="35,0,0,0" CornerRadius="10"
+                                    Background="#724D9D">
+                                    
                                     <Grid>
-                                        <TextBlock Text="Project-1" 
-                                                   FontFamily="Outfit"
-                                                   FontSize="20"
-                                                   FontWeight="Normal"
-                                                   Foreground="White"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"/>
+                                        <TextBlock Text="Project-1" FontFamily="Outfit"
+                                            FontSize="20" FontWeight="Normal" Foreground="White"
+                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Grid>
                                 </Border>
                             </ScrollViewer>
@@ -321,15 +296,11 @@
 
                     <Grid>
                         <!--Конпка изменения даннах о себе-->
-                        <Button Height="25" Width="25"
-                                Background="Transparent"
-                                BorderBrush="Transparent"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Top"
-                                Margin="0,20,20,0"
-                                Command="{Binding ChangeAboutTextCommand}"
-                                x:Name="EditButton"
-                                >
+                        <Button Height="25" Width="25" x:Name="EditButton" Margin="0,20,20,0"
+                                Background="Transparent" BorderBrush="Transparent"
+                                HorizontalAlignment="Right" VerticalAlignment="Top"
+                                Command="{Binding ChangeAboutTextCommand}">
+                            
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Image x:Name="EditButton" Source ="..\..\Source\Edit_pencil.png"></Image>
@@ -341,28 +312,19 @@
                                 </ControlTemplate>
                             </Button.Template>
                         </Button>
-                        
-                        <TextBlock Text="About"
-                        FontFamily="outfit"
-                        FontSize="35"
-                        Width="96" Height="44"
-                        FontWeight="Normal"
-                        Foreground="White"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Top"
-                        Margin="0,14,0,0"/>
+
+                        <TextBlock Text="About" Margin="0,14,0,0"
+                            FontFamily="outfit" FontSize="35"
+                            FontWeight="Normal" Foreground="White"
+                            HorizontalAlignment="Center" VerticalAlignment="Top"
+                            Width="96" Height="44"/>
 
                         <TextBlock Text="{Binding CurrentUser.AboutText, Mode=TwoWay}"
-                               FontFamily="outfit"
-                               FontSize="30"
-                               TextWrapping="Wrap"
-                               TextAlignment="Center"
-                               Width="321" Height="122"
-                               FontWeight="Normal"
-                               Foreground="White"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Top"
-                               Margin="0,80,0,0"/>
+                            FontFamily="outfit" FontSize="30" FontWeight="Normal" Foreground="White"
+                            HorizontalAlignment="Center" VerticalAlignment="Top"
+                            TextWrapping="Wrap" TextAlignment="Center"
+                            Width="321" Height="122"
+                            Margin="0,80,0,0"/>
                     </Grid>
                 </Border>
 
@@ -379,10 +341,10 @@
 
                     <Grid>
                         <Image Source="..\..\Source\QuestionMark.png"
-                               Height="20" Width="20"
-                               VerticalAlignment="Top"
-                               HorizontalAlignment="Right"
-                               Margin="0,14,14,0">
+                            Height="20" Width="20"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Right"
+                            Margin="0,14,14,0">
                             <Image.Style>
                                 <Style TargetType="Image">
                                     <Setter Property="Opacity" Value="1"/>
@@ -395,47 +357,41 @@
                             </Image.Style>
                             <Image.ToolTip>
                                 <ToolTip Content="The user's rating is formed from the ratings 
-                                         used by the team leader to evaluate the employee.">
+                                    used by the team leader to evaluate the employee.">
                                     <ToolTip.Template>
                                         <ControlTemplate TargetType="ToolTip">
                                             <Border Width="230" Height="180" Background="#9357A1" CornerRadius="25">
                                                 <TextBlock Text="{TemplateBinding Content}" 
-                                                           FontFamily="Outfit" FontSize="20" FontWeight="Normal" 
-                                                           Foreground="white" TextWrapping="Wrap"
-                                                           VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                           TextAlignment="Center"/>
+                                                    FontFamily="Outfit" FontSize="20" FontWeight="Normal" 
+                                                    Foreground="white" TextWrapping="Wrap"
+                                                    VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                    TextAlignment="Center"/>
                                             </Border>
                                         </ControlTemplate>
                                     </ToolTip.Template>
                                 </ToolTip>
                             </Image.ToolTip>
                         </Image>
-                        <TextBlock Text="Rate"
-                               FontFamily="outfit"
-                               FontSize="35"
-                               Width="73" Height="44"
-                               FontWeight="Normal"
-                               Foreground="White"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Top"
-                               Margin="0,14,0,0"/>
+                        
+                        <TextBlock Text="Rate" Width="73" Height="44"
+                            FontFamily="outfit" FontSize="35"
+                            FontWeight="Normal" Foreground="White"
+                            HorizontalAlignment="Center" VerticalAlignment="Top"
+                            Margin="0,14,0,0"/>
 
                         <Image Source="..\..\Source\Star.png"
-                           Height="45" Width="45"
-                           VerticalAlignment="Bottom"
-                           HorizontalAlignment="Right"
-                           Margin="0,0,29,42"/>
+                            Height="45" Width="45"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Right"
+                            Margin="0,0,29,42"/>
 
 
-                        <TextBlock Text="5.0"
-                               FontFamily="outfit"
-                               FontSize="35"
-                               Width="73" Height="44"
-                               FontWeight="Normal"
-                               Foreground="White"
-                               HorizontalAlignment="Left"
-                               VerticalAlignment="Bottom"
-                               Margin="40,0,0,39"/>
+                        <TextBlock Text="5.0" Width="50" Height="44"
+                            FontFamily="outfit" FontSize="35"
+                            FontWeight="Normal" Foreground="White"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Bottom"
+                            Margin="40,0,0,39"/>
                     </Grid>
                 </Border>
 
@@ -459,12 +415,8 @@
                     </Button.Template>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Image Width="32" Height="38" Source="..\..\Source\ExitAcc.png" Margin="5"/>
-                        <TextBlock FontFamily="outfit" 
-                               Width="108" Height="40" 
-                               Text="Log out" 
-                               VerticalAlignment="Center"
-                               Foreground="White" FontSize="30"
-                               FontWeight="Normal"/>
+                        <TextBlock FontFamily="outfit" Width="108" Height="40" Text="Log out" 
+                            VerticalAlignment="Center" Foreground="White" FontSize="30" FontWeight="Normal"/>
                     </StackPanel>
                 </Button>
             </Grid>
