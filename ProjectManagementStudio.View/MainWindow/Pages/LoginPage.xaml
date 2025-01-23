@@ -104,11 +104,8 @@
             </uc:TextPasswordBox>
 
             <Button Content="Показать пароль" Width="100" Height="20"
-                    Click="ShowPassword"
-                    >
-                
-            </Button>
-            
+                    Click="ShowPassword"/>
+
             <!-- // Rememmber me // -->
             <CheckBox Width="123"
                       Content="remember me"

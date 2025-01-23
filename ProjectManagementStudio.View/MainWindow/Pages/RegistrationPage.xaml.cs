@@ -9,4 +9,9 @@ public partial class RegistrationPage : Page, IRegistrationPage
     {
         InitializeComponent();
     }
+
+    private void ShowPassword(object sender, System.Windows.RoutedEventArgs e)
+    {
+        password.IsPasswordVisible = !password.IsPasswordVisible;
+    }
 }

@@ -6,6 +6,7 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:validations="clr-namespace:ProjectManagementStudio.ViewModel.ValidationsRules;assembly=ProjectManagementStudio.ViewModel"
       xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MainWindow;assembly=ProjectManagementStudio.ViewModel"
+      xmlns:uc="clr-namespace:ProjectManagementStudio.View.UserControls.TextPasswordBox"
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1600"
       Title="RegistrationPage"
@@ -74,22 +75,34 @@
                 </TextBox.Text>
             </TextBox>
 
-            <TextBox x:Name="PasswordTextBox" MaxLength="24" FontSize="20" Foreground="White" Height="42" Width="365"
-             materialDesign:HintAssist.Hint="password"
-             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-             HorizontalAlignment="Left"
-             Margin="41,21,0,0"
-             BorderBrush="White"
-             FontWeight="Normal" FontFamily="Outfit">
-                <TextBox.Text>
-                    <Binding Path="RegistrationModel.Password" UpdateSourceTrigger="PropertyChanged">
+            <uc:TextPasswordBox   
+                 Text="{Binding RegistrationModel.Password, Mode=OneWay}"
+                 x:Name="password"
+                 MaxLength="24"
+                 FontSize="20"
+                 Foreground="white" 
+                 Height="40" 
+                 Width="365"
+                 materialDesign:HintAssist.Hint="password"
+                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                 HorizontalAlignment="Left"
+                 Margin="41,21,0,0"
+                 BorderBrush="white"
+                 FontWeight="Normal" FontFamily="Outfit">           
+
+                <uc:TextPasswordBox.Password>
+                    <Binding Path="RegistrationModel.Password" UpdateSourceTrigger="PropertyChanged" NotifyOnTargetUpdated="True">
                         <Binding.ValidationRules>
                             <validations:PasswordValidationRules ValidationStep="ConvertedProposedValue"/>
                         </Binding.ValidationRules>
                     </Binding>
-                </TextBox.Text>
-            </TextBox>
+                </uc:TextPasswordBox.Password>
 
+            </uc:TextPasswordBox>
+
+            <Button Content="Показать пароль" Width="100" Height="20"
+        Click="ShowPassword"/>
+            
             <Button Background="#2C1B45" 
                     FontWeight="Normal" 
                     FontFamily="Outfit" 

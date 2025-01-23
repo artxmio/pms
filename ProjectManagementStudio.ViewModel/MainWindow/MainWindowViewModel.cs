@@ -25,7 +25,6 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
     private readonly IWindowManager _windowManager;
 
     private IPage _activePage;
-    private bool _isPasswordVisible;
 
     #endregion
 
