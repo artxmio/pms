@@ -1,5 +1,5 @@
-﻿using System.Windows.Controls;
-using System.Windows.Media.Animation;
+﻿using ProjectManagementStudio.View.UserControls.TextPasswordBox;
+using System.Windows.Controls;
 
 namespace ProjectManagementStudio.View.MainWindow.Pages;
 
@@ -10,8 +10,8 @@ public partial class LoginPage : Page, ILoginPage
         InitializeComponent();
     }
 
-    private void CheckBox_Checked(object sender, System.Windows.RoutedEventArgs e)
+    private void ShowPassword(object sender, System.Windows.RoutedEventArgs e)
     {
-
+        password.IsPasswordVisible = !password.IsPasswordVisible;
     }
 }

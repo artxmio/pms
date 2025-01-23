@@ -80,7 +80,6 @@
             
             <uc:TextPasswordBox   
                      Text="{Binding LoginModel.Password, Mode=OneWay}"
-                     
                      x:Name="password"
                      MaxLength="24"
                      FontSize="20"
@@ -104,7 +103,9 @@
 
             </uc:TextPasswordBox>
 
-            <Button Content="Показать пароль" Width="100" Height="20">
+            <Button Content="Показать пароль" Width="100" Height="20"
+                    Click="ShowPassword"
+                    >
                 
             </Button>
             

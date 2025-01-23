@@ -12,11 +12,11 @@ public class TextPasswordBox : TextBox
     public static readonly DependencyProperty PasswordProperty =
         DependencyProperty.Register("Password", typeof(string), typeof(TextPasswordBox), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnPasswordPropertyChanged));
 
-    //public static readonly DependencyProperty IsPasswordVisibleProperty =
-    //    DependencyProperty.Register("IsPasswordVisible", typeof(bool), typeof(TextPasswordBox), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnIsPasswordVisiblePropertyChanged));
+    public static readonly DependencyProperty IsPasswordVisibleProperty =
+        DependencyProperty.Register("IsPasswordVisible", typeof(bool), typeof(TextPasswordBox), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnIsPasswordVisiblePropertyChanged));
 
 
-    private const char CHAR = '●';
+    public const char CHAR = '●';
 
     public TextPasswordBox()
     {
@@ -35,19 +35,25 @@ public class TextPasswordBox : TextBox
         }
     }
 
-    //public bool IsPasswordVisible
-    //{
-    //    get
-    //    {
-    //        return (bool)GetValue(IsPasswordVisibleProperty);
-    //    }
-    //    set
-    //    {
-    //        SetValue(IsPasswordVisibleProperty, value);
-
-            
-    //    }
-    //}
+    public bool IsPasswordVisible
+    {
+        get
+        {
+            return (bool)GetValue(IsPasswordVisibleProperty);
+        }
+        set
+        {
+            if (Text != Password)
+            {
+                Text = Password;
+            }
+            else
+            {
+                Text = new string(CHAR, Password.Length);
+            }
+            SetValue(IsPasswordVisibleProperty, value);
+        }
+    }
 
     private static void OnPasswordPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
