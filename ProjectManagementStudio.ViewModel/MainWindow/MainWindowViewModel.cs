@@ -1,15 +1,15 @@
-﻿using ProjectManagementStudio.ViewModel.Windows;
-using ProjectManagementStudio.ViewModel.Command;
-using System.Windows.Input;
-using ProjectManagementStudio.Model.WindowModels.RegisterModel;
+﻿using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 using ProjectManagementStudio.Model.WindowModels.AuthModel;
-using ProjectManagementStudio.ViewModel.MenuWindow;
+using ProjectManagementStudio.Model.WindowModels.RegisterModel;
 using ProjectManagementStudio.ViewModel.APIClient;
-using System.Windows;
+using ProjectManagementStudio.ViewModel.Command;
+using ProjectManagementStudio.ViewModel.MenuWindow;
 using ProjectManagementStudio.ViewModel.Pages;
+using ProjectManagementStudio.ViewModel.Windows;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
+using System.Windows;
+using System.Windows.Input;
 
 namespace ProjectManagementStudio.ViewModel.MainWindow;
 
@@ -57,7 +57,6 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
-
 
     public MainWindowViewModel(
         IAPIClient apiClient,

@@ -6,6 +6,7 @@ using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.AboutText;
 using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewEmail;
 using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewLogin;
 using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewPassword;
+using ProjectManagementStudio.ViewModel.ValidationsRules;
 
 namespace ProjectManagementStudio.ViewModel.RegistrationModule;
 
@@ -23,5 +24,9 @@ public class RegistrationModule : Module
         builder.RegisterType<ChangeAboutTextModalWindowViewModel>().As<IChangeAboutTextModalWindowViewModel>().SingleInstance();
 
         builder.RegisterType<APIClient.APIClient>().As<IAPIClient>().SingleInstance();
+
+        builder.RegisterType<LoginValidationRules>();
+        builder.RegisterType<PasswordValidationRules>();
+        builder.RegisterType<EmailValidationRules>();
     }
 }

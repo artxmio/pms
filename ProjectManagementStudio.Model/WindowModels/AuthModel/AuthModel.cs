@@ -26,7 +26,7 @@ public class AuthModel : BaseModel.BaseModel, IAuthModel
             Validate();
         }
     }
-
+   
     public bool IsValid
     {
         get => _isValid;

@@ -7,6 +7,8 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:validations="clr-namespace:ProjectManagementStudio.ViewModel.ValidationsRules;assembly=ProjectManagementStudio.ViewModel"
       xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MainWindow;assembly=ProjectManagementStudio.ViewModel"
+      xmlns:uc="clr-namespace:ProjectManagementStudio.View.UserControls.TextPasswordBox"
+      
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1600"
       Title="LoginPage"
@@ -65,7 +67,7 @@
                      FontWeight="Normal" FontFamily="Outfit">
                 
                 <TextBox.Text>
-                    <Binding Path="LoginModel.Login" UpdateSourceTrigger="PropertyChanged" NotifyOnTargetUpdated="True">
+                    <Binding Path="LoginModel.Login" UpdateSourceTrigger="Explicit" NotifyOnTargetUpdated="True">
                         <Binding.ValidationRules>
                             <validations:LoginValidationRules ValidationStep="ConvertedProposedValue"/>
                         </Binding.ValidationRules>
@@ -75,7 +77,11 @@
             </TextBox>
 
             <!-- // Password // -->
-            <TextBox x:Name="password"
+            
+            <uc:TextPasswordBox   
+                     Text="{Binding LoginModel.Password, Mode=OneWay}"
+                     
+                     x:Name="password"
                      MaxLength="24"
                      FontSize="20"
                      Foreground="white" 
@@ -88,16 +94,20 @@
                      BorderBrush="white"
                      FontWeight="Normal" FontFamily="Outfit">
 
-                <TextBox.Text>
-                    <Binding Path="LoginModel.Password" UpdateSourceTrigger="PropertyChanged">
+                <uc:TextPasswordBox.Password>
+                    <Binding Path="LoginModel.Password" UpdateSourceTrigger="PropertyChanged" NotifyOnTargetUpdated="True">
                         <Binding.ValidationRules>
                             <validations:PasswordValidationRules ValidationStep="ConvertedProposedValue"/>
                         </Binding.ValidationRules>
                     </Binding>
-                </TextBox.Text>
+                </uc:TextPasswordBox.Password>
 
-            </TextBox>
+            </uc:TextPasswordBox>
 
+            <Button Content="Показать пароль" Width="100" Height="20">
+                
+            </Button>
+            
             <!-- // Rememmber me // -->
             <CheckBox Width="123"
                       Content="remember me"

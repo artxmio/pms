@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using ProjectManagementStudio.Model.WindowModels.AuthModel;
+using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
 
@@ -10,13 +11,13 @@ public class PasswordValidationRules : ValidationRule
 
     public override ValidationResult Validate(object value, CultureInfo cultureInfo)
     {
-        var input = value?.ToString();
+        var input = value.ToString();
 
         if (input is not null)
         {
             if (input.Length < 5)
             {
-                return new ValidationResult(false, "The email length must be more than 5 and less than 20 characters.");
+                return new ValidationResult(false, "The password length must be more than 5 and less than 20 characters.");
             }
 
             if (_regex.IsMatch(input))
