@@ -13,9 +13,30 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Resources\eu\singup.eu.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>singup.eu.resx</DependentUpon>
+	  </Compile>
+	  <Compile Update="Resources\eu\singin.eu.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>singin.eu.resx</DependentUpon>
+	  </Compile>
 	  <Compile Update="UserSavedData\Wrapper\UserDataMementoWrapper.cs">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Resources\eu\singup.eu.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>singup.eu.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Resources\eu\singin.eu.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>singin.eu.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
 	</ItemGroup>
 
 </Project>
