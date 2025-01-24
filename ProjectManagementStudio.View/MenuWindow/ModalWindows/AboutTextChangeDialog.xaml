@@ -49,49 +49,32 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <TextBlock
-            Margin="0,10,0,0"
-            FontFamily="Outfit"
-            Foreground="#FFFFFF"
-            FontSize="35"
-            FontWeight="Normal"
-            Text="Change info"
-            VerticalAlignment="Top"
-            HorizontalAlignment="Center"
-            />
+            <TextBlock Foreground="#FFFFFF" FontSize="35" FontWeight="Normal"
+            FontFamily="Outfit" Margin="0,10,0,0" Text="Change info"
+            VerticalAlignment="Top" HorizontalAlignment="Center"/>
 
             <Border Margin="0,67,0,0"
-                    Height="155" Width="410" CornerRadius="10"
-                    Background="#724D9D">
-                <TextBox
-                    Text="{Binding AboutText}"
-                    x:Name="TextBoxInput"
-                    Background="#724D9D"
-                    BorderBrush="Transparent"
-                    FontFamily="Outfit"
-                    FontSize="14"
-                    Foreground="#FFFFFF"
-                    Margin="10"
-                    TextWrapping="Wrap"
-                />
+                Height="155" Width="410" CornerRadius="10"
+                Background="#724D9D">
+                <TextBox Margin="10" Text="{Binding AboutText}" x:Name="TextBoxInput"
+                    Background="#724D9D" BorderBrush="Transparent" FontFamily="Outfit"
+                    FontSize="14" Foreground="#FFFFFF" TextWrapping="Wrap"/>
             </Border>
 
 
-            <StackPanel
-            Grid.Row="2"
-            Orientation="Horizontal"
-            HorizontalAlignment="Center">
+            <StackPanel Grid.Row="2"
+                Orientation="Horizontal"
+                HorizontalAlignment="Center">
 
-                <Button 
-                Command="{Binding ChangeAboutTextCommand}"
-                FontFamily="outfit"
-                Foreground="#FFFFFF"
-                FontSize="25"
-                FontWeight="Normal">
+                <Button Command="{Binding ChangeAboutTextCommand}"
+                    FontFamily="outfit"
+                    Foreground="#FFFFFF"
+                    FontSize="25"
+                    FontWeight="Normal">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border x:Name="border" Width="191" Height="39" VerticalAlignment="Bottom"
-                                    Background="#724D9D" CornerRadius="10" Margin="0,0,14,24" >
+                                Background="#724D9D" CornerRadius="10" Margin="0,0,14,24" >
                                 <ContentPresenter Content="Apply"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center"/>
@@ -105,12 +88,11 @@
                     </Button.Template>
                 </Button>
 
-                <Button
+                <Button Command="{Binding CloseCommand}"
                     FontFamily="outfit"
                     Foreground="#FFFFFF"
                     FontSize="25"
-                    FontWeight="Normal"
-                    Command="{Binding CloseCommand}">
+                    FontWeight="Normal">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border x:Name="border" Width="191" Height="39" Margin="14,0,0,24" 

@@ -1,4 +1,4 @@
-﻿<Page x:Class="ProjectManagementStudio.View.MainWindow.Pages.RegistrationPage"
+<Page x:Class="ProjectManagementStudio.View.MainWindow.Pages.RegistrationPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -16,11 +16,11 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <materialDesign:BundledTheme BaseTheme="Light" 
-                                         PrimaryColor="DeepPurple" 
-                                         SecondaryColor="Pink" />
+                    PrimaryColor="DeepPurple" 
+                    SecondaryColor="Pink" />
 
                 <ResourceDictionary 
-                Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
@@ -33,23 +33,21 @@
         >
         <StackPanel>
             <TextBlock Text="Sign up"
-                   Width="267"
-                   Height="92"
-                   FontSize="75"
-                   Foreground="White"
-                   FontWeight="SemiBold"
-                   HorizontalAlignment="left"
-                   VerticalAlignment="Center"
-                   FontFamily="Outfit"
-                   Margin="99,32,0,0"
-                   />
+                Width="267"
+                Height="92"
+                FontSize="75"
+                Foreground="White"
+                FontWeight="SemiBold"
+                HorizontalAlignment="left"
+                VerticalAlignment="Center"
+                FontFamily="Outfit"
+                Margin="99,32,0,0"/>
+            
             <TextBox MaxLength="20" FontSize="20" Foreground="White" Height="42" Width="365"
-             materialDesign:HintAssist.Hint="login"
-             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-             HorizontalAlignment="Left"
-             Margin="41,30,0,0"
-             BorderBrush="White"
-             FontWeight="Normal" FontFamily="Outfit">
+                materialDesign:HintAssist.Hint="login"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                HorizontalAlignment="Left" Margin="41,30,0,0"
+                BorderBrush="White" FontWeight="Normal" FontFamily="Outfit">
                 <TextBox.Text>
                     <Binding Path="RegistrationModel.Login" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
@@ -60,12 +58,10 @@
             </TextBox>
 
             <TextBox x:Name="EmailTextBox" MaxLength="50" FontSize="20" Foreground="White" Height="42" Width="365"
-             materialDesign:HintAssist.Hint="email"
-             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-             HorizontalAlignment="Left"
-             Margin="41,21,0,0"
-             BorderBrush="White"
-             FontWeight="Normal" FontFamily="Outfit">
+                materialDesign:HintAssist.Hint="email"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                HorizontalAlignment="Left" Margin="41,21,0,0" BorderBrush="White"
+                FontWeight="Normal" FontFamily="Outfit">
                 <TextBox.Text>
                     <Binding Path="RegistrationModel.Email" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
@@ -89,20 +85,20 @@
                  Margin="41,21,0,0"
                  BorderBrush="white"
                  FontWeight="Normal" FontFamily="Outfit">           
-
                 <uc:TextPasswordBox.Password>
                     <Binding Path="RegistrationModel.Password" UpdateSourceTrigger="PropertyChanged" NotifyOnTargetUpdated="True">
                         <Binding.ValidationRules>
                             <validations:PasswordValidationRules ValidationStep="ConvertedProposedValue"/>
                         </Binding.ValidationRules>
                     </Binding>
+                </TextBox.Text>
+            </TextBox>
                 </uc:TextPasswordBox.Password>
-
             </uc:TextPasswordBox>
 
             <Button Content="Показать пароль" Width="100" Height="20"
-        Click="ShowPassword"/>
-            
+                Click="ShowPassword"/>
+
             <Button Background="#2C1B45" 
                     FontWeight="Normal" 
                     FontFamily="Outfit" 
@@ -113,16 +109,15 @@
                     Height="60"
                     IsEnabled="{Binding RegistrationModel.IsValid}" 
                     Command="{Binding RegistrationCommand}">
-
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border x:Name="buttonBorder" 
-                    Background="{TemplateBinding Background}" 
-                    BorderBrush="{TemplateBinding BorderBrush}" 
-                    CornerRadius="30">
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            CornerRadius="30">
                             <ContentPresenter 
-                    HorizontalAlignment="Center" 
-                    VerticalAlignment="Center"/>
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center"/>
                         </Border>
 
                         <ControlTemplate.Triggers>
@@ -142,28 +137,26 @@
             </Button>
 
             <Line X1="1" Y1="0" X2="366" Y2="0" 
-                  Stroke="White" StrokeThickness="1"
-                  Margin="41,16,0,0"  
-            />
+                Stroke="White" StrokeThickness="1"
+                Margin="41,16,0,0"/>
+            
             <Grid Width="286" Height="28" Margin="0,6,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="231"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
+                
                 <TextBlock FontFamily="Outfit" FontSize="20" FontWeight="Normal"
-                            Foreground="White" Text="Already have an account?"
-                />
+                    Foreground="White" Text="Already have an account?"/>
 
-                <Button VerticalAlignment="Top" Padding="0" Width="55" Height="28" HorizontalAlignment="Left" Grid.Column="2" Command="{Binding NavigateToLoginPage}" Background="Transparent" BorderBrush="Transparent" Margin="0,0,0,0">
+                <Button VerticalAlignment="Top" Padding="0" Width="55" Height="28" HorizontalAlignment="Left" Grid.Column="2" 
+                    Command="{Binding NavigateToLoginPage}" Background="Transparent" BorderBrush="Transparent" Margin="0,0,0,0">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <StackPanel Orientation="Vertical" Width="54" Height="28">
                                 <TextBlock x:Name="buttonText" Margin="0,0.3,0,0"
-                                           Text="Log in" 
-                                           Foreground="#4683F5"
-                                           FontSize="20"
-                                           FontFamily="Outfit"
-                                           FontWeight="Normal"/>
+                                    Text="Log in" Foreground="#4683F5" FontSize="20" 
+                                    FontFamily="Outfit" FontWeight="Normal"/>
                                 <Border x:Name="bottomBorder" Width="53" Height="1" Margin="0,0,0,0" HorizontalAlignment="Center" Background="#4683F5" />
                             </StackPanel>
                             <ControlTemplate.Triggers>

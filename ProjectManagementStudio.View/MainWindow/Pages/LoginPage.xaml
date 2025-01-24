@@ -18,53 +18,50 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <materialDesign:BundledTheme BaseTheme="Light" 
-                                     PrimaryColor="DeepPurple" 
-                                     SecondaryColor="Pink" />
+                    PrimaryColor="DeepPurple" 
+                    SecondaryColor="Pink" />
                 <ResourceDictionary 
             Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <Storyboard x:Key="FadeOutStoryboard">
                 <DoubleAnimation
-                Storyboard.TargetProperty="Opacity"
-                From="1.0" To="0.0" Duration="0:0:0.5" />
+                    Storyboard.TargetProperty="Opacity"
+                    From="1.0" To="0.0" Duration="0:0:0.5" />
             </Storyboard>
         </ResourceDictionary>
     </Page.Resources>
 
     <Border CornerRadius="30" 
-            Width="446"
-            Height="500" 
-            HorizontalAlignment="Left" 
-            VerticalAlignment="Center" 
-            Margin="250,0,0,0"
-            Background="#80DBCBE8">
+        Width="446"
+        Height="500" 
+        HorizontalAlignment="Left" 
+        VerticalAlignment="Center" 
+        Margin="250,0,0,0"
+        Background="#80DBCBE8">
         
         <StackPanel>
             
             <TextBlock Text="Log in"
-                       Width="210"
-                       Height="92"
-                       FontSize="75"
-                       Foreground="White"
-                       FontWeight="SemiBold"
-                       HorizontalAlignment="center"
-                       VerticalAlignment="Center"
-                       FontFamily="Outfit"
-                       Margin="0,37,0,0"/>
+                Width="210"
+                Height="92"
+                FontSize="75"
+                Foreground="White"
+                FontWeight="SemiBold"
+                HorizontalAlignment="center"
+                VerticalAlignment="Center"
+                FontFamily="Outfit"
+                Margin="0,37,0,0"/>
             
             <!-- // Login // -->
             <TextBox x:Name="login" 
-                     MaxLength="20" 
-                     FontSize="20" 
-                     Foreground="white" 
-                     Height="41" 
-                     Width="365"
-                     materialDesign:HintAssist.Hint="login"                
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"            
-                     HorizontalAlignment="Left"               
-                     Margin="41,42,0,0"              
-                     BorderBrush="white"
-                     FontWeight="Normal" FontFamily="Outfit">
+                MaxLength="20" FontSize="20" Foreground="white" 
+                FontWeight="Normal" FontFamily="Outfit"
+                Height="41" Width="365"
+                materialDesign:HintAssist.Hint="login"                
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"            
+                HorizontalAlignment="Left"               
+                Margin="41,42,0,0"              
+                BorderBrush="white">
                 
                 <TextBox.Text>
                     <Binding Path="LoginModel.Login" UpdateSourceTrigger="Explicit" NotifyOnTargetUpdated="True">
@@ -77,7 +74,6 @@
             </TextBox>
 
             <!-- // Password // -->
-            
             <uc:TextPasswordBox   
                      Text="{Binding LoginModel.Password, Mode=OneWay}"
                      x:Name="password"
@@ -103,44 +99,45 @@
 
             </uc:TextPasswordBox>
 
-            <Button Content="Показать пароль" Width="100" Height="20"
-                    Click="ShowPassword"/>
+             <Button Content="Показать пароль" Width="100" Height="20"
+                    Click="ShowPassword">  
+             </Button>
 
             <!-- // Rememmber me // -->
             <CheckBox Width="123"
-                      Content="remember me"
-                      Margin="40,30,0,0"
-                      BorderBrush="#2C1B45"
-                      FontFamily="Outfit"
-                      FontWeight="Normal"
-                      Foreground="White"
-                      FontSize="16"
-                      VerticalContentAlignment="Center"
-                      VerticalAlignment="Center"
-                      HorizontalAlignment="Left"
-                      IsChecked="{Binding LoginModel.IsRememberMe}"/>
+                Content="remember me"
+                Margin="40,30,0,0"
+                BorderBrush="#2C1B45"
+                FontFamily="Outfit"
+                FontWeight="Normal"
+                Foreground="White"
+                FontSize="16"
+                VerticalContentAlignment="Center"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left"
+                IsChecked="{Binding LoginModel.IsRememberMe}"/>
 
             <!-- // Btn Continue // -->
             <Button Background="#2C1B45" 
-            FontWeight="Normal" 
-            FontFamily="Outfit"
-            FontSize="40" 
-            Margin="0,30,0,0" 
-            Content="Continue" 
-            Width="370" 
-            Height="60" 
-            IsEnabled="{Binding LoginModel.IsValid}"
-            Command="{Binding AuthorizationCommand}">
+                FontWeight="Normal" 
+                FontFamily="Outfit"
+                FontSize="40" 
+                Margin="0,30,0,0" 
+                Content="Continue" 
+                Width="370" 
+                Height="60" 
+                IsEnabled="{Binding LoginModel.IsValid}"
+                Command="{Binding AuthorizationCommand}">
 
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                     <Border x:Name="buttonBorder" 
-                    Background="{TemplateBinding Background}" 
-                    BorderBrush="{TemplateBinding BorderBrush}" 
-                    CornerRadius="30">
+                        Background="{TemplateBinding Background}" 
+                        BorderBrush="{TemplateBinding BorderBrush}" 
+                        CornerRadius="30">
                     <ContentPresenter 
-                    HorizontalAlignment="Center" 
-                    VerticalAlignment="Center"/>
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Center"/>
                         </Border>
 
                         <ControlTemplate.Triggers>
@@ -170,18 +167,19 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <TextBlock FontFamily="Outfit" FontSize="20" FontWeight="Normal"
-                        Foreground="White" Text="Don't have an account?" Height="23" VerticalAlignment="Top"/>
+                    Foreground="White" Text="Don't have an account?" Height="23" VerticalAlignment="Top"/>
                 
-                <Button VerticalAlignment="Top" Padding="0" Width="104" Height="28" HorizontalAlignment="Left" Grid.Column="2" Command="{Binding NavigateToRegistrationPage}" Background="Transparent" BorderBrush="Transparent" Margin="0,0,0,0">
+                <Button VerticalAlignment="Top" Padding="0" Width="104" Height="28" HorizontalAlignment="Left" Grid.Column="2" 
+                    Command="{Binding NavigateToRegistrationPage}" Background="Transparent" BorderBrush="Transparent" Margin="0,0,0,0">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <StackPanel Orientation="Vertical" Width="104" Height="28">
                                 <TextBlock x:Name="buttonText" Margin="0,0.3,0,0"
-                                           Text="Create new" 
-                                           Foreground="#4683F5"
-                                           FontSize="20"
-                                           FontFamily="Outfit"
-                                           FontWeight="Normal"/>
+                                    Text="Create new" 
+                                    Foreground="#4683F5"
+                                    FontSize="20"
+                                    FontFamily="Outfit"
+                                    FontWeight="Normal"/>
                                 <Border x:Name="bottomBorder" Width="104" Height="1" Margin="0,-4,0,0" HorizontalAlignment="Center" Background="#4683F5" />
                             </StackPanel>
 
