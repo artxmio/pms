@@ -13,6 +13,7 @@ public partial class SettingsPage : ISettingsPage
         InitializeComponent();
 
     }
+
 }
 
 
