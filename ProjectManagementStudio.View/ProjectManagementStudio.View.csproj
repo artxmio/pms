@@ -20,6 +20,8 @@
 		<None Remove="Source\DarkQuestionMark.png" />
 		<None Remove="Source\Edit_pencil.png" />
 		<None Remove="Source\ExitAcc.png" />
+		<None Remove="Source\eye.png" />
+		<None Remove="Source\eye_closed.png" />
 		<None Remove="Source\file.png" />
 		<None Remove="Source\home.png" />
 		<None Remove="Source\plus.png" />
@@ -60,6 +62,12 @@
 		</Resource>
 		<Resource Include="Source\ExitAcc.png">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\eye.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\eye_closed.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
 		<Resource Include="Source\file.png">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>

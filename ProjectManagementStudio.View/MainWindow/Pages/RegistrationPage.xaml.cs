@@ -13,5 +13,10 @@ public partial class RegistrationPage : Page, IRegistrationPage
     private void ShowPassword(object sender, System.Windows.RoutedEventArgs e)
     {
         password.IsPasswordVisible = !password.IsPasswordVisible;
+
+        if (sender is Button button)
+        {
+            button.Tag = button.Tag?.ToString() == "0" ? "1" : "0";
+        }
     }
 }
