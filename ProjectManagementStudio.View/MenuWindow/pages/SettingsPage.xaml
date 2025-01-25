@@ -21,290 +21,345 @@
                 FontFamily="Outfit" FontWeight="Normal" Margin="0,22,0,0"
                 HorizontalAlignment="Center"/>
 
-            <!-- Меню выбора языка -->
-            <Border Margin="0,17,0,0" Background="#271F3F" Width="530" Height="125" CornerRadius="10">
+            <!-- Меню выбора темы -->
+            <Border Margin="0,17,0,0" Background="#271F3F" Width="530" Height="250" CornerRadius="10">
                 <Border.Effect>
                     <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
                 </Border.Effect>
+                
                 <Grid>
-                    <TextBlock Text="Language" FontSize="30" Foreground="#FFFFFF"
-                        FontFamily="Outfit" FontWeight="Normal" Margin="24,12,0,0"
-                        HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
 
-                    <ComboBox Width="480" Height="40"
-                        HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                        Background="#724D9D" Foreground="White"
-                        FontSize="20" FontFamily="Outfit"
-                        BorderBrush="Transparent"
-                        Padding="10,5" Margin="0,0,0,18"
-                        SelectedIndex="0">
-                        <ComboBox.Template>
-                            <ControlTemplate TargetType="ComboBox">
-                                <Grid>
-                                    <!-- Основной фон ComboBox -->
-                                    <Border x:Name="BackgroundBorder"
-                                        Background="{TemplateBinding Background}"
-                                        CornerRadius="10"
-                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                        BorderThickness="0" />
-                                    <!-- Отображение выбранного элемента -->
-                                    <ContentPresenter Margin="15,0,35,0" VerticalAlignment="Center" HorizontalAlignment="Left"
-                                        Content="{TemplateBinding SelectionBoxItem}" 
-                                        ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" />
-                                    <!-- Стрелка -->
-                                    <ToggleButton x:Name="DropDownToggle" 
-                                        Background="Transparent"
-                                        Focusable="False"
-                                        IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                        ClickMode="Press"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        BorderThickness="0" 
-                                        FocusVisualStyle="{x:Null}" 
-                                        Width="480" Height="40">
-                                        <ToggleButton.Template>
-                                            <ControlTemplate TargetType="ToggleButton">
-                                                <Grid>
-                                                    <!-- Фон для нажатий -->
-                                                    <Border Background="Transparent" CornerRadius="10" />
-                                                    <!-- Значок стрелки -->
-                                                    <Path Width="15" Height="8" Stroke="#361B48" StrokeThickness="3"
-                                                        Data="M 0 0 L 8 10 L 16 0" Stretch="Fill" 
-                                                        HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                                                </Grid>
-                                                <ControlTemplate.Triggers>
-                                                    <!-- Убираем любые эффекты при наведении -->
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="Transparent" />
-                                                    </Trigger>
-                                                    <!-- Убираем фон при нажатии -->
-                                                    <Trigger Property="IsPressed" Value="True">
-                                                        <Setter Property="Background" Value="Transparent" />
-                                                    </Trigger>
-                                                    <!-- Если выделен -->
-                                                    <Trigger Property="IsChecked" Value="True">
-                                                        <Setter Property="Background" Value="Transparent" />
-                                                    </Trigger>
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </ToggleButton.Template>
-                                    </ToggleButton>
-                                    
-                                    <!-- Выпадающий список -->
-                                    <Popup x:Name="Popup" 
-                                        IsOpen="{TemplateBinding IsDropDownOpen}"
-                                        AllowsTransparency="True"
-                                        Placement="Bottom" 
-                                        Focusable="False"
-                                        Margin="0">
-                                        <Border x:Name="PopupBorder" 
-                                            Background="#724D9D" 
-                                            BorderBrush="Transparent"
-                                            BorderThickness="1" 
-                                            CornerRadius="10" Width="480">
-                                            <ItemsPresenter />
-                                        </Border>
-                                    </Popup>
-                                </Grid>
-                                
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter TargetName="BackgroundBorder" Property="Background" Value="#5D3576"/>
-                                    </Trigger>
-                                    <Trigger Property="IsEnabled" Value="False">
-                                        <Setter TargetName="BackgroundBorder" Property="Background" Value="#1A1230"/>
-                                        <Setter Property="Foreground" Value="#666666"/>
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </ComboBox.Template>
-
-                        <ComboBox.Resources>
-                            <!-- Стиль для элементов списка -->
-                            <Style TargetType="ComboBoxItem">
-                                <Setter Property="Foreground" Value="White"/>
+                    <!--Фиолетовая тема-->
+                    <Border HorizontalAlignment="Left" CornerRadius="10" Width="220" Height="60" Margin="20,0,0,0">
+                        <Border.Style>
+                            <Style TargetType="Border">
                                 <Setter Property="Background" Value="#724D9D"/>
-                                <Setter Property="FontSize" Value="20"/>
-                                <Setter Property="FontFamily" Value="Outfit"/>
-                                <Setter Property="Padding" Value="10,5"/>
-                                <Setter Property="HorizontalContentAlignment" Value="Left"/>
-                                <Setter Property="BorderBrush" Value="Transparent"/>
-                                <!-- Убираем синий фокус -->
-                                <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="ComboBoxItem">
-                                            <Border x:Name="Border" Background="{TemplateBinding Background}" 
-                                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                                BorderThickness="0">
-                                                <ContentPresenter Margin="15,0,0,0" VerticalAlignment="Center" 
-                                                    HorizontalAlignment="Left" />
-                                            </Border>
-                                            <ControlTemplate.Triggers>
-                                                <!-- Эффект при наведении мыши -->
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter TargetName="Border" Property="Background" Value="#5D3576" />
-                                                </Trigger>
-                                                <!-- Эффект при выделении -->
-                                                <Trigger Property="IsSelected" Value="True">
-                                                    <Setter TargetName="Border" Property="Background" Value="#512A6B" />
-                                                    <Setter Property="Foreground" Value="White" />
-                                                </Trigger>
-                                            </ControlTemplate.Triggers>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#5D3576"/>
+                                    </Trigger>
+                                </Style.Triggers>
                             </Style>
-                        </ComboBox.Resources>
+                        </Border.Style>
 
-                        <!-- Элементы выбора -->
-                        <ComboBoxItem Content="English"/>
-                        <ComboBoxItem Content="Русский"/>
-                        <ComboBoxItem Content="Беларускі"/>
-                    </ComboBox>
+                        <Button Background="Transparent" BorderBrush="Transparent">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Image Margin="5,0,0,0" Source="\Source\pink_circle.png" Width="50" Height="50" HorizontalAlignment="Left">
+                                            <Image.Effect>
+                                                <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="2" Opacity="0.5" Direction="270"/>
+                                            </Image.Effect>
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Opacity" Value="0.8"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                        <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"
+                                            FontFamily="Outfit" FontWeight="Normal" FontSize="20" Foreground="#FFFFFF">
+                                            Theme Example 1
+                                        </TextBlock>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Border>
+
+                    <!--Зеленая тема-->
+                    <Border Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" CornerRadius="10" Width="220" Height="60" Margin="20,0,0,0">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="Background" Value="#724D9D"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#5D3576"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+
+                        <Button Background="Transparent" BorderBrush="Transparent">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Image Margin="5,0,0,0" Source="\Source\green_circle.png" Width="50" Height="50" HorizontalAlignment="Left">
+                                            <Image.Effect>
+                                                <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="2" Opacity="0.5" Direction="270"/>
+                                            </Image.Effect>
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Opacity" Value="0.8"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                        <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"
+                                            FontFamily="Outfit" FontWeight="Normal" FontSize="20" Foreground="#FFFFFF">
+                                            Theme Example 2
+                                        </TextBlock>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Border>
+
+                    <!--Синяя тема-->
+                    <Border Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" CornerRadius="10" Width="220" Height="60" Margin="20,0,0,0">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="Background" Value="#724D9D"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#5D3576"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+
+                        <Button Background="Transparent" BorderBrush="Transparent">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Image Margin="5,0,0,0" Source="\Source\blue_circle.png" Width="50" Height="50" HorizontalAlignment="Left">
+                                            <Image.Effect>
+                                                <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="2" Opacity="0.5" Direction="270"/>
+                                            </Image.Effect>
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Opacity" Value="0.8"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                        <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"
+                                            FontFamily="Outfit" FontWeight="Normal" FontSize="20" Foreground="#FFFFFF">
+                                            Theme Example 3
+                                        </TextBlock>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Border>
+
+                    <!--красная тема-->
+                    <Border Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" CornerRadius="10" Width="220" Height="60" Margin="20,0,0,0">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="Background" Value="#724D9D"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#5D3576"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+
+                        <Button Background="Transparent" BorderBrush="Transparent">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Image Margin="5,0,0,0" Source="\Source\red_circle.png" Width="50" Height="50" HorizontalAlignment="Left">
+                                            <Image.Effect>
+                                                <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="2" Opacity="0.5" Direction="270"/>
+                                            </Image.Effect>
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Opacity" Value="0.8"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                        <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"
+                                            FontFamily="Outfit" FontWeight="Normal" FontSize="20" Foreground="#FFFFFF">
+                                            Theme Example 4
+                                        </TextBlock>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Border>
+
+                    <!--красно-синяя тема-->
+                    <Border Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" CornerRadius="10" Width="220" Height="60" Margin="20,0,0,0">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="Background" Value="#724D9D"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#5D3576"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+
+                        <Button Background="Transparent" BorderBrush="Transparent">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Image Margin="5,0,0,0" Source="\Source\red_blue_circle.png" Width="50" Height="50" HorizontalAlignment="Left">
+                                            <Image.Effect>
+                                                <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="2" Opacity="0.5" Direction="270"/>
+                                            </Image.Effect>
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Opacity" Value="0.8"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                        <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"
+                                            FontFamily="Outfit" FontWeight="Normal" FontSize="20" Foreground="#FFFFFF">
+                                            Theme Example 5
+                                        </TextBlock>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Border>
+
+                    <!--Оранжевая тема-->
+                    <Border Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" CornerRadius="10" Width="220" Height="60" Margin="20,0,0,0">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="Background" Value="#724D9D"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#5D3576"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+
+                        <Button Background="Transparent" BorderBrush="Transparent">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Image Margin="5,0,0,0" Source="\Source\orange_circle.png" Width="50" Height="50" HorizontalAlignment="Left">
+                                            <Image.Effect>
+                                                <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="2" Opacity="0.5" Direction="270"/>
+                                            </Image.Effect>
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Opacity" Value="0.8"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                        <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"
+                                            FontFamily="Outfit" FontWeight="Normal" FontSize="20" Foreground="#FFFFFF">
+                                            Theme Example 6
+                                        </TextBlock>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Border>
+
                 </Grid>
             </Border>
 
-            <!-- Меню выбора темы -->
-            <Border Margin="0,17,0,0" Background="#271F3F" Width="530" Height="125" CornerRadius="10">
+            <!-- Меню выбора языка -->
+            <Border Margin="0,17,0,0" Background="#271F3F" Width="530" Height="75" CornerRadius="10">
                 <Border.Effect>
                     <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
                 </Border.Effect>
                 <Grid>
-                    <TextBlock Text="Theme" FontSize="30" Foreground="#FFFFFF"
-                       FontFamily="Outfit" FontWeight="Normal" Margin="24,12,0,0"
-                       HorizontalAlignment="Left" 
-                       VerticalAlignment="Top"/>
-
-                    <ComboBox Width="480" Height="40"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                       Background="#724D9D" Foreground="White"
-                       FontSize="20" FontFamily="Outfit"
-                       BorderBrush="Transparent"
-                       Padding="10,5" Margin="0,0,0,18"
-                       SelectedIndex="0">
-                        <ComboBox.Template>
-                            <ControlTemplate TargetType="ComboBox">
-                                <Grid>
-                                    <!-- Основной фон ComboBox -->
-                                    <Border x:Name="BackgroundBorder"
-                                        Background="{TemplateBinding Background}"
-                                        CornerRadius="10"
-                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                        BorderThickness="0" />
-                                    <!-- Отображение выбранного элемента -->
-                                    <ContentPresenter Margin="15,0,35,0" VerticalAlignment="Center" HorizontalAlignment="Left"
-                                  Content="{TemplateBinding SelectionBoxItem}" 
-                                  ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" />
-                                    <!-- Стрелка -->
-                                    <ToggleButton x:Name="DropDownToggle" 
-                                        Background="Transparent"
-                                        Focusable="False"
-                                        IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                        ClickMode="Press"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        BorderThickness="0" 
-                                        FocusVisualStyle="{x:Null}" 
-                                        Width="480" Height="40">
-                                        <ToggleButton.Template>
-                                            <ControlTemplate TargetType="ToggleButton">
-                                                <Grid>
-                                                    <!-- Фон для нажатий -->
-                                                    <Border Background="Transparent" CornerRadius="10" />
-                                                    <!-- Значок стрелки -->
-                                                    <Path Width="15" Height="8" Stroke="#361B48" StrokeThickness="3"
-                                                        Data="M 0 0 L 8 10 L 16 0" Stretch="Fill" 
-                                                        HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                                                </Grid>
-                                                <ControlTemplate.Triggers>
-                                                    <!-- Убираем любые эффекты при наведении -->
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="Transparent" />
-                                                    </Trigger>
-                                                    <!-- Убираем фон при нажатии -->
-                                                    <Trigger Property="IsPressed" Value="True">
-                                                        <Setter Property="Background" Value="Transparent" />
-                                                    </Trigger>
-                                                    <!-- Если выделен -->
-                                                    <Trigger Property="IsChecked" Value="True">
-                                                        <Setter Property="Background" Value="Transparent" />
-                                                    </Trigger>
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </ToggleButton.Template>
-                                    </ToggleButton>
-                                    
-                                    <!-- Выпадающий список -->
-                                    <Popup x:Name="Popup" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True"
-                                        Placement="Bottom" Focusable="False" Margin="0">
-                                        <Border x:Name="PopupBorder" Background="#724D9D" BorderBrush="Transparent"
-                                            BorderThickness="0" CornerRadius="10" Width="480">
-                                            <ItemsPresenter />
-                                        </Border>
-                                    </Popup>
-                                </Grid>
-                                
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter TargetName="BackgroundBorder" Property="Background" Value="#5D3576"/>
-                                    </Trigger>
-                                    <Trigger Property="IsEnabled" Value="False">
-                                        <Setter TargetName="BackgroundBorder" Property="Background" Value="#1A1230"/>
-                                        <Setter Property="Foreground" Value="#666666"/>
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </ComboBox.Template>
-
-                        <ComboBox.Resources>
-                            <!-- Стиль для элементов списка -->
-                            <Style TargetType="ComboBoxItem">
-                                <Setter Property="Foreground" Value="White"/>
+                    <Border Height="50" Width="70" CornerRadius="10" >
+                        <Border.Style>
+                            <Style TargetType="Border">
                                 <Setter Property="Background" Value="#724D9D"/>
-                                <Setter Property="FontSize" Value="20"/>
-                                <Setter Property="FontFamily" Value="Outfit"/>
-                                <Setter Property="Padding" Value="10,5"/>
-                                <Setter Property="HorizontalContentAlignment" Value="Left"/>
-                                <Setter Property="BorderBrush" Value="Transparent"/>
-                                <!-- Убираем синий фокус -->
-                                <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="ComboBoxItem">
-                                            <Border x:Name="Border" Background="{TemplateBinding Background}" 
-                                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                                BorderThickness="0">
-                                                <ContentPresenter Margin="15,0,0,0" VerticalAlignment="Center" 
-                                                    HorizontalAlignment="Left" />
-                                            </Border>
-                                            <ControlTemplate.Triggers>
-                                                <!-- Эффект при наведении мыши -->
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter TargetName="Border" Property="Background" Value="#5D3576" />
-                                                </Trigger>
-                                                <!-- Эффект при выделении -->
-                                                <Trigger Property="IsSelected" Value="True">
-                                                    <Setter TargetName="Border" Property="Background" Value="#512A6B" />
-                                                    <Setter Property="Foreground" Value="White" />
-                                                </Trigger>
-                                            </ControlTemplate.Triggers>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#5D3576"/>
+                                    </Trigger>
+                                </Style.Triggers>
                             </Style>
-                        </ComboBox.Resources>
-                        <!-- Пункты выбора -->
-                        <ComboBoxItem Content="Default"/>
-                        <ComboBoxItem Content="Red"/>
-                        <ComboBoxItem Content="Blue"/>
-                        <ComboBoxItem Content="Light"/>
-                    </ComboBox>
+                        </Border.Style>
+                        <Button Background="Transparent" BorderBrush="Transparent" Foreground="#FFFFFF"
+                                FontFamily="Outfit" FontSize="36" FontWeight="Normal">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" Content="ru"/>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Border>
+
+                    <Border Height="50" Width="70" CornerRadius="10" Margin="0,0,165,0">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="Background" Value="#724D9D"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#5D3576"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <Button Background="Transparent" BorderBrush="Transparent" Foreground="#FFFFFF"
+                            FontFamily="Outfit" FontSize="36" FontWeight="Normal">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" Content="en"/>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Border>
+
+                    <Border Height="50" Width="70" CornerRadius="10" Margin="165,0,0,0">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="Background" Value="#724D9D"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#5D3576"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <Button Background="Transparent" BorderBrush="Transparent" Foreground="#FFFFFF"
+                            FontFamily="Outfit" FontSize="36" FontWeight="Normal">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" Content="by"/>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Border>
                 </Grid>
             </Border>
 
             <!-- Меню выбора Разрешения экрана -->
-            <Border Margin="0,17,0,0" Background="#271F3F" Width="530" Height="125" CornerRadius="10">
+            <Border Margin="0,17,0,0" Background="#271F3F" Width="530" Height="115" CornerRadius="10">
                 <Border.Effect>
                     <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
                 </Border.Effect>
@@ -455,7 +510,7 @@
             <Button 
                 IsEnabled="{Binding ApplyButtonEnabled}"
                 Command="{Binding ApplySettings}"
-                Width="200" Height="65" VerticalAlignment="top" HorizontalAlignment="Right" Margin="0,52,22,0">
+                Width="200" Height="65" VerticalAlignment="top" HorizontalAlignment="Right" Margin="0,30,60,0">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border x:Name="buttonBorder"  Width="200" Height="65" Background="#2C1B47" CornerRadius="10">
