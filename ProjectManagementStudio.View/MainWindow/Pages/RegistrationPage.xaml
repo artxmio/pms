@@ -114,10 +114,10 @@
                         <Image Width="25" Height="25">
                             <Image.Style>
                                 <Style TargetType="Image">
-                                    <Setter Property="Source" Value="D:\Project\ProjectManagementStudio.View\Source\eye.png"/>
+                                    <Setter Property="Source" Value="..\..\Source\eye.png"/>
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource AncestorType=Button}}" Value="1">
-                                            <Setter Property="Source" Value="D:\Project\ProjectManagementStudio.View\Source\eye_closed.png" />
+                                            <Setter Property="Source" Value="..\..\Source\eye_closed.png" />
                                         </DataTrigger>
                                         <Trigger Property="IsMouseOver" Value="True">
                                             <Setter Property="Opacity" Value="0.7"/>
