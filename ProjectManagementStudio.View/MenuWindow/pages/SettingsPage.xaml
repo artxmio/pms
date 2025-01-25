@@ -18,13 +18,14 @@
         </Border.Effect>
         <StackPanel>
             <TextBlock Text="Settings" FontSize="75" Foreground="#FFFFFF"
-                FontFamily="Outfit" FontWeight="Normal" Margin="0,22,0,0"
+                FontFamily="Outfit" FontWeight="Normal" Margin="0,33,0,0"
                 HorizontalAlignment="Center"/>
 
             <!-- Меню выбора темы -->
-            <Border Margin="0,17,0,0" Background="#271F3F" Width="530" Height="250" CornerRadius="10">
+            <Border Margin="0,17,0,0" BorderBrush="#271F3F" Background="#724D9D" BorderThickness="0.5" 
+                Width="530" Height="240" CornerRadius="10">
                 <Border.Effect>
-                    <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
+                    <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.1" Direction="270"/>
                 </Border.Effect>
                 
                 <Grid>
@@ -51,7 +52,7 @@
                             </Style>
                         </Border.Style>
 
-                        <Button Background="Transparent" BorderBrush="Transparent">
+                        <Button Background="Transparent" BorderBrush="Transparent" >
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Grid>
@@ -288,12 +289,18 @@
             </Border>
 
             <!-- Меню выбора языка -->
-            <Border Margin="0,17,0,0" Background="#271F3F" Width="530" Height="75" CornerRadius="10">
+            <Border Margin="0,17,0,0" BorderBrush="#271F3F" Background="#724D9D" BorderThickness="0.5" 
+                Width="530" Height="75" CornerRadius="10">
                 <Border.Effect>
-                    <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
+                    <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.1" Direction="270"/>
                 </Border.Effect>
+                
                 <Grid>
-                    <Border Height="50" Width="70" CornerRadius="10" >
+                    <!--Русский язык-->
+                    <Border BorderBrush="#271F3F" BorderThickness="1" Height="50" Width="70" CornerRadius="10">
+                        <Border.Effect>
+                            <DropShadowEffect Color="#000000" BlurRadius="1" ShadowDepth="2" Opacity="0.2" Direction="320"/>
+                        </Border.Effect>
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Setter Property="Background" Value="#724D9D"/>
@@ -304,7 +311,7 @@
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>
-                        <Button Background="Transparent" BorderBrush="Transparent" Foreground="#FFFFFF"
+                        <Button Background="Transparent" BorderBrush="Transparent" Foreground="#271F3F"
                                 FontFamily="Outfit" FontSize="36" FontWeight="Normal">
                             <Button.Template>
                                 <ControlTemplate>
@@ -314,7 +321,11 @@
                         </Button>
                     </Border>
 
-                    <Border Height="50" Width="70" CornerRadius="10" Margin="0,0,165,0">
+                    <!--Английский язык-->
+                    <Border BorderBrush="#271F3F" BorderThickness="1" Height="50" Width="70" CornerRadius="10" Margin="0,0,165,0">
+                        <Border.Effect>
+                            <DropShadowEffect Color="#000000" BlurRadius="1" ShadowDepth="2" Opacity="0.2" Direction="320"/>
+                        </Border.Effect>
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Setter Property="Background" Value="#724D9D"/>
@@ -325,7 +336,7 @@
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>
-                        <Button Background="Transparent" BorderBrush="Transparent" Foreground="#FFFFFF"
+                        <Button Background="Transparent" BorderBrush="Transparent" Foreground="#271F3F"
                             FontFamily="Outfit" FontSize="36" FontWeight="Normal">
                             <Button.Template>
                                 <ControlTemplate>
@@ -335,7 +346,11 @@
                         </Button>
                     </Border>
 
-                    <Border Height="50" Width="70" CornerRadius="10" Margin="165,0,0,0">
+                    <!--Белорусский язык-->
+                    <Border BorderBrush="#271F3F" BorderThickness="1" Height="50" Width="70" CornerRadius="10" Margin="165,0,0,0">
+                        <Border.Effect>
+                            <DropShadowEffect Color="#000000" BlurRadius="1" ShadowDepth="2" Opacity="0.2" Direction="320"/>
+                        </Border.Effect>
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Setter Property="Background" Value="#724D9D"/>
@@ -346,7 +361,7 @@
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>
-                        <Button Background="Transparent" BorderBrush="Transparent" Foreground="#FFFFFF"
+                        <Button Background="Transparent" BorderBrush="Transparent" Foreground="#271F3F"
                             FontFamily="Outfit" FontSize="36" FontWeight="Normal">
                             <Button.Template>
                                 <ControlTemplate>
@@ -359,9 +374,10 @@
             </Border>
 
             <!-- Меню выбора Разрешения экрана -->
-            <Border Margin="0,17,0,0" Background="#271F3F" Width="530" Height="115" CornerRadius="10">
+            <Border Margin="0,17,0,0" BorderBrush="#271F3F" Background="#724D9D" BorderThickness="0.5" 
+                Width="530" Height="115" CornerRadius="10">
                 <Border.Effect>
-                    <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
+                    <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.1" Direction="270"/>
                 </Border.Effect>
                 <Grid>
                     <TextBlock Text="Size" FontSize="30" Foreground="#FFFFFF"
@@ -369,16 +385,20 @@
                        HorizontalAlignment="Left" 
                        VerticalAlignment="Top"/>
 
-                    <ComboBox   
+                    <ComboBox 
                         Width="480" Height="40"
                         HorizontalAlignment="Center" 
                         VerticalAlignment="Bottom"
-                        Background="#724D9D" BorderBrush="Transparent"
+                        BorderThickness="2"
+                        Background="#724D9D" BorderBrush="#271F3F"
                         Foreground="White" FontSize="20" FontFamily="Outfit"
                         Padding="10,5" Margin="0,0,0,18"
                         SelectedIndex="0"
                         ItemsSource="{Binding Sizes}"
                         SelectedItem="{Binding SelectedWindowSize}">
+                        <ComboBox.Effect>
+                            <DropShadowEffect Color="#000000" BlurRadius="5" ShadowDepth="0" Opacity="0.5"/>
+                        </ComboBox.Effect>
                         <ComboBox.Template>
                             <ControlTemplate TargetType="ComboBox">
                                 <Grid>
@@ -510,7 +530,7 @@
             <Button 
                 IsEnabled="{Binding ApplyButtonEnabled}"
                 Command="{Binding ApplySettings}"
-                Width="200" Height="65" VerticalAlignment="top" HorizontalAlignment="Right" Margin="0,30,60,0">
+                Width="200" Height="65" VerticalAlignment="top" HorizontalAlignment="Right" Margin="0,31,60,0">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border x:Name="buttonBorder"  Width="200" Height="65" Background="#2C1B47" CornerRadius="10">
