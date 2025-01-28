@@ -4,5 +4,11 @@
     
     <!-- Login Page-->
     <v:String x:Key="LoginTitle">Log in</v:String>
+    <v:String x:Key="LoginTextBox">login</v:String>
+    <v:String x:Key="PasswordTextBox">password</v:String>
+    <v:String x:Key="RememberMe">remember me</v:String>
+    <v:String x:Key="Continue">Continue</v:String>
+    <v:String x:Key="HaventAcconut">Don't have an account?</v:String>
+    <v:String x:Key="CreateNewAccount">Create new</v:String>
     
 </ResourceDictionary>

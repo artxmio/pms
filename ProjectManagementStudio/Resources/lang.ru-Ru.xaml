@@ -4,5 +4,10 @@
     
     <!-- Login Page-->
     <v:String x:Key="LoginTitle">Авторизация</v:String>
-    
+    <v:String x:Key="LoginTextBox">логин</v:String>
+    <v:String x:Key="PasswordTextBox">пароль</v:String>
+    <v:String x:Key="RememberMe">запомнить меня</v:String>
+    <v:String x:Key="Continue">Продолжить</v:String>
+    <v:String x:Key="HaventAcconut">Нет аккаунта?</v:String>
+    <v:String x:Key="CreateNewAccount">Создать новый</v:String>
 </ResourceDictionary>
