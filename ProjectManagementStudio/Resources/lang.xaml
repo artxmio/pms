@@ -14,7 +14,7 @@
     <!-- Registration Page-->
     <v:String x:Key="RegistrationTitle">Sing up</v:String>
     <v:String x:Key="EmailTextBox">email</v:String>
-    <v:String x:Key="HaveAcconut">Already have an account?</v:String>
+    <v:String x:Key="HaveAccount">Already have an account?</v:String>
     <v:String x:Key="LogInAccount">Log in</v:String>
     
 </ResourceDictionary>
