@@ -11,6 +11,7 @@ using ProjectManagementStudio.Model.PathService;
 using ProjectManagementStudio.View.PageFactory;
 using ProjectManagementStudio.View.WindowFactory;
 using ProjectManagementStudio.ViewModel.AvatarService;
+using ProjectManagementStudio.ViewModel.LocalizationService;
 using ProjectManagementStudio.ViewModel.PageServices.IProfilePageService;
 using ProjectManagementStudio.ViewModel.PageServices.ISettingsPageService;
 using ProjectManagementStudio.ViewModel.SettingSizeService;
@@ -26,6 +27,8 @@ public class RegistrationModule : Module
 
         builder.RegisterType<WindowFactory>().As<IWindowFactory>().SingleInstance();
         builder.RegisterType<PageFactory>().As<IPageFactory>().SingleInstance();
+        
+        builder.RegisterType<LocalizationService.LocalizationService>().As<ILocalizationService>().SingleInstance();
 
         builder.RegisterType<PathService>()
             .As<IPathService>()

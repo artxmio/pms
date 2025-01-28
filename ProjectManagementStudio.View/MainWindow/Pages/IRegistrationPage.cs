@@ -2,6 +2,6 @@
 
 namespace ProjectManagementStudio.View.MainWindow.Pages;
 
-interface IRegistrationPage : IPage
+public interface IRegistrationPage : IPage
 {
 }

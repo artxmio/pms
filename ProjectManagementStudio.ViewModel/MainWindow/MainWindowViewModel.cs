@@ -3,10 +3,12 @@ using ProjectManagementStudio.Model.WindowModels.AuthModel;
 using ProjectManagementStudio.Model.WindowModels.RegisterModel;
 using ProjectManagementStudio.ViewModel.APIClient;
 using ProjectManagementStudio.ViewModel.Command;
+using ProjectManagementStudio.ViewModel.LocalizationService;
 using ProjectManagementStudio.ViewModel.MenuWindow;
 using ProjectManagementStudio.ViewModel.Pages;
 using ProjectManagementStudio.ViewModel.Windows;
 using System.ComponentModel;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
@@ -21,6 +23,7 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
     private readonly IAPIClient _client;
     private readonly IPageManager _pageManager;
     private readonly ICurrentUserService _currentUserService;
+    private readonly ILocalizationService _localizationService;
     private readonly IMenuWindowViewModel _menuWindowViewModel;
     private readonly IWindowManager _windowManager;
 
@@ -42,6 +45,8 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
     public ICommand CloseCommand { get; }
     public ICommand AuthorizationCommand { get; }
     public ICommand RegistrationCommand { get; }
+
+    public ICommand ChangeLocalizationCommand { get; }
 
     public ICommand NavigateToRegistrationPage { get; }
     public ICommand NavigateToLoginPage { get; }
@@ -65,7 +70,8 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
         IPageManager pageManager,
         IAuthModel authModel,
         IRegisterModel registerModel,
-        ICurrentUserService currentUserService
+        ICurrentUserService currentUserService,
+        ILocalizationService localizationService
         )
     {
         LoginModel = authModel;
@@ -76,6 +82,9 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
         _client = apiClient;
         _pageManager = pageManager;
         _currentUserService = currentUserService;
+        
+        _localizationService = localizationService;
+        _localizationService.LanguageChanged += LanguageChanged;
 
         _activePage = _pageManager.NavigateTo(0);
 
@@ -83,8 +92,15 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
         AuthorizationCommand = new RelayCommand(o => AuthorizateUser());
         RegistrationCommand = new AsyncCommand(() => _client.AddUser(RegistrationModel));
 
+        ChangeLocalizationCommand = new RelayCommand(o => _localizationService.Language = new CultureInfo((string)o));
+
         NavigateToRegistrationPage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(1));
         NavigateToLoginPage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(0));
+    }
+
+    private void LanguageChanged(object? sender, EventArgs e)
+    {
+        
     }
 
     private async void AuthorizateUser()

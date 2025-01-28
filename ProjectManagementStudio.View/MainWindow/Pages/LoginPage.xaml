@@ -41,10 +41,18 @@
 
         <StackPanel>
 
-            <TextBlock Text="Log in"
-                Width="210"
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="eu" Margin="10 0 0 0" Command="{Binding ChangeLocalizationCommand}" CommandParameter="eu-US"/>
+                <Button Content="ru" Margin="10 0 0 0" Command="{Binding ChangeLocalizationCommand}" CommandParameter="ru-RU"/>
+                <Button Content="by" Margin="10 0 0 0" Command="{Binding ChangeLocalizationCommand}" CommandParameter="ru-RU"/>
+            </StackPanel>
+            
+            <TextBlock 
+                Text="{DynamicResource LoginTitle}"
+                TextAlignment="Center"
+                Width="446"
                 Height="92"
-                FontSize="75"
+                FontSize="65"
                 Foreground="White"
                 FontWeight="SemiBold"
                 HorizontalAlignment="center"
@@ -57,7 +65,7 @@
                 MaxLength="20" FontSize="20" Foreground="white" 
                 FontWeight="Normal" FontFamily="Outfit"
                 Height="41" Width="365"
-                materialDesign:HintAssist.Hint="login"                
+                materialDesign:HintAssist.Hint="{DynamicResource LoginTextBox}"                
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"            
                 HorizontalAlignment="Left"               
                 Margin="41,42,0,0"              
@@ -83,7 +91,7 @@
                      Foreground="white" 
                      Height="40" 
                      Width="365"
-                     materialDesign:HintAssist.Hint="password"
+                     materialDesign:HintAssist.Hint="{DynamicResource PasswordTextBox}"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      HorizontalAlignment="Left"
                      Margin="0,0,0,0"
@@ -109,11 +117,13 @@
                     Cursor="Hand"
                     Tag="0"
                     Click="ShowPassword">
+                    
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </ControlTemplate>
                     </Button.Template>
+                    
                     <Button.Content>
                         <Image Width="25" Height="25">
                             <Image.Style>
@@ -136,7 +146,7 @@
 
             <!-- // Rememmber me // -->
             <CheckBox Width="123"
-                Content="remember me"
+                Content="{DynamicResource RememberMe}"
                 Margin="40,30,0,0"
                 BorderBrush="#2C1B45"
                 FontFamily="Outfit"
@@ -154,7 +164,7 @@
                 FontFamily="Outfit"
                 FontSize="40" 
                 Margin="0,30,0,0" 
-                Content="Continue" 
+                Content="{DynamicResource Continue}" 
                 Width="370" 
                 Height="60" 
                 IsEnabled="{Binding LoginModel.IsValid}"
@@ -197,8 +207,9 @@
                     <ColumnDefinition Width="209"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
+                
                 <TextBlock FontFamily="Outfit" FontSize="20" FontWeight="Normal"
-                    Foreground="White" Text="Don't have an account?" Height="23" VerticalAlignment="Top"/>
+                    Foreground="White" Text="{DynamicResource HaventAcconut}" Height="23" VerticalAlignment="Top"/>
                 
                 <Button VerticalAlignment="Top" Padding="0" Width="104" Height="28" HorizontalAlignment="Left" Grid.Column="2" 
                     Command="{Binding NavigateToRegistrationPage}" Background="Transparent" BorderBrush="Transparent" Margin="0,0,0,0">
@@ -206,7 +217,7 @@
                         <ControlTemplate TargetType="Button">
                             <StackPanel Orientation="Vertical" Width="104" Height="28">
                                 <TextBlock x:Name="buttonText" Margin="0,0.3,0,0"
-                                    Text="Create new" 
+                                    Text="{DynamicResource CreateNewAccount}" 
                                     Foreground="#4683F5"
                                     FontSize="20"
                                     FontFamily="Outfit"
