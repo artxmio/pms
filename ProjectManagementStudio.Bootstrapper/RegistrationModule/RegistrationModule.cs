@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using ProjectManagementStudio.Bootstrapper.Factories;
-using ProjectManagementStudio.Bootstrapper.LocalizationService;
 using ProjectManagementStudio.Bootstrapper.Services.AvatarService;
 using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 using ProjectManagementStudio.Bootstrapper.Services.PageServices.ProfilePageService;
@@ -12,6 +11,7 @@ using ProjectManagementStudio.Model.PathService;
 using ProjectManagementStudio.View.PageFactory;
 using ProjectManagementStudio.View.WindowFactory;
 using ProjectManagementStudio.ViewModel.AvatarService;
+using ProjectManagementStudio.ViewModel.LocalizationService;
 using ProjectManagementStudio.ViewModel.PageServices.IProfilePageService;
 using ProjectManagementStudio.ViewModel.PageServices.ISettingsPageService;
 using ProjectManagementStudio.ViewModel.SettingSizeService;

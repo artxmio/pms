@@ -1,20 +1,21 @@
-﻿using System.Globalization;
+﻿using ProjectManagementStudio.ViewModel.LocalizationService;
+using System.Globalization;
 using System.Windows;
 
 namespace ProjectManagementStudio.Bootstrapper.LocalizationService;
 
 internal class LocalizationService : ILocalizationService
 {
-    private static List<CultureInfo> _languages = new List<CultureInfo>();
+    private List<CultureInfo> _languages = new List<CultureInfo>();
 
-    public static event EventHandler LanguageChanged;
+    public event EventHandler LanguageChanged;
 
-    public static List<CultureInfo> Languages
+    public List<CultureInfo> Languages
     {
         get => _languages;
     }
 
-    public static CultureInfo Language
+    public CultureInfo Language
     {
         get
         {
