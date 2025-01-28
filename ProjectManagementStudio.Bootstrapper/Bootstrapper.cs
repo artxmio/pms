@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using ProjectManagementStudio.Bootstrapper.LocalizationService;
 using ProjectManagementStudio.Bootstrapper.Services.AvatarService;
 using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 using ProjectManagementStudio.Bootstrapper.Services.PageServices.ProfilePageService;
@@ -7,7 +8,6 @@ using ProjectManagementStudio.Bootstrapper.Services.PathService;
 using ProjectManagementStudio.Bootstrapper.Services.Settings.SettingSizeService;
 using ProjectManagementStudio.Bootstrapper.Services.UrlService;
 using ProjectManagementStudio.Model.UserSavedData.Wrapper;
-using ProjectManagementStudio.Model.WindowSavedData.Memento;
 using ProjectManagementStudio.Model.WindowSavedData.Wrapper;
 using ProjectManagementStudio.ViewModel.MainWindow;
 using ProjectManagementStudio.ViewModel.MenuWindow;
@@ -20,6 +20,7 @@ public class Bootstrapper : IDisposable
 {
     private readonly IContainer _container;
     private readonly IWindowManager _windowManager;
+    private readonly ILocalizationService _localizationService;
 
     public Bootstrapper()
     {
@@ -34,6 +35,7 @@ public class Bootstrapper : IDisposable
         _container = container.Build();
 
         _windowManager = _container.Resolve<IWindowManager>();
+        _localizationService = _container.Resolve<ILocalizationService>();
     }
 
     public Window Run()

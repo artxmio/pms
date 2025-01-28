@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using ProjectManagementStudio.Bootstrapper.Factories;
+using ProjectManagementStudio.Bootstrapper.LocalizationService;
 using ProjectManagementStudio.Bootstrapper.Services.AvatarService;
 using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 using ProjectManagementStudio.Bootstrapper.Services.PageServices.ProfilePageService;
@@ -26,6 +27,8 @@ public class RegistrationModule : Module
 
         builder.RegisterType<WindowFactory>().As<IWindowFactory>().SingleInstance();
         builder.RegisterType<PageFactory>().As<IPageFactory>().SingleInstance();
+        
+        builder.RegisterType<LocalizationService.LocalizationService>().As<ILocalizationService>().SingleInstance();
 
         builder.RegisterType<PathService>()
             .As<IPathService>()
