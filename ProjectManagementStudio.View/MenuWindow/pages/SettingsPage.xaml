@@ -22,7 +22,7 @@
                 HorizontalAlignment="Center"/>
 
             <!-- Меню выбора темы -->
-            <Border Margin="0,17,0,0" BorderBrush="#271F3F" Background="#724D9D" BorderThickness="0.5" 
+            <Border Margin="0,17,0,0" Background="#2C1B47"
                 Width="530" Height="240" CornerRadius="10">
                 <Border.Effect>
                     <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.1" Direction="270"/>
@@ -43,10 +43,10 @@
                     <Border HorizontalAlignment="Left" CornerRadius="10" Width="220" Height="60" Margin="20,0,0,0">
                         <Border.Style>
                             <Style TargetType="Border">
-                                <Setter Property="Background" Value="#724D9D"/>
+                                <Setter Property="Background" Value="#2C1B47"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#5D3576"/>
+                                        <Setter Property="Background" Value="#724D9D"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -84,10 +84,10 @@
                     <Border Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" CornerRadius="10" Width="220" Height="60" Margin="20,0,0,0">
                         <Border.Style>
                             <Style TargetType="Border">
-                                <Setter Property="Background" Value="#724D9D"/>
+                                <Setter Property="Background" Value="#2C1B47"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#5D3576"/>
+                                        <Setter Property="Background" Value="#724D9D"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -125,10 +125,10 @@
                     <Border Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" CornerRadius="10" Width="220" Height="60" Margin="20,0,0,0">
                         <Border.Style>
                             <Style TargetType="Border">
-                                <Setter Property="Background" Value="#724D9D"/>
+                                <Setter Property="Background" Value="#2C1B47"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#5D3576"/>
+                                        <Setter Property="Background" Value="#724D9D"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -166,10 +166,10 @@
                     <Border Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" CornerRadius="10" Width="220" Height="60" Margin="20,0,0,0">
                         <Border.Style>
                             <Style TargetType="Border">
-                                <Setter Property="Background" Value="#724D9D"/>
+                                <Setter Property="Background" Value="#2C1B47"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#5D3576"/>
+                                        <Setter Property="Background" Value="#724D9D"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -207,10 +207,10 @@
                     <Border Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" CornerRadius="10" Width="220" Height="60" Margin="20,0,0,0">
                         <Border.Style>
                             <Style TargetType="Border">
-                                <Setter Property="Background" Value="#724D9D"/>
+                                <Setter Property="Background" Value="#2C1B47"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#5D3576"/>
+                                        <Setter Property="Background" Value="#724D9D"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -248,10 +248,10 @@
                     <Border Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" CornerRadius="10" Width="220" Height="60" Margin="20,0,0,0">
                         <Border.Style>
                             <Style TargetType="Border">
-                                <Setter Property="Background" Value="#724D9D"/>
+                                <Setter Property="Background" Value="#2C1B47"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#5D3576"/>
+                                        <Setter Property="Background" Value="#724D9D"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -289,7 +289,7 @@
             </Border>
 
             <!-- Меню выбора языка -->
-            <Border Margin="0,17,0,0" BorderBrush="#271F3F" Background="#724D9D" BorderThickness="0.5" 
+            <Border Margin="0,17,0,0" Background="#2C1B47" 
                 Width="530" Height="75" CornerRadius="10">
                 <Border.Effect>
                     <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.1" Direction="270"/>
@@ -297,7 +297,7 @@
                 
                 <Grid>
                     <!--Русский язык-->
-                    <Border BorderBrush="#271F3F" BorderThickness="1" Height="50" Width="70" CornerRadius="10">
+                    <Border Height="50" Width="70" CornerRadius="10">
                         <Border.Effect>
                             <DropShadowEffect Color="#000000" BlurRadius="1" ShadowDepth="2" Opacity="0.2" Direction="320"/>
                         </Border.Effect>
@@ -311,7 +311,7 @@
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>
-                        <Button Background="Transparent" BorderBrush="Transparent" Foreground="#271F3F"
+                        <Button Background="Transparent" BorderBrush="Transparent" Foreground="#FFFFFF"
                                 FontFamily="Outfit" FontSize="36" FontWeight="Normal">
                             <Button.Template>
                                 <ControlTemplate>
@@ -322,7 +322,7 @@
                     </Border>
 
                     <!--Английский язык-->
-                    <Border BorderBrush="#271F3F" BorderThickness="1" Height="50" Width="70" CornerRadius="10" Margin="0,0,165,0">
+                    <Border Height="50" Width="70" CornerRadius="10" Margin="0,0,165,0">
                         <Border.Effect>
                             <DropShadowEffect Color="#000000" BlurRadius="1" ShadowDepth="2" Opacity="0.2" Direction="320"/>
                         </Border.Effect>
@@ -336,7 +336,7 @@
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>
-                        <Button Background="Transparent" BorderBrush="Transparent" Foreground="#271F3F"
+                        <Button Background="Transparent" BorderBrush="Transparent" Foreground="#FFFFFF"
                             FontFamily="Outfit" FontSize="36" FontWeight="Normal">
                             <Button.Template>
                                 <ControlTemplate>
@@ -347,7 +347,7 @@
                     </Border>
 
                     <!--Белорусский язык-->
-                    <Border BorderBrush="#271F3F" BorderThickness="1" Height="50" Width="70" CornerRadius="10" Margin="165,0,0,0">
+                    <Border Height="50" Width="70" CornerRadius="10" Margin="165,0,0,0">
                         <Border.Effect>
                             <DropShadowEffect Color="#000000" BlurRadius="1" ShadowDepth="2" Opacity="0.2" Direction="320"/>
                         </Border.Effect>
@@ -361,7 +361,7 @@
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>
-                        <Button Background="Transparent" BorderBrush="Transparent" Foreground="#271F3F"
+                        <Button Background="Transparent" BorderBrush="Transparent" Foreground="#FFFFFF"
                             FontFamily="Outfit" FontSize="36" FontWeight="Normal">
                             <Button.Template>
                                 <ControlTemplate>
@@ -374,7 +374,7 @@
             </Border>
 
             <!-- Меню выбора Разрешения экрана -->
-            <Border Margin="0,17,0,0" BorderBrush="#271F3F" Background="#724D9D" BorderThickness="0.5" 
+            <Border Margin="0,17,0,0" Background="#2C1B47"
                 Width="530" Height="115" CornerRadius="10">
                 <Border.Effect>
                     <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.1" Direction="270"/>
@@ -389,8 +389,7 @@
                         Width="480" Height="40"
                         HorizontalAlignment="Center" 
                         VerticalAlignment="Bottom"
-                        BorderThickness="2"
-                        Background="#724D9D" BorderBrush="#271F3F"
+                        Background="#724D9D"
                         Foreground="White" FontSize="20" FontFamily="Outfit"
                         Padding="10,5" Margin="0,0,0,18"
                         SelectedIndex="0"
