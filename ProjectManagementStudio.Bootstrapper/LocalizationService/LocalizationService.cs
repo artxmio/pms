@@ -67,5 +67,17 @@ internal class LocalizationService : ILocalizationService
         _languages.Clear();
         _languages.Add(new CultureInfo("en-US"));
         _languages.Add(new CultureInfo("ru-RU"));
+
+        LanguageChanged += Service_LanguageChanged;
+
+        var stringLanguage = Properties.Settings.Default.DefaultLanguage;
+
+        Language = new CultureInfo(stringLanguage);
+    }
+
+    private void Service_LanguageChanged(object? sender, EventArgs e)
+    {
+        Properties.Settings.Default.DefaultLanguage = Language.Name;
+        Properties.Settings.Default.Save();
     }
 }

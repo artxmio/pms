@@ -12,6 +12,7 @@ using ProjectManagementStudio.ViewModel.LocalizationService;
 using ProjectManagementStudio.ViewModel.MainWindow;
 using ProjectManagementStudio.ViewModel.MenuWindow;
 using ProjectManagementStudio.ViewModel.Windows;
+using System.Globalization;
 using System.Windows;
 
 namespace ProjectManagementStudio.Bootstrapper;
