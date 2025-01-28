@@ -32,7 +32,7 @@
         Background="#80DBCBE8" 
         >
         <StackPanel>
-            <TextBlock Text="Sign up"
+            <TextBlock Text="{DynamicResource RegistrationTitle}"
                 Width="267"
                 Height="92"
                 FontSize="75"
@@ -44,7 +44,7 @@
                 Margin="99,32,0,0"/>
             
             <TextBox MaxLength="20" FontSize="20" Foreground="White" Height="42" Width="365"
-                materialDesign:HintAssist.Hint="login"
+                materialDesign:HintAssist.Hint="{DynamicResource LoginTextBox}"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                 HorizontalAlignment="Left" Margin="41,30,0,0"
                 BorderBrush="White" FontWeight="Normal" FontFamily="Outfit">
@@ -58,7 +58,7 @@
             </TextBox>
 
             <TextBox x:Name="EmailTextBox" MaxLength="50" FontSize="20" Foreground="White" Height="42" Width="365"
-                materialDesign:HintAssist.Hint="email"
+                materialDesign:HintAssist.Hint="{DynamicResource EmailTextBox}"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                 HorizontalAlignment="Left" Margin="41,21,0,0" BorderBrush="White"
                 FontWeight="Normal" FontFamily="Outfit">
@@ -80,7 +80,7 @@
                     Foreground="white" 
                     Height="40" 
                     Width="365"
-                    materialDesign:HintAssist.Hint="password"
+                    materialDesign:HintAssist.Hint="{DynamicResource PasswordTextBox}"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                     HorizontalAlignment="Left"
                     Margin="0,0,0,0"
@@ -135,7 +135,7 @@
                     FontFamily="Outfit" 
                     FontSize="40" 
                     Margin="0,44,0,0" 
-                    Content="Continue" 
+                    Content="{DynamicResource Continue}" 
                     Width="370" 
                     Height="60"
                     IsEnabled="{Binding RegistrationModel.IsValid}" 
@@ -178,7 +178,7 @@
                 </Grid.ColumnDefinitions>
                 
                 <TextBlock FontFamily="Outfit" FontSize="20" FontWeight="Normal"
-                    Foreground="White" Text="Already have an account?"/>
+                    Foreground="White" Text="{DynamicResource HaveAccount}"/>
 
                 <Button VerticalAlignment="Top" Padding="0" Width="55" Height="28" HorizontalAlignment="Left" Grid.Column="2" 
                     Command="{Binding NavigateToLoginPage}" Background="Transparent" BorderBrush="Transparent" Margin="0,0,0,0">
@@ -186,7 +186,7 @@
                         <ControlTemplate TargetType="Button">
                             <StackPanel Orientation="Vertical" Width="54" Height="28">
                                 <TextBlock x:Name="buttonText" Margin="0,0.3,0,0"
-                                    Text="Log in" Foreground="#4683F5" FontSize="20" 
+                                    Text="{DynamicResource LogInAccount}" Foreground="#4683F5" FontSize="20" 
                                     FontFamily="Outfit" FontWeight="Normal"/>
                                 <Border x:Name="bottomBorder" Width="53" Height="1" Margin="0,0,0,0" HorizontalAlignment="Center" Background="#4683F5" />
                             </StackPanel>

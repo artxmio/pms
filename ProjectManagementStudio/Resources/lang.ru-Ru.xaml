@@ -10,4 +10,10 @@
     <v:String x:Key="Continue">Продолжить</v:String>
     <v:String x:Key="HaventAcconut">Нет аккаунта?</v:String>
     <v:String x:Key="CreateNewAccount">Создать новый</v:String>
+
+    <!-- Registration Page-->
+    <v:String x:Key="RegistrationTitle">Регистрация</v:String>
+    <v:String x:Key="EmailTextBox">почта</v:String>
+    <v:String x:Key="HaveAccount">Уже есть аккаунт?</v:String>
+    <v:String x:Key="LogInAccount">Войти</v:String>
 </ResourceDictionary>
