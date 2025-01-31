@@ -12,7 +12,7 @@
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
             Foreground="#FFFFFF" FontSize="75"
             FontFamily="Outfit" FontWeight="Normal"
-            Width="573" Height="380"
+            Width="573" Height="Auto"
             TextWrapping="Wrap"
             TextAlignment="Center"
             Opacity="0.5"

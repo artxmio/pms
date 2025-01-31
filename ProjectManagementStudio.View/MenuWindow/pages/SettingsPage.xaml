@@ -18,7 +18,7 @@
         </Border.Effect>
         <StackPanel>
             <TextBlock Text="{DynamicResource SettingsTitle}" FontSize="75" Foreground="#FFFFFF"
-                FontFamily="Outfit" FontWeight="Normal" Margin="0,33,0,0"
+                FontFamily="Outfit" FontWeight="Normal" Margin="0,33,0,0" Width="400" TextAlignment="Center"
                 HorizontalAlignment="Center"/>
 
             <!-- Меню выбора темы -->
