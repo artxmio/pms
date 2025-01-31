@@ -1,4 +1,6 @@
-﻿namespace ProjectManagementStudio.ViewModel.Windows;
+﻿using System.Windows;
+
+namespace ProjectManagementStudio.ViewModel.Windows;
 
 public interface IWindowManager
 {
@@ -6,5 +8,10 @@ public interface IWindowManager
         where T : IWindowViewModel;
 
     void Close<T>(T viewModel)
+        where T : IWindowViewModel;
+
+    void RollWindow<T>(T viewModel)
+        where T : IWindowViewModel;
+    void RestoreWindow<T>(T viewModel)
         where T : IWindowViewModel;
 }

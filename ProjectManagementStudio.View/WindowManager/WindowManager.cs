@@ -50,4 +50,32 @@ public class WindowsManager : IWindowManager
             _viewModelToWindowMap.Remove(viewModel);
         }
     }
+
+    public void RollWindow<T>(T viewModel)
+        where T : IWindowViewModel
+    {
+        if (_viewModelToWindowMap.TryGetValue(viewModel, out var window))
+        {
+            var w = window as Window;
+            w.WindowState = WindowState.Minimized;
+        }
+    }
+
+    public void RestoreWindow<T>(T viewModel)
+        where T : IWindowViewModel
+    {
+        if (_viewModelToWindowMap.TryGetValue(viewModel, out var window))
+        {
+            var w = window as Window ?? throw new NullReferenceException();
+
+            if (w.WindowState != WindowState.Maximized)
+            {
+                w.WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                w.WindowState = WindowState.Normal;
+            }
+        }
+    }
 }
