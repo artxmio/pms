@@ -7,4 +7,6 @@ public interface ISettingsPageService
 {
     ISettingSizeService SettingSizeService { get; set; }
     ILocalizationService LocalizationService { get; set; }
+
+    void ApplySettings();
 }

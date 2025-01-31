@@ -75,9 +75,7 @@ internal class LocalizationService : ILocalizationService
         Language = new CultureInfo(stringLanguage);
     }
 
-    private void Service_LanguageChanged(object? sender, EventArgs e)
-    {
-        Properties.Settings.Default.DefaultLanguage = Language.Name;
-        Properties.Settings.Default.Save();
-    }
+    private void Service_LanguageChanged(object? sender, EventArgs e) => Properties.Settings.Default.DefaultLanguage = Language.Name;
+    
+    public void SaveLanguage() => Properties.Settings.Default.Save();
 }

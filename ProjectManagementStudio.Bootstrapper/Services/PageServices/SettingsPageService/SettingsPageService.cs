@@ -1,6 +1,7 @@
 ﻿using ProjectManagementStudio.ViewModel.PageServices.ISettingsPageService;
 using ProjectManagementStudio.ViewModel.SettingSizeService;
 using ProjectManagementStudio.ViewModel.LocalizationService;
+using System.Windows;
 
 namespace ProjectManagementStudio.Bootstrapper.Services.PageServices.SettingsPageService;
 
@@ -56,5 +57,13 @@ internal class SettingsPageService : ISettingsPageService, ISettingsPageServiceI
     {
         if (!_initialized)
             throw new InvalidOperationException($"{nameof(ISettingsPageService)} is not initialized");
+    }
+
+    public void ApplySettings()
+    {
+        _settingsSizeService.ApplySettings();
+        _localizationService.SaveLanguage();
+
+        MessageBox.Show("Настройки успешно сохранены!", "Уведомление");
     }
 }

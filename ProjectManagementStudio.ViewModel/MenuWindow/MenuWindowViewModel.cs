@@ -186,7 +186,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         #region
 
         ChangeLocalizationCommand = new RelayCommand(o => _settingPageService.LocalizationService.Language = new CultureInfo((string)o));
-        ApplySettings = new RelayCommand(o => _settingPageService.SettingSizeService.ApplySettings());
+        ApplySettings = new RelayCommand(o => _settingPageService.ApplySettings());
 
         #endregion
     }

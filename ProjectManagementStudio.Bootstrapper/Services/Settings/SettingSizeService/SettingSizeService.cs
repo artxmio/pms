@@ -117,7 +117,6 @@ internal class SettingSizeService : ISettingSizeService, ISettingSizeInitialize,
     public void ApplySettings()
     {
         _windowDataMementoWrapper.SaveWindowData();
-        MessageBox.Show("Настройки успешно сохранены!"); 
     }
 
     private void EnsureInitialized()
