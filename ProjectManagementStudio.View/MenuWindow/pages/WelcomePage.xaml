@@ -15,8 +15,9 @@
             Width="573" Height="380"
             TextWrapping="Wrap"
             TextAlignment="Center"
-            Opacity="0.5">
-            Welcome to Project Management Studio!
+            Opacity="0.5"
+            Text="{DynamicResource Welcome}">
+            
         </TextBlock>
     </Grid>
 </Page>

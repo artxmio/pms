@@ -117,7 +117,7 @@
                     <StackPanel Orientation="Vertical">
                         <TextBlock FontFamily="outfit" FontSize="35" 
                             Foreground="#FFFFFF" FontWeight="Normal"
-                            Margin="0,31,0,0" Text="Options"
+                            Margin="0,31,0,0" Text="{DynamicResource Options}"
                             Width="127" Height="42"
                             HorizontalAlignment="Center"/>
 
@@ -125,7 +125,7 @@
                             Command="{Binding ChangeAvatarCommand}"
                             Margin="0,31,0,0"
                             Background="#724D9D"
-                            Content="Change avatar"
+                            Content="{DynamicResource ChangeAvatar}"
                             FontFamily="outfit" FontSize="25"
                             FontWeight="Normal"
                             Foreground="#ffffff">
@@ -155,7 +155,7 @@
                             Command="{Binding ChangeLoginCommand}"
                             Margin="0,20,0,0"
                             Background="#724D9D"
-                            Content="Change login"
+                            Content="{DynamicResource ChangeLogin}"
                             FontFamily="outfit" FontSize="25"
                             FontWeight="Normal"
                             Foreground="#ffffff">
@@ -185,7 +185,7 @@
                             Width="260" Height="39"
                             Margin="0,20,0,0"
                             Background="#724D9D"
-                            Content="Change password"
+                            Content="{DynamicResource ChangePassword}"
                             FontFamily="outfit" FontSize="25"
                             FontWeight="Normal"
                             Foreground="#ffffff">
@@ -216,7 +216,7 @@
                             Width="260" Height="39"
                             Margin="0,20,0,0"
                             Background="#724D9D"
-                            Content="Change email"
+                            Content="{DynamicResource ChangeEmail}"
                             FontFamily="outfit" FontSize="25"
                             FontWeight="Normal"
                             Foreground="#ffffff">
@@ -255,7 +255,7 @@
                     </Border.Effect>
 
                     <Grid>
-                       <TextBlock Text="Projects" FontFamily="outfit" FontSize="35"
+                        <TextBlock Text="{DynamicResource Projects}" FontFamily="outfit" FontSize="35"
                            FontWeight="Normal" Foreground="White"
                            HorizontalAlignment="Center" VerticalAlignment="Top"
                            Width="126" Height="44"
@@ -300,7 +300,7 @@
                                 Background="Transparent" BorderBrush="Transparent"
                                 HorizontalAlignment="Right" VerticalAlignment="Top"
                                 Command="{Binding ChangeAboutTextCommand}">
-                            
+
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Image x:Name="EditButton" Source ="..\..\Source\Edit_pencil.png"></Image>
@@ -313,7 +313,7 @@
                             </Button.Template>
                         </Button>
 
-                        <TextBlock Text="About" Margin="0,14,0,0"
+                        <TextBlock Text="{DynamicResource About}" Margin="0,14,0,0"
                             FontFamily="outfit" FontSize="35"
                             FontWeight="Normal" Foreground="White"
                             HorizontalAlignment="Center" VerticalAlignment="Top"
@@ -325,73 +325,6 @@
                             TextWrapping="Wrap" TextAlignment="Center"
                             Width="321" Height="122"
                             Margin="0,80,0,0"/>
-                    </Grid>
-                </Border>
-
-                <!-- Оценка -->
-                <Border CornerRadius="25"
-                    Background="#2C1B47"
-                    HorizontalAlignment="Right" 
-                    VerticalAlignment="Bottom" 
-                    Width="175" Height="162" 
-                    Margin="0,0,112,138">
-                    <Border.Effect>
-                        <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
-                    </Border.Effect>
-
-                    <Grid>
-                        <Image Source="..\..\Source\QuestionMark.png"
-                            Height="20" Width="20"
-                            VerticalAlignment="Top"
-                            HorizontalAlignment="Right"
-                            Margin="0,14,14,0">
-                            <Image.Style>
-                                <Style TargetType="Image">
-                                    <Setter Property="Opacity" Value="1"/>
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Opacity" Value="0.7"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Image.Style>
-                            <Image.ToolTip>
-                                <ToolTip Content="The user's rating is formed from the ratings 
-                                    used by the team leader to evaluate the employee.">
-                                    <ToolTip.Template>
-                                        <ControlTemplate TargetType="ToolTip">
-                                            <Border Width="230" Height="180" Background="#9357A1" CornerRadius="25">
-                                                <TextBlock Text="{TemplateBinding Content}" 
-                                                    FontFamily="Outfit" FontSize="20" FontWeight="Normal" 
-                                                    Foreground="white" TextWrapping="Wrap"
-                                                    VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                    TextAlignment="Center"/>
-                                            </Border>
-                                        </ControlTemplate>
-                                    </ToolTip.Template>
-                                </ToolTip>
-                            </Image.ToolTip>
-                        </Image>
-                        
-                        <TextBlock Text="Rate" Width="73" Height="44"
-                            FontFamily="outfit" FontSize="35"
-                            FontWeight="Normal" Foreground="White"
-                            HorizontalAlignment="Center" VerticalAlignment="Top"
-                            Margin="0,14,0,0"/>
-
-                        <Image Source="..\..\Source\Star.png"
-                            Height="45" Width="45"
-                            VerticalAlignment="Bottom"
-                            HorizontalAlignment="Right"
-                            Margin="0,0,29,42"/>
-
-
-                        <TextBlock Text="5.0" Width="50" Height="44"
-                            FontFamily="outfit" FontSize="35"
-                            FontWeight="Normal" Foreground="White"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Bottom"
-                            Margin="40,0,0,39"/>
                     </Grid>
                 </Border>
 
@@ -415,7 +348,7 @@
                     </Button.Template>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Image Width="32" Height="38" Source="..\..\Source\ExitAcc.png" Margin="5"/>
-                        <TextBlock FontFamily="outfit" Width="108" Height="40" Text="Log out" 
+                        <TextBlock FontFamily="outfit" Width="108" Height="40" Text="{DynamicResource LogOut}" 
                             VerticalAlignment="Center" Foreground="White" FontSize="30" FontWeight="Normal"/>
                     </StackPanel>
                 </Button>

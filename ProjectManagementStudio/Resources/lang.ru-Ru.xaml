@@ -16,4 +16,21 @@
     <v:String x:Key="EmailTextBox">почта</v:String>
     <v:String x:Key="HaveAccount">Уже есть аккаунт?</v:String>
     <v:String x:Key="LogInAccount">Войти</v:String>
+
+    <!-- Welcome Page -->
+    <v:String x:Key="Welcome">Добро пожжаловать в Project Management Studio!</v:String>
+    <v:String x:Key="Options">Опции</v:String>
+    <v:String x:Key="Projects">Мои проекты</v:String>
+    <v:String x:Key="About">Обо мне</v:String>
+    <v:String x:Key="LogOut">Выйти</v:String>
+    <v:String x:Key="ChangeAvatar">Изменить аватар</v:String>
+    <v:String x:Key="ChangeLogin">Изменить логин</v:String>
+    <v:String x:Key="ChangePassword">Изменить пароль</v:String>
+    <v:String x:Key="ChangeEmail">Изменить почту</v:String>
+
+    <!-- Settings Page -->
+    <v:String x:Key="SettingsTitle">Настройки</v:String>
+    <v:String x:Key="Size">Размер окна</v:String>
+    <v:String x:Key="Apply">Применить</v:String>
+    
 </ResourceDictionary>

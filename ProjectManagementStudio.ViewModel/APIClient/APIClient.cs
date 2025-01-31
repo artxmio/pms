@@ -17,7 +17,7 @@ public class APIClient : IAPIClient
     private readonly HttpClient _client = new();
     private readonly IUrlService _urlService;
 
-    private Dictionary<ChangeableParams, string> _paramNames = new()
+    private readonly Dictionary<ChangeableParams, string> _paramNames = new()
     {
         { ChangeableParams.Login, "login" },
         { ChangeableParams.Password, "password" },

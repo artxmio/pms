@@ -17,7 +17,7 @@
             <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
         </Border.Effect>
         <StackPanel>
-            <TextBlock Text="Settings" FontSize="75" Foreground="#FFFFFF"
+            <TextBlock Text="{DynamicResource SettingsTitle}" FontSize="75" Foreground="#FFFFFF"
                 FontFamily="Outfit" FontWeight="Normal" Margin="0,33,0,0"
                 HorizontalAlignment="Center"/>
 
@@ -380,7 +380,7 @@
                     <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.1" Direction="270"/>
                 </Border.Effect>
                 <Grid>
-                    <TextBlock Text="Size" FontSize="30" Foreground="#FFFFFF"
+                    <TextBlock Text="{DynamicResource Size}" FontSize="30" Foreground="#FFFFFF"
                        FontFamily="Outfit" FontWeight="Normal" Margin="24,12,0,0"
                        HorizontalAlignment="Left" 
                        VerticalAlignment="Top"/>
@@ -536,7 +536,7 @@
                             <Border.Effect>
                                 <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
                             </Border.Effect>
-                            <TextBlock Text="Apply" Foreground="White" FontSize="30"
+                            <TextBlock Text="{DynamicResource Apply}" Foreground="White" FontSize="30"
                                 FontWeight="Normal" FontFamily="Outfit"
                                 VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         </Border>

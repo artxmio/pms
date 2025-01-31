@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:v="clr-namespace:System;assembly=mscorlib">
     
-    <!-- Login Page-->
+    <!-- Login Page -->
     <v:String x:Key="LoginTitle">Log in</v:String>
     <v:String x:Key="LoginTextBox">login</v:String>
     <v:String x:Key="PasswordTextBox">password</v:String>
@@ -11,10 +11,28 @@
     <v:String x:Key="HaventAcconut">Don't have an account?</v:String>
     <v:String x:Key="CreateNewAccount">Create new</v:String>
 
-    <!-- Registration Page-->
+    <!-- Registration Page -->
     <v:String x:Key="RegistrationTitle">Sing up</v:String>
     <v:String x:Key="EmailTextBox">email</v:String>
     <v:String x:Key="HaveAccount">Already have an account?</v:String>
     <v:String x:Key="LogInAccount">Log in</v:String>
+    
+    <!-- Welcome Page -->
+    <v:String x:Key="Welcome">Welcome to Project Management Studio!</v:String>
+
+    <!-- Profile Page -->
+    <v:String x:Key="Options">Options</v:String>
+    <v:String x:Key="Projects">Projects</v:String>
+    <v:String x:Key="About">About</v:String>
+    <v:String x:Key="LogOut">Log out</v:String>
+    <v:String x:Key="ChangeAvatar">Change avatar</v:String>
+    <v:String x:Key="ChangeLogin">Change login</v:String>
+    <v:String x:Key="ChangePassword">Change password</v:String>
+    <v:String x:Key="ChangeEmail">Change email</v:String>
+
+    <!-- Settings Page -->
+    <v:String x:Key="SettingsTitle">Settings</v:String>
+    <v:String x:Key="Size">Size</v:String>
+    <v:String x:Key="Apply">Apply</v:String>
     
 </ResourceDictionary>
