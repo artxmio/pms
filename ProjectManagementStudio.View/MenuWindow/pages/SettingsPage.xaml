@@ -312,7 +312,9 @@
                             </Style>
                         </Border.Style>
                         <Button Background="Transparent" BorderBrush="Transparent" Foreground="#FFFFFF"
-                                FontFamily="Outfit" FontSize="36" FontWeight="Normal">
+                                FontFamily="Outfit" FontSize="36" FontWeight="Normal"
+                                Command="{Binding ChangeLocalizationCommand}" CommandParameter="ru-RU"
+                                >
                             <Button.Template>
                                 <ControlTemplate>
                                     <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" Content="ru"/>
@@ -337,7 +339,9 @@
                             </Style>
                         </Border.Style>
                         <Button Background="Transparent" BorderBrush="Transparent" Foreground="#FFFFFF"
-                            FontFamily="Outfit" FontSize="36" FontWeight="Normal">
+                            FontFamily="Outfit" FontSize="36" FontWeight="Normal"
+                                Command="{Binding ChangeLocalizationCommand}" CommandParameter="eu-US"
+                                >
                             <Button.Template>
                                 <ControlTemplate>
                                     <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" Content="en"/>
@@ -362,7 +366,9 @@
                             </Style>
                         </Border.Style>
                         <Button Background="Transparent" BorderBrush="Transparent" Foreground="#FFFFFF"
-                            FontFamily="Outfit" FontSize="36" FontWeight="Normal">
+                            FontFamily="Outfit" FontSize="36" FontWeight="Normal"
+                                Command="{Binding ChangeLocalizationCommand}" CommandParameter="ru-RU"
+                                >
                             <Button.Template>
                                 <ControlTemplate>
                                     <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" Content="by"/>

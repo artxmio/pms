@@ -8,6 +8,7 @@ using ProjectManagementStudio.ViewModel.PageServices.ISettingsPageService;
 using ProjectManagementStudio.ViewModel.Windows;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
@@ -137,6 +138,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     public ICommand ChangeEmailCommand { get; }
     public ICommand ChangeAboutTextCommand { get; }
 
+    public ICommand ChangeLocalizationCommand { get; }
     public ICommand ApplySettings { get; }
 
     public ICommand LogOutCommand { get; }
@@ -183,6 +185,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         // Setting's functions //
         #region
 
+        ChangeLocalizationCommand = new RelayCommand(o => _settingPageService.LocalizationService.Language = new CultureInfo((string)o));
         ApplySettings = new RelayCommand(o => _settingPageService.SettingSizeService.ApplySettings());
 
         #endregion

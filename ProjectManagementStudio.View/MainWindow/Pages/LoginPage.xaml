@@ -41,12 +41,6 @@
 
         <StackPanel>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Content="eu" Margin="10 0 0 0" Command="{Binding ChangeLocalizationCommand}" CommandParameter="eu-US"/>
-                <Button Content="ru" Margin="10 0 0 0" Command="{Binding ChangeLocalizationCommand}" CommandParameter="ru-RU"/>
-                <Button Content="by" Margin="10 0 0 0" Command="{Binding ChangeLocalizationCommand}" CommandParameter="ru-RU"/>
-            </StackPanel>
-            
             <TextBlock 
                 Text="{DynamicResource LoginTitle}"
                 TextAlignment="Center"

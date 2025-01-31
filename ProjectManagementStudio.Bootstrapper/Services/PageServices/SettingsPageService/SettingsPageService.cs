@@ -1,29 +1,45 @@
 ﻿using ProjectManagementStudio.ViewModel.PageServices.ISettingsPageService;
 using ProjectManagementStudio.ViewModel.SettingSizeService;
+using ProjectManagementStudio.ViewModel.LocalizationService;
 
 namespace ProjectManagementStudio.Bootstrapper.Services.PageServices.SettingsPageService;
 
 internal class SettingsPageService : ISettingsPageService, ISettingsPageServiceInitializer
 {
     private bool _initialized;
-    private ISettingSizeService _settingsPageService;
+    private ISettingSizeService _settingsSizeService;
+    private ILocalizationService _localizationService;
 
     public ISettingSizeService SettingSizeService
     {
         get
         {
-            return _settingsPageService;
+            return _settingsSizeService;
         }
 
         set
         {
-            _settingsPageService = value;
+            _settingsSizeService = value;
         }
     }
 
-    public SettingsPageService(ISettingSizeService settingSizeService)
+    public ILocalizationService LocalizationService
     {
-        _settingsPageService = settingSizeService;
+        get
+        {
+            return _localizationService;
+        }
+
+        set
+        {
+            _localizationService = value;
+        }
+    }
+    
+    public SettingsPageService(ISettingSizeService settingSizeService, ILocalizationService localizationService)
+    {
+        _settingsSizeService = settingSizeService;
+        _localizationService = localizationService;
     }
 
     public void Initialize()
