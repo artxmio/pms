@@ -18,7 +18,7 @@
     <v:String x:Key="LogInAccount">Войти</v:String>
 
     <!-- Welcome Page -->
-    <v:String x:Key="Welcome">Добро пожжаловать в Project Management Studio!</v:String>
+    <v:String x:Key="Welcome">Добро пожаловать в Project Management Studio!</v:String>
     <v:String x:Key="Options">Опции</v:String>
     <v:String x:Key="Projects">Мои проекты</v:String>
     <v:String x:Key="About">Обо мне</v:String>

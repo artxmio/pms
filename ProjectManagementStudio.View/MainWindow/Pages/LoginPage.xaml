@@ -52,7 +52,7 @@
                 HorizontalAlignment="center"
                 VerticalAlignment="Center"
                 FontFamily="Outfit"
-                Margin="0,37,0,0"/>
+                Margin="0,32,0,0"/>
 
             <!-- // Login // -->
             <TextBox x:Name="login" 
@@ -62,7 +62,7 @@
                 materialDesign:HintAssist.Hint="{DynamicResource LoginTextBox}"                
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"            
                 HorizontalAlignment="Left"               
-                Margin="41,42,0,0"              
+                Margin="41,41,0,0"              
                 BorderBrush="white">
 
                 <TextBox.Text>
@@ -138,8 +138,8 @@
                 </Button>
             </Grid>
 
-            <!-- // Rememmber me // -->
-            <CheckBox Width="123"
+            <!-- // Remember me // -->
+            <CheckBox Width="150"
                 Content="{DynamicResource RememberMe}"
                 Margin="40,30,0,0"
                 BorderBrush="#2C1B45"
@@ -192,31 +192,39 @@
             </Button>
 
             <Line X1="1" Y1="0" X2="366" Y2="0" 
-              Stroke="White" StrokeThickness="1"
-              Margin="41,16,0,0"  
+                Stroke="White" StrokeThickness="1"
+                Margin="41,16,0,0"  
             />
 
-            <Grid Width="314" Height="28" Margin="0,6,0,0">
+            <Grid Margin="0,6,0,0" HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="209"/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                    <!-- Колонка для TextBlock -->
+                    <ColumnDefinition Width="Auto"/>
+                    <!-- Колонка для Button -->
                 </Grid.ColumnDefinitions>
-                
+
+                <!-- TextBlock -->
                 <TextBlock FontFamily="Outfit" FontSize="20" FontWeight="Normal"
-                    Foreground="White" Text="{DynamicResource HaventAcconut}" Height="23" VerticalAlignment="Top"/>
-                
-                <Button VerticalAlignment="Top" Padding="0" Width="104" Height="28" HorizontalAlignment="Left" Grid.Column="2" 
-                    Command="{Binding NavigateToRegistrationPage}" Background="Transparent" BorderBrush="Transparent" Margin="0,0,0,0">
+               Foreground="White" Text="{DynamicResource HaventAcconut}"
+               HorizontalAlignment="Center" VerticalAlignment="Center"
+               TextAlignment="Center" Grid.Column="0" />
+
+                <!-- Button -->
+                <Button VerticalAlignment="Center" Padding="0" HorizontalAlignment="Center" Grid.Column="1"
+            Command="{Binding NavigateToRegistrationPage}" Background="Transparent" BorderBrush="Transparent" Margin="5,0,0,0">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
-                            <StackPanel Orientation="Vertical" Width="104" Height="28">
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <TextBlock x:Name="buttonText" Margin="0,0.3,0,0"
-                                    Text="{DynamicResource CreateNewAccount}" 
-                                    Foreground="#4683F5"
-                                    FontSize="20"
-                                    FontFamily="Outfit"
-                                    FontWeight="Normal"/>
-                                <Border x:Name="bottomBorder" Width="104" Height="1" Margin="0,-4,0,0" HorizontalAlignment="Center" Background="#4683F5" />
+                               Text="{DynamicResource CreateNewAccount}" 
+                               Foreground="#4683F5"
+                               FontSize="20"
+                               FontFamily="Outfit"
+                               FontWeight="Normal"
+                               TextAlignment="Center" />
+                                <Border x:Name="bottomBorder" Height="1" Margin="0,-4,0,0" 
+                            HorizontalAlignment="Stretch" Background="#4683F5" />
                             </StackPanel>
 
                             <ControlTemplate.Triggers>

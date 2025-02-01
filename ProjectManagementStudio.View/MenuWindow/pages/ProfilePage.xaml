@@ -115,7 +115,8 @@
                     </Border.Effect>
 
                     <StackPanel Orientation="Vertical">
-                        <TextBlock FontFamily="outfit" FontSize="35" 
+                        <TextBlock FontFamily="outfit" FontSize="35"
+                            TextAlignment="Center"
                             Foreground="#FFFFFF" FontWeight="Normal"
                             Margin="0,31,0,0" Text="{DynamicResource Options}"
                             Width="127" Height="42"
@@ -258,7 +259,7 @@
                         <TextBlock Text="{DynamicResource Projects}" FontFamily="outfit" FontSize="35"
                            FontWeight="Normal" Foreground="White"
                            HorizontalAlignment="Center" VerticalAlignment="Top"
-                           Width="126" Height="44"
+                           Width="auto" Height="44"
                            Margin="0,14,0,0"/>
 
                         <!-- Прокручиваемая область !!!НУЖНО ДОДЕЛАТЬ!!! -->
@@ -317,7 +318,7 @@
                             FontFamily="outfit" FontSize="35"
                             FontWeight="Normal" Foreground="White"
                             HorizontalAlignment="Center" VerticalAlignment="Top"
-                            Width="96" Height="44"/>
+                            Width="auto" Height="44"/>
 
                         <TextBlock Text="{Binding CurrentUser.AboutText, Mode=TwoWay}"
                             FontFamily="outfit" FontSize="30" FontWeight="Normal" Foreground="White"
@@ -348,7 +349,7 @@
                     </Button.Template>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Image Width="32" Height="38" Source="..\..\Source\ExitAcc.png" Margin="5"/>
-                        <TextBlock FontFamily="outfit" Width="108" Height="40" Text="{DynamicResource LogOut}" 
+                        <TextBlock FontFamily="outfit" Width="108" Height="auto" Text="{DynamicResource LogOut}" 
                             VerticalAlignment="Center" Foreground="White" FontSize="30" FontWeight="Normal"/>
                     </StackPanel>
                 </Button>
