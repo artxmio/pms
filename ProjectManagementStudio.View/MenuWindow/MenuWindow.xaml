@@ -16,7 +16,7 @@
         MinWidth="500"
         
         AllowsTransparency="True"
-        ResizeMode="CanResizeWithGrip"
+        ResizeMode="CanResize"
         
         WindowStyle="None"
         WindowStartupLocation="Manual"
