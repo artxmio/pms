@@ -89,8 +89,8 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
         _activePage = _pageManager.NavigateTo(0);
 
         CloseCommand = new RelayCommand(o => _windowManager.Close(this));
-        AuthorizationCommand = new RelayCommand(o => AuthorizateUser());
-        RegistrationCommand = new AsyncCommand(() => _client.AddUser(RegistrationModel));
+        AuthorizationCommand = new AsyncCommand(AuthorizateUser);
+        RegistrationCommand = new AsyncCommand(RegistrationUser);
 
         ChangeLocalizationCommand = new RelayCommand(o => _localizationService.Language = new CultureInfo((string)o));
 
@@ -103,7 +103,17 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
         
     }
 
-    private async void AuthorizateUser()
+    private async Task RegistrationUser()
+    {
+        await _client.AddUser(RegistrationModel);
+
+        LoginModel.Login = RegistrationModel.Login;
+        LoginModel.Password = RegistrationModel.Password;
+
+        await AuthorizateUser();
+    }
+
+    private async Task AuthorizateUser()
     {
         LoginModel.IsValid = false;
         
