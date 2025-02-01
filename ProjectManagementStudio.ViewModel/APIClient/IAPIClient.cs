@@ -6,7 +6,7 @@ namespace ProjectManagementStudio.ViewModel.APIClient;
 
 public interface IAPIClient
 {
-    Task<bool> IsUserExists(IAuthModel user);
+    Task<bool> IsUserExists(string login, string password);
     Task AddUser(IRegisterModel user);
 
     Task<ICurrentUserModel> GetUserByLogin(IAuthModel authModel);

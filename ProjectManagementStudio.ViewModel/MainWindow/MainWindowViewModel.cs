@@ -107,7 +107,7 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
     {
         LoginModel.IsValid = false;
         
-        bool isExist = await _client.IsUserExists(LoginModel);
+        bool isExist = await _client.IsUserExists(LoginModel.Login, LoginModel.Password);
 
         if (isExist)
         {

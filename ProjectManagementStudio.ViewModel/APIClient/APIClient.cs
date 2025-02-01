@@ -32,9 +32,9 @@ public class APIClient : IAPIClient
         _client.DefaultRequestHeaders.Add("Authorization", $"{_urlService.Token}");
     }
 
-    public async Task<bool> IsUserExists(IAuthModel user)
+    public async Task<bool> IsUserExists(string login, string password)
     {
-        var json = JsonConvert.SerializeObject(new AuthRequestModel(user.Login, user.Password));
+        var json = JsonConvert.SerializeObject(new AuthRequestModel(login, password));
         var content = new StringContent(json, Encoding.UTF8, "application/json");
 
         _urlService.URLEndpoint = nameof(IsUserExists);
@@ -73,6 +73,12 @@ public class APIClient : IAPIClient
     {
         var json = JsonConvert.SerializeObject(new AddUserRequestModel(user.Login, user.Password, user.Email));
         var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        if (await IsUserExists(user.Login, user.Password))
+        {
+            MessageBox.Show("Такой пользователь уже существует!", "Внимание");
+            return;
+        }
 
         _urlService.URLEndpoint = nameof(AddUser);
 
