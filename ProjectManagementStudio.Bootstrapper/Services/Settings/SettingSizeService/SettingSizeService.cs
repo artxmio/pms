@@ -85,6 +85,7 @@ internal class SettingSizeService : ISettingSizeService, ISettingSizeInitialize,
 
         _sizes =
         [
+            new WindowSizes(900, 400),
             new WindowSizes(1056,600),
             new WindowSizes(1280, 1024),
             new WindowSizes(1920, 1080)
@@ -106,6 +107,11 @@ internal class SettingSizeService : ISettingSizeService, ISettingSizeInitialize,
     public void UpdateWindowSize(IWindowSizes newSize)
     {
         var currentWindow = Application.Current.MainWindow;
+
+        if (currentWindow.WindowState == WindowState.Maximized)
+        {
+            currentWindow.WindowState = WindowState.Normal;
+        }
 
         if (currentWindow is not null)
         {

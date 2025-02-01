@@ -9,11 +9,14 @@
         Title="MenuWindow" 
         Left="0" Top="0"
         
-        MinHeight="600"
-        MinWidth="1056"
-        
         Height="{Binding Heigth, Mode=TwoWay}" 
         Width="{Binding Width, Mode=TwoWay}"
+        
+        MinHeight="400"
+        MinWidth="500"
+        
+        AllowsTransparency="True"
+        ResizeMode="CanResizeWithGrip"
         
         WindowStyle="None"
         WindowStartupLocation="Manual"

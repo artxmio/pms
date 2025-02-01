@@ -1,8 +1,10 @@
 ﻿using ProjectManagementStudio.ViewModel.MenuWindow;
 using ProjectManagementStudio.ViewModel.SettingSizeService;
 using ProjectManagementStudio.ViewModel.Windows;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Interop;
 
 namespace ProjectManagementStudio.View.MenuWindow;
 
@@ -46,5 +48,5 @@ public partial class MenuWindow : IMenuWindow
     {
         this.Width = _settingSizeService.Width;
         this.Height = _settingSizeService.Height;
-     }
+    }
 }
