@@ -49,11 +49,11 @@
         </LinearGradientBrush>
     </Window.Background>
 
-    <Grid MouseLeftButtonDown="DragWindow">
+    <Grid>
         <Frame Content="{Binding ActivePage}" NavigationUIVisibility="Hidden"/>
 
         <!-- Верхнее меню -->
-        <Grid Height="87" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="100,0,0,0">
+        <Grid  x:Name="header" MouseLeftButtonDown="DragWindow" Height="87" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="100,0,0,0">
             <Grid.Background>
                 <LinearGradientBrush StartPoint="0,5" EndPoint="1,0">
                     <GradientStop Color="#2C1B47" Offset="0.2" />
