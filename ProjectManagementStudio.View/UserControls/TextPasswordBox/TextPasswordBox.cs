@@ -57,12 +57,12 @@ public class TextPasswordBox : TextBox
 
     private static void OnPasswordPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        
+
     }
 
     private static void OnIsPasswordVisiblePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        
+
     }
 
     protected override void OnTextChanged(TextChangedEventArgs e)
@@ -90,13 +90,25 @@ public class TextPasswordBox : TextBox
         }
         else
         {
-            var newPasswordChars = new string((from ch in Text where ch != CHAR select ch).ToArray());
-            if (Password.Length != Text.Length)
+            if (!IsPasswordVisible)
             {
-                Password = new string(Password + newPasswordChars);
+                var newPasswordChars = new string((from ch in Text where ch != CHAR select ch).ToArray());
+                
+                if (Password.Length != Text.Length)
+                {
+                    Password = new string(Password + newPasswordChars);
+                }
+                
+                this.Text = new string(CHAR, Password.Length);
             }
+            else
+            {
+                var newPasswordChars = new string((from ch in Text where ch != CHAR select ch).ToArray());
 
-            this.Text = new string(CHAR, Password.Length);
+                Password = new string(newPasswordChars);
+
+                this.Text = Password;
+            }
             CaretIndex = Text.Length;
             return;
         }
