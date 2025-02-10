@@ -27,10 +27,12 @@
     <v:String x:Key="ChangeLogin">Изменить логин</v:String>
     <v:String x:Key="ChangePassword">Изменить пароль</v:String>
     <v:String x:Key="ChangeEmail">Изменить почту</v:String>
+    <v:String x:Key="ChangeAboutText">Изменить</v:String>
 
     <!-- Settings Page -->
     <v:String x:Key="SettingsTitle">Настройки</v:String>
     <v:String x:Key="Size">Размер окна</v:String>
     <v:String x:Key="Apply">Применить</v:String>
+    <v:String x:Key="Cancel">Отменить</v:String>
     
 </ResourceDictionary>

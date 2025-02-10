@@ -29,10 +29,12 @@
     <v:String x:Key="ChangeLogin">Change login</v:String>
     <v:String x:Key="ChangePassword">Change password</v:String>
     <v:String x:Key="ChangeEmail">Change email</v:String>
+    <v:String x:Key="ChangeAboutText">Change info</v:String>
 
     <!-- Settings Page -->
     <v:String x:Key="SettingsTitle">Settings</v:String>
     <v:String x:Key="Size">Size</v:String>
     <v:String x:Key="Apply">Apply</v:String>
+    <v:String x:Key="Cancel">Cancel</v:String>
     
 </ResourceDictionary>
