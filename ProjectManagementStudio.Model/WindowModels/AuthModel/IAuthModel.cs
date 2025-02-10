@@ -8,5 +8,6 @@ public interface IAuthModel
     string Password { get; set; }
     bool IsValid { get; set; }
 
+    public bool IsRememberMe { get; set; }
     void Validate();
 }

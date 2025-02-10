@@ -66,7 +66,7 @@
                 BorderBrush="white">
 
                 <TextBox.Text>
-                    <Binding Path="LoginModel.Login" UpdateSourceTrigger="Explicit" NotifyOnTargetUpdated="True">
+                    <Binding Path="LoginModel.Login" UpdateSourceTrigger="PropertyChanged" NotifyOnTargetUpdated="True">
                         <Binding.ValidationRules>
                             <validations:LoginValidationRules ValidationStep="ConvertedProposedValue"/>
                         </Binding.ValidationRules>

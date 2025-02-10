@@ -46,6 +46,11 @@ internal class CurrentUserService : ICurrentUserService, ICurrentUserServiceInit
 
         try
         {
+            if (!_userDataMementoWrapper.IsRememberMe)
+            {
+                return;
+            }
+
             if (!_userDataMementoWrapper.IsFileNull)
             {
                 var authModel = new AuthModel(_userDataMementoWrapper);

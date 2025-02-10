@@ -69,7 +69,7 @@ public class APIClient : IAPIClient
         return isExist;
     }
 
-    public async Task AddUser(IRegisterModel user)
+    public async Task<bool> AddUser(IRegisterModel user)
     {
         var json = JsonConvert.SerializeObject(new AddUserRequestModel(user.Login, user.Password, user.Email));
         var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -77,7 +77,7 @@ public class APIClient : IAPIClient
         if (await IsUserExists(user.Login, user.Password))
         {
             MessageBox.Show("Такой пользователь уже существует!", "Внимание");
-            return;
+            return false;
         }
 
         _urlService.URLEndpoint = nameof(AddUser);
@@ -95,17 +95,25 @@ public class APIClient : IAPIClient
                 ?? throw new InvalidOperationException("Deserialized response can't be null");
 
             if (deserializeResponse is not null && deserializeResponse.Success)
+            {
                 MessageBox.Show("Успешно!");
+                return true;
+            }
             else
+            {
                 MessageBox.Show($"Ошибка: {deserializeResponse?.Message} ({deserializeResponse?.Code})");
+                return false;
+            }
         }
         catch (HttpRequestException ex)
         {
             MessageBox.Show($"Возникла ошибка: сервер отключён или недоступен ({ex.Message})", "Ошибка");
+            return false;
         }
         catch (Exception ex)
         {
             MessageBox.Show($"Возникла неизвестная ошибка: {ex.Message}", "Ошибка");
+            return false;
         }
     }
 

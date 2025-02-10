@@ -14,6 +14,8 @@ public class AddUserResponse
     [DataMember(Name = "message")]
     public string Message { get; set; }
 
+   
+
     public AddUserResponse()
     {
         Success = false;

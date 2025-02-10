@@ -182,9 +182,7 @@ internal class UserDataMementoWrapper :
 
             _userDataMemento.IsRememberMe = false;
 
-            var json = JsonConvert.SerializeObject(_userDataMemento);
-
-            File.WriteAllText(_userDataFilePath, json);
+            File.Delete(_userDataFilePath);
         }
         catch (JsonSerializationException ex)
         {

@@ -105,16 +105,24 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
 
     private async Task RegistrationUser()
     {
-        await _client.AddUser(RegistrationModel);
+        var isRegister = await _client.AddUser(RegistrationModel);
 
         LoginModel.Login = RegistrationModel.Login;
         LoginModel.Password = RegistrationModel.Password;
 
-        await AuthorizateUser();
+        if (isRegister)
+        {
+            await AuthorizateUser();
+        }
     }
 
     private async Task AuthorizateUser()
     {
+        if (!LoginModel.IsRememberMe)
+        {
+            
+        }
+
         LoginModel.IsValid = false;
         
         bool isExist = await _client.IsUserExists(LoginModel.Login, LoginModel.Password);
