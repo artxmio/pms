@@ -21,7 +21,7 @@
                     PrimaryColor="DeepPurple" 
                     SecondaryColor="Pink" />
                 <ResourceDictionary 
-            Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <Storyboard x:Key="FadeOutStoryboard">
                 <DoubleAnimation
@@ -30,213 +30,282 @@
             </Storyboard>
         </ResourceDictionary>
     </Page.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15.6*"/>
+            <ColumnDefinition Width="27.8*"/>
+            <ColumnDefinition Width="56.6*"/>
+        </Grid.ColumnDefinitions>
 
-    <Border CornerRadius="30" 
-        Width="446"
-        Height="500" 
-        HorizontalAlignment="Left" 
-        VerticalAlignment="Center" 
-        Margin="250,0,0,0"
-        Background="#80DBCBE8">
+        <Border Grid.Column="1" CornerRadius="30"
+            Width="auto"
+            Height="500" 
+            HorizontalAlignment="Stretch" 
+            VerticalAlignment="Center" 
+            Background="#80DBCBE8">
 
-        <StackPanel>
-
-            <TextBlock 
-                Text="{DynamicResource LoginTitle}"
-                TextAlignment="Center"
-                Width="446"
-                Height="92"
-                FontSize="65"
-                Foreground="White"
-                FontWeight="SemiBold"
-                HorizontalAlignment="center"
-                VerticalAlignment="Center"
-                FontFamily="Outfit"
-                Margin="0,32,0,0"/>
-
-            <!-- // Login // -->
-            <TextBox x:Name="login" 
-                MaxLength="20" FontSize="20" Foreground="white" 
-                FontWeight="Normal" FontFamily="Outfit"
-                Height="41" Width="365"
-                materialDesign:HintAssist.Hint="{DynamicResource LoginTextBox}"                
-                Style="{StaticResource MaterialDesignFloatingHintTextBox}"            
-                HorizontalAlignment="Left"               
-                Margin="41,41,0,0"              
-                BorderBrush="white">
-
-                <TextBox.Text>
-                    <Binding Path="LoginModel.Login" UpdateSourceTrigger="PropertyChanged" NotifyOnTargetUpdated="True">
-                        <Binding.ValidationRules>
-                            <validations:LoginValidationRules ValidationStep="ConvertedProposedValue"/>
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-
-            </TextBox>
-
-            <!-- // Password // -->
-            <Grid  Width="365" Height="40" Margin="0,32,0,0">
-                <uc:TextPasswordBox   
-                     Text="{Binding LoginModel.Password, Mode=OneWay}"
-                     x:Name="password"
-                     MaxLength="24"
-                     FontSize="20"
-                     Foreground="white" 
-                     Height="40" 
-                     Width="365"
-                     materialDesign:HintAssist.Hint="{DynamicResource PasswordTextBox}"
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     HorizontalAlignment="Left"
-                     Margin="0,0,0,0"
-                     BorderBrush="white"
-                     FontWeight="Normal" FontFamily="Outfit">
-
-                    <uc:TextPasswordBox.Password>
-                        <Binding Path="LoginModel.Password" UpdateSourceTrigger="PropertyChanged" NotifyOnTargetUpdated="True">
-                            <Binding.ValidationRules>
-                                <validations:PasswordValidationRules ValidationStep="ConvertedProposedValue"/>
-                            </Binding.ValidationRules>
-                        </Binding>
-                    </uc:TextPasswordBox.Password>
-
-                </uc:TextPasswordBox>
-
-                <Button Width="25"
-                    Height="25"
-                    Background="Transparent"
-                    BorderBrush="Transparent"
-                    HorizontalAlignment="Right"
+            <StackPanel>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="32.6*"/>
+                        <RowDefinition Height="31.2*"/>
+                        <RowDefinition Height="36.2*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <TextBlock 
+                    Grid.Row="0"
+                    Text="{DynamicResource LoginTitle}"
+                    TextAlignment="Center"
+                    Width="446"
+                    Height="Auto"
+                    FontSize="65"
+                    Foreground="White"
+                    FontWeight="SemiBold"
+                    HorizontalAlignment="center"
                     VerticalAlignment="Center"
-                    Cursor="Hand"
-                    Tag="0"
-                    Click="ShowPassword">
+                    FontFamily="Outfit"
+                    Margin="0,32,0,50"/>
+
+                    <StackPanel Grid.Row="1">
+                    <!-- // Login // -->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="9.05*"/>
+                                <ColumnDefinition Width="81.9*"/>
+                                <ColumnDefinition Width="9.05*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBox x:Name="login"
+                                MaxLength="20" FontSize="20" Foreground="white" 
+                                FontWeight="Normal" FontFamily="Outfit"
+                                Height="auto" HorizontalAlignment="Stretch"
+                                materialDesign:HintAssist.Hint="{DynamicResource LoginTextBox}"                
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"                      
+                                Margin="0,0,0,0"
+                                Grid.Column="1"
+                                BorderBrush="white">
+
+                                <TextBox.Text>
+                                    <Binding Path="LoginModel.Login" UpdateSourceTrigger="PropertyChanged" NotifyOnTargetUpdated="True">
+                                        <Binding.ValidationRules>
+                                            <validations:LoginValidationRules ValidationStep="ConvertedProposedValue"/>
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+
+                            </TextBox>
+                        </Grid>
+
+                        <!-- // Password // -->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="9.05*"/>
+                                <ColumnDefinition Width="81.9*"/>
+                                <ColumnDefinition Width="9.05*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Height="40" Margin="0,32,0,0" Grid.Column="1">
+                                <uc:TextPasswordBox
+                                     Text="{Binding LoginModel.Password, Mode=OneWay}"
+                                     x:Name="password"
+                                     MaxLength="24"
+                                     FontSize="20"
+                                     Foreground="white" 
+                                     Height="auto" 
+                                     materialDesign:HintAssist.Hint="{DynamicResource PasswordTextBox}"
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                     HorizontalAlignment="Stretch"
+                                     Margin="0,0,0,0"
+                                     BorderBrush="white"
+                                     FontWeight="Normal" FontFamily="Outfit">
+
+                                    <uc:TextPasswordBox.Password>
+                                        <Binding Path="LoginModel.Password" UpdateSourceTrigger="PropertyChanged" NotifyOnTargetUpdated="True">
+                                            <Binding.ValidationRules>
+                                                <validations:PasswordValidationRules ValidationStep="ConvertedProposedValue"/>
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </uc:TextPasswordBox.Password>
+
+                                </uc:TextPasswordBox>
+
+                                <Button Width="25"
+                                    Height="25"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
+                                    Cursor="Hand"
+                                    Tag="0"
+                                    Click="ShowPassword">
+
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </ControlTemplate>
+                                    </Button.Template>
+
+                                    <Button.Content>
+                                        <Image Width="25" Height="25">
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Setter Property="Source" Value="..\..\Source\eye.png"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource AncestorType=Button}}" Value="1">
+                                                            <Setter Property="Source" Value="..\..\Source\eye_closed.png" />
+                                                        </DataTrigger>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Opacity" Value="0.7"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                    </Button.Content>
+                                </Button>
+                            </Grid>
+                        </Grid>
+
+                        <!-- // Remember me // -->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="8.4*"/>
+                                <ColumnDefinition Width="40.5*"/>
+                                <ColumnDefinition Width="51.1*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <CheckBox Height="auto"
+                                Grid.Column="1"
+                                Content="{DynamicResource RememberMe}"
+                                Margin="0,30,0,0"
+                                BorderBrush="#2C1B45"
+                                FontFamily="Outfit"
+                                FontWeight="Normal"
+                                Foreground="White"
+                                FontSize="16"
+                                VerticalContentAlignment="Center"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Stretch"
+                                IsChecked="{Binding LoginModel.IsRememberMe}"/>
+                        </Grid>
+                    </StackPanel>
+                        
+                    <!-- // Btn Continue // -->
                     
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </ControlTemplate>
-                    </Button.Template>
-                    
-                    <Button.Content>
-                        <Image Width="25" Height="25">
-                            <Image.Style>
-                                <Style TargetType="Image">
-                                    <Setter Property="Source" Value="..\..\Source\eye.png"/>
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource AncestorType=Button}}" Value="1">
-                                            <Setter Property="Source" Value="..\..\Source\eye_closed.png" />
-                                        </DataTrigger>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Opacity" Value="0.7"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Image.Style>
-                        </Image>
-                    </Button.Content>
-                </Button>
-            </Grid>
+                    <StackPanel Grid.Row="2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="8.55*"/>
+                                <ColumnDefinition Width="82.9*"/>
+                                <ColumnDefinition Width="8.55*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <Button Background="#2C1B45"
+                                Grid.Column="1"
+                                FontWeight="Normal" 
+                                FontFamily="Outfit"
+                                FontSize="40" 
+                                Margin="0,30,0,0" 
+                                Content="{DynamicResource Continue}" 
+                                HorizontalAlignment="Stretch"
+                                Height="auto" 
+                                IsEnabled="{Binding LoginModel.IsValid}"
+                                Command="{Binding AuthorizationCommand}">
 
-            <!-- // Remember me // -->
-            <CheckBox Width="150"
-                Content="{DynamicResource RememberMe}"
-                Margin="40,30,0,0"
-                BorderBrush="#2C1B45"
-                FontFamily="Outfit"
-                FontWeight="Normal"
-                Foreground="White"
-                FontSize="16"
-                VerticalContentAlignment="Center"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-                IsChecked="{Binding LoginModel.IsRememberMe}"/>
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border x:Name="buttonBorder" 
+                                            Background="{TemplateBinding Background}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            CornerRadius="30">
+                                            <ContentPresenter
+                                                Margin="0,5,0,5"
+                                                HorizontalAlignment="Center" 
+                                                VerticalAlignment="Center"/>
+                                        </Border>
 
-            <!-- // Btn Continue // -->
-            <Button Background="#2C1B45" 
-                FontWeight="Normal" 
-                FontFamily="Outfit"
-                FontSize="40" 
-                Margin="0,30,0,0" 
-                Content="{DynamicResource Continue}" 
-                Width="370" 
-                Height="60" 
-                IsEnabled="{Binding LoginModel.IsValid}"
-                Command="{Binding AuthorizationCommand}">
+                                        <ControlTemplate.Triggers>
+                                            <!-- Триггер для изменения цвета при наведении (если кнопка активна) -->
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="buttonBorder" Property="Background" Value="#3B2B57"/>
+                                            </Trigger>
 
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                    <Border x:Name="buttonBorder" 
-                        Background="{TemplateBinding Background}" 
-                        BorderBrush="{TemplateBinding BorderBrush}" 
-                        CornerRadius="30">
-                    <ContentPresenter 
-                        HorizontalAlignment="Center" 
-                        VerticalAlignment="Center"/>
-                        </Border>
+                                            <!-- Цвет для неактивного состояния кнопки -->
+                                            <Trigger Property="IsEnabled" Value="False">
+                                                <Setter TargetName="buttonBorder" Property="Background" Value="#1A1230"/>
+                                                <Setter Property="Foreground" Value="#666666" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </Grid>
 
-                        <ControlTemplate.Triggers>
-                            <!-- Триггер для изменения цвета при наведении (если кнопка активна) -->
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="buttonBorder" Property="Background" Value="#3B2B57"/>
-                            </Trigger>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="9*"/>
+                                <ColumnDefinition Width="82*"/>
+                                <ColumnDefinition Width="9*"/>
+                            </Grid.ColumnDefinitions>
 
-                            <!-- Цвет для неактивного состояния кнопки -->
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="buttonBorder" Property="Background" Value="#1A1230"/>
-                                <Setter Property="Foreground" Value="#666666" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
+                            <Line X1="0" 
+                                X2="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}}"
+                                Y1="0" 
+                                Y2="0" 
+                                Grid.Column="1"
+                                Stroke="White" 
+                                StrokeThickness="2"
+                                Margin="0,16,0,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top"/>
+                        </Grid>
 
-            <Line X1="1" Y1="0" X2="366" Y2="0" 
-                Stroke="White" StrokeThickness="1"
-                Margin="41,16,0,0"  
-            />
 
-            <Grid Margin="0,6,0,0" HorizontalAlignment="Center">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <!-- Колонка для TextBlock -->
-                    <ColumnDefinition Width="Auto"/>
-                    <!-- Колонка для Button -->
-                </Grid.ColumnDefinitions>
+                        <Grid Margin="0,6,0,0" HorizontalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <!-- Колонка для TextBlock -->
+                                <ColumnDefinition Width="Auto"/>
+                                <!-- Колонка для Button -->
+                            </Grid.ColumnDefinitions>
 
-                <!-- TextBlock -->
-                <TextBlock FontFamily="Outfit" FontSize="20" FontWeight="Normal"
-               Foreground="White" Text="{DynamicResource HaventAcconut}"
-               HorizontalAlignment="Center" VerticalAlignment="Center"
-               TextAlignment="Center" Grid.Column="0" />
+                            <!-- TextBlock -->
+                            <TextBlock FontFamily="Outfit" FontSize="20" FontWeight="Normal"
+                               Foreground="White" Text="{DynamicResource HaventAcconut}"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"
+                               TextAlignment="Center" Grid.Column="0" />
 
-                <!-- Button -->
-                <Button VerticalAlignment="Center" Padding="0" HorizontalAlignment="Center" Grid.Column="1"
-            Command="{Binding NavigateToRegistrationPage}" Background="Transparent" BorderBrush="Transparent" Margin="5,0,0,0">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <TextBlock x:Name="buttonText" Margin="0,0.3,0,0"
-                               Text="{DynamicResource CreateNewAccount}" 
-                               Foreground="#4683F5"
-                               FontSize="20"
-                               FontFamily="Outfit"
-                               FontWeight="Normal"
-                               TextAlignment="Center" />
-                                <Border x:Name="bottomBorder" Height="1" Margin="0,-4,0,0" 
-                            HorizontalAlignment="Stretch" Background="#4683F5" />
-                            </StackPanel>
+                            <!-- Button -->
+                            <Button VerticalAlignment="Center" Padding="0" HorizontalAlignment="Center" Grid.Column="1"
+                                Command="{Binding NavigateToRegistrationPage}" Background="Transparent" BorderBrush="Transparent" Margin="5,0,0,0">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <TextBlock x:Name="buttonText" Margin="0,0.3,0,0"
+                                       Text="{DynamicResource CreateNewAccount}" 
+                                       Foreground="#4683F5"
+                                       FontSize="20"
+                                       FontFamily="Outfit"
+                                       FontWeight="Normal"
+                                       TextAlignment="Center" />
+                                            <Border x:Name="bottomBorder" Height="1" Margin="0,-4,0,0" 
+                                        HorizontalAlignment="Stretch" Background="#4683F5" />
+                                        </StackPanel>
 
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="buttonText" Property="Foreground" Value="#8A47D3"/>
-                                    <Setter TargetName="bottomBorder" Property="Background" Value="#8A47D3"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-            </Grid>
-        </StackPanel>
-    </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="buttonText" Property="Foreground" Value="#8A47D3"/>
+                                                <Setter TargetName="bottomBorder" Property="Background" Value="#8A47D3"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </Border>
+    </Grid>
 </Page>
