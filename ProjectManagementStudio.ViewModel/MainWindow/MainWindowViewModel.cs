@@ -120,7 +120,7 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
     {
         if (!LoginModel.IsRememberMe)
         {
-            
+            return;
         }
 
         LoginModel.IsValid = false;

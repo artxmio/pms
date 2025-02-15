@@ -10,7 +10,7 @@ public class UrlService : IUrlServiceInitializer, IUrlService
     //словарь со всеми названиями методов и кусочками url в соответствии к ним
     private readonly Dictionary<string, string> _urlMap = new()
     {
-        { "IsUserExists", "is-user-exists" },
+        { "IsUserExists", "api-v2/user/exists" },
         { "AddUser", "api-v2/user/create" },
         { "ChangeUserParams", "change_user_params" }
     };
