@@ -105,7 +105,7 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
 
     private async Task RegistrationUser()
     {
-        var isRegister = await _client.AddUser(RegistrationModel);
+        var isRegister = await _client.AddUser(RegistrationModel.Login, RegistrationModel.Password, RegistrationModel.Email);
 
         LoginModel.Login = RegistrationModel.Login;
         LoginModel.Password = RegistrationModel.Password;
@@ -118,18 +118,18 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
 
     private async Task AuthorizateUser()
     {
-        if (!LoginModel.IsRememberMe)
+        if (!LoginModel.IsRememberMe && LoginModel.Login is null && LoginModel.Password is null)
         {
             return;
         }
-
+        
         LoginModel.IsValid = false;
         
         bool isExist = await _client.IsUserExists(LoginModel.Login, LoginModel.Password);
 
         if (isExist)
         {
-            _currentUserService.CurrentUser = await _client.GetUserByLogin(LoginModel);
+            _currentUserService.CurrentUser = await _client.GetUserByLogin(LoginModel.Login, LoginModel.Password);
             var menuWindow = _windowManager.Show(_menuWindowViewModel) as Window;
 
             if (menuWindow is not Window window)

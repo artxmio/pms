@@ -69,9 +69,9 @@ public class APIClient : IAPIClient
         return isExist;
     }
 
-    public async Task<bool> AddUser(IRegisterModel user)
+    public async Task<bool> AddUser(string login, string password, string email)
     {
-        var json = JsonConvert.SerializeObject(new AddUserRequestModel(user.Login, user.Password, user.Email));
+        var json = JsonConvert.SerializeObject(new AddUserRequestModel(login, password, email));
         var content = new StringContent(json, Encoding.UTF8, "application/json");
 
         _urlService.URLEndpoint =  nameof(AddUser);
@@ -111,11 +111,11 @@ public class APIClient : IAPIClient
         }
     }
 
-    public async Task<ICurrentUserModel> GetUserByLogin(IAuthModel authUser)
+    public async Task<ICurrentUserModel> GetUserByLogin(string login, string password)
     {
         try
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, $"{_client.BaseAddress}get_user?login={authUser.Login}");
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{_client.BaseAddress}/api-v2/user/get?login={login}");
 
             var response = await _client.SendAsync(request);
 
@@ -126,7 +126,7 @@ public class APIClient : IAPIClient
             {
                 UserId = (long)deserializeResponse.Data["id"],
                 Login = (string)deserializeResponse.Data["login"],
-                Password = authUser.Password,
+                Password = password,
                 Email = (string)deserializeResponse.Data["email"],
             };
 
