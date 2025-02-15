@@ -4,5 +4,6 @@ public enum ChangeableParams
 {
     Login,
     Password,
-    Email
+    Email,
+    AboutText
 }

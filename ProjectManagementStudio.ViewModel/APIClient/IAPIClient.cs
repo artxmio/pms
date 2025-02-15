@@ -10,5 +10,5 @@ public interface IAPIClient
     Task<bool> AddUser(string login, string password, string email);
 
     Task<ICurrentUserModel> GetUserByLogin(string login, string password);
-    Task ChangeUserParametr(ICurrentUserModel currentUser, ChangeableParams parametr, string newValue);
+    Task ChangeUserParametr(long id, ChangeableParams parametr, string newValue);
 }

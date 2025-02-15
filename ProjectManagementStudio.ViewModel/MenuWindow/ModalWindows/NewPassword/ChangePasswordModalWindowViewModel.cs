@@ -77,7 +77,7 @@ public class ChangePasswordModalWindowViewModel : IChangePasswordModalWindowView
         }
 
         // Запрос на изменение пароля
-        await _client.ChangeUserParametr(_currentUserService.CurrentUser, ChangeableParams.Password, NewPassword);
+        await _client.ChangeUserParametr(_currentUserService.CurrentUser.UserId, ChangeableParams.Password, NewPassword);
 
         // Обновление данных
         _userDataMementoWrapper.UserPassword = NewPassword;

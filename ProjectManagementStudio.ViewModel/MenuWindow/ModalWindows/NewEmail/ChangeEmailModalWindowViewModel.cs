@@ -58,7 +58,7 @@ public class ChangeEmailModalWindowViewModel : IChangeEmailModalWindowViewModel
         if (Password.Equals(_currentUserService.CurrentUser.Password))
         {
             // Отправляем запрос на изменение логина
-            await _client.ChangeUserParametr(_currentUserService.CurrentUser, ChangeableParams.Email, NewEmail);
+            await _client.ChangeUserParametr(_currentUserService.CurrentUser.UserId, ChangeableParams.Email, NewEmail);
             MessageBox.Show($"Почта изменена на {NewEmail}", "Успех!");
 
             //обновляем локальные данные о пользователе

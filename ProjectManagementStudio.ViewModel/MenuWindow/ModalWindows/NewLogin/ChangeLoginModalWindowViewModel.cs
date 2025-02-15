@@ -4,7 +4,6 @@ using ProjectManagementStudio.Model.UserSavedData.Wrapper;
 using ProjectManagementStudio.ViewModel.APIClient;
 using ProjectManagementStudio.ViewModel.Command;
 using ProjectManagementStudio.ViewModel.Windows;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 
@@ -62,7 +61,7 @@ public class ChangeLoginModalWindowViewModel : IChangeLoginModalWindowViewModel
         if (Password.Equals(_currentUserService.CurrentUser.Password))
         {
             // Отправляем запрос на изменение логина
-            await _client.ChangeUserParametr(_currentUserService.CurrentUser, ChangeableParams.Login, NewLogin);
+            await _client.ChangeUserParametr(_currentUserService.CurrentUser.UserId, ChangeableParams.Login, NewLogin);
             MessageBox.Show($"Логин изменён на {NewLogin}", "Успех!");
 
             //обновляем локальные данные о пользователе

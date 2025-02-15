@@ -21,7 +21,8 @@ public class APIClient : IAPIClient
     {
         { ChangeableParams.Login, "login" },
         { ChangeableParams.Password, "password" },
-        { ChangeableParams.Email, "email" }
+        { ChangeableParams.Email, "email" },
+        { ChangeableParams.AboutText, "aboute" }
     };
 
     public APIClient(IUrlService urlService)
@@ -143,16 +144,16 @@ public class APIClient : IAPIClient
         throw new InvalidOperationException();
     }
 
-    public async Task ChangeUserParametr(ICurrentUserModel currentUser, ChangeableParams parametr, string newValue)
+    public async Task ChangeUserParametr(long id, ChangeableParams parametr, string newValue)
     {
-        var json = JsonConvert.SerializeObject(new ChangeUserParamsRequestModel(currentUser.UserId, _paramNames[parametr], newValue));
+        var json = JsonConvert.SerializeObject(new ChangeUserParamsRequestModel(id, _paramNames[parametr], newValue));
         var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-        _urlService.URLEndpoint = "ChangeUserParams";
+        _urlService.URLEndpoint = nameof(ChangeUserParametr);
 
         try
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, $"{_client.BaseAddress}{_urlService.URLEndpoint}")
+            var request = new HttpRequestMessage(HttpMethod.Put, $"{_client.BaseAddress}{_urlService.URLEndpoint}")
             {
                 Content = content
             };

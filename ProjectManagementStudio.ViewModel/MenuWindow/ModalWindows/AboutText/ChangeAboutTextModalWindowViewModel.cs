@@ -1,6 +1,7 @@
 ﻿using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel.ModalWindowModels.AboutText;
 using ProjectManagementStudio.Model.UserSavedData.Wrapper;
+using ProjectManagementStudio.ViewModel.APIClient;
 using ProjectManagementStudio.ViewModel.Command;
 using ProjectManagementStudio.ViewModel.Windows;
 using System.ComponentModel;
@@ -14,7 +15,7 @@ public class ChangeAboutTextModalWindowViewModel : IChangeAboutTextModalWindowVi
     private readonly IUserDataMementoWrapper _userDataMementoWrapper;
     private readonly ICurrentUserService _currentUserService;
     private readonly IWindowManager _windowManager;
-
+    private readonly IAPIClient _client;
     private IAboutTextModel _model;
 
     public string AboutText
@@ -34,11 +35,13 @@ public class ChangeAboutTextModalWindowViewModel : IChangeAboutTextModalWindowVi
         IWindowManager windowManager,
         IUserDataMementoWrapper userDataMementoWrapper,
         ICurrentUserService currentUserService,
+        IAPIClient client,
         IAboutTextModel model)
     {
         _userDataMementoWrapper = userDataMementoWrapper;
         _currentUserService = currentUserService;
         _windowManager = windowManager;
+        _client = client;
 
         _model = model;
 
@@ -49,8 +52,10 @@ public class ChangeAboutTextModalWindowViewModel : IChangeAboutTextModalWindowVi
         ChangeAboutTextCommand = new RelayCommand(o => ChangeAboutText());
     }
 
-    private void ChangeAboutText()
+    private async void ChangeAboutText()
     {
+        await _client.ChangeUserParametr(_currentUserService.CurrentUser.UserId, ChangeableParams.AboutText, AboutText);
+
         _currentUserService.CurrentUser.AboutText = AboutText;
         _userDataMementoWrapper.AboutText = AboutText;
         _userDataMementoWrapper.SaveUserData();
