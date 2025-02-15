@@ -74,13 +74,7 @@ public class APIClient : IAPIClient
         var json = JsonConvert.SerializeObject(new AddUserRequestModel(user.Login, user.Password, user.Email));
         var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-        if (await IsUserExists(user.Login, user.Password))
-        {
-            MessageBox.Show("Такой пользователь уже существует!", "Внимание");
-            return false;
-        }
-
-        _urlService.URLEndpoint = nameof(AddUser);
+        _urlService.URLEndpoint =  nameof(AddUser);
 
         try
         {
@@ -101,7 +95,7 @@ public class APIClient : IAPIClient
             }
             else
             {
-                MessageBox.Show($"Ошибка: {deserializeResponse?.Message} ({deserializeResponse?.Code})");
+                MessageBox.Show($"{deserializeResponse?.Message}");
                 return false;
             }
         }

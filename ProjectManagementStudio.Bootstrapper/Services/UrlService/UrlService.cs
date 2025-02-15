@@ -11,7 +11,7 @@ public class UrlService : IUrlServiceInitializer, IUrlService
     private readonly Dictionary<string, string> _urlMap = new()
     {
         { "IsUserExists", "is-user-exists" },
-        { "AddUser", "add-user" },
+        { "AddUser", "api-v2/user/create" },
         { "ChangeUserParams", "change_user_params" }
     };
 
