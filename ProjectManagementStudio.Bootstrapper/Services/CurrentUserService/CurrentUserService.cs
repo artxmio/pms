@@ -3,7 +3,6 @@ using ProjectManagementStudio.Model.UserSavedData.Wrapper;
 using ProjectManagementStudio.Model.WindowModels.AuthModel;
 using ProjectManagementStudio.ViewModel.APIClient;
 using System.Net.Http;
-using System.Windows;
 
 namespace ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 
@@ -60,11 +59,10 @@ internal class CurrentUserService : ICurrentUserService, ICurrentUserServiceInit
         }
         catch (HttpRequestException ex)
         {
-            MessageBox.Show($"Возникла ошибка: сервер отключён или недоступен ({ex.Message})", "Ошибка");
+            
         }
         catch (Exception ex)
         {
-            MessageBox.Show(ex.Message);
         }
     }
 
