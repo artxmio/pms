@@ -9,350 +9,559 @@
       Title="ProfilePage" Height="900" Width="1600"
       d:DataContext="{d:DesignInstance vm:MenuWindowViewModel}"
       >
-
-    <Page.Resources>
-        <ResourceDictionary>
-            <!-- Стиль для ScrollBar -->
-            <Style x:Key="CustomScrollBar" TargetType="{x:Type ScrollBar}">
-                <Setter Property="Width" Value="14"/>
-                <Setter Property="Height" Value="160"/>
-                <Setter Property="HorizontalAlignment" Value="Right"/>
-                <Setter Property="VerticalAlignment" Value="Top"/>
-                <Setter Property="Margin" Value="0,0,16,0"/>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type ScrollBar}">
-                            <Grid>
-                                <Border 
-                                    Background="#724D9D" 
-                                    CornerRadius="10" />
-                                <Track Name="PART_Track" 
-                                    Orientation="{TemplateBinding Orientation}">
-                                    <Track.Thumb>
-                                        <Thumb>
-                                            <Thumb.Template>
-                                                <ControlTemplate TargetType="Thumb">
-                                                    <Border Height="120" Width="40" VerticalAlignment="Top" Margin="0,0,0,0"/>
-                                                </ControlTemplate>
-                                            </Thumb.Template>
-                                        </Thumb>
-                                    </Track.Thumb>
-                                </Track>
-                            </Grid>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
-            <Style x:Key="ScrollViewerStyle" TargetType="{x:Type ScrollViewer}">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type ScrollViewer}">
-                            <Grid>
-                                <ScrollContentPresenter/>
-                                <ScrollBar Style="{StaticResource CustomScrollBar}" 
-                                    Orientation="Vertical" Visibility="Visible"/>
-                            </Grid>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-        </ResourceDictionary>
-    </Page.Resources>
-
+    
     <Grid>
-        <Border Width="1250" Height="750" Background="#724D9D" CornerRadius="25" Margin="0,0,20,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="79*"/>
+            <ColumnDefinition Width="10*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="12.56*"/>
+            <RowDefinition Height="83.34*"/>
+            <RowDefinition Height="4.1*"/>
+        </Grid.RowDefinitions>
+        
+        <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#724D9D" CornerRadius="25" Margin="0,0,0,0" Grid.Column="1" Grid.Row="1">
             <Border.Effect>
                 <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
             </Border.Effect>
             <Grid>
                 <!-- Данные профиля -->
-                <Border CornerRadius="25"
-                    Background="#2C1B47"
-                    HorizontalAlignment="Left" 
-                    VerticalAlignment="Top" 
-                    Width="733" Height="364" 
-                    Margin="78,59,0,0">
-                    <Border.Effect>
-                        <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
-                    </Border.Effect>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="6.3*"/>
+                        <ColumnDefinition Width="58.6*"/>
+                        <ColumnDefinition Width="35.1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="7.87*"/>
+                        <RowDefinition Height="48.54*"/>
+                        <RowDefinition Height="43.59*"/>
+                    </Grid.RowDefinitions>
 
-                    <Grid>
-                        <Image Width="200" Height="200" 
-                            Source="{Binding AvatarImage, Mode=OneWay}"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            Margin="59,78,0,0"/>
+                    <Border CornerRadius="25"
+                        Background="#2C1B47"
+                        HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Stretch"  
+                        Grid.Row="1" Grid.Column="1">
+                        <Border.Effect>
+                            <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
+                        </Border.Effect>
 
-                        <TextBlock FontSize="35" FontFamily="outfit"
-                            FontWeight="Normal" 
-                            Text="{Binding CurrentUser.Login, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}"
-                            Width="221" Height="44"
-                            Margin="0,134,211,0"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Top"
-                            Foreground="#FFFFFF"/>
+                        <Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8.05*"/>
+                                    <ColumnDefinition Width="27.29*"/>
+                                    <ColumnDefinition Width="64.66*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="21.4*"/>
+                                    <RowDefinition Height="54.94*"/>
+                                    <RowDefinition Height="23.6*"/>
+                                </Grid.RowDefinitions>
 
-                        <TextBlock FontSize="30" FontFamily="outfit"
-                            FontWeight="Normal" Text="{Binding CurrentUser.Email}"
-                            Width="356" Height="38"
-                            Margin="0,186,76,0"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Top"
-                            Foreground="#FFFFFF"/>
-                    </Grid>
-                </Border>
+                                <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                                    Source="{Binding AvatarImage, Mode=OneWay}"
+                                    Grid.Column="1" Grid.Row="1"/>
+                            </Grid>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="41.06*"/>
+                                    <ColumnDefinition Width="30.15*"/>
+                                    <ColumnDefinition Width="28.78*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="36.81*"/>
+                                    <RowDefinition Height="12.08*"/>
+                                    <RowDefinition Height="51.11*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock FontSize="35" FontFamily="outfit"
+                                    FontWeight="Normal"
+                                    Grid.Column="1" Grid.Row="1"
+                                    Text="{Binding CurrentUser.Login, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}"
+                                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                    Foreground="#FFFFFF"/>
+                            </Grid>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="41.06*"/>
+                                    <ColumnDefinition Width="48.56*"/>
+                                    <ColumnDefinition Width="10.37*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="48.9*"/>
+                                    <RowDefinition Height="10.43*"/>
+                                    <RowDefinition Height="40.7*"/>
+                                </Grid.RowDefinitions>
+                                
+                                <TextBlock FontSize="30" FontFamily="outfit"
+                                    Grid.Column="1" Grid.Row="1"
+                                    FontWeight="Normal" Text="{Binding CurrentUser.Email}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Foreground="#FFFFFF"/>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
 
                 <!-- Опции -->
-                <Border CornerRadius="25"
-                    Background="#2C1B47"
-                    HorizontalAlignment="Right" 
-                    VerticalAlignment="Top" 
-                    Width="300" Height="364" 
-                    Margin="0,59,112,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="67.04*"/>
+                        <ColumnDefinition Width="24*"/>
+                        <ColumnDefinition Width="8.96*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="7.87*"/>
+                        <RowDefinition Height="48.54*"/>
+                        <RowDefinition Height="43.6*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Border CornerRadius="25"
+                        Grid.Column="1" Grid.Row="1"
+                        Background="#2C1B47"
+                        HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Stretch">
+                        
                     <Border.Effect>
                         <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
                     </Border.Effect>
-
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock FontFamily="outfit" FontSize="35"
-                            TextAlignment="Center"
-                            Foreground="#FFFFFF" FontWeight="Normal"
-                            Margin="0,31,0,0" Text="{DynamicResource Options}"
-                            Width="127" Height="42"
-                            HorizontalAlignment="Center"/>
-
-                        <Button Width="260" Height="39"
-                            Command="{Binding ChangeAvatarCommand}"
-                            Margin="0,31,0,0"
-                            Background="#724D9D"
-                            Content="{DynamicResource ChangeAvatar}"
-                            FontFamily="outfit" FontSize="25"
-                            FontWeight="Normal"
-                            Foreground="#ffffff">
-                            <Button.Template>
-                                <ControlTemplate TargetType="Button">
-                                    <Border x:Name="buttonBorder" 
-                                        CornerRadius="10" 
-                                        Background="{TemplateBinding Background}">
-                                        <ContentPresenter HorizontalAlignment="Center" 
-                                            VerticalAlignment="Center" ContentSource="Content" 
-                                            TextElement.FontFamily="{TemplateBinding FontFamily}" 
-                                            TextElement.FontSize="{TemplateBinding FontSize}" 
-                                            TextElement.FontWeight="{TemplateBinding FontWeight}"
-                                            TextElement.Foreground="{TemplateBinding Foreground}"/>
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="buttonBorder" Property="Background" Value="#3B2B57"/>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
-
-
-                        <Button Width="260" Height="39"
-                            Command="{Binding ChangeLoginCommand}"
-                            Margin="0,20,0,0"
-                            Background="#724D9D"
-                            Content="{DynamicResource ChangeLogin}"
-                            FontFamily="outfit" FontSize="25"
-                            FontWeight="Normal"
-                            Foreground="#ffffff">
-                            <Button.Template>
-                                <ControlTemplate TargetType="Button">
-                                    <Border x:Name="buttonBorder" 
-                                        CornerRadius="10" 
-                                        Background="{TemplateBinding Background}">
-                                        <ContentPresenter HorizontalAlignment="Center" 
-                                            VerticalAlignment="Center" ContentSource="Content" 
-                                            TextElement.FontFamily="{TemplateBinding FontFamily}" 
-                                            TextElement.FontSize="{TemplateBinding FontSize}" 
-                                            TextElement.FontWeight="{TemplateBinding FontWeight}"
-                                            TextElement.Foreground="{TemplateBinding Foreground}"/>
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="buttonBorder" Property="Background" Value="#3B2B57"/>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
-
-                        <Button 
-                            Command="{Binding ChangePasswordCommand}"
-                            Width="260" Height="39"
-                            Margin="0,20,0,0"
-                            Background="#724D9D"
-                            Content="{DynamicResource ChangePassword}"
-                            FontFamily="outfit" FontSize="25"
-                            FontWeight="Normal"
-                            Foreground="#ffffff">
-                            <Button.Template>
-                                <ControlTemplate TargetType="Button">
-                                    <Border x:Name="buttonBorder" 
-                                        CornerRadius="10" 
-                                        Background="{TemplateBinding Background}">
-                                        <ContentPresenter HorizontalAlignment="Center" 
-                                            VerticalAlignment="Center" ContentSource="Content" 
-                                            TextElement.FontFamily="{TemplateBinding FontFamily}" 
-                                            TextElement.FontSize="{TemplateBinding FontSize}" 
-                                            TextElement.FontWeight="{TemplateBinding FontWeight}"
-                                            TextElement.Foreground="{TemplateBinding Foreground}"/>
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="buttonBorder" Property="Background" Value="#3B2B57"/>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
-
-                        <!-- Изменение почты -->
-                        <Button 
-                            Command="{Binding ChangeEmailCommand}"
-                            Width="260" Height="39"
-                            Margin="0,20,0,0"
-                            Background="#724D9D"
-                            Content="{DynamicResource ChangeEmail}"
-                            FontFamily="outfit" FontSize="25"
-                            FontWeight="Normal"
-                            Foreground="#ffffff">
-                            <Button.Template>
-                                <ControlTemplate TargetType="Button">
-                                    <Border x:Name="buttonBorder" 
-                                        CornerRadius="10" 
-                                        Background="{TemplateBinding Background}">
-                                        <ContentPresenter HorizontalAlignment="Center" 
-                                            VerticalAlignment="Center" ContentSource="Content" 
-                                            TextElement.FontFamily="{TemplateBinding FontFamily}" 
-                                            TextElement.FontSize="{TemplateBinding FontSize}" 
-                                            TextElement.FontWeight="{TemplateBinding FontWeight}"
-                                            TextElement.Foreground="{TemplateBinding Foreground}"/>
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="buttonBorder" Property="Background" Value="#3B2B57"/>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
-                    </StackPanel>
-                </Border>
-
-                <!-- Список проектов -->
-                <Border CornerRadius="25"
-                    Background="#2C1B47"
-                    HorizontalAlignment="Left" 
-                    VerticalAlignment="Bottom" 
-                    Width="479" Height="249" 
-                    Margin="79,0,0,51">
-                    <Border.Effect>
-                        <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
-                    </Border.Effect>
-
-                    <Grid>
-                        <TextBlock Text="{DynamicResource Projects}" FontFamily="outfit" FontSize="35"
-                           FontWeight="Normal" Foreground="White"
-                           HorizontalAlignment="Center" VerticalAlignment="Top"
-                           Width="auto" Height="44"
-                           Margin="0,14,0,0"/>
-
-                        <!-- Прокручиваемая область !!!НУЖНО ДОДЕЛАТЬ!!! -->
-                        <Grid Width="479" Height="185"
-                            VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                    
+                    
+                    <Grid>  
+                            <!--Текст опции-->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30.34*"/>
+                                    <ColumnDefinition Width="42.33*"/>
+                                    <ColumnDefinition Width="27.33*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="8.52*"/>
+                                    <RowDefinition Height="11.54*"/>
+                                    <RowDefinition Height="79.94*"/>
+                                </Grid.RowDefinitions>
+                                
+                                <TextBlock FontFamily="outfit" FontSize="35"
+                                    Grid.Column="1" Grid.Row="1"
+                                    TextAlignment="Center"
+                                    Foreground="#FFFFFF" FontWeight="Normal"
+                                    Text="{DynamicResource Options}"
+                                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                            </Grid>
                             
-                            <ScrollViewer VerticalScrollBarVisibility="Visible" Style="{StaticResource ScrollViewerStyle}">
-                                <!-- Ваш контент -->
-                                <Border Width="140" Height="140"
-                                    HorizontalAlignment="Left" VerticalAlignment="Top"
-                                    Margin="35,0,0,0" CornerRadius="10"
-                                    Background="#724D9D">
-                                    
-                                    <Grid>
-                                        <TextBlock Text="Project-1" FontFamily="Outfit"
-                                            FontSize="20" FontWeight="Normal" Foreground="White"
-                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Grid>
-                                </Border>
-                            </ScrollViewer>
+                            <!--Изменить аватарку-->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="6.75*"/>
+                                    <ColumnDefinition Width="86.5*"/>
+                                    <ColumnDefinition Width="6.75*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="28.57*"/>
+                                    <RowDefinition Height="10.72*"/>
+                                    <RowDefinition Height="60.71*"/>
+                                </Grid.RowDefinitions>
+
+                                <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                    Grid.Column="1" Grid.Row="1"
+                                    Command="{Binding ChangeAvatarCommand}"
+                                    Margin="0,0,0,0"
+                                    Background="#724D9D"
+                                    Content="{DynamicResource ChangeAvatar}"
+                                    FontFamily="outfit" FontSize="25"
+                                    FontWeight="Normal"
+                                    Foreground="#ffffff">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border x:Name="buttonBorder" 
+                                                CornerRadius="10" 
+                                                Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" 
+                                                    VerticalAlignment="Center" ContentSource="Content" 
+                                                    TextElement.FontFamily="{TemplateBinding FontFamily}" 
+                                                    TextElement.FontSize="{TemplateBinding FontSize}" 
+                                                    TextElement.FontWeight="{TemplateBinding FontWeight}"
+                                                    TextElement.Foreground="{TemplateBinding Foreground}"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="buttonBorder" Property="Background" Value="#3B2B57"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </Grid>
+
+                            <!--Изменить логин-->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="6.75*"/>
+                                    <ColumnDefinition Width="86.5*"/>
+                                    <ColumnDefinition Width="6.75*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="44.78*"/>
+                                    <RowDefinition Height="10.72*"/>
+                                    <RowDefinition Height="44.51*"/>
+                                </Grid.RowDefinitions>
+
+                                <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                    Command="{Binding ChangeLoginCommand}"
+                                    Background="#724D9D"
+                                    Content="{DynamicResource ChangeLogin}"
+                                    Grid.Column="1" Grid.Row="1"
+                                    FontFamily="outfit" FontSize="25"
+                                    FontWeight="Normal"
+                                    Foreground="#ffffff">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border x:Name="buttonBorder" 
+                                        CornerRadius="10" 
+                                        Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center" ContentSource="Content" 
+                                            TextElement.FontFamily="{TemplateBinding FontFamily}" 
+                                            TextElement.FontSize="{TemplateBinding FontSize}" 
+                                            TextElement.FontWeight="{TemplateBinding FontWeight}"
+                                            TextElement.Foreground="{TemplateBinding Foreground}"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="buttonBorder" Property="Background" Value="#3B2B57"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </Grid>
+
+                            <!--Изменить пароль-->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="6.75*"/>
+                                    <ColumnDefinition Width="86.5*"/>
+                                    <ColumnDefinition Width="6.75*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="60.98*"/>
+                                    <RowDefinition Height="10.72*"/>
+                                    <RowDefinition Height="28.3*"/>
+                                </Grid.RowDefinitions>
+
+                                <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                    Command="{Binding ChangePasswordCommand}"
+                                    Grid.Column="1" Grid.Row="1"
+                                    Background="#724D9D"
+                                    Content="{DynamicResource ChangePassword}"
+                                    FontFamily="outfit" FontSize="25"
+                                    FontWeight="Normal"
+                                    Foreground="#ffffff">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border x:Name="buttonBorder" 
+                                                CornerRadius="10" 
+                                                Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" 
+                                                    VerticalAlignment="Center" ContentSource="Content" 
+                                                    TextElement.FontFamily="{TemplateBinding FontFamily}" 
+                                                    TextElement.FontSize="{TemplateBinding FontSize}" 
+                                                    TextElement.FontWeight="{TemplateBinding FontWeight}"
+                                                    TextElement.Foreground="{TemplateBinding Foreground}"/> 
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="buttonBorder" Property="Background" Value="#3B2B57"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </Grid>
+
+                            <!-- Изменение почты -->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="6.75*"/>
+                                    <ColumnDefinition Width="86.5*"/>
+                                    <ColumnDefinition Width="6.75*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="77.75*"/>
+                                    <RowDefinition Height="10.72*"/>
+                                    <RowDefinition Height="11.53*"/>
+                                </Grid.RowDefinitions>
+
+                                <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                    Grid.Row="1" Grid.Column="1"
+                                    Command="{Binding ChangeEmailCommand}"
+                                    Background="#724D9D"
+                                    Content="{DynamicResource ChangeEmail}"
+                                    FontFamily="outfit" FontSize="25"
+                                    FontWeight="Normal"
+                                    Foreground="#ffffff">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border x:Name="buttonBorder" 
+                                                CornerRadius="10" 
+                                                Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" 
+                                                    VerticalAlignment="Center" ContentSource="Content" 
+                                                    TextElement.FontFamily="{TemplateBinding FontFamily}" 
+                                                    TextElement.FontSize="{TemplateBinding FontSize}" 
+                                                    TextElement.FontWeight="{TemplateBinding FontWeight}"
+                                                    TextElement.Foreground="{TemplateBinding Foreground}"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="buttonBorder" Property="Background" Value="#3B2B57"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </Grid>
                         </Grid>
-                    </Grid>
                 </Border>
+                </Grid>
+
+            <!-- Список проектов -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="6.32*"/>
+                        <ColumnDefinition Width="38.32*"/>
+                        <ColumnDefinition Width="55.36*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60*"/>
+                        <RowDefinition Height="33.2*"/>
+                        <RowDefinition Height="6.8*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border CornerRadius="25"
+                    Background="#2C1B47"
+                    HorizontalAlignment="Stretch" 
+                    VerticalAlignment="Stretch" 
+                    Grid.Row="1" Grid.Column="1">
+                        <Border.Effect>
+                            <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
+                        </Border.Effect>
+
+                        <Grid>
+                            <!--Текст проекты-->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="36.85*"/>
+                                    <ColumnDefinition Width="26.3*"/>
+                                    <ColumnDefinition Width="36.85*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="5.62*"/>
+                                    <RowDefinition Height="17.67*"/>
+                                    <RowDefinition Height="76.71*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="{DynamicResource Projects}" FontFamily="outfit" FontSize="35"
+                                   FontWeight="Normal" Foreground="White" Grid.Column="1" Grid.Row="1"
+                                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                            </Grid>
+
+                            <!-- Прокручиваемая область !!!НУЖНО ДОДЕЛАТЬ!!! -->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="27.3*"/>
+                                    <RowDefinition Height="72.7*"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="1">
+                                    <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled">
+                                        <StackPanel Orientation="Vertical">
+                                            <ItemsControl>
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <StackPanel Orientation="Vertical" />
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+
+                                                <!-- Проекты -->
+                                                <WrapPanel Orientation="Horizontal" VerticalAlignment="Top">
+                                                    <Border Width="150" Height="150" Margin="65,10,0,0" CornerRadius="10" Background="#724D9D">
+                                                        <Grid>
+                                                            <TextBlock Text="Project-1" FontFamily="Outfit" FontSize="20" FontWeight="Normal" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Grid>
+                                                    </Border>
+
+                                                    <Border Width="150" Height="150" Margin="50,10,0,0" CornerRadius="10" Background="#724D9D">
+                                                        <Grid>
+                                                            <TextBlock Text="Project-2" FontFamily="Outfit" FontSize="20" FontWeight="Normal" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Grid>
+                                                    </Border>
+                                                </WrapPanel>
+
+                                                <WrapPanel Orientation="Horizontal" VerticalAlignment="Top">
+                                                    <Border Width="150" Height="150" Margin="65,25,0,20" CornerRadius="10" Background="#724D9D">
+                                                        <Grid>
+                                                            <TextBlock Text="Project-3" FontFamily="Outfit" FontSize="20" FontWeight="Normal" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Grid>
+                                                    </Border>
+
+                                                    <Border Width="150" Height="150" Margin="50,25,0,20" Padding="0,0,0,0" CornerRadius="10" Background="#724D9D">
+                                                        <Grid>
+                                                            <TextBlock Text="Project-4" FontFamily="Outfit" FontSize="20" FontWeight="Normal" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Grid>
+                                                    </Border>
+                                                </WrapPanel>
+                                            </ItemsControl>
+                                        </StackPanel>
+                                    </ScrollViewer>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
 
                 <!-- About -->
-                <Border CornerRadius="25"
-                    Background="#2C1B47"
-                    HorizontalAlignment="Left" 
-                    VerticalAlignment="Bottom" 
-                    Width="351" Height="249" 
-                    Margin="585,0,0,51">
-                    <Border.Effect>
-                        <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
-                    </Border.Effect>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="46.8*"/>
+                        <ColumnDefinition Width="28.08*"/>
+                        <ColumnDefinition Width="25.12*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60*"/>
+                        <RowDefinition Height="33.2*"/>
+                        <RowDefinition Height="6.8*"/>
+                    </Grid.RowDefinitions>
 
-                    <Grid>
-                        <!--Конпка изменения даннах о себе-->
-                        <Button Height="25" Width="25" x:Name="EditButton" Margin="0,20,20,0"
-                                Background="Transparent" BorderBrush="Transparent"
-                                HorizontalAlignment="Right" VerticalAlignment="Top"
-                                Command="{Binding ChangeAboutTextCommand}">
+                    <Border CornerRadius="25"
+                        Grid.Column="1" Grid.Row="1"
+                        Background="#2C1B47"
+                        HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Stretch">
+                        <Border.Effect>
+                            <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
+                        </Border.Effect>
 
-                            <Button.Template>
-                                <ControlTemplate TargetType="Button">
-                                    <Image x:Name="EditButton" Source ="..\..\Source\Edit_pencil.png"></Image>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="EditButton" Property="Opacity" Value="0.7"/>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
+                        <Grid>
+                            <!--Конпка изменения даннах о себе-->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="87.19*"/>
+                                    <ColumnDefinition Width="7.12*"/>
+                                    <ColumnDefinition Width="5.69*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="8.03*"/>
+                                    <RowDefinition Height="10.04*"/>
+                                    <RowDefinition Height="81.93*"/>
+                                </Grid.RowDefinitions>
 
-                        <TextBlock Text="{DynamicResource About}" Margin="0,14,0,0"
-                            FontFamily="outfit" FontSize="35"
-                            FontWeight="Normal" Foreground="White"
-                            HorizontalAlignment="Center" VerticalAlignment="Top"
-                            Width="auto" Height="44"/>
+                                <Button x:Name="EditButton" Grid.Row="1" Grid.Column="1"
+                                    Background="Transparent" BorderBrush="Transparent"
+                                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                    Command="{Binding ChangeAboutTextCommand}">
 
-                        <TextBlock Text="{Binding CurrentUser.AboutText, Mode=TwoWay}"
-                            FontFamily="outfit" FontSize="30" FontWeight="Normal" Foreground="White"
-                            HorizontalAlignment="Center" VerticalAlignment="Top"
-                            TextWrapping="Wrap" TextAlignment="Center"
-                            Width="321" Height="122"
-                            Margin="0,80,0,0"/>
-                    </Grid>
-                </Border>
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Image x:Name="EditButton" Source ="..\..\Source\Edit_pencil.png"></Image>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="EditButton" Property="Opacity" Value="0.7"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </Grid>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="36.47*"/>
+                                    <ColumnDefinition Width="27.35*"/>
+                                    <ColumnDefinition Width="36.18*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="5.62*"/>
+                                    <RowDefinition Height="17.67*"/>
+                                    <RowDefinition Height="76.71*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="{DynamicResource About}"
+                                    Grid.Row="1" Grid.Column="1"
+                                    FontFamily="outfit" FontSize="35"
+                                    FontWeight="Normal" Foreground="White"
+                                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                            </Grid>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="4.27*"/>
+                                    <ColumnDefinition Width="91.71*"/>
+                                    <ColumnDefinition Width="4.27*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="32.13*"/>
+                                    <RowDefinition Height="48.99*"/>
+                                    <RowDefinition Height="18.88*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="{Binding CurrentUser.AboutText, Mode=TwoWay}"
+                                    FontFamily="outfit" FontSize="30" FontWeight="Normal" Foreground="White"
+                                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                    TextWrapping="Wrap" TextAlignment="Center"
+                                    Grid.Row="1" Grid.Column="1"/>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
 
                 <!-- Выйти из аккаунта -->
-                <Button Command="{Binding LogOutCommand}" Background="#2C1B47" Width="175" Height="60" Margin="0,0,112,51"
-                    HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border x:Name="buttonBorder" Background="{TemplateBinding Background}" CornerRadius="10">
-                                <Border.Effect>
-                                    <DropShadowEffect Color="Black" Direction="270" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
-                                </Border.Effect>
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="buttonBorder" Property="Background" Value="#3B2B57"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Button.Template>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Image Width="32" Height="38" Source="..\..\Source\ExitAcc.png" Margin="5"/>
-                        <TextBlock FontFamily="outfit" Width="108" Height="auto" Text="{DynamicResource LogOut}" 
-                            VerticalAlignment="Center" Foreground="White" FontSize="30" FontWeight="Normal"/>
-                    </StackPanel>
-                </Button>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="77.04*"/>
+                        <ColumnDefinition Width="14*"/>
+                        <ColumnDefinition Width="8.96*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="85.1*"/>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="6.9*"/>
+                    </Grid.RowDefinitions>
+
+                    <Button Command="{Binding LogOutCommand}" Background="#2C1B47" Grid.Row="1" Grid.Column="1"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="buttonBorder" Background="{TemplateBinding Background}" CornerRadius="10">
+                                    <Border.Effect>
+                                        <DropShadowEffect Color="Black" Direction="270" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
+                                    </Border.Effect>
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="buttonBorder" Property="Background" Value="#3B2B57"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image Width="32" Height="38" Source="..\..\Source\ExitAcc.png" Margin="5"/>
+                            <TextBlock FontFamily="outfit" Width="108" Height="auto" Text="{DynamicResource LogOut}" 
+                                VerticalAlignment="Center" Foreground="White" FontSize="30" FontWeight="Normal"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
             </Grid>
         </Border>
     </Grid>

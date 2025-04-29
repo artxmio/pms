@@ -18,25 +18,33 @@
 	<ItemGroup>
 		<None Remove="Source\backgroundImage.jpg" />
 		<None Remove="Source\blue_circle.png" />
+		<None Remove="Source\calendar.png" />
 		<None Remove="Source\Close_icon.png" />
 		<None Remove="Source\DarkQuestionMark.png" />
+		<None Remove="Source\down_arrow.png" />
 		<None Remove="Source\Edit_pencil.png" />
 		<None Remove="Source\ExitAcc.png" />
 		<None Remove="Source\eye.png" />
 		<None Remove="Source\eye_closed.png" />
 		<None Remove="Source\file.png" />
+		<None Remove="Source\folder.png" />
 		<None Remove="Source\green_circle.png" />
 		<None Remove="Source\home.png" />
+		<None Remove="Source\Magnifier.png" />
 		<None Remove="Source\orange_circle.png" />
 		<None Remove="Source\pink_circle.png" />
 		<None Remove="Source\plus.png" />
+		<None Remove="Source\profile.png" />
 		<None Remove="Source\purple_circle.png" />
 		<None Remove="Source\QuestionMark.png" />
 		<None Remove="Source\red_blue_circle.png" />
 		<None Remove="Source\red_circle.png" />
+		<None Remove="Source\right_arrow.png" />
+		<None Remove="Source\right_arrow_filled.png" />
 		<None Remove="Source\roll_window.png" />
 		<None Remove="Source\settings.png" />
 		<None Remove="Source\Star.png" />
+		<None Remove="Source\team.png" />
 		<None Remove="Source\two_people.svg" />
 		<None Remove="Source\user.png" />
 		<None Remove="Source\window_restore.png" />
@@ -44,6 +52,12 @@
 
 	<ItemGroup>
 	  <Resource Include="Source\blue_circle.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Source\calendar.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Source\down_arrow.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
 	  <Resource Include="Source\Edit_pencil.png">
@@ -83,11 +97,17 @@
 		<Resource Include="Source\file.png">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
+		<Resource Include="Source\folder.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
 		<Resource Include="Source\green_circle.png">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
 		<Resource Include="Source\home.png">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\Magnifier.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
 		<Resource Include="Source\orange_circle.png">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
@@ -97,6 +117,9 @@
 		</Resource>
 		<Resource Include="Source\plus.png">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\profile.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
 		<Resource Include="Source\purple_circle.png">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
@@ -110,11 +133,22 @@
 		<Resource Include="Source\red_circle.png">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
-		<Resource Include="Source\roll_window.png" />
+		<Resource Include="Source\right_arrow.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\right_arrow_filled.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\roll_window.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
 		<Resource Include="Source\settings.png">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
 		<Resource Include="Source\Star.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\team.png">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
 		<Resource Include="Source\two_people.svg">
@@ -123,7 +157,9 @@
 		<Resource Include="Source\user.png">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
-		<Resource Include="Source\window_restore.png" />
+		<Resource Include="Source\window_restore.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
 	</ItemGroup>
 
 </Project>

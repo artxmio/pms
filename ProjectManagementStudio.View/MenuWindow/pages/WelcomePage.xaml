@@ -9,10 +9,16 @@
       Title="WelcomePage">
 
     <Grid>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="32.1*"/>
+            <ColumnDefinition Width="35.8*"/>
+            <ColumnDefinition Width="32.1*"/>
+        </Grid.ColumnDefinitions>
+        
+        <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center"
             Foreground="#FFFFFF" FontSize="75"
             FontFamily="Outfit" FontWeight="Normal"
-            Width="573" Height="Auto"
+            Grid.Column="1" Height="Auto"
             TextWrapping="Wrap"
             TextAlignment="Center"
             Opacity="0.5"

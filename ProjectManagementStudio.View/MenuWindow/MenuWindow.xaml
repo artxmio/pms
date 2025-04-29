@@ -22,8 +22,8 @@
         WindowStartupLocation="Manual"
         RenderOptions.BitmapScalingMode="HighQuality"
         d:DataContext="{d:DesignInstance vm:MenuWindowViewModel}"
-        d:Width="1920"
-        d:Height="1080">
+        d:Width="1600"
+        d:Height="900">
 
     <Window.Resources>
         <Style x:Key="CloseButton" TargetType="{x:Type Button}">
@@ -43,12 +43,31 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                            <ScrollViewer x:Name="PART_ContentHost" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <!-- Сбрасываем стандартные свойства обводки -->
+            <Setter Property="Background" Value="White" />
+            <Setter Property="BorderBrush" Value="Gray" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        </Style>
     </Window.Resources>
 
     <Window.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-            <GradientStop Color="#221B37" Offset="0" />
-            <GradientStop Color="#352469" Offset="1" />
+            <GradientStop Color="#000000" Offset="0" />
+            <GradientStop Color="#000000" Offset="1" />
         </LinearGradientBrush>
     </Window.Background>
 
@@ -56,337 +75,473 @@
         <Frame Content="{Binding ActivePage}" NavigationUIVisibility="Hidden"/>
 
         <!-- Верхнее меню -->
-        <Grid  x:Name="header" MouseLeftButtonDown="DragWindow" Height="87" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="100,0,0,0">
-            <Grid.Background>
-                <LinearGradientBrush StartPoint="0,5" EndPoint="1,0">
-                    <GradientStop Color="#2C1B47" Offset="0.2" />
-                    <GradientStop Color="#3C2463" Offset="1" />
-                </LinearGradientBrush>
-            </Grid.Background>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="7.56*"/>
+                <RowDefinition Height="92.44*"/>
+            </Grid.RowDefinitions>
 
-            <!-- Определение столбцов и строк для верхнего меню -->
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <!-- Основное пространство -->
-                <ColumnDefinition Width="Auto" />
-                <!-- Кнопка профиля -->
-                <ColumnDefinition Width="335" />
-                <!-- Логин пользователя -->
-                <ColumnDefinition Width="Auto" />
+            <Grid  x:Name="header" MouseLeftButtonDown="DragWindow" VerticalAlignment="Stretch" 
+                HorizontalAlignment="Stretch" Background="#4E4E4E">
+
+                <!--Надпись ProjectMS-->
+                <TextBlock Width="179px" Height="47px" Foreground="#FFFFFF" FontFamily="Inter" FontSize="40px" FontWeight="Regular" 
+                    HorizontalAlignment="Left" VerticalAlignment="Center" Margin="30,0,0,0">
+                    ProjectMS
+                </TextBlock>
+
+                <!--Зона поиска-->
+                <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Grid Width="587px" Height="42px">
+                        <Border CornerRadius="10" Width="587px" Height="42px" Background="#2E2E2E">
+                            <TextBox Margin="5,0,0,0" HorizontalAlignment="Left" Width="521px" Height="42px"
+                                 Background="#2E2E2E" BorderBrush="Transparent" FocusVisualStyle="{x:Null}"
+                                 FontSize="24px" Foreground="#FFFFFF" FontFamily="Inter" FontWeight="Regular"
+                                 VerticalContentAlignment="Center"/>
+                        </Border>
+                        <Button Background="Transparent"
+                            HorizontalAlignment="Right"
+                            Style="{StaticResource ResourceKey=CloseButton}">
+                            <Image x:Name="find" Source="..\Source\magnifier.png">
+                                <Image.Style>
+                                    <Style TargetType="{x:Type Image}">
+                                        <Setter Property="Opacity" Value="1" />
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Opacity" Value="0.5" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+                        </Button>
+                    </Grid>
+                </Grid>
+
                 <!-- Кнопка закрытия -->
-            </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="96.6875*"/>
+                        <ColumnDefinition Width="2.1875*"/>
+                        <ColumnDefinition Width="1.125*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="23.53*"/>
+                        <RowDefinition Height="51.47*"/>
+                        <RowDefinition Height="25*"/>
+                    </Grid.RowDefinitions>
 
-            <!-- Кнопка Профиля -->
-            <Button x:Name="ProfileButton"
-                Grid.Column="1"
-                Command="{Binding NavigateToProfilePage}"
-                BorderBrush="Transparent"
-                Width="65" Height="65" 
-                HorizontalAlignment="Left" VerticalAlignment="Center" 
-                Background="Transparent"
-                Margin="0,0,10,0">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-                <Image Height="60" Width="60" Source="{Binding AvatarImage, Mode=OneWay}">
-                    <Image.Style>
-                        <Style TargetType="Image">
-                            <Setter Property="Opacity" Value="0.7"/>
-                            <Style.Triggers>
-                                <!-- Когда курсор над кнопкой профиля -->
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Opacity" Value="1"/>
-                                </Trigger>
-                                <!-- Когда курсор над кнопкой логина -->
-                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=LoginButton}" Value="True">
-                                    <Setter Property="Opacity" Value="1"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Image.Style>
-                </Image>
-            </Button>
-
-            <!-- Логин пользователя -->
-            <Button x:Name="LoginButton"
-                Width="190" Height="38"
-                Command="{Binding NavigateToProfilePage}"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Grid.Column="2"
-                Margin="0,0,86,0"
-                Panel.ZIndex="5"
-                Background="Transparent"
-                BorderBrush="Transparent"
-                Content="{Binding CurrentUser.Login}">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border x:Name="BorderElement"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            CornerRadius="5">
-                            <TextBlock x:Name="TextElement"
-                               Foreground="#FFFFFF"
-                               FontFamily="Outfit"
-                               FontWeight="Normal"
-                               FontSize="30"
-                               VerticalAlignment="Center"
-                               HorizontalAlignment="Left"
-                               Text="{TemplateBinding Content}"
-                               Opacity="0.8" />
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <!-- Когда курсор над текстом логина -->
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="TextElement" Property="Opacity" Value="1" />
-                            </Trigger>
-                            <!-- Когда курсор над кнопкой профиля -->
-                            <DataTrigger Binding="{Binding IsMouseOver, ElementName=ProfileButton}" Value="True">
-                                <Setter TargetName="TextElement" Property="Opacity" Value="1" />
-                            </DataTrigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-
-            <!-- Кнопка закрытия -->
-            <Button Grid.Column="2"
-                Command="{Binding CloseCommand}"
-                Width="30" Height="30" 
-                Background="Transparent"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Center"
-                Margin="0,0,25,0"
-                Style="{StaticResource ResourceKey=CloseButton}" Grid.ColumnSpan="2">
-                <Image x:Name="close" Source="..\Source\Close_icon.png">
-                    <Image.Style>
-                        <Style TargetType="{x:Type Image}">
-                            <Setter Property="Opacity" Value="0.5" />
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
+                    <Button Grid.Column="1" Grid.Row="1"
+                        Command="{Binding CloseCommand}"
+                        Background="Transparent"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Style="{StaticResource ResourceKey=CloseButton}">
+                        <Image x:Name="close" Source="..\Source\Close_icon.png">
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
                                     <Setter Property="Opacity" Value="1" />
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Image.Style>
-                </Image>
-            </Button>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Opacity" Value="0.5" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                    </Button>
+                </Grid>
 
-            <!--Кнопка перехода в оконный режим-->
-            <Button
-                Command="{Binding RestoreCommand}"
-                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
-                Grid.Column="2"
-                Width="30" Height="30" 
-                Background="Transparent"
-                BorderBrush="Transparent"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Center"
-                Margin="0,0,65,0"
-                Style="{StaticResource ResourceKey=CloseButton}">
-                <Image x:Name="windowModeSwitch" Source="..\Source\window_restore.png">
-                    <Image.Style>
-                        <Style TargetType="Image">
-                            <Setter Property="Opacity" Value="0.5"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
+                <!--Кнопка перехода в оконный режим-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="92.5625*"/>
+                        <ColumnDefinition Width="2.1875*"/>
+                        <ColumnDefinition Width="5.3125*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="23.53*"/>
+                        <RowDefinition Height="51.47*"/>
+                        <RowDefinition Height="25*"/>
+                    </Grid.RowDefinitions>
+
+                    <Button Grid.Row="1" Grid.Column="1"
+                        Command="{Binding RestoreCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Style="{StaticResource ResourceKey=CloseButton}">
+                        <Image x:Name="windowModeSwitch" Source="..\Source\window_restore.png">
+                            <Image.Style>
+                                <Style TargetType="Image">
                                     <Setter Property="Opacity" Value="1"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Image.Style>
-                </Image>
-            </Button>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Opacity" Value="0.5"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                    </Button>
+                </Grid>
 
-            <!--Кнопка перехода в оконный режим-->
-            <Button 
-                Command="{Binding RollCommand}"
-                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
-                Grid.Column="2"
-                Width="30" Height="30" 
-                Background="Transparent"
-                BorderBrush="Transparent"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Center"
-                Margin="0,0,105,0"
-                Style="{StaticResource ResourceKey=CloseButton}">
-                <Image x:Name="rollUp_window" Source="..\Source\roll_window.png">
-                    <Image.Style>
-                        <Style TargetType="Image">
-                            <Setter Property="Opacity" Value="0.5"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
+                <!--Кнопка перехода в оконный режим-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="88.3125*"/>
+                        <ColumnDefinition Width="2.1875*"/>
+                        <ColumnDefinition Width="9.5*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="23.53*"/>
+                        <RowDefinition Height="51.47*"/>
+                        <RowDefinition Height="25*"/>
+                    </Grid.RowDefinitions>
+
+                    <Button 
+                        Command="{Binding RollCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                        Grid.Column="1" Grid.Row="1"
+                        VerticalAlignment="Stretch"
+                        HorizontalAlignment="Stretch"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        Style="{StaticResource ResourceKey=CloseButton}">
+
+                        <Image x:Name="rollUp_window" Source="..\Source\roll_window.png">
+                            <Image.Style>
+                                <Style TargetType="Image">
                                     <Setter Property="Opacity" Value="1"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Image.Style>
-                </Image>
-            </Button>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Opacity" Value="0.5"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                    </Button>
+                </Grid>
 
+            </Grid>
         </Grid>
 
         <!-- Боковое меню -->
-        <Grid Background="#2C1B47" Width="100" HorizontalAlignment="Left" VerticalAlignment="Stretch">
-            <Button
-                Command="{Binding NavigateToWelcomePage}"
-                BorderBrush="Transparent"
-                Margin="0,18,0,0" 
-                Width="65" Height="65" 
-                VerticalAlignment="Top"
-                HorizontalAlignment="Center"
-                Background="Transparent">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border 
-                            Background="{TemplateBinding Background}" 
-                            BorderBrush="{TemplateBinding BorderBrush}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-                <Image Margin="0,0,0,0" Height="60" Width="60" Source="..\Source\home.png">
-                    <Image.Style>
-                        <Style TargetType="Image">
-                            <Setter Property="Opacity" Value="0.7"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Opacity" Value="1"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Image.Style>
-                </Image>
-            </Button>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="7.56*"/>
+                <RowDefinition Height="92.44*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="18.75*"/>
+                <ColumnDefinition Width="81.25*"/>
+            </Grid.ColumnDefinitions>
 
-            <!-- Кнопка Ползователь -->
-            <Button
-                Command="{Binding NavigateToProfilePage}"
-                BorderBrush="Transparent"
-                Margin="0,108,0,0" 
-                Width="65" Height="65" 
-                VerticalAlignment="Top"
-                HorizontalAlignment="Center"
-                Background="Transparent">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border 
-                            Background="{TemplateBinding Background}" 
-                            BorderBrush="{TemplateBinding BorderBrush}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-                <Image Margin="0,0,0,0" Height="60" Width="60" Source="..\Source\user.png">
-                    <Image.Style>
-                        <Style TargetType="Image">
-                            <Setter Property="Opacity" Value="0.7"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Opacity" Value="1"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Image.Style>
-                </Image>
-            </Button>
+            <Grid Grid.Row="1" Background="#3F3F3F">
 
-            <!-- Кнопка Файл -->
-            <Button
-                BorderBrush="Transparent"
-                Margin="0,198,0,0" 
-                Width="65" Height="65" 
-                VerticalAlignment="Top"
-                HorizontalAlignment="Center"
-                Background="Transparent">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border 
-                            Background="{TemplateBinding Background}" 
-                            BorderBrush="{TemplateBinding BorderBrush}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-                <Image Margin="0,0,0,0" Height="60" Width="60" Source="..\Source\file.png">
-                    <Image.Style>
-                        <Style TargetType="Image">
-                            <Setter Property="Opacity" Value="0.7"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Opacity" Value="1"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Image.Style>
-                </Image>
-            </Button>
+                <!-- Кнопка домой -->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5.17*"/>
+                        <RowDefinition Height="4.11*"/>
+                        <RowDefinition Height="90.79*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10.23*"/>
+                        <ColumnDefinition Width="39.6*"/>
+                        <ColumnDefinition Width="50.17*"/>
+                    </Grid.ColumnDefinitions>
 
-            <!-- Кнопка настройки -->
-            <Button
-                Command="{Binding NavigateToSettingsPage}"
-                BorderBrush="Transparent"
-                Margin="0,0,0,21" 
-                Width="54" Height="54" 
-                VerticalAlignment="Bottom"
-                HorizontalAlignment="Center"
-                Background="Transparent">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border 
-                            Background="{TemplateBinding Background}" 
-                            BorderBrush="{TemplateBinding BorderBrush}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-                <Image Margin="0,0,0,0" Height="50" Width="50" Source="..\Source\settings.png">
-                    <Image.Style>
-                        <Style TargetType="Image">
-                            <Setter Property="Opacity" Value="0.7"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Opacity" Value="1"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Image.Style>
-                </Image>
-            </Button>
+                    <Button Grid.Column="1" Grid.Row="1"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        HorizontalContentAlignment="Left"
+                        VerticalContentAlignment="Center"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        FocusVisualStyle="{x:Null}">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid x:Name="ContentGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <Image x:Name="ButtonImage"
+                                       Source="../Source/home.png"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Height="35" Width="35"/>
+                                    <TextBlock x:Name="ButtonText"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Left"
+                                       Foreground="White"
+                                       FontSize="24"
+                                       Margin="40,0,0,0"
+                                       Text="Home"/>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="ButtonImage" Property="Opacity" Value="0.5"/>
+                                        <Setter TargetName="ButtonText" Property="Opacity" Value="0.5"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+
+                <!-- Кнопка команды -->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="11.03*"/>
+                        <RowDefinition Height="4.11*"/>
+                        <RowDefinition Height="84.86*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10.23*"/>
+                        <ColumnDefinition Width="39.6*"/>
+                        <ColumnDefinition Width="50.17*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="1" Grid.Row="1"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        HorizontalContentAlignment="Left"
+                        VerticalContentAlignment="Center"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        FocusVisualStyle="{x:Null}">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid x:Name="ContentGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <Image x:Name="ButtonImage"
+                                       Source="../Source/team.png"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Height="35" Width="35"/>
+                                    <TextBlock x:Name="ButtonText"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Left"
+                                       Foreground="White"
+                                       FontSize="24"
+                                       Margin="40,0,0,0"
+                                       Text="Teams"/>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="ButtonImage" Property="Opacity" Value="0.5"/>
+                                        <Setter TargetName="ButtonText" Property="Opacity" Value="0.5"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+
+                <!-- Кнопка календарь -->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="17.02*"/>
+                        <RowDefinition Height="4.11*"/>
+                        <RowDefinition Height="78.87*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10.23*"/>
+                        <ColumnDefinition Width="51.2*"/>
+                        <ColumnDefinition Width="38.57*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="1" Grid.Row="1"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        HorizontalContentAlignment="Left"
+                        VerticalContentAlignment="Center"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        FocusVisualStyle="{x:Null}">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid x:Name="ContentGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <Image x:Name="ButtonImage"
+                                       Source="../Source/calendar.png"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Height="35" Width="35"/>
+                                    <TextBlock x:Name="ButtonText"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Left"
+                                       Foreground="White"
+                                       FontSize="24"
+                                       Margin="40,0,0,0"
+                                       Text="Calendar"/>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="ButtonImage" Property="Opacity" Value="0.5"/>
+                                        <Setter TargetName="ButtonText" Property="Opacity" Value="0.5"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+
+                <!-- Кнопка проекты -->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="38.46*"/>
+                        <RowDefinition Height="4.11*"/>
+                        <RowDefinition Height="57.43*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10.23*"/>
+                        <ColumnDefinition Width="61.1*"/>
+                        <ColumnDefinition Width="28.67*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <ToggleButton Grid.Column="1" Grid.Row="1"
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch"
+                          HorizontalContentAlignment="Left"
+                          VerticalContentAlignment="Center"
+                          Background="Transparent"
+                          BorderBrush="Transparent"
+                          FocusVisualStyle="{x:Null}">
+                        <ToggleButton.Template>
+                            <ControlTemplate TargetType="ToggleButton">
+                                <Grid x:Name="ContentGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <Image x:Name="ButtonImage"
+                                       Source="../Source/folder.png"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Height="35" Width="35"/>
+                                    <TextBlock x:Name="ButtonText"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Left"
+                                       Foreground="White"
+                                       FontSize="24"
+                                       Margin="47,0,0,0"
+                                       Text="Projects"/>
+                                    <Image x:Name="Arrow"
+                                       Source="../Source/right_arrow.png"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Left"
+                                       Height="32px" Width="34px"
+                                       Margin="140,0,0,0"/>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="ButtonImage" Property="Opacity" Value="0.5"/>
+                                        <Setter TargetName="ButtonText" Property="Opacity" Value="0.5"/>
+                                        <Setter TargetName="Arrow" Property="Opacity" Value="0.5"/>
+                                    </Trigger>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter TargetName="Arrow" Property="Source" Value="../Source/down_arrow.png"/>
+                                    </Trigger>
+                                    <Trigger Property="IsChecked" Value="False">
+                                        <Setter TargetName="Arrow" Property="Source" Value="../Source/right_arrow.png"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </ToggleButton.Template>
+                    </ToggleButton>
+                </Grid>
+
+                <!-- Кнопка профиль -->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="90.02*"/>
+                        <RowDefinition Height="7.81*"/>
+                        <RowDefinition Height="2.17*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4.44*"/>
+                        <ColumnDefinition Width="58.7*"/>
+                        <ColumnDefinition Width="36.86*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="1" Grid.Row="1"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        FocusVisualStyle="{x:Null}">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid x:Name="ContentGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="37.79*"/>
+                                            <ColumnDefinition Width="62.21*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image x:Name="ButtonImage" Grid.Column="0"
+                                           Source="../Source/profile.png"
+                                           VerticalAlignment="Stretch"
+                                           HorizontalAlignment="Stretch"/>
+
+                                        <Viewbox Grid.Column="1"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center"
+                                            Margin="10,0,0,0"
+                                            Stretch="Uniform">
+                                            <TextBlock x:Name="ButtonText"
+                                               Foreground="White"
+                                               FontSize="32"
+                                               Text="Profile"/>
+                                        </Viewbox>
+                                    </Grid>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="ButtonImage" Property="Opacity" Value="0.5"/>
+                                        <Setter TargetName="ButtonText" Property="Opacity" Value="0.5"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+
+                <!-- Кнопка календарь -->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="91.58*"/>
+                        <RowDefinition Height="4.81*"/>
+                        <RowDefinition Height="3.61*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="77.13*"/>
+                        <ColumnDefinition Width="13.7*"/>
+                        <ColumnDefinition Width="9.17*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Button Grid.Column="1" Grid.Row="1"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        FocusVisualStyle="{x:Null}">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Viewbox Stretch="Uniform">
+                                    <Image x:Name="ButtonImage" 
+                                        Source="../Source/settings.png"
+                                        VerticalAlignment="Stretch"
+                                        HorizontalAlignment="Stretch"
+                                        Margin="0,0,5,0"/>
+                                </Viewbox>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="ButtonImage" Property="Opacity" Value="0.5"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+
+            </Grid>
         </Grid>
-
-        <!-- Кнопка добавить проект-->
-        <Button
-            BorderBrush="Transparent"
-            Margin="0,0,24,24"
-            Width="54" Height="54" 
-            HorizontalAlignment="Right" VerticalAlignment="Bottom" 
-            Background="Transparent">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border 
-                        Background="{TemplateBinding Background}" 
-                        BorderBrush="{TemplateBinding BorderBrush}">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-            <Image Height="50" Width="50" Source="..\Source\plus.png">
-                <Image.Style>
-                    <Style TargetType="Image">
-                        <Setter Property="Opacity" Value="0.7"/>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Opacity" Value="1"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Image.Style>
-            </Image>
-        </Button>
     </Grid>
 </Window>
