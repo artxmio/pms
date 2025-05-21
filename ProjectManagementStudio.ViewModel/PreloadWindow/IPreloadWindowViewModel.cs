@@ -4,5 +4,4 @@ namespace ProjectManagementStudio.ViewModel.PreloadWindow;
 
 public interface IPreloadWindowViewModel : IWindowViewModel
 {
-
 }
