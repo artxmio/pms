@@ -4,7 +4,6 @@ using ProjectManagementStudio.View.MainWindow.Pages;
 using ProjectManagementStudio.View.MenuWindow;
 using ProjectManagementStudio.View.MenuWindow.ModalWindows;
 using ProjectManagementStudio.View.MenuWindow.Pages;
-using ProjectManagementStudio.View.PreloadWindow;
 using ProjectManagementStudio.ViewModel.Pages;
 using ProjectManagementStudio.ViewModel.Windows;
 
@@ -18,7 +17,6 @@ public class RegistrationModule : Module
 
         builder.RegisterType<MainWindow.MainWindow>().As<IMainWindow>().InstancePerDependency();
         builder.RegisterType<MenuWindow.MenuWindow>().As<IMenuWindow>().InstancePerDependency();
-        builder.RegisterType<PreloadWindow.PreloadWindow>().As<IPreloadWindow>().InstancePerDependency();
         
         builder.RegisterType<RegistrationPage>().As<IRegistrationPage>().InstancePerDependency();
         builder.RegisterType<LoginPage>().As<ILoginPage>().InstancePerDependency();

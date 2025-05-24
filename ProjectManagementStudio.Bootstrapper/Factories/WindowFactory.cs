@@ -2,7 +2,6 @@
 using ProjectManagementStudio.View.MainWindow;
 using ProjectManagementStudio.View.MenuWindow;
 using ProjectManagementStudio.View.MenuWindow.ModalWindows;
-using ProjectManagementStudio.View.PreloadWindow;
 using ProjectManagementStudio.View.WindowFactory;
 using ProjectManagementStudio.ViewModel.MainWindow;
 using ProjectManagementStudio.ViewModel.MenuWindow;
@@ -10,7 +9,6 @@ using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.AboutText;
 using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewEmail;
 using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewLogin;
 using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewPassword;
-using ProjectManagementStudio.ViewModel.PreloadWindow;
 using ProjectManagementStudio.ViewModel.Windows;
 
 namespace ProjectManagementStudio.Bootstrapper.Factories;
@@ -23,7 +21,6 @@ internal class WindowFactory : IWindowFactory
         {
             { typeof(IMainWindowViewModel), typeof(IMainWindow) },
             { typeof(IMenuWindowViewModel), typeof(IMenuWindow) },
-            { typeof(IPreloadWindowViewModel), typeof(IPreloadWindow) },
             { typeof(IChangeLoginModalWindowViewModel), typeof(ILoginChangeDialog) },
             { typeof(IChangePasswordModalWindowViewModel), typeof(IPasswordChangeDialog) },
             { typeof(IChangeEmailModalWindowViewModel), typeof(IEmailChangeDialog) },

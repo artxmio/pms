@@ -11,7 +11,6 @@ using ProjectManagementStudio.Model.WindowSavedData.Wrapper;
 using ProjectManagementStudio.ViewModel.LocalizationService;
 using ProjectManagementStudio.ViewModel.MainWindow;
 using ProjectManagementStudio.ViewModel.MenuWindow;
-using ProjectManagementStudio.ViewModel.PreloadWindow;
 using ProjectManagementStudio.ViewModel.Windows;
 using System.Windows;
 
@@ -45,26 +44,22 @@ public class Bootstrapper : IDisposable
 
         var _userDataMementoWrapper = _container.Resolve<IUserDataMementoWrapper>();
 
-        var viewModel = _container.Resolve<IPreloadWindowViewModel>();
+        var viewModel = ChangeViewModelByRememberMe(_userDataMementoWrapper.IsRememberMe);
 
-        var startWindow = _windowManager.Show(viewModel);
+        IWindow startWindow;
 
-        //var viewModel = ChangeViewModelByRememberMe(_userDataMementoWrapper.IsRememberMe);
-
-        //IWindow startWindow;
-
-        //if (viewModel is IMainWindowViewModel mainWindowViewModel)
-        //{
-        //    startWindow = _windowManager.Show(mainWindowViewModel);
-        //}
-        //else if (viewModel is IMenuWindowViewModel menuWindowViewModel)
-        //{
-        //    startWindow = _windowManager.Show(menuWindowViewModel);
-        //}
-        //else
-        //{
-        //    throw new InvalidOperationException("Unknown ViewModel type");
-        //}
+        if (viewModel is IMainWindowViewModel mainWindowViewModel)
+        {
+            startWindow = _windowManager.Show(mainWindowViewModel);
+        }
+        else if (viewModel is IMenuWindowViewModel menuWindowViewModel)
+        {
+            startWindow = _windowManager.Show(menuWindowViewModel);
+        }
+        else
+        {
+            throw new InvalidOperationException("Unknown ViewModel type");
+        }
 
         if (startWindow is not Window window)
         {
