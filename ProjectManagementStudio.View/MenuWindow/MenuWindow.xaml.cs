@@ -49,4 +49,5 @@ public partial class MenuWindow : IMenuWindow
         this.Width = _settingSizeService.Width;
         this.Height = _settingSizeService.Height;
     }
+
 }

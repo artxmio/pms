@@ -85,10 +85,25 @@
                 HorizontalAlignment="Stretch" Background="#4E4E4E">
 
                 <!--Надпись ProjectMS-->
-                <TextBlock Width="179px" Height="47px" Foreground="#FFFFFF" FontFamily="Inter" FontSize="40px" FontWeight="Regular" 
-                    HorizontalAlignment="Left" VerticalAlignment="Center" Margin="30,0,0,0">
-                    ProjectMS
-                </TextBlock>
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.875*"/>
+                        <ColumnDefinition Width="9.75*"/>
+                        <ColumnDefinition Width="88.375*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Viewbox Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <TextBlock 
+                        Text="ProjectMS"
+                        Foreground="#FFFFFF"
+                        FontFamily="Inter"
+                        FontWeight="Regular"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        TextAlignment="Center"/>
+                    </Viewbox>
+                </Grid>
+
 
                 <!--Зона поиска-->
                 <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -241,43 +256,49 @@
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Row="1" Background="#3F3F3F">
-
-                <!-- Кнопка домой -->
+                
+                
+                <!--Кнопка домой-->
                 <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10.23*"/>
+                        <ColumnDefinition Width="39.25*"/>
+                        <ColumnDefinition Width="50.52*"/>
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="5.17*"/>
                         <RowDefinition Height="4.11*"/>
-                        <RowDefinition Height="90.79*"/>
+                        <RowDefinition Height="90.72*"/>
                     </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="10.23*"/>
-                        <ColumnDefinition Width="39.6*"/>
-                        <ColumnDefinition Width="50.17*"/>
-                    </Grid.ColumnDefinitions>
 
-                    <Button Grid.Column="1" Grid.Row="1"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch"
-                        HorizontalContentAlignment="Left"
-                        VerticalContentAlignment="Center"
-                        Background="Transparent"
+                    <Button Background="Transparent"
                         BorderBrush="Transparent"
-                        FocusVisualStyle="{x:Null}">
+                        FocusVisualStyle="{x:Null}"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Grid.Row="1" Grid.Column="1">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <Grid x:Name="ContentGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30.17*"/>
+                                        <ColumnDefinition Width="69.83*"/>
+                                    </Grid.ColumnDefinitions>
                                     <Image x:Name="ButtonImage"
                                        Source="../Source/home.png"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Left"
-                                       Height="35" Width="35"/>
-                                    <TextBlock x:Name="ButtonText"
-                                       VerticalAlignment="Bottom"
-                                       HorizontalAlignment="Left"
-                                       Foreground="White"
-                                       FontSize="24"
-                                       Margin="40,0,0,0"
-                                       Text="Home"/>
+                                       HorizontalAlignment="Stretch"
+                                       VerticalAlignment="Stretch"
+                                       Margin="0,0,0,0"
+                                       Grid.Column="0"/>
+                                    <Viewbox Grid.Column="1" Stretch="Uniform">
+                                        <TextBlock x:Name="ButtonText"
+                                           Text="Home"
+                                           FontSize="24"
+                                           VerticalAlignment="Bottom"
+                                           Foreground="White"
+                                           HorizontalAlignment="Left"
+                                           Margin="12,0,0,0"/>
+                                    </Viewbox>
                                 </Grid>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
@@ -290,42 +311,48 @@
                     </Button>
                 </Grid>
 
+
                 <!-- Кнопка команды -->
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="11.03*"/>
-                        <RowDefinition Height="4.11*"/>
-                        <RowDefinition Height="84.86*"/>
-                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10.23*"/>
-                        <ColumnDefinition Width="39.6*"/>
-                        <ColumnDefinition Width="50.17*"/>
+                        <ColumnDefinition Width="41.64*"/>
+                        <ColumnDefinition Width="48.13*"/>
                     </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="11.3*"/>
+                        <RowDefinition Height="4.81*"/>
+                        <RowDefinition Height="83.89*"/>
+                    </Grid.RowDefinitions>
 
-                    <Button Grid.Column="1" Grid.Row="1"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch"
-                        HorizontalContentAlignment="Left"
-                        VerticalContentAlignment="Center"
-                        Background="Transparent"
+                    <Button Background="Transparent"
                         BorderBrush="Transparent"
-                        FocusVisualStyle="{x:Null}">
+                        FocusVisualStyle="{x:Null}"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Grid.Row="1" Grid.Column="1">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <Grid x:Name="ContentGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="28.7*"/>
+                                        <ColumnDefinition Width="71.3*"/>
+                                    </Grid.ColumnDefinitions>
                                     <Image x:Name="ButtonImage"
                                        Source="../Source/team.png"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Left"
-                                       Height="35" Width="35"/>
-                                    <TextBlock x:Name="ButtonText"
-                                       VerticalAlignment="Bottom"
-                                       HorizontalAlignment="Left"
-                                       Foreground="White"
-                                       FontSize="24"
-                                       Margin="40,0,0,0"
-                                       Text="Teams"/>
+                                       HorizontalAlignment="Stretch"
+                                       VerticalAlignment="Stretch"
+                                       Margin="0,0,0,0"
+                                       Grid.Column="0"/>
+                                    <Viewbox Grid.Column="1" Stretch="Uniform">
+                                        <TextBlock x:Name="ButtonText"
+                                           Text="Teams"
+                                           FontSize="24"
+                                           VerticalAlignment="Bottom"
+                                           Foreground="White"
+                                           HorizontalAlignment="Left"
+                                           Margin="11,0,0,0"/>
+                                    </Viewbox>
                                 </Grid>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
@@ -341,9 +368,9 @@
                 <!-- Кнопка календарь -->
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="17.02*"/>
-                        <RowDefinition Height="4.11*"/>
-                        <RowDefinition Height="78.87*"/>
+                        <RowDefinition Height="17.43*"/>
+                        <RowDefinition Height="4.2*"/>
+                        <RowDefinition Height="78.37*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10.23*"/>
@@ -352,28 +379,36 @@
                     </Grid.ColumnDefinitions>
 
                     <Button Grid.Column="1" Grid.Row="1"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch"
-                        HorizontalContentAlignment="Left"
-                        VerticalContentAlignment="Center"
-                        Background="Transparent"
-                        BorderBrush="Transparent"
-                        FocusVisualStyle="{x:Null}">
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Stretch"
+                         HorizontalContentAlignment="Left"
+                         VerticalContentAlignment="Center"
+                         Background="Transparent"
+                         BorderBrush="Transparent"
+                         FocusVisualStyle="{x:Null}">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Grid x:Name="ContentGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="23.33*"/>
+                                        <ColumnDefinition Width="76.67*"/>
+                                    </Grid.ColumnDefinitions>
+
                                     <Image x:Name="ButtonImage"
-                                       Source="../Source/calendar.png"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Left"
-                                       Height="35" Width="35"/>
-                                    <TextBlock x:Name="ButtonText"
-                                       VerticalAlignment="Bottom"
-                                       HorizontalAlignment="Left"
-                                       Foreground="White"
-                                       FontSize="24"
-                                       Margin="40,0,0,0"
-                                       Text="Calendar"/>
+                                        Source="../Source/calendar.png"
+                                        VerticalAlignment="Stretch"
+                                        HorizontalAlignment="Stretch"
+                                        Grid.Column="0"/>
+
+                                    <Viewbox Grid.Column="1">
+                                        <TextBlock x:Name="ButtonText"
+                                            VerticalAlignment="Bottom"
+                                            HorizontalAlignment="Left"
+                                            Foreground="White"
+                                            FontSize="24"
+                                            Margin="11,0,0,0"
+                                            Text="Calendar"/>
+                                    </Viewbox>
                                 </Grid>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
@@ -410,24 +445,33 @@
                         <ToggleButton.Template>
                             <ControlTemplate TargetType="ToggleButton">
                                 <Grid x:Name="ContentGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="19.55*"/>
+                                        <ColumnDefinition Width="52*"/>
+                                        <ColumnDefinition Width="28.45*"/>
+                                    </Grid.ColumnDefinitions>
+
                                     <Image x:Name="ButtonImage"
                                        Source="../Source/folder.png"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Left"
-                                       Height="35" Width="35"/>
-                                    <TextBlock x:Name="ButtonText"
-                                       VerticalAlignment="Bottom"
-                                       HorizontalAlignment="Left"
-                                       Foreground="White"
-                                       FontSize="24"
-                                       Margin="47,0,0,0"
-                                       Text="Projects"/>
+                                       VerticalAlignment="Stretch"
+                                       HorizontalAlignment="Stretch"/>
+
+                                    <Viewbox Grid.Column="1">
+                                        <TextBlock x:Name="ButtonText"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Left"
+                                           Foreground="White"
+                                           FontSize="24"
+                                           Margin="12,0,0,0"
+                                           Text="Projects"/>
+                                    </Viewbox>
+                                    
                                     <Image x:Name="Arrow"
+                                       Grid.Column="2"
                                        Source="../Source/right_arrow.png"
-                                       VerticalAlignment="Bottom"
-                                       HorizontalAlignment="Left"
-                                       Height="32px" Width="34px"
-                                       Margin="140,0,0,0"/>
+                                       VerticalAlignment="Stretch"
+                                       HorizontalAlignment="Stretch"
+                                       Margin="5,0,0,0"/>
                                 </Grid>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
@@ -475,7 +519,7 @@
                                             <ColumnDefinition Width="62.21*"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <Image x:Name="ButtonImage" Grid.Column="0"
+                                        <Image x:Name="ButtonImage"
                                            Source="../Source/profile.png"
                                            VerticalAlignment="Stretch"
                                            HorizontalAlignment="Stretch"/>
