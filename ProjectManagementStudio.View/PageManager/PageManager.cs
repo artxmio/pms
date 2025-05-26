@@ -25,7 +25,7 @@ public class PageManager : IPageManager
         _pageFactory = factory;
     }
 
-    public IPage NavigateTo(int pages)
+    public IPage NavigateTo(Pages pages)
     {
         if (_activePage is not null)
             _history.Push(_activePage);

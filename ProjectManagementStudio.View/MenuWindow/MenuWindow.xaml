@@ -218,10 +218,41 @@
                 </Image>
             </Button>
 
+            <Button
+                Command="{Binding NavigateToProjectPage}"
+                BorderBrush="Transparent"
+                Margin="0,198,0,0" 
+                Width="65" Height="65" 
+                VerticalAlignment="Top"
+                HorizontalAlignment="Center"
+                Background="Transparent">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Image Margin="0,0,0,0" Height="60" Width="60" Source="..\Source\project.png">
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Setter Property="Opacity" Value="0.7"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Opacity" Value="1"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Button>
+            
             <!-- Кнопка Файл -->
             <Button
                 BorderBrush="Transparent"
-                Margin="0,198,0,0" 
+                Margin="0,288,0,0" 
                 Width="65" Height="65" 
                 VerticalAlignment="Top"
                 HorizontalAlignment="Center"

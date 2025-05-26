@@ -94,7 +94,7 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
 
         ChangeLocalizationCommand = new RelayCommand(o => _localizationService.Language = new CultureInfo((string)o));
 
-        NavigateToRegistrationPage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(1));
+        NavigateToRegistrationPage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(Pages.Pages.RegistrationPage));
         NavigateToLoginPage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(0));
     }
 

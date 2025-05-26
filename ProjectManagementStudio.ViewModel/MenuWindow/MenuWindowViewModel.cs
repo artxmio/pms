@@ -130,6 +130,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     public ICommand NavigateToProfilePage { get; }
     public ICommand NavigateToWelcomePage { get; }
     public ICommand NavigateToSettingsPage { get; }
+    public ICommand NavigateToProjectPage { get; }
 
     public ICommand ChangeLoginCommand { get; }
     public ICommand ChangePasswordCommand { get; }
@@ -157,15 +158,16 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         _profilePageService = profilePageService;
         _settingPageService = settingPageService;
 
-        _activePage = _pageManager.NavigateTo(2);
+        _activePage = _pageManager.NavigateTo(Pages.Pages.WelcomePage);
 
         CloseCommand = new RelayCommand(o => _windowManager.Close(this));
         RollCommand = new RelayCommand(o => _windowManager.RollWindow(this));
         RestoreCommand = new RelayCommand(o => _windowManager.RestoreWindow(this));
 
-        NavigateToWelcomePage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(2));
-        NavigateToProfilePage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(3));
-        NavigateToSettingsPage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(4));
+        NavigateToWelcomePage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(Pages.Pages.WelcomePage));
+        NavigateToProfilePage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(Pages.Pages.ProfilePage));
+        NavigateToSettingsPage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(Pages.Pages.SettingsPage));
+        NavigateToProjectPage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(Pages.Pages.ProjectPage));
 
         // Profile's functions //
         #region 

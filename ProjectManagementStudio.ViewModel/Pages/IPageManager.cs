@@ -4,6 +4,6 @@ public interface IPageManager
 {
     IPage ActivePage { get; }
 
-    IPage NavigateTo(int newPage);
+    IPage NavigateTo(Pages newPage);
     void GoBack();
 }

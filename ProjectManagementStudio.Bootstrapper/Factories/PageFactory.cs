@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using ProjectManagementStudio.View.MainWindow.Pages;
+using ProjectManagementStudio.View.MenuWindow.pages;
 using ProjectManagementStudio.View.MenuWindow.Pages;
 using ProjectManagementStudio.View.PageFactory;
 using ProjectManagementStudio.ViewModel.Pages;
@@ -24,6 +25,7 @@ internal class PageFactory : IPageFactory
             Pages.WelcomePage => _componentContext.Resolve<IWelcomePage>(),
             Pages.ProfilePage => _componentContext.Resolve<IProfilePage>(),
             Pages.SettingsPage => _componentContext.Resolve<ISettingsPage>(),
+            Pages.ProjectPage => _componentContext.Resolve<IProjectPage>(),
             _ => throw new ArgumentException($"No such page: {pageKey}")
         };
     }

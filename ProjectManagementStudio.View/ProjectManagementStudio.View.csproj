@@ -31,6 +31,7 @@
 		<None Remove="Source\orange_circle.png" />
 		<None Remove="Source\pink_circle.png" />
 		<None Remove="Source\plus.png" />
+		<None Remove="Source\project.png" />
 		<None Remove="Source\purple_circle.png" />
 		<None Remove="Source\QuestionMark.png" />
 		<None Remove="Source\red_blue_circle.png" />
@@ -41,6 +42,12 @@
 		<None Remove="Source\two_people.svg" />
 		<None Remove="Source\user.png" />
 		<None Remove="Source\window_restore.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Source\project.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
 	</ItemGroup>
 
 	<ItemGroup>
