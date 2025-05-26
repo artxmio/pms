@@ -138,7 +138,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     public ICommand ChangeAboutTextCommand { get; }
 
     public ICommand ChangeLocalizationCommand { get; }
-    public ICommand ApplySettings { get; }
+    public ICommand ApplySettingsСommand { get; }
 
     public ICommand LogOutCommand { get; }
 
@@ -188,7 +188,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         #region
 
         ChangeLocalizationCommand = new RelayCommand(o => _settingPageService.LocalizationService.Language = new CultureInfo((string)o));
-        ApplySettings = new RelayCommand(o => _settingPageService.ApplySettings());
+        ApplySettingsСommand = new RelayCommand(o => _settingPageService.ApplySettings());
 
         #endregion
     }
