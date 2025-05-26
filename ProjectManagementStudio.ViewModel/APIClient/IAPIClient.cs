@@ -11,4 +11,6 @@ public interface IAPIClient
 
     Task<ICurrentUserModel> GetUserByLogin(string login, string password);
     Task ChangeUserParametr(long id, ChangeableParams parametr, string newValue);
+
+    Task GetProjects(int userId);
 }

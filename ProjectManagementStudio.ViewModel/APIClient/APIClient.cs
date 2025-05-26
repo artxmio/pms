@@ -3,9 +3,8 @@ using ProjectManagementStudio.Model.CurrentUserModel;
 using ProjectManagementStudio.Model.RequestsModels;
 using ProjectManagementStudio.Model.ResponseModels;
 using ProjectManagementStudio.Model.Responses;
-using ProjectManagementStudio.Model.WindowModels.AuthModel;
-using ProjectManagementStudio.Model.WindowModels.RegisterModel;
 using ProjectManagementStudio.ViewModel.UrlService;
+using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Text;
 using System.Windows;
@@ -75,7 +74,7 @@ public class APIClient : IAPIClient
         var json = JsonConvert.SerializeObject(new AddUserRequestModel(login, password, email));
         var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-        _urlService.URLEndpoint =  nameof(AddUser);
+        _urlService.URLEndpoint = nameof(AddUser);
 
         try
         {
@@ -167,5 +166,30 @@ public class APIClient : IAPIClient
         {
             MessageBox.Show(ex.Message);
         }
+    }
+
+    public async Task<ObservableCollection<Project>> GetProjects(int userId)
+    {
+        _urlService.URLEndpoint = nameof(GetProjects);
+
+        try
+        {
+
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{_client.BaseAddress}/{_urlService.URLEndpoint}?user_id={userId}");
+
+            var response = await _client.SendAsync(request);
+
+            var deserealizedList = JsonConvert.DeserializeObject<ProjectResponse>(await response.Content.ReadAsStringAsync())
+                ?? throw new InvalidOperationException("Deserialized response can't be null");
+
+            return [.. deserealizedList.Data];
+
+        }
+        catch
+        {
+
+        }
+
+        return [];
     }
 }

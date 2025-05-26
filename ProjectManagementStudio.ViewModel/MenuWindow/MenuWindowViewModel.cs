@@ -167,7 +167,12 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         NavigateToWelcomePage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(Pages.Pages.WelcomePage));
         NavigateToProfilePage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(Pages.Pages.ProfilePage));
         NavigateToSettingsPage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(Pages.Pages.SettingsPage));
-        NavigateToProjectPage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(Pages.Pages.ProjectPage));
+        NavigateToProjectPage = new RelayCommand(o => { ActivePage = _pageManager.NavigateTo(Pages.Pages.ProjectPage); });
+
+        // Project's functions //
+        #region
+
+        #endregion
 
         // Profile's functions //
         #region 
