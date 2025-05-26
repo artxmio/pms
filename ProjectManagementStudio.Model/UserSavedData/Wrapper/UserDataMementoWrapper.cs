@@ -81,11 +81,6 @@ internal class UserDataMementoWrapper :
         }
     }
 
-    public bool IsFileNull
-    {
-        get;
-        set;
-    } = false;
 
     public UserDataMementoWrapper(IPathService pathService)
     {
@@ -113,17 +108,10 @@ internal class UserDataMementoWrapper :
         if (!File.Exists(_userDataFilePath))
         {
             File.Create(_userDataFilePath);
-            IsFileNull = true;
             return;
         }
 
         string jsonString = File.ReadAllText(_userDataFilePath);
-
-        if (string.IsNullOrEmpty(jsonString))
-        {
-            IsFileNull = true;
-            return;
-        }
 
         _userDataMemento = JsonConvert.DeserializeObject<UserDataMemento>(jsonString)
             ?? throw new InvalidOperationException("Deserialized memento can't be null");

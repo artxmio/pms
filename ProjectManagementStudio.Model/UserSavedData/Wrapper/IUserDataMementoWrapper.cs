@@ -6,7 +6,6 @@ public interface IUserDataMementoWrapper
     string UserPassword { get; set; }
     bool IsRememberMe { get; set; }
     string AboutText { get; set; }
-    bool IsFileNull { get; set; }
 
     void SaveUserData();
     void DeleteUserData();

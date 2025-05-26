@@ -131,7 +131,6 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     public ICommand NavigateToWelcomePage { get; }
     public ICommand NavigateToSettingsPage { get; }
 
-    public ICommand ChangeAvatarCommand { get; }
     public ICommand ChangeLoginCommand { get; }
     public ICommand ChangePasswordCommand { get; }
     public ICommand ChangeEmailCommand { get; }
@@ -160,8 +159,6 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
         _activePage = _pageManager.NavigateTo(2);
 
-        AvatarImage = profilePageService.AvatarImage;
-
         CloseCommand = new RelayCommand(o => _windowManager.Close(this));
         RollCommand = new RelayCommand(o => _windowManager.RollWindow(this));
         RestoreCommand = new RelayCommand(o => _windowManager.RestoreWindow(this));
@@ -172,7 +169,6 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
         // Profile's functions //
         #region 
-        ChangeAvatarCommand = new RelayCommand(o => AvatarImage = _profilePageService.ChangeAvatar());
         ChangeLoginCommand = new RelayCommand(o => _profilePageService.OpenChangeLoginWindow());
         ChangePasswordCommand = new RelayCommand(o => _profilePageService.OpenChangePasswordWindow());
         ChangeEmailCommand = new RelayCommand(o => _profilePageService.OpenChangeEmailWindow());

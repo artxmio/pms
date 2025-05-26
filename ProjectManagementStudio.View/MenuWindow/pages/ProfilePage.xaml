@@ -79,7 +79,7 @@
 
                     <Grid>
                         <Image Width="200" Height="200" 
-                            Source="{Binding AvatarImage, Mode=OneWay}"
+                            Source="../../Source/ava.png"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Margin="59,78,0,0"/>
@@ -121,37 +121,7 @@
                             Margin="0,31,0,0" Text="{DynamicResource Options}"
                             Width="127" Height="42"
                             HorizontalAlignment="Center"/>
-
-                        <Button Width="260" Height="39"
-                            Command="{Binding ChangeAvatarCommand}"
-                            Margin="0,31,0,0"
-                            Background="#724D9D"
-                            Content="{DynamicResource ChangeAvatar}"
-                            FontFamily="outfit" FontSize="25"
-                            FontWeight="Normal"
-                            Foreground="#ffffff">
-                            <Button.Template>
-                                <ControlTemplate TargetType="Button">
-                                    <Border x:Name="buttonBorder" 
-                                        CornerRadius="10" 
-                                        Background="{TemplateBinding Background}">
-                                        <ContentPresenter HorizontalAlignment="Center" 
-                                            VerticalAlignment="Center" ContentSource="Content" 
-                                            TextElement.FontFamily="{TemplateBinding FontFamily}" 
-                                            TextElement.FontSize="{TemplateBinding FontSize}" 
-                                            TextElement.FontWeight="{TemplateBinding FontWeight}"
-                                            TextElement.Foreground="{TemplateBinding Foreground}"/>
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="buttonBorder" Property="Background" Value="#3B2B57"/>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
-
-
+                        
                         <Button Width="260" Height="39"
                             Command="{Binding ChangeLoginCommand}"
                             Margin="0,20,0,0"

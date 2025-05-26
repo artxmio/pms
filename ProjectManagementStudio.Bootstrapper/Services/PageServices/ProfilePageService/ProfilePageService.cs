@@ -1,6 +1,4 @@
-﻿using Microsoft.Win32;
-using ProjectManagementStudio.Model.UserSavedData.Wrapper;
-using ProjectManagementStudio.ViewModel.AvatarService;
+﻿using ProjectManagementStudio.Model.UserSavedData.Wrapper;
 using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.AboutText;
 using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewEmail;
 using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewLogin;
@@ -10,7 +8,6 @@ using ProjectManagementStudio.ViewModel.Windows;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
-using System.Windows.Media.Imaging;
 
 namespace ProjectManagementStudio.Bootstrapper.Services.PageServices.ProfilePageService;
 
@@ -18,31 +15,11 @@ internal class ProfilePageService : IProfilePageService, IProfilePageServiceInit
 {
     private bool _initialized;
     private readonly IWindowManager _windowManager;
-    private readonly IAvatarService _avatarService;
     private readonly IUserDataMementoWrapper _userDataMementoWrapper;
     private readonly IChangeLoginModalWindowViewModel _changeLoginModalWindowViewModel;
     private readonly IChangePasswordModalWindowViewModel _changePasswordModalWindowViewModel;
     private readonly IChangeEmailModalWindowViewModel _changeEmailModalWindowViewModel;
     private readonly IChangeAboutTextModalWindowViewModel _changeAboutTextModalWindowViewModel;
-
-    private BitmapImage? _avatarImage;
-
-    public BitmapImage AvatarImage
-    {
-        get
-        {
-            EnsureInitialized();
-            return _avatarImage ?? throw new NullReferenceException();
-        }
-        set
-        {
-            if (value is not null)
-            {
-                _avatarImage = value;
-                OnPropertyChanged();
-            }
-        }
-    }
 
     public string AboutText
     {
@@ -63,7 +40,6 @@ internal class ProfilePageService : IProfilePageService, IProfilePageServiceInit
 
     public ProfilePageService(
         IWindowManager windowManager,
-        IAvatarService avatarService,
         IUserDataMementoWrapper userDataMementoWrapper,
         IChangeLoginModalWindowViewModel changeLoginModalWindowViewModel,
         IChangePasswordModalWindowViewModel changePasswordModalWindowViewModel,
@@ -71,7 +47,6 @@ internal class ProfilePageService : IProfilePageService, IProfilePageServiceInit
         IChangeAboutTextModalWindowViewModel changeAboutTextModalWindowViewModel)
     {
         _windowManager = windowManager;
-        _avatarService = avatarService;
         _userDataMementoWrapper = userDataMementoWrapper;
 
         _changeLoginModalWindowViewModel = changeLoginModalWindowViewModel;
@@ -89,30 +64,6 @@ internal class ProfilePageService : IProfilePageService, IProfilePageServiceInit
 
         _initialized = true;
 
-        //Initialize avatar image
-        _avatarImage = new BitmapImage();
-        _avatarImage.BeginInit();
-        _avatarImage.UriSource = new Uri(_avatarService.AvatarFilePath);
-        _avatarImage.CacheOption = BitmapCacheOption.OnLoad;
-        _avatarImage.EndInit();
-    }
-
-    public BitmapImage ChangeAvatar()
-    {
-        OpenFileDialog openFileDialog = new()
-        {
-            Title = "Выберите аватар",
-            InitialDirectory = "c:\\",
-            Filter = "Image files (*.png;*.jpg)|*.png;*.jpg",
-            FilterIndex = 2
-        };
-
-        if (openFileDialog.ShowDialog() is not null && openFileDialog.FileName != string.Empty)
-        {
-            AvatarImage = _avatarService.ChangeAvatar(openFileDialog.FileName);
-        }
-
-        return AvatarImage ?? throw new NullReferenceException("Avatar Image is null");
     }
 
     public void OpenChangeLoginWindow()
@@ -149,7 +100,7 @@ internal class ProfilePageService : IProfilePageService, IProfilePageServiceInit
     private void EnsureInitialized()
     {
         if (!_initialized)
-            throw new InvalidOperationException($"{nameof(IAvatarService)} is not initialized");
+            throw new InvalidOperationException($"{nameof(IProfilePageService)} is not initialized");
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

@@ -16,6 +16,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Remove="Source\ava.png" />
 		<None Remove="Source\backgroundImage.jpg" />
 		<None Remove="Source\blue_circle.png" />
 		<None Remove="Source\Close_icon.png" />
@@ -40,6 +41,12 @@
 		<None Remove="Source\two_people.svg" />
 		<None Remove="Source\user.png" />
 		<None Remove="Source\window_restore.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Source\ava.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
 	</ItemGroup>
 
 	<ItemGroup>

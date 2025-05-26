@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using ProjectManagementStudio.Bootstrapper.Factories;
-using ProjectManagementStudio.Bootstrapper.Services.AvatarService;
 using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 using ProjectManagementStudio.Bootstrapper.Services.PageServices.ProfilePageService;
 using ProjectManagementStudio.Bootstrapper.Services.PageServices.SettingsPageService;
@@ -10,7 +9,6 @@ using ProjectManagementStudio.Bootstrapper.Services.UrlService;
 using ProjectManagementStudio.Model.PathService;
 using ProjectManagementStudio.View.PageFactory;
 using ProjectManagementStudio.View.WindowFactory;
-using ProjectManagementStudio.ViewModel.AvatarService;
 using ProjectManagementStudio.ViewModel.LocalizationService;
 using ProjectManagementStudio.ViewModel.PageServices.IProfilePageService;
 using ProjectManagementStudio.ViewModel.PageServices.ISettingsPageService;
@@ -38,11 +36,6 @@ public class RegistrationModule : Module
         builder.RegisterType<UrlService>()
             .As<IUrlService>()
             .As<IUrlServiceInitializer>()
-            .SingleInstance();
-
-        builder.RegisterType<AvatarService>()
-            .As<IAvatarService>()
-            .As<IAvatarServiceInitializer>()
             .SingleInstance();
 
         builder.RegisterType<CurrentUserService>()

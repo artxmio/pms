@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using ProjectManagementStudio.Bootstrapper.Services.AvatarService;
 using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 using ProjectManagementStudio.Bootstrapper.Services.PageServices.ProfilePageService;
 using ProjectManagementStudio.Bootstrapper.Services.PageServices.SettingsPageService;
@@ -80,10 +79,8 @@ public class Bootstrapper : IDisposable
         _container.Resolve<IWindowDataMementoWrapperInitializer>().Initialize();
         _container.Resolve<ISettingSizeInitialize>().Initialize();
         _container.Resolve<IUrlServiceInitializer>().Initialize();
-        _container.Resolve<IAvatarServiceInitializer>().Initialize();
         _container.Resolve<IUserDataMementoWrapperInitializer>().Initialize();
         _container.Resolve<ICurrentUserServiceInitializer>().Initialize();
-        _container.Resolve<IProfilePageServiceInitializer>().Initialize();
         _container.Resolve<ISettingsPageServiceInitializer>().Initialize();
     }
 
