@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 using ProjectManagementStudio.Bootstrapper.Services.PageServices.ProfilePageService;
+using ProjectManagementStudio.Bootstrapper.Services.PageServices.ProjectsPageService;
 using ProjectManagementStudio.Bootstrapper.Services.PageServices.SettingsPageService;
 using ProjectManagementStudio.Bootstrapper.Services.PathService;
 using ProjectManagementStudio.Bootstrapper.Services.Settings.SettingSizeService;
@@ -82,6 +83,7 @@ public class Bootstrapper : IDisposable
         _container.Resolve<IUserDataMementoWrapperInitializer>().Initialize();
         _container.Resolve<ICurrentUserServiceInitializer>().Initialize();
         _container.Resolve<ISettingsPageServiceInitializer>().Initialize();
+        _container.Resolve<IProjectsPageServiceInitializer>().Initialize();
     }
 
     public void Dispose() => _container.Dispose();

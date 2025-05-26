@@ -174,7 +174,6 @@ public class APIClient : IAPIClient
 
         try
         {
-
             var request = new HttpRequestMessage(HttpMethod.Get, $"{_client.BaseAddress}/{_urlService.URLEndpoint}?user_id={userId}");
 
             var response = await _client.SendAsync(request);

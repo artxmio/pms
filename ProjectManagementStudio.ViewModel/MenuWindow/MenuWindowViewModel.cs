@@ -1,9 +1,11 @@
 ﻿using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 using ProjectManagementStudio.Model.CurrentUserModel;
+using ProjectManagementStudio.Model.ResponseModels;
 using ProjectManagementStudio.Model.SettingSize;
 using ProjectManagementStudio.ViewModel.Command;
 using ProjectManagementStudio.ViewModel.Pages;
 using ProjectManagementStudio.ViewModel.PageServices.IProfilePageService;
+using ProjectManagementStudio.ViewModel.PageServices.IProjectsPageService;
 using ProjectManagementStudio.ViewModel.PageServices.ISettingsPageService;
 using ProjectManagementStudio.ViewModel.Windows;
 using System.Collections.ObjectModel;
@@ -26,8 +28,9 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     private readonly ICurrentUserService _currentUserService;
     private readonly IProfilePageService _profilePageService;
     private IPage _activePage;
-    private BitmapImage _avatarImage = new();
+    private ObservableCollection<Project> _projects = [];
     private readonly ISettingsPageService _settingPageService;
+    private readonly IProjectsPageService _projectPageService;
 
     #endregion
 
@@ -55,19 +58,6 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         {
             _activePage = value;
             OnPropertyChanged();
-        }
-    }
-
-    public BitmapImage AvatarImage
-    {
-        get => _avatarImage;
-        set
-        {
-            if (value is not null)
-            {
-                _avatarImage = value;
-                OnPropertyChanged();
-            }
         }
     }
 
@@ -118,6 +108,16 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         }
     }
 
+
+    public ObservableCollection<Project> Projects
+    {
+        get => _projects;
+        set
+        {
+            _projects = value;
+            OnPropertyChanged();
+        }
+    }
     #endregion
 
     /* // Команды // */
@@ -142,6 +142,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
     public ICommand LogOutCommand { get; }
 
+    public ICommand LoadProjectsCommand { get; }
     #endregion
 
     public MenuWindowViewModel(
@@ -149,7 +150,8 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         IPageManager pageManager,
         ICurrentUserService currentUserService,
         IProfilePageService profilePageService,
-        ISettingsPageService settingPageService)
+        ISettingsPageService settingPageService,
+        IProjectsPageService projectsPageService)
     {
         _pageManager = pageManager;
         _windowManager = windowManager;
@@ -157,6 +159,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
         _profilePageService = profilePageService;
         _settingPageService = settingPageService;
+        _projectPageService = projectsPageService;
 
         _activePage = _pageManager.NavigateTo(Pages.Pages.WelcomePage);
 
@@ -167,11 +170,12 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         NavigateToWelcomePage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(Pages.Pages.WelcomePage));
         NavigateToProfilePage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(Pages.Pages.ProfilePage));
         NavigateToSettingsPage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(Pages.Pages.SettingsPage));
-        NavigateToProjectPage = new RelayCommand(o => { ActivePage = _pageManager.NavigateTo(Pages.Pages.ProjectPage); });
+        NavigateToProjectPage = new RelayCommand(o =>  ActivePage = _pageManager.NavigateTo(Pages.Pages.ProjectPage) );
 
         // Project's functions //
         #region
 
+        LoadProjectsCommand = new RelayCommand(async o => Projects = await _projectPageService.GetProjects());
         #endregion
 
         // Profile's functions //

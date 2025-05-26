@@ -63,7 +63,6 @@ internal class ProfilePageService : IProfilePageService, IProfilePageServiceInit
         }
 
         _initialized = true;
-
     }
 
     public void OpenChangeLoginWindow()

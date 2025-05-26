@@ -1,7 +1,5 @@
 ﻿using ProjectManagementStudio.Model.CurrentUserModel;
 using ProjectManagementStudio.Model.ResponseModels;
-using ProjectManagementStudio.Model.WindowModels.AuthModel;
-using ProjectManagementStudio.Model.WindowModels.RegisterModel;
 using System.Collections.ObjectModel;
 
 namespace ProjectManagementStudio.ViewModel.APIClient;
