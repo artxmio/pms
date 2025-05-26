@@ -56,7 +56,7 @@ public class WindowsManager : IWindowManager
     {
         if (_viewModelToWindowMap.TryGetValue(viewModel, out var window))
         {
-            var w = window as Window;
+            var w = (Window)window;
             w.WindowState = WindowState.Minimized;
         }
     }

@@ -37,6 +37,7 @@ internal class SettingSizeService : ISettingSizeService, ISettingSizeInitialize,
         set
         {
             _windowDataMementoWrapper.Width = value;
+            OnPropertyChanged();
         }
     }
 
@@ -49,6 +50,7 @@ internal class SettingSizeService : ISettingSizeService, ISettingSizeInitialize,
         set
         {
             _windowDataMementoWrapper.Height = value;
+            OnPropertyChanged();
         }
     }
 
