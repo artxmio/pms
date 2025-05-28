@@ -11,11 +11,25 @@
       
       d:DataContext="{d:DesignInstance vm:MenuWindowViewModel}">
 
-    <Grid>
-        <DataGrid AutoGenerateColumns="True"
-                  ItemsSource="{Binding Projects}"
-                  HorizontalAlignment="Center"
-                  VerticalAlignment="Center"/>
+    <Grid Margin="120 120">
+        <TabControl>
+            <TabItem Header="Мои проекты">
+                <Grid  >
+                    <!--Заменить на ListView-->
+                    <DataGrid AutoGenerateColumns="True"
+                        ItemsSource="{Binding MyProjects}"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Проекты">
+                <Grid  >
+                    <!--Заменить на ListView-->
+                  <DataGrid AutoGenerateColumns="True"
+                        ItemsSource="{Binding Projects}"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
+
+
 </Page>
  

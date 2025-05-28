@@ -6,4 +6,5 @@ namespace ProjectManagementStudio.ViewModel.PageServices.IProjectsPageService;
 public interface IProjectsPageService
 {
     Task<ObservableCollection<Project>> GetProjects();
+    void AddProject();
 }

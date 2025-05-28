@@ -13,7 +13,8 @@ public class UrlService : IUrlServiceInitializer, IUrlService
         { "IsUserExists", "api-v2/user/exists" },
         { "AddUser", "api-v2/user/create" },
         { "ChangeUserParametr", "api-v2/user/update" },
-        { "GetProjects", "api-v2/project/get-projects-for-user" }
+        { "GetProjects", "api-v2/project/get-projects-for-user" },
+        { "AddProject", "api-v2/project/create" }
     };
 
     private bool _initialized = false;

@@ -95,7 +95,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         }
     }
 
-    public int Heigth   
+    public int Heigth
     {
         get
         {
@@ -116,7 +116,13 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         {
             _projects = value;
             OnPropertyChanged();
+            OnPropertyChanged(nameof(MyProjects));
         }
+    }
+
+    public ObservableCollection<Project> MyProjects
+    {
+        get => [.. _projects.Where(x => x.HeadId)];
     }
     #endregion
 
@@ -143,6 +149,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     public ICommand LogOutCommand { get; }
 
     public ICommand LoadProjectsCommand { get; }
+    public ICommand AddProjectCommand { get; }
     #endregion
 
     public MenuWindowViewModel(
@@ -170,12 +177,13 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         NavigateToWelcomePage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(Pages.Pages.WelcomePage));
         NavigateToProfilePage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(Pages.Pages.ProfilePage));
         NavigateToSettingsPage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(Pages.Pages.SettingsPage));
-        NavigateToProjectPage = new RelayCommand(o =>  ActivePage = _pageManager.NavigateTo(Pages.Pages.ProjectPage) );
+        NavigateToProjectPage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(Pages.Pages.ProjectPage));
 
         // Project's functions //
         #region
 
         LoadProjectsCommand = new RelayCommand(async o => Projects = await _projectPageService.GetProjects());
+        AddProjectCommand = new RelayCommand(o => _projectPageService.AddProject());
         #endregion
 
         // Profile's functions //

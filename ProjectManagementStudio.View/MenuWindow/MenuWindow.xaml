@@ -319,7 +319,8 @@
             Margin="0,0,24,24"
             Width="54" Height="54" 
             HorizontalAlignment="Right" VerticalAlignment="Bottom" 
-            Background="Transparent">
+            Background="Transparent"
+            Command="{Binding AddProjectCommand}">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border 

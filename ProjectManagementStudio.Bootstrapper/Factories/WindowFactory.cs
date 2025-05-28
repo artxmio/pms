@@ -5,6 +5,7 @@ using ProjectManagementStudio.View.MenuWindow.ModalWindows;
 using ProjectManagementStudio.View.WindowFactory;
 using ProjectManagementStudio.ViewModel.MainWindow;
 using ProjectManagementStudio.ViewModel.MenuWindow;
+using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows;
 using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.AboutText;
 using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewEmail;
 using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewLogin;
@@ -24,6 +25,7 @@ internal class WindowFactory : IWindowFactory
             { typeof(IChangeLoginModalWindowViewModel), typeof(ILoginChangeDialog) },
             { typeof(IChangePasswordModalWindowViewModel), typeof(IPasswordChangeDialog) },
             { typeof(IChangeEmailModalWindowViewModel), typeof(IEmailChangeDialog) },
+            { typeof(IAddProjectWindowViewModel), typeof(IAddProjectWindow) },
             { typeof(IChangeAboutTextModalWindowViewModel), typeof(IAboutTextChangeDialog) }
         };
 

@@ -18,6 +18,7 @@ public class RegistrationModule : Module
 
         builder.RegisterType<MainWindow.MainWindow>().As<IMainWindow>().InstancePerDependency();
         builder.RegisterType<MenuWindow.MenuWindow>().As<IMenuWindow>().InstancePerDependency();
+        builder.RegisterType<AddProjectWindow>().As<IAddProjectWindow>().InstancePerDependency();
         
         builder.RegisterType<RegistrationPage>().As<IRegistrationPage>().InstancePerDependency();
         builder.RegisterType<LoginPage>().As<ILoginPage>().InstancePerDependency();

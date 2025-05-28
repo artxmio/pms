@@ -182,13 +182,49 @@ public class APIClient : IAPIClient
                 ?? throw new InvalidOperationException("Deserialized response can't be null");
 
             return [.. deserealizedList.Data];
-
         }
-        catch
+        catch (HttpRequestException ex)
         {
-
+            MessageBox.Show($"Возникла ошибка: сервер отключён или недоступен ({ex.Message})", "Ошибка");
         }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        throw new InvalidOperationException();
+    }
 
-        return [];
+    public async Task AddProject(Project project, int userId)
+    {
+        _urlService.URLEndpoint = nameof(AddProject);
+        var serializableProject = new AddProjectRequestModel
+        {
+            ProjectDescription = project.Description,
+            ProjectTitle = project.Title,
+            UserId = userId
+        };
+
+        var json = JsonConvert.SerializeObject(serializableProject);
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        try
+        {
+            var request = new HttpRequestMessage(HttpMethod.Post, $"{_client.BaseAddress}{_urlService.URLEndpoint}")
+            {
+                Content = content
+            };
+            var response = await _client.SendAsync(request);
+
+            AddProjectResponse deserializeResponse = JsonConvert.DeserializeObject<AddProjectResponse>(await response.Content.ReadAsStringAsync())
+                ?? throw new InvalidOperationException("Deserialized response can't be null");
+        }
+        catch (HttpRequestException ex)
+        {
+            MessageBox.Show($"Возникла ошибка: сервер отключён или недоступен ({ex.Message})", "Ошибка");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Возникла неизвестная ошибка: {ex.Message}", "Ошибка");
+        }
     }
 }

@@ -22,6 +22,8 @@ public partial class MenuWindow : IMenuWindow
 
         Loaded += OnLoad;
         MouseDoubleClick += DoubleClick;
+
+        this.WindowState = WindowState.Maximized;
     }
 
     private void DragWindow(object sender, MouseButtonEventArgs e)

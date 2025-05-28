@@ -1,0 +1,35 @@
+﻿<Window x:Class="ProjectManagementStudio.View.MenuWindow.ModalWindows.AddProjectWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectManagementStudio.View.MenuWindow.ModalWindows"
+        xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows;assembly=ProjectManagementStudio.ViewModel"
+        mc:Ignorable="d"
+        Title="AddProjectWindow" Height="320" Width="320"
+        
+        d:DataContext="{d:DesignInstance vm:AddProjectWindowViewModel}">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" 
+                   Margin="20,24,0,0" TextWrapping="Wrap" Text="Title" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" 
+                 Margin="20,46,0,0" 
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Top" 
+                 Width="120"/>
+        <TextBlock HorizontalAlignment="Left" 
+                   Margin="20,99,0,0" TextWrapping="Wrap" Text="Descrition" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" 
+             Margin="20,124,0,0" 
+             TextWrapping="Wrap"
+             VerticalAlignment="Top" 
+             Width="120"/>
+        <Button Content="Добавить" HorizontalAlignment="Left" Margin="20,174,0,0" VerticalAlignment="Top"/>
+        <Button Content="Отмена" 
+                HorizontalAlignment="Left" 
+                Margin="85,174,0,0" 
+                VerticalAlignment="Top"
+                Command="{Binding CloseWindowCommand}"/>
+
+    </Grid>
+</Window>

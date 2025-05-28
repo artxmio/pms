@@ -13,4 +13,5 @@ public interface IAPIClient
     Task ChangeUserParametr(long id, ChangeableParams parametr, string newValue);
 
     Task<ObservableCollection<Project>> GetProjects(int userId);
+    Task AddProject(Project project, int userId);
 }
