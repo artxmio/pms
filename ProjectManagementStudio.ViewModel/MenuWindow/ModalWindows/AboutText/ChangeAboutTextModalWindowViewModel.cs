@@ -2,6 +2,7 @@
 using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel.ModalWindowModels.AboutText;
 using ProjectManagementStudio.Model.UserSavedData.Wrapper;
 using ProjectManagementStudio.ViewModel.APIClient;
+using ProjectManagementStudio.ViewModel.APIClient.Enums;
 using ProjectManagementStudio.ViewModel.Command;
 using ProjectManagementStudio.ViewModel.Windows;
 using System.ComponentModel;

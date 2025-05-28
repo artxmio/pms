@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectManagementStudio.View.MenuWindow.ModalWindows"
-        xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows;assembly=ProjectManagementStudio.ViewModel"
+        xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.AddProject;assembly=ProjectManagementStudio.ViewModel"
+        xmlns:validations="clr-namespace:ProjectManagementStudio.ViewModel.ValidationsRules;assembly=ProjectManagementStudio.ViewModel"
         mc:Ignorable="d"
         Title="AddProjectWindow" Height="320" Width="320"
         
@@ -16,15 +17,35 @@
                  Margin="20,46,0,0" 
                  TextWrapping="Wrap"
                  VerticalAlignment="Top" 
-                 Width="120"/>
+                 Width="120">
+            <TextBox.Text>
+                <Binding Path="Title" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                    <Binding.ValidationRules>
+                        <validations:TitleValidationRules ValidationStep="ConvertedProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <TextBlock HorizontalAlignment="Left" 
                    Margin="20,99,0,0" TextWrapping="Wrap" Text="Descrition" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" 
-             Margin="20,124,0,0" 
-             TextWrapping="Wrap"
-             VerticalAlignment="Top" 
-             Width="120"/>
-        <Button Content="Добавить" HorizontalAlignment="Left" Margin="20,174,0,0" VerticalAlignment="Top"/>
+                 Margin="20,124,0,0" 
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Top" 
+                 Width="120">
+            <TextBox.Text>
+                <Binding Path="Description" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                    <Binding.ValidationRules>
+                        <validations:DescriptionValidationRules ValidationStep="ConvertedProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Button Content="Добавить" 
+                HorizontalAlignment="Left" 
+                Margin="20,174,0,0" 
+                VerticalAlignment="Top"
+                Command="{Binding AddProjectCommand}"/>
         <Button Content="Отмена" 
                 HorizontalAlignment="Left" 
                 Margin="85,174,0,0" 

@@ -1,8 +1,9 @@
 ﻿using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 using ProjectManagementStudio.Model.CurrentUserModel;
+using ProjectManagementStudio.Model.Enums;
 using ProjectManagementStudio.Model.ResponseModels;
 using ProjectManagementStudio.ViewModel.APIClient;
-using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows;
+using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.AddProject;
 using ProjectManagementStudio.ViewModel.PageServices.IProjectsPageService;
 using ProjectManagementStudio.ViewModel.Windows;
 using System.Collections.ObjectModel;
@@ -32,7 +33,7 @@ internal class ProjectsPageService : IProjectsPageService, IProjectsPageServiceI
     
     public async Task<ObservableCollection<Project>> GetProjects() => await _client.GetProjects((int)_currentUserService.CurrentUser.UserId);
 
-    public void AddProject()
+    public void OpenAddProjectWindow()
     {
         _windowManager.Show(_addProjectViewModel, true);
     }
@@ -45,5 +46,10 @@ internal class ProjectsPageService : IProjectsPageService, IProjectsPageServiceI
         }
 
         _initialized = true;
+    }
+
+    public async Task ChangeStatus(int projectId, ProjectStatus projectStatus)
+    {
+        await _client.ChangeProjectStatus(projectId, projectStatus);
     }
 }

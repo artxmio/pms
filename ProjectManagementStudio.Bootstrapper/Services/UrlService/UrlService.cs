@@ -14,6 +14,7 @@ public class UrlService : IUrlServiceInitializer, IUrlService
         { "AddUser", "api-v2/user/create" },
         { "ChangeUserParametr", "api-v2/user/update" },
         { "GetProjects", "api-v2/project/get-projects-for-user" },
+        { "ChangeProjectStatus", "api-v2/project/change-status" },
         { "AddProject", "api-v2/project/create" }
     };
 

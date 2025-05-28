@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using ProjectManagementStudio.Model.Enums;
+using System.Runtime.Serialization;
 
 namespace ProjectManagementStudio.Model.ResponseModels;
 
@@ -13,8 +14,20 @@ public class Project
     public bool HeadId { get; set; }
     [DataMember(Name = "description")]
     public string Description { get; set; }
-    public DateTime StartDate { get; set; }
-    public DateTime EndDate { get; set; }
+
+    [DataMember(Name = "start_date")]
+    public string StartDate { get; set; }
+    [DataMember(Name = "end_date")]
+    public string EndDate { get; set; }
+
     [DataMember(Name = "status")]
-    public int Status { get; set; }
+    public ProjectStatus Status { get; set; }
+
+    public Project()
+    {
+        Title = "";
+        Description = "";
+        StartDate = "";
+        EndDate = "";
+    }
 }

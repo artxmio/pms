@@ -1,5 +1,7 @@
 ﻿using ProjectManagementStudio.Model.CurrentUserModel;
 using ProjectManagementStudio.Model.ResponseModels;
+using ProjectManagementStudio.ViewModel.APIClient.Enums;
+using ProjectManagementStudio.Model.Enums;
 using System.Collections.ObjectModel;
 
 namespace ProjectManagementStudio.ViewModel.APIClient;
@@ -14,4 +16,5 @@ public interface IAPIClient
 
     Task<ObservableCollection<Project>> GetProjects(int userId);
     Task AddProject(Project project, int userId);
+    Task ChangeProjectStatus(int projectId, ProjectStatus status);
 }

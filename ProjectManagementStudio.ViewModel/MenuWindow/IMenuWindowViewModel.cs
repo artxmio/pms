@@ -25,4 +25,7 @@ public interface IMenuWindowViewModel : IWindowViewModel
     public ICommand LogOutCommand { get; }
 
     public ICommand LoadProjectsCommand { get; }
+    public ICommand AddProjectCommand { get; }
+    public ICommand StopProjectCommand { get; }
+    public ICommand CloseProjectCommand { get; }
 }

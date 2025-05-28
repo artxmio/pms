@@ -12,6 +12,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
@@ -150,6 +151,8 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
     public ICommand LoadProjectsCommand { get; }
     public ICommand AddProjectCommand { get; }
+    public ICommand StopProjectCommand { get; }
+    public ICommand CloseProjectCommand { get; }
     #endregion
 
     public MenuWindowViewModel(
@@ -182,10 +185,19 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         // Project's functions //
         #region
 
-        LoadProjectsCommand = new RelayCommand(async o => Projects = await _projectPageService.GetProjects());
-        AddProjectCommand = new RelayCommand(o => _projectPageService.AddProject());
-        #endregion
+        LoadProjectsCommand = new RelayCommand(async o => { Projects = await _projectPageService.GetProjects(); });
+        AddProjectCommand = new RelayCommand(o => _projectPageService.OpenAddProjectWindow());
+        StopProjectCommand = new RelayCommand(async o =>
+        {
+            if (o is Project project)
+            {
+                await _projectPageService.ChangeStatus(project.Id, Model.Enums.ProjectStatus.Stoped);
+                OnPropertyChanged(nameof(Projects));
+                OnPropertyChanged(nameof(MyProjects));
+            }
+        });
 
+        #endregion
         // Profile's functions //
         #region 
         ChangeLoginCommand = new RelayCommand(o => _profilePageService.OpenChangeLoginWindow());

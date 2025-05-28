@@ -1,4 +1,4 @@
-﻿namespace ProjectManagementStudio.ViewModel.APIClient;
+﻿namespace ProjectManagementStudio.ViewModel.APIClient.Enums;
 
 public enum ChangeableParams
 {

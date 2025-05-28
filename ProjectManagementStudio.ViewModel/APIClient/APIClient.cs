@@ -1,10 +1,13 @@
 ﻿using Newtonsoft.Json;
 using ProjectManagementStudio.Model.CurrentUserModel;
+using ProjectManagementStudio.Model.Enums;
 using ProjectManagementStudio.Model.RequestsModels;
 using ProjectManagementStudio.Model.ResponseModels;
 using ProjectManagementStudio.Model.Responses;
+using ProjectManagementStudio.ViewModel.APIClient.Enums;
 using ProjectManagementStudio.ViewModel.UrlService;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using System.Windows;
@@ -178,6 +181,9 @@ public class APIClient : IAPIClient
 
             var response = await _client.SendAsync(request);
 
+            Debug.WriteLine(response.StatusCode);
+            Debug.WriteLine(response.RequestMessage);
+
             var deserealizedList = JsonConvert.DeserializeObject<ProjectResponse>(await response.Content.ReadAsStringAsync())
                 ?? throw new InvalidOperationException("Deserialized response can't be null");
 
@@ -197,6 +203,7 @@ public class APIClient : IAPIClient
     public async Task AddProject(Project project, int userId)
     {
         _urlService.URLEndpoint = nameof(AddProject);
+
         var serializableProject = new AddProjectRequestModel
         {
             ProjectDescription = project.Description,
@@ -225,6 +232,30 @@ public class APIClient : IAPIClient
         catch (Exception ex)
         {
             MessageBox.Show($"Возникла неизвестная ошибка: {ex.Message}", "Ошибка");
+        }
+    }
+
+    public async Task ChangeProjectStatus(int projectId, ProjectStatus status)
+    {
+        _urlService.URLEndpoint = nameof(ChangeProjectStatus);
+
+        try
+        {
+            var json = JsonConvert.SerializeObject(new ChangeProjectStatusRequestModel(projectId, status));
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var request = new HttpRequestMessage(HttpMethod.Post, $"{_client.BaseAddress}{_urlService.URLEndpoint}")
+            {
+                Content = content
+            };
+
+            var response = await _client.SendAsync(request);
+
+            ChangeProjectStatusResponse deserializeResponse = JsonConvert.DeserializeObject<ChangeProjectStatusResponse>(await response.Content.ReadAsStringAsync())
+                ?? throw new InvalidOperationException("Deserialized response can't be null"); ;
+        }
+        catch (HttpRequestException ex)
+        {
         }
     }
 }

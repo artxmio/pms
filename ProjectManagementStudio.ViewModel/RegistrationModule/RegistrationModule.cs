@@ -2,8 +2,8 @@
 using ProjectManagementStudio.ViewModel.APIClient;
 using ProjectManagementStudio.ViewModel.MainWindow;
 using ProjectManagementStudio.ViewModel.MenuWindow;
-using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows;
 using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.AboutText;
+using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.AddProject;
 using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewEmail;
 using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewLogin;
 using ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewPassword;
