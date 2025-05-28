@@ -1,0 +1,34 @@
+﻿<Page x:Class="ProjectManagementStudio.View.MenuWindow.pages.ProjectDetailsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjectManagementStudio.View.MenuWindow.pages"
+      xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MenuWindow;assembly=ProjectManagementStudio.ViewModel"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ProjectDetailsPage"
+      Background="White"
+      d:DataContext="{d:DesignInstance vm:MenuWindowViewModel}"
+      Margin="50">
+
+    <Grid>
+        
+        <TextBlock HorizontalAlignment="Left" 
+                   Margin="30,30,0,0" 
+                   TextWrapping="Wrap" 
+                   d:Text="TextBlock" 
+                   Text="{Binding SelectedProject.Title}"
+                   FontSize="45"
+                   VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" 
+                 Margin="30,105,0,0" 
+                 TextWrapping="Wrap"
+                 d:Text="TextBox" 
+                 Text="{Binding SelectedProject.Description}"
+                 VerticalAlignment="Top" 
+                 FontSize="35"
+                 Width="735" Height="190"/>
+
+    </Grid>
+</Page>

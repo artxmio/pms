@@ -12,9 +12,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Runtime.CompilerServices;
-using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
 
 namespace ProjectManagementStudio.ViewModel.MenuWindow;
 
@@ -109,7 +107,6 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         }
     }
 
-
     public ObservableCollection<Project> Projects
     {
         get => _projects;
@@ -125,6 +122,11 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     {
         get => [.. _projects.Where(x => x.HeadId)];
     }
+
+    public Project SelectedProject
+    {
+        get => _projectPageService.SelectedProject;
+    }
     #endregion
 
     /* // Команды // */
@@ -138,6 +140,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     public ICommand NavigateToWelcomePage { get; }
     public ICommand NavigateToSettingsPage { get; }
     public ICommand NavigateToProjectPage { get; }
+    public ICommand NavigateToProjectDetailsPage { get; }
 
     public ICommand ChangeLoginCommand { get; }
     public ICommand ChangePasswordCommand { get; }
@@ -154,6 +157,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     public ICommand StopProjectCommand { get; }
     public ICommand CloseProjectCommand { get; }
     public ICommand OpenProjectCommand { get; }
+
     #endregion
 
     public MenuWindowViewModel(
@@ -182,13 +186,17 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         NavigateToProfilePage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(Pages.Pages.ProfilePage));
         NavigateToSettingsPage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(Pages.Pages.SettingsPage));
         NavigateToProjectPage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(Pages.Pages.ProjectPage));
-
+        NavigateToProjectDetailsPage = new RelayCommand(o =>
+        {
+            ActivePage = _pageManager.NavigateTo(Pages.Pages.ProjectDetailsPage);
+            _projectPageService.SelectedProject = o as Project ?? throw new NullReferenceException();
+        });
         // Project's functions //
         #region
 
         LoadProjectsCommand = new RelayCommand(async o => { Projects = await _projectPageService.GetProjects(); });
         AddProjectCommand = new RelayCommand(o => _projectPageService.OpenAddProjectWindow());
-        
+
         StopProjectCommand = new RelayCommand(async o =>
         {
             if (o is Project project)
@@ -209,7 +217,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
             OnPropertyChanged(nameof(MyProjects));
             OnPropertyChanged(nameof(Projects));
         });
-        OpenProjectCommand = new RelayCommand (async o => 
+        OpenProjectCommand = new RelayCommand(async o =>
         {
             if (o is Project project)
             {
@@ -219,7 +227,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
             OnPropertyChanged(nameof(MyProjects));
             OnPropertyChanged(nameof(Projects));
         });
-        
+
         #endregion
         // Profile's functions //
         #region 

@@ -8,5 +8,6 @@ public enum Pages
     ProfilePage,
     SettingsPage,
     ProjectPage,
+    ProjectDetailsPage,
     Unknown
 }

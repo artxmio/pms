@@ -53,7 +53,7 @@
     </Window.Background>
 
     <Grid>
-        <Frame Content="{Binding ActivePage}" NavigationUIVisibility="Hidden"/>
+        <Frame Content="{Binding ActivePage}" NavigationUIVisibility="Hidden" Margin="100,85,0,0"/>
 
         <!-- Верхнее меню -->
         <Grid  x:Name="header" MouseLeftButtonDown="DragWindow" Height="87" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="100,0,0,0">

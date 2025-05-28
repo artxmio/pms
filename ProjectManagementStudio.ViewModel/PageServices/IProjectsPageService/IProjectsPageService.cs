@@ -6,6 +6,7 @@ namespace ProjectManagementStudio.ViewModel.PageServices.IProjectsPageService;
 
 public interface IProjectsPageService
 {
+    Project SelectedProject { get; set; }
     Task<ObservableCollection<Project>> GetProjects();
     void OpenAddProjectWindow();
     Task ChangeStatus(int projectId, ProjectStatus projectStatus);

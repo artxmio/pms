@@ -13,10 +13,17 @@ namespace ProjectManagementStudio.Bootstrapper.Services.PageServices.ProjectsPag
 internal class ProjectsPageService : IProjectsPageService, IProjectsPageServiceInitializer
 {
     private bool _initialized;
+    private Project _selectedProject = null!;
     private readonly ICurrentUserService _currentUserService;
     private readonly IAPIClient _client;
     private readonly IWindowManager _windowManager;
     private readonly IAddProjectWindowViewModel _addProjectViewModel;
+
+    public Project SelectedProject
+    {
+        get => _selectedProject; 
+        set => _selectedProject = value;
+    }
 
     public ProjectsPageService(
         ICurrentUserService currentUserService,
