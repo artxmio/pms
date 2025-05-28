@@ -36,10 +36,13 @@
                                 </StackPanel>
                                 <Border.ContextMenu>
                                     <ContextMenu>
-                                        <MenuItem Header="Открыть" Command="{Binding OpenProjectCommand}" CommandParameter="{Binding}"/>
-                                        <MenuItem Header="Редактировать" Command="{Binding EditProjectCommand}" />
-                                        <MenuItem Header="Остановить" Click="MenuItem_Click"/>
-                                        <MenuItem Header="Завершить" Command="{Binding CloseProjectCommand}" />
+                                        <MenuItem Header="Изменить статус">
+                                                <MenuItem Header="Открыть" Click="OpenProject_Click"/>
+                                                <MenuItem Header="Остановить" Click="StopProject_Click"/>
+                                                <MenuItem Header="Завершить" Click="CloseProject_Click" />
+                                        </MenuItem>
+                                        <MenuItem Header="Открыть"/>
+                                        <MenuItem Header="Редактировать"/>
                                     </ContextMenu>
                                 </Border.ContextMenu>
                             </Border>

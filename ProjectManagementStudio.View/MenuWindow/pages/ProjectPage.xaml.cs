@@ -23,11 +23,27 @@ public partial class ProjectPage : IProjectPage
         _viewModel.LoadProjectsCommand.Execute(this);
     }
 
-    private void MenuItem_Click(object sender, RoutedEventArgs e)
+    private void StopProject_Click(object sender, RoutedEventArgs e)
     {
         if (sender is FrameworkElement element && element.DataContext is Project project)
         {
             _viewModel.StopProjectCommand.Execute(project);
+        }
+    }
+
+    private void CloseProject_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is FrameworkElement element && element.DataContext is Project project)
+        {
+            _viewModel.CloseProjectCommand.Execute(project);
+        }
+    }
+
+    private void OpenProject_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is FrameworkElement element && element.DataContext is Project project)
+        {
+            _viewModel.CloseProjectCommand.Execute(project);
         }
     }
 }

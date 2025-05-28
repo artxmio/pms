@@ -153,6 +153,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     public ICommand AddProjectCommand { get; }
     public ICommand StopProjectCommand { get; }
     public ICommand CloseProjectCommand { get; }
+    public ICommand OpenProjectCommand { get; }
     #endregion
 
     public MenuWindowViewModel(
@@ -187,16 +188,38 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
         LoadProjectsCommand = new RelayCommand(async o => { Projects = await _projectPageService.GetProjects(); });
         AddProjectCommand = new RelayCommand(o => _projectPageService.OpenAddProjectWindow());
+        
         StopProjectCommand = new RelayCommand(async o =>
         {
             if (o is Project project)
             {
                 await _projectPageService.ChangeStatus(project.Id, Model.Enums.ProjectStatus.Stoped);
-                OnPropertyChanged(nameof(Projects));
-                OnPropertyChanged(nameof(MyProjects));
+                _projects = await _projectPageService.GetProjects();
             }
+            OnPropertyChanged(nameof(Projects));
+            OnPropertyChanged(nameof(MyProjects));
         });
-
+        CloseProjectCommand = new RelayCommand(async o =>
+        {
+            if (o is Project project)
+            {
+                await _projectPageService.ChangeStatus(project.Id, Model.Enums.ProjectStatus.Closed);
+                _projects = await _projectPageService.GetProjects();
+            }
+            OnPropertyChanged(nameof(MyProjects));
+            OnPropertyChanged(nameof(Projects));
+        });
+        OpenProjectCommand = new RelayCommand (async o => 
+        {
+            if (o is Project project)
+            {
+                await _projectPageService.ChangeStatus(project.Id, Model.Enums.ProjectStatus.Opened);
+                _projects = await _projectPageService.GetProjects();
+            }
+            OnPropertyChanged(nameof(MyProjects));
+            OnPropertyChanged(nameof(Projects));
+        });
+        
         #endregion
         // Profile's functions //
         #region 
