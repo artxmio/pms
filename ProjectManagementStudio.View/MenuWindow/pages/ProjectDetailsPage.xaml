@@ -13,22 +13,47 @@
       Margin="50">
 
     <Grid>
-        
-        <TextBlock HorizontalAlignment="Left" 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   HorizontalAlignment="Left" 
                    Margin="30,30,0,0" 
                    TextWrapping="Wrap" 
                    d:Text="TextBlock" 
                    Text="{Binding SelectedProject.Title}"
                    FontSize="45"
                    VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" 
-                 Margin="30,105,0,0" 
-                 TextWrapping="Wrap"
-                 d:Text="TextBox" 
-                 Text="{Binding SelectedProject.Description}"
-                 VerticalAlignment="Top" 
-                 FontSize="35"
-                 Width="735" Height="190"/>
+
+        <TextBlock Grid.Row="1"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   Grid.RowSpan="1"
+                   HorizontalAlignment="Left" 
+                   Margin="30,0,0,0" 
+                   TextWrapping="Wrap"
+                   d:Text="TextBox" 
+                   Text="{Binding SelectedProject.Description}"
+                   VerticalAlignment="Top" 
+                   FontSize="35"
+                   Width="735" Height="145"/>
+
+        <ListBox x:Name="SprintList"
+                 Grid.Row="2"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="2">
+            
+        </ListBox>
 
     </Grid>
 </Page>

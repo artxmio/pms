@@ -17,4 +17,5 @@ public interface IAPIClient
     Task<ObservableCollection<Project>> GetProjects(int userId);
     Task AddProject(Project project, int userId);
     Task ChangeProjectStatus(int projectId, ProjectStatus status);
+    Task<ObservableCollection<Sprint>> GetSprintsByProjectID(int projectId);
 }

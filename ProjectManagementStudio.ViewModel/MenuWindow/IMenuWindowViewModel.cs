@@ -30,4 +30,6 @@ public interface IMenuWindowViewModel : IWindowViewModel
     public ICommand StopProjectCommand { get; }
     public ICommand CloseProjectCommand { get; }
     public ICommand OpenProjectCommand { get; }
+
+    public ICommand LoadSprintsCommand { get; }
 }

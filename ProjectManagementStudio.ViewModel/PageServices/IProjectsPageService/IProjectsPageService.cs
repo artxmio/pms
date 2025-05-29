@@ -10,4 +10,6 @@ public interface IProjectsPageService
     Task<ObservableCollection<Project>> GetProjects();
     void OpenAddProjectWindow();
     Task ChangeStatus(int projectId, ProjectStatus projectStatus);
+
+    Task<ObservableCollection<Sprint>> GetSprints(int projectId);
 }

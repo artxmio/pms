@@ -165,6 +165,10 @@ public class APIClient : IAPIClient
             ChangeUserParamsResponseModel deserializeResponse = JsonConvert.DeserializeObject<ChangeUserParamsResponseModel>(await response.Content.ReadAsStringAsync())
                 ?? throw new InvalidOperationException("Deserialized response can't be null");
         }
+        catch (HttpRequestException ex)
+        {
+            MessageBox.Show($"Возникла ошибка: сервер отключён или недоступен ({ex.Message})", "Ошибка");
+        }
         catch (Exception ex)
         {
             MessageBox.Show(ex.Message);
@@ -256,6 +260,36 @@ public class APIClient : IAPIClient
         }
         catch (HttpRequestException ex)
         {
+            MessageBox.Show($"Возникла ошибка: сервер отключён или недоступен ({ex.Message})", "Ошибка");
         }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+    }
+
+    public async Task<ObservableCollection<Sprint>> GetSprintsByProjectID(int projectId)
+    {
+        _urlService.URLEndpoint = nameof(GetSprintsByProjectID);
+        try
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{_client.BaseAddress}{_urlService.URLEndpoint}?project_id={projectId}");
+
+            var response = await _client.SendAsync(request);
+
+            var deserializeResponse = JsonConvert.DeserializeObject<GetSprintsResponse>(await response.Content.ReadAsStringAsync()) 
+                ?? throw new InvalidOperationException("Deserialized response can't be null"); ;
+
+            return [.. deserializeResponse.Data];
+        }
+        catch (HttpRequestException ex)
+        {
+            MessageBox.Show($"Возникла ошибка: сервер отключён или недоступен ({ex.Message})", "Ошибка");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        throw new InvalidOperationException();
     }
 }
