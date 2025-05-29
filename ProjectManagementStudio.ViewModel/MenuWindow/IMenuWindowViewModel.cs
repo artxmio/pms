@@ -32,4 +32,5 @@ public interface IMenuWindowViewModel : IWindowViewModel
     public ICommand OpenProjectCommand { get; }
 
     public ICommand LoadSprintsCommand { get; }
+    public ICommand LoadProjectUsersCommand { get; }
 }

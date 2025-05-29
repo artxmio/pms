@@ -29,6 +29,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     private IPage _activePage;
     private ObservableCollection<Project> _projects = [];
     private ObservableCollection<Sprint> _sprints = [];
+    private ObservableCollection<User> _users = [];
     private readonly ISettingsPageService _settingPageService;
     private readonly IProjectsPageService _projectPageService;
 
@@ -128,6 +129,15 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
+    public ObservableCollection<User> Users
+    {
+        get => _users;
+        set
+        {
+            _users = value;
+            OnPropertyChanged();
+        }
+    }
 
     public ObservableCollection<Project> MyProjects
     {
@@ -171,6 +181,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     public ICommand OpenProjectCommand { get; }
 
     public ICommand LoadSprintsCommand { get; }
+    public ICommand LoadProjectUsersCommand { get; }
 
     #endregion
 
@@ -243,6 +254,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         });
 
         LoadSprintsCommand = new RelayCommand(async o => Sprints = await _projectPageService.GetSprints(_projectPageService.SelectedProject.Id));
+        LoadProjectUsersCommand = new RelayCommand(async o => Users = await _projectPageService.GetProjectUsers(_projectPageService.SelectedProject.Id));
         #endregion
         // Profile's functions //
         #region 

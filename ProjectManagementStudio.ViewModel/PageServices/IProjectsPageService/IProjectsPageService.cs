@@ -12,4 +12,5 @@ public interface IProjectsPageService
     Task ChangeStatus(int projectId, ProjectStatus projectStatus);
 
     Task<ObservableCollection<Sprint>> GetSprints(int projectId);
+    Task<ObservableCollection<User>> GetProjectUsers(int projectId);
 }
