@@ -51,5 +51,10 @@
     <v:String x:Key="ChangeEmailDialogTitle">Изменить почту</v:String>
     <v:String x:Key="NewEmail">Введите новую почту</v:String>
 
+    <!-- Add project Dialog -->
+    <v:String x:Key="NewProjectDialogTitle">Новый проект</v:String>
+    <v:String x:Key="Title">Название:</v:String>
+    <v:String x:Key="Description">Описание:</v:String>
+    <v:String x:Key="AddProject">Создать</v:String>
 
 </ResourceDictionary>

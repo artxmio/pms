@@ -52,5 +52,11 @@
     <!-- Change Email Dialog -->
     <v:String x:Key="ChangeEmailDialogTitle">Change email</v:String>
     <v:String x:Key="NewEmail">Enter a new email</v:String>
+    
+    <!-- Add project Dialog -->
+    <v:String x:Key="NewProjectDialogTitle">New project</v:String>
+    <v:String x:Key="Title">Title:</v:String>
+    <v:String x:Key="Description">Description:</v:String>
+    <v:String x:Key="AddProject">Add</v:String>
 
 </ResourceDictionary>

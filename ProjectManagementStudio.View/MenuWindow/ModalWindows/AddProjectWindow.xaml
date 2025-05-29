@@ -7,50 +7,136 @@
         xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.AddProject;assembly=ProjectManagementStudio.ViewModel"
         xmlns:validations="clr-namespace:ProjectManagementStudio.ViewModel.ValidationsRules;assembly=ProjectManagementStudio.ViewModel"
         mc:Ignorable="d"
-        Title="AddProjectWindow" Height="320" Width="320"
+        Title="AddProjectWindow" Width="743" Height="374"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen"
         
         d:DataContext="{d:DesignInstance vm:AddProjectWindowViewModel}">
+
     <Grid>
-        <TextBlock HorizontalAlignment="Left" 
-                   Margin="20,24,0,0" TextWrapping="Wrap" Text="Title" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" 
-                 Margin="20,46,0,0" 
-                 TextWrapping="Wrap"
-                 VerticalAlignment="Top" 
-                 Width="120">
-            <TextBox.Text>
-                <Binding Path="Title" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
-                    <Binding.ValidationRules>
-                        <validations:TitleValidationRules ValidationStep="ConvertedProposedValue"/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <TextBlock HorizontalAlignment="Left" 
-                   Margin="20,99,0,0" TextWrapping="Wrap" Text="Descrition" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" 
-                 Margin="20,124,0,0" 
-                 TextWrapping="Wrap"
-                 VerticalAlignment="Top" 
-                 Width="120">
-            <TextBox.Text>
-                <Binding Path="Description" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
-                    <Binding.ValidationRules>
-                        <validations:DescriptionValidationRules ValidationStep="ConvertedProposedValue"/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <Button Content="Добавить" 
-                HorizontalAlignment="Left" 
-                Margin="20,174,0,0" 
-                VerticalAlignment="Top"
-                Command="{Binding AddProjectCommand}"/>
-        <Button Content="Отмена" 
-                HorizontalAlignment="Left" 
-                Margin="85,174,0,0" 
-                VerticalAlignment="Top"
-                Command="{Binding CloseWindowCommand}"/>
+        <Border Width="733" Height="364" CornerRadius="25" Background="#2C1B47">
+            <Border.Effect>
+                <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="0" Opacity="0.5"/>
+            </Border.Effect>
+
+            <Grid>
+                <TextBlock d:Text="New project" 
+                Margin="0,16,0,0" Text="{DynamicResource NewProjectDialogTitle}"
+                VerticalAlignment="Top" HorizontalAlignment="Center"
+                FontFamily="Outfit" FontSize="40"
+                Foreground="#FFFFFF" FontWeight="Normal"/>
+
+                <TextBlock FontFamily="Outfit" FontSize="30"
+                VerticalAlignment="Top" HorizontalAlignment="Left"
+                Foreground="#FFFFFF" FontWeight="Normal"
+                Text="{DynamicResource Title}"
+                d:Text="Title:"
+                Margin="45,65,0,0"/>
+
+                <Border Width="670" Height="47" CornerRadius="10" Background="#724D9D"
+                    VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,104,0,0">
+                    <TextBox
+                        VerticalContentAlignment="Center"
+                        Width="660" Height="42"
+                        Background="#724D9D"
+                        BorderBrush="Transparent"
+                        FontFamily="Outfit"
+                        FontSize="14"
+                        Foreground="#FFFFFF">
+                        <TextBox.Text>
+                            <Binding Path="NewLogin" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                                <Binding.ValidationRules>
+                                    <validations:LoginValidationRules ValidationStep="ConvertedProposedValue"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </Border>
+
+                <TextBlock FontFamily="Outfit" FontSize="30"
+                    VerticalAlignment="Top" HorizontalAlignment="Left"
+                    Foreground="#FFFFFF" FontWeight="Normal"
+                    Text="{DynamicResource Description}"
+                    d:Text="Description:"
+                    Margin="45,163,0,0"/>
+
+                <Border Width="670" Height="47" CornerRadius="10" Background="#724D9D"
+                    VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,202,0,0">
+                    <TextBox
+                        VerticalContentAlignment="Center"
+                        Width="660" Height="42"
+                        Background="#724D9D"
+                        BorderBrush="Transparent"
+                        FontFamily="Outfit"
+                        FontSize="14"
+                        Foreground="#FFFFFF">
+                        <TextBox.Text>
+                            <Binding Path="NewLogin" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                                <Binding.ValidationRules>
+                                    <validations:LoginValidationRules ValidationStep="ConvertedProposedValue"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </Border>
+
+                <Button 
+                    Command="{Binding AddProjectCommand}"
+                    HorizontalAlignment="Left"
+                    Margin="160,0,0,25"
+                    VerticalAlignment="Bottom"
+                    FontFamily="outfit"
+                    Foreground="#FFFFFF"
+                    FontSize="25"
+                    FontWeight="Normal"
+                    Width="191" Height="39">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border x:Name="border"  Width="191" Height="39"
+                                Background="#724D9D" CornerRadius="10">
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                    VerticalAlignment="Center" 
+                                    d:Content="Add" Content="{DynamicResource AddProject}"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="#482f66"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button 
+                    Command="{Binding CloseWindowCommand}"
+                    HorizontalAlignment="Right"
+                    Margin="0,0,160,25"
+                    VerticalAlignment="Bottom"
+                    FontFamily="outfit"
+                    Foreground="#FFFFFF"
+                    FontSize="25"
+                    FontWeight="Normal"
+                    Width="191" Height="39">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border x:Name="border"  Width="191" Height="39"
+                                Background="#724D9D" CornerRadius="10">
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                    VerticalAlignment="Center" 
+                                    d:Content="Cancel" Content="{DynamicResource Cancel}"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="#482f66"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+        </Border>
 
     </Grid>
 </Window>

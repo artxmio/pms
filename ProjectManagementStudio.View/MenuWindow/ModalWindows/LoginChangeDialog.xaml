@@ -57,7 +57,7 @@
                 Text="{DynamicResource NewLogin}"
                 d:Text="Enter a new login"
                 Margin="73,50,0,0"
-                Width="153" Height="25"
+                Width="200" Height="25"
                 />
 
             <Border Width="410" Height="30" CornerRadius="10" Background="#724D9D"
@@ -82,7 +82,7 @@
 
             <TextBlock d:Text="Enter your password"
                 Text="{DynamicResource Password}"
-                Width="183" Height="25"
+                Width="200" Height="25"
                 FontFamily="Outfit" FontSize="20"
                 Foreground="#FFFFFF" FontWeight="Normal"
                 HorizontalAlignment="Left"
