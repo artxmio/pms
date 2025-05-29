@@ -16,6 +16,4 @@ public partial class PasswordChangeDialog : IPasswordChangeDialog
     {
         newPassword.IsPasswordVisible = !newPassword.IsPasswordVisible;
     }
-
-
 }

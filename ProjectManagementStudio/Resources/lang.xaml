@@ -30,11 +30,27 @@
     <v:String x:Key="ChangePassword">Change password</v:String>
     <v:String x:Key="ChangeEmail">Change email</v:String>
     <v:String x:Key="ChangeAboutText">Change info</v:String>
+    
+    <!-- Common -->
+    <v:String x:Key="Apply">Apply</v:String>
+    <v:String x:Key="Cancel">Cancel</v:String>
+    <v:String x:Key="Password">Enter your password</v:String>
 
     <!-- Settings Page -->
     <v:String x:Key="SettingsTitle">Settings</v:String>
     <v:String x:Key="Size">Size</v:String>
-    <v:String x:Key="Apply">Apply</v:String>
-    <v:String x:Key="Cancel">Cancel</v:String>
-    
+
+    <!-- Change Password Dialog -->
+    <v:String x:Key="ChangePasswordDialogTitle">Change password</v:String>
+    <v:String x:Key="OldPassword">Enter old password</v:String>
+    <v:String x:Key="NewPassword">Enter new password</v:String>
+
+    <!-- Change Login Dialog -->
+    <v:String x:Key="ChangeLoginDialogTitle">Change login</v:String>
+    <v:String x:Key="NewLogin">Enter a new login</v:String>
+
+    <!-- Change Email Dialog -->
+    <v:String x:Key="ChangeEmailDialogTitle">Change email</v:String>
+    <v:String x:Key="NewEmail">Enter a new email</v:String>
+
 </ResourceDictionary>

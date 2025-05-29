@@ -29,10 +29,27 @@
     <v:String x:Key="ChangeEmail">Изменить почту</v:String>
     <v:String x:Key="ChangeAboutText">Изменить</v:String>
 
+    <!-- Common -->
+    <v:String x:Key="Apply">Применить</v:String>
+    <v:String x:Key="Cancel">Отменить</v:String>
+    <v:String x:Key="Password">Введите ваш пароль</v:String>
+
     <!-- Settings Page -->
     <v:String x:Key="SettingsTitle">Настройки</v:String>
     <v:String x:Key="Size">Размер окна</v:String>
-    <v:String x:Key="Apply">Применить</v:String>
-    <v:String x:Key="Cancel">Отменить</v:String>
-    
+
+    <!-- Change Password Dialog -->
+    <v:String x:Key="ChangePasswordDialogTitle">Изменить пароль</v:String>
+    <v:String x:Key="OldPassword">Введите старый пароль</v:String>
+    <v:String x:Key="NewPassword">Введите новый пароль</v:String>
+
+    <!-- Change Login Dialog -->
+    <v:String x:Key="ChangeLoginDialogTitle">Изменить логин</v:String>
+    <v:String x:Key="NewLogin">Введите новый логин</v:String>
+
+    <!-- Change Email Dialog -->
+    <v:String x:Key="ChangeEmailDialogTitle">Изменить почту</v:String>
+    <v:String x:Key="NewEmail">Введите новую почту</v:String>
+
+
 </ResourceDictionary>

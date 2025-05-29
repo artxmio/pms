@@ -45,7 +45,8 @@
         
         <Grid>
 
-            <TextBlock Text="Change login" Margin="0,9,0,0"
+            <TextBlock d:Text="Change login" 
+                Margin="0,9,0,0" Text="{DynamicResource ChangeLoginDialogTitle}"
                 VerticalAlignment="Top" HorizontalAlignment="Center"
                 FontFamily="Outfit" FontSize="35"
                 Foreground="#FFFFFF" FontWeight="Normal"/>
@@ -53,7 +54,8 @@
             <TextBlock FontFamily="Outfit" FontSize="20"
                 VerticalAlignment="Top" HorizontalAlignment="Left"
                 Foreground="#FFFFFF" FontWeight="Normal"
-                Text="Enter a new login"
+                Text="{DynamicResource NewLogin}"
+                d:Text="Enter a new login"
                 Margin="73,50,0,0"
                 Width="153" Height="25"
                 />
@@ -78,7 +80,8 @@
                 </TextBox>
             </Border>
 
-            <TextBlock Text="Enter your password"
+            <TextBlock d:Text="Enter your password"
+                Text="{DynamicResource Password}"
                 Width="183" Height="25"
                 FontFamily="Outfit" FontSize="20"
                 Foreground="#FFFFFF" FontWeight="Normal"
@@ -162,7 +165,7 @@
                             Background="#724D9D" CornerRadius="10">
                             <ContentPresenter HorizontalAlignment="Center" 
                                 VerticalAlignment="Center" 
-                                Content="Apply"/>
+                                d:Content="Apply" Content="{DynamicResource Apply}"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
@@ -189,7 +192,7 @@
                             Background="#724D9D" CornerRadius="10">
                             <ContentPresenter HorizontalAlignment="Center" 
                                 VerticalAlignment="Center" 
-                                Content="Cancel"/>
+                                d:Content="Cancel" Content="{DynamicResource Cancel}"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">

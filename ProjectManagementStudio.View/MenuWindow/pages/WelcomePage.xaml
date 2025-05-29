@@ -8,16 +8,17 @@
       d:DesignHeight="813" d:DesignWidth="1500"
       Title="WelcomePage">
 
-    <Grid>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+    <Grid Height="813" Width="1500">
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top"
+            Margin="413,193,0,0"
             Foreground="#FFFFFF" FontSize="75"
             FontFamily="Outfit" FontWeight="Normal"
             Width="573" Height="Auto"
             TextWrapping="Wrap"
             TextAlignment="Center"
             Opacity="0.5"
+            d:Text="Welcome to Project Management Studio!"
             Text="{DynamicResource Welcome}">
-            
         </TextBlock>
     </Grid>
 </Page>

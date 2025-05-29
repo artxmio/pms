@@ -53,7 +53,7 @@
     </Window.Background>
 
     <Grid>
-        <Frame Content="{Binding ActivePage}" NavigationUIVisibility="Hidden" Margin="100,85,0,0"/>
+        <Frame Content="{Binding ActivePage}" NavigationUIVisibility="Hidden" Margin="100,87,0,0" />
 
         <!-- Верхнее меню -->
         <Grid  x:Name="header" MouseLeftButtonDown="DragWindow" Height="87" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="100,0,0,0">
@@ -99,33 +99,7 @@
                 </Image>
             </Button>
 
-            <!--Кнопка перехода в оконный режим-->
-            <Button
-                Command="{Binding RestoreCommand}"
-                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
-                Grid.Column="2"
-                Width="30" Height="30" 
-                Background="Transparent"
-                BorderBrush="Transparent"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Center"
-                Margin="0,0,65,0"
-                Style="{StaticResource ResourceKey=CloseButton}">
-                <Image x:Name="windowModeSwitch" Source="..\Source\window_restore.png">
-                    <Image.Style>
-                        <Style TargetType="Image">
-                            <Setter Property="Opacity" Value="0.5"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Opacity" Value="1"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Image.Style>
-                </Image>
-            </Button>
-
-            <!--Кнопка перехода в оконный режим-->
+            <!--Кнопка сворачивания окна-->
             <Button 
                 Command="{Binding RollCommand}"
                 CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
@@ -135,7 +109,7 @@
                 BorderBrush="Transparent"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center"
-                Margin="0,0,105,0"
+                Margin="0,0,65,0"
                 Style="{StaticResource ResourceKey=CloseButton}">
                 <Image x:Name="rollUp_window" Source="..\Source\roll_window.png">
                     <Image.Style>
