@@ -292,4 +292,37 @@ public class APIClient : IAPIClient
         }
         throw new InvalidOperationException();
     }
+
+    public async Task<ObservableCollection<User>> GetProjectUsers(int projectId)
+    {
+        _urlService.URLEndpoint = nameof(GetProjectUsers);
+
+        try
+        {
+            var json = JsonConvert.SerializeObject(new GetProjectUsersRequest(projectId));
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var request = new HttpRequestMessage(HttpMethod.Post, $"{_client.BaseAddress}{_urlService.URLEndpoint}")
+            {
+                Content = content
+            };
+            var response = await _client.SendAsync(request);
+
+            Debug.WriteLine(response.StatusCode);
+
+            var deserializeResponse = JsonConvert.DeserializeObject<GetProjectUsersResponse>(await response.Content.ReadAsStringAsync())
+                ?? throw new InvalidOperationException("Deserialized response can't be null"); ;
+
+            return [.. deserializeResponse.Data];
+        }
+        catch (HttpRequestException ex)
+        {
+            MessageBox.Show($"Возникла ошибка: сервер отключён или недоступен ({ex.Message})", "Ошибка");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        throw new InvalidOperationException();
+    }
 }

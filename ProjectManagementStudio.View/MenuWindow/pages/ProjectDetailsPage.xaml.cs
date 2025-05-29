@@ -18,5 +18,6 @@ public partial class ProjectDetailsPage : IProjectDetailsPage
     private void ProjectDetailsPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
     {
         _viewModel.LoadSprintsCommand.Execute(null);
+        _viewModel.LoadProjectUsersCommand.Execute(null);
     }
 }

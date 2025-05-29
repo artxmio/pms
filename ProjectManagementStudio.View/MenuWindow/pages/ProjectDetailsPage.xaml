@@ -5,12 +5,17 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectManagementStudio.View.MenuWindow.pages"
       xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MenuWindow;assembly=ProjectManagementStudio.ViewModel"
+      xmlns:converters="clr-namespace:ProjectManagementStudio.View.Converters"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ProjectDetailsPage"
       Background="White"
       d:DataContext="{d:DesignInstance vm:MenuWindowViewModel}"
       Margin="50">
+
+    <Page.Resources>
+        <converters:SprintStatusConverter x:Key="SprintStatusConverter"/>
+    </Page.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -46,14 +51,54 @@
                    Text="{Binding SelectedProject.Description}"
                    VerticalAlignment="Top" 
                    FontSize="35"
-                   Width="735" Height="145"/>
+                   Width="735" Height="100"/>
 
-        <ListBox x:Name="SprintList"
-                 Grid.Row="2"
-                 Grid.Column="0"
-                 Grid.ColumnSpan="2">
-            
-        </ListBox>
+        <GroupBox Header="Спринты" 
+                  Grid.Row="2"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="1"
+                  Margin="10">
+            <ListBox x:Name="SprintList"
+                 
+                 ItemsSource="{Binding Sprints}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="1" CornerRadius="5" Padding="10" Margin="5"
+                    BorderBrush="Gray" Background="LightGray">
+                            <StackPanel>
+                                <TextBlock Text="{Binding StartDate, StringFormat='Дата начала: {0:dd.MM.yyyy}'}"/>
+                                <TextBlock Text="{Binding EndDate, StringFormat='Дата окончания: {0:dd.MM.yyyy}'}"/>
+                                <TextBlock Text="{Binding Status, Converter={StaticResource SprintStatusConverter}}" Foreground="DarkGreen"/>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </GroupBox>
+
+        <GroupBox Header="Участники" 
+                  Grid.Row="2"
+                  Grid.Column="1"
+                  Grid.ColumnSpan="1"
+                  Margin="10">
+            <ListBox x:Name="UserList"  
+                     ItemsSource="{Binding Users}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="1" CornerRadius="5" Padding="10" Margin="5"
+                                BorderBrush="Gray" Background="LightGray"
+                                Height="75"
+                                Width="250">
+                            <StackPanel>
+                                <TextBlock Text="{Binding UserName}" FontSize="14" FontWeight="SemiBold"/>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+        </GroupBox>
+
 
     </Grid>
 </Page>
