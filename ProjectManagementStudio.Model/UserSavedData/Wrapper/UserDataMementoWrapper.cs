@@ -107,14 +107,14 @@ internal class UserDataMementoWrapper :
 
         if (!File.Exists(_userDataFilePath))
         {
-            File.Create(_userDataFilePath);
             return;
         }
 
         string jsonString = File.ReadAllText(_userDataFilePath);
 
-        _userDataMemento = JsonConvert.DeserializeObject<UserDataMemento>(jsonString)
-            ?? throw new InvalidOperationException("Deserialized memento can't be null");
+        if (jsonString.Length != 0)
+            _userDataMemento = JsonConvert.DeserializeObject<UserDataMemento>(jsonString)
+                ?? throw new InvalidOperationException("Deserialized memento can't be null");
     }
 
     private void EnsureInitialized()
@@ -130,6 +130,8 @@ internal class UserDataMementoWrapper :
         try
         {
             EnsureInitialized();
+
+            File.Create(_userDataFilePath);
 
             var json = JsonConvert.SerializeObject(_userDataMemento)
                 ?? throw new InvalidOperationException("Deserialized memento can't be null");

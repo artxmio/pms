@@ -11,7 +11,8 @@
     ResizeMode="NoResize"
     WindowStyle="None"
     WindowState="Maximized"  
-    d:DataContext="{d:DesignInstance vm:MainWindowViewModel}">
+    d:DataContext="{d:DesignInstance vm:MainWindowViewModel}"
+    Style="{DynamicResource MainBackground}">
 
     <Window.Resources>
 
@@ -40,9 +41,6 @@
 
     </Window.Resources>
 
-    <Window.Background>
-        <ImageBrush ImageSource="..\Source\backgroundImage.jpg"/>
-    </Window.Background>
 
     <Grid>
         <!-- // Фрейм для отображения страниц регистрации и авторизации //-->

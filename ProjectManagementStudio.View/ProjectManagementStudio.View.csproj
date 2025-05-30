@@ -45,6 +45,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Page Remove="Themes\DefaultTheme.xaml" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Resource Include="Source\project.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
@@ -138,6 +142,9 @@
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
 		<Resource Include="Source\window_restore.png" />
+		<Resource Include="Themes\DefaultTheme.xaml">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
 	</ItemGroup>
 
 </Project>

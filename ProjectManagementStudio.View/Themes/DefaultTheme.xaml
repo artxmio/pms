@@ -1,0 +1,25 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Registration/Login Background -->
+    <Style x:Key="MainBackground" TargetType="Window">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="..\Source\backgroundImage.jpg" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Registrarion-->
+    <SolidColorBrush x:Key="ButtonBackground" Color="#2C1B45"/>
+    <SolidColorBrush x:Key="ButtonHover" Color="#3B2B57"/>
+    <SolidColorBrush x:Key="ButtonDisabled" Color="#1A1230"/>
+    <SolidColorBrush x:Key="ButtonDisabledText" Color="#666666"/>
+    <SolidColorBrush x:Key="RegistrationField" Color="#80DBCBE8"/>
+
+    <!-- Login -->
+    <SolidColorBrush x:Key="LoginButtonBackground" Color="#2C1B45"/>
+    <SolidColorBrush x:Key="LoginButtonHover" Color="#3B2B57"/>
+    <SolidColorBrush x:Key="LoginButtonDisabled" Color="#1A1230"/>
+    <SolidColorBrush x:Key="LoginButtonDisabledText" Color="#666666"/>
+    <SolidColorBrush x:Key="LoginField" Color="#80DBCBE8"/>
+</ResourceDictionary>

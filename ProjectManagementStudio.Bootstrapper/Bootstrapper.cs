@@ -68,6 +68,11 @@ public class Bootstrapper : IDisposable
 
         window.DataContext = viewModel;
 
+        var styles = new ResourceDictionary()
+        {
+            Source = new Uri("pack://application:,,,/ProjectManagementStudio.View;component/Themes/DefaultTheme.xaml", UriKind.RelativeOrAbsolute)
+        };
+        Application.Current.Resources.MergedDictionaries.Add(styles);
         return window;
     }
 
