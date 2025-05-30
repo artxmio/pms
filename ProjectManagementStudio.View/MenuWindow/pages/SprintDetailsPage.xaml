@@ -15,19 +15,27 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
+        <Button Content="Назад" 
+                HorizontalAlignment="Left" 
+                Margin="10,0,0,0" 
+                Grid.Row="0" 
+                VerticalAlignment="Center"
+                Command="{Binding NavigateToProjectDetailsPage}" Height="40" Width="45"/>
+
         <TextBlock Text="{Binding SelectedSprint.StartDate}"
                    FontSize="40"
-                   Grid.Row="0"/>
+                   Grid.Row="1"/>
         <TextBlock Text="{Binding SelectedSprint.EndDate}"
                    FontSize="40"
-                   Grid.Row="1"/>
+                   Grid.Row="2"/>
 
         <ListBox x:Name="TaskList"
                  ItemsSource="{Binding Tasks}"
-                 Grid.Row="2">
+                 Grid.Row="3">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border BorderThickness="1" CornerRadius="5" Padding="10" Margin="5"

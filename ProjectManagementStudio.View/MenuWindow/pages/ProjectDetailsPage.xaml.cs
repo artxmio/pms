@@ -40,8 +40,6 @@ public partial class ProjectDetailsPage : IProjectDetailsPage
     private void ClosePopup(object sender, RoutedEventArgs e)
     {
         ValidateDate(DatePicker);
-
-        
     }
 
     private void ValidateDate(DatePicker picker)
