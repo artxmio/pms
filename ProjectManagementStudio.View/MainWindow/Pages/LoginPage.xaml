@@ -42,8 +42,9 @@
             Width="auto"
             Height="500" 
             HorizontalAlignment="Stretch" 
-            VerticalAlignment="Center" 
-            Background="#80DBCBE8">
+            VerticalAlignment="Center"
+            d:Background="#80DBCBE8"
+            Background="{DynamicResource Field}">
 
             <StackPanel>
                 <Grid>
@@ -179,7 +180,8 @@
                                 Grid.Column="1"
                                 Content="{DynamicResource RememberMe}"
                                 Margin="0,30,0,0"
-                                BorderBrush="#2C1B45"
+                                d:BorderBrush="#2C1B45"
+                                BorderBrush="{DynamicResource RememberMeColor}"      
                                 FontFamily="Outfit"
                                 FontWeight="Normal"
                                 Foreground="White"
@@ -191,8 +193,7 @@
                         </Grid>
                     </StackPanel>
                         
-                    <!-- // Btn Continue // -->
-                    
+                    <!-- Btn Continue -->
                     <StackPanel Grid.Row="2">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -201,7 +202,8 @@
                                 <ColumnDefinition Width="8.55*"/>
                             </Grid.ColumnDefinitions>
                             
-                            <Button Background="#2C1B45"
+                            <Button d:Background="#2C1B45"
+                                Background="{DynamicResource ButtonBackground}"
                                 Grid.Column="1"
                                 FontWeight="Normal" 
                                 FontFamily="Outfit"
@@ -228,13 +230,13 @@
                                         <ControlTemplate.Triggers>
                                             <!-- Триггер для изменения цвета при наведении (если кнопка активна) -->
                                             <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter TargetName="buttonBorder" Property="Background" Value="#3B2B57"/>
+                                                <Setter TargetName="buttonBorder" Property="Background" Value="{DynamicResource ButtonHover}"/>
                                             </Trigger>
 
                                             <!-- Цвет для неактивного состояния кнопки -->
                                             <Trigger Property="IsEnabled" Value="False">
-                                                <Setter TargetName="buttonBorder" Property="Background" Value="#1A1230"/>
-                                                <Setter Property="Foreground" Value="#666666" />
+                                                <Setter TargetName="buttonBorder" Property="Background" Value="{DynamicResource ButtonDisabled}"/>
+                                                <Setter Property="Foreground" Value="{DynamicResource ButtonDisabledText}" />
                                             </Trigger>
                                         </ControlTemplate.Triggers>
                                     </ControlTemplate>

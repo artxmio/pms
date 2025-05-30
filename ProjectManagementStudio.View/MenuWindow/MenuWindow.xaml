@@ -21,6 +21,7 @@
         WindowStyle="None"
         WindowStartupLocation="Manual"
         RenderOptions.BitmapScalingMode="HighQuality"
+        Style="{DynamicResource MenuBackground}"
         d:DataContext="{d:DesignInstance vm:MenuWindowViewModel}"
         d:Width="1920"
         d:Height="1080">
@@ -45,24 +46,31 @@
         </Style>
     </Window.Resources>
 
-    <Window.Background>
-        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-            <GradientStop Color="#221B37" Offset="0" />
-            <GradientStop Color="#352469" Offset="1" />
-        </LinearGradientBrush>
-    </Window.Background>
+    <d:Window.Background>
+        <d:LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+            <GradientStop d:Color="#221B37" Offset="0" />
+            <GradientStop d:Color="#352469" Offset="1" />
+        </d:LinearGradientBrush>
+    </d:Window.Background>
 
     <Grid>
         <Frame Content="{Binding ActivePage}" NavigationUIVisibility="Hidden" Margin="100,87,0,0" />
 
         <!-- Верхнее меню -->
-        <Grid  x:Name="header" MouseLeftButtonDown="DragWindow" Height="87" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="100,0,0,0">
-            <Grid.Background>
-                <LinearGradientBrush StartPoint="0,5" EndPoint="1,0">
-                    <GradientStop Color="#2C1B47" Offset="0.2" />
-                    <GradientStop Color="#3C2463" Offset="1" />
-                </LinearGradientBrush>
-            </Grid.Background>
+        <Grid x:Name="header"
+             MouseLeftButtonDown="DragWindow"
+             Height="87"
+             VerticalAlignment="Top"
+             HorizontalAlignment="Stretch"
+             Margin="100,0,0,0"
+             Background="{DynamicResource HeaderBackgroundBrush}">
+
+            <d:Grid.Background>
+                <d:LinearGradientBrush StartPoint="0,5" EndPoint="1,0">
+                    <GradientStop d:Color="#2C1B47" Offset="0.2" />
+                    <GradientStop d:Color="#3C2463" Offset="1" />
+                </d:LinearGradientBrush>
+            </d:Grid.Background>
 
             <!-- Определение столбцов и строк для верхнего меню -->
             <Grid.ColumnDefinitions>
@@ -128,7 +136,7 @@
         </Grid>
 
         <!-- Боковое меню -->
-        <Grid Background="#2C1B47" Width="100" HorizontalAlignment="Left" VerticalAlignment="Stretch">
+        <Grid Background="{DynamicResource LeftMenu}" d:Background="#2C1B47" Width="100" HorizontalAlignment="Left" VerticalAlignment="Stretch">
             <Button
                 Command="{Binding NavigateToWelcomePage}"
                 BorderBrush="Transparent"
@@ -275,7 +283,7 @@
                 <Image Margin="0,0,0,0" Height="50" Width="50" Source="..\Source\settings.png">
                     <Image.Style>
                         <Style TargetType="Image">
-                            <Setter Property="Opacity" Value="0.2"/>
+                            <Setter Property="Opacity" Value="0.7"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="Opacity" Value="1"/>

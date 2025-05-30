@@ -61,14 +61,15 @@
     </Page.Resources>
 
     <Grid>
-        <Border Width="1214" Height="750" Background="#724D9D" CornerRadius="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="125,20,0,0">
+        <Border Width="1214" Height="750" d:Background="#724D9D" Background="{DynamicResource ProfileBackground}" CornerRadius="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="125,20,0,0">
             <Border.Effect>
                 <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
             </Border.Effect>
             <Grid>
                 <!-- Данные профиля -->
                 <Border CornerRadius="25"
-                    Background="#2C1B47"
+                    d:Background="#2C1B47"
+                    Background="{DynamicResource ProfileItems}"
                     HorizontalAlignment="Left" 
                     VerticalAlignment="Top" 
                     Width="733" Height="364" 
@@ -105,7 +106,8 @@
 
                 <!-- Опции -->
                 <Border CornerRadius="25"
-                    Background="#2C1B47"
+                    d:Background="#2C1B47"
+                    Background="{DynamicResource ProfileItems}"
                     HorizontalAlignment="Right" 
                     VerticalAlignment="Top" 
                     Width="300" Height="364" 
@@ -125,7 +127,8 @@
                         <Button Width="260" Height="39"
                             Command="{Binding ChangeLoginCommand}"
                             Margin="0,20,0,0"
-                            Background="#724D9D"
+                            d:Background="#724D9D"
+                            Background="{DynamicResource Buttons}"
                             Content="{DynamicResource ChangeLogin}"
                             FontFamily="outfit" FontSize="25"
                             FontWeight="Normal"
@@ -155,7 +158,8 @@
                             Command="{Binding ChangePasswordCommand}"
                             Width="260" Height="39"
                             Margin="0,20,0,0"
-                            Background="#724D9D"
+                            d:Background="#724D9D"
+                            Background="{DynamicResource Buttons}"
                             Content="{DynamicResource ChangePassword}"
                             FontFamily="outfit" FontSize="25"
                             FontWeight="Normal"
@@ -186,7 +190,8 @@
                             Command="{Binding ChangeEmailCommand}"
                             Width="260" Height="39"
                             Margin="0,20,0,0"
-                            Background="#724D9D"
+                            d:Background="#724D9D"
+                            Background="{DynamicResource Buttons}"
                             Content="{DynamicResource ChangeEmail}"
                             FontFamily="outfit" FontSize="25"
                             FontWeight="Normal"
@@ -216,7 +221,8 @@
 
                 <!-- Список проектов -->
                 <Border CornerRadius="25"
-                    Background="#2C1B47"
+                    d:Background="#2C1B47"
+                    Background="{DynamicResource ProfileItems}"
                     HorizontalAlignment="Left" 
                     VerticalAlignment="Bottom" 
                     Width="479" Height="249" 
@@ -256,7 +262,8 @@
 
                 <!-- About -->
                 <Border CornerRadius="25"
-                    Background="#2C1B47"
+                    d:Background="#2C1B47"
+                    Background="{DynamicResource ProfileItems}"
                     HorizontalAlignment="Left" 
                     VerticalAlignment="Bottom" 
                     Width="351" Height="249" 
@@ -300,7 +307,7 @@
                 </Border>
 
                 <!-- Выйти из аккаунта -->
-                <Button Command="{Binding LogOutCommand}" Background="#2C1B47" Width="175" Height="60" Margin="0,0,76,51"
+                <Button Command="{Binding LogOutCommand}" d:Background="#2C1B47" Background="{DynamicResource ProfileItems}" Width="175" Height="60" Margin="0,0,76,51"
                     HorizontalAlignment="Right" VerticalAlignment="Bottom">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">

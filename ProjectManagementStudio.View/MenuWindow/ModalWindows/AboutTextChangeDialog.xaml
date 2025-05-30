@@ -36,7 +36,7 @@
         </Style>
     </Window.Resources>
 
-    <Border Height="300" Width="550" CornerRadius="25" Background="#2C1B47">
+    <Border Height="300" Width="550" CornerRadius="25" d:Background="#2C1B47" Background="{DynamicResource MainDialogColor}">
         <Border.Effect>
             <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="0" Opacity="0.5"/>
         </Border.Effect>
