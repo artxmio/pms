@@ -157,10 +157,6 @@
                     </Border>
                 </Popup>
             </Grid>
-
-
         </GroupBox>
-
-
     </Grid>
 </Page>
