@@ -20,4 +20,5 @@ public interface IAPIClient
     Task<ObservableCollection<Sprint>> GetSprintsByProjectID(int projectId);
     Task<ObservableCollection<User>> GetProjectUsers(int projectId);
     Task<ObservableCollection<SprintTask>> GetTasks(int sprintId);
+    Task CreateSprint(int projectId, int duration);
 }

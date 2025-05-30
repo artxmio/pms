@@ -20,11 +20,9 @@
 
         <TextBlock Text="{Binding SelectedSprint.StartDate}"
                    FontSize="40"
-                   Foreground="White"
                    Grid.Row="0"/>
         <TextBlock Text="{Binding SelectedSprint.EndDate}"
                    FontSize="40"
-                   Foreground="White"
                    Grid.Row="1"/>
 
         <ListBox x:Name="TaskList"

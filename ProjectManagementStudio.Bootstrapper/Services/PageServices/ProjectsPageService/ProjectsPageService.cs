@@ -71,4 +71,9 @@ internal class ProjectsPageService : IProjectsPageService, IProjectsPageServiceI
     {
         await _client.ChangeProjectStatus(projectId, projectStatus);
     }
+
+    public async Task CreateSprint(int projectId, int duration)
+    {
+        await _client.CreateSprint(projectId, duration);
+    }
 }

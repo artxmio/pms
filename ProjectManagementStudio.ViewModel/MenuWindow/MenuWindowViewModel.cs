@@ -12,6 +12,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Input;
 
 namespace ProjectManagementStudio.ViewModel.MenuWindow;
@@ -31,6 +32,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     private ObservableCollection<Sprint> _sprints = [];
     private ObservableCollection<User> _users = [];
     private ObservableCollection<SprintTask> _tasks = [];
+    private DateTime _selectedSprintDate = DateTime.Now;
     private readonly ISettingsPageService _settingPageService;
     private readonly IProjectsPageService _projectPageService;
 
@@ -164,6 +166,16 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     {
         get => _projectPageService.SelectedSprint;
     }
+
+    public DateTime SelectedSprintDate
+    {
+        get => _selectedSprintDate;
+        set
+        {
+            _selectedSprintDate = value;
+            OnPropertyChanged();
+        }
+    }
     #endregion
 
     /* // Команды // */
@@ -200,6 +212,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     public ICommand LoadProjectUsersCommand { get; }
     public ICommand LoadSprintTasksCommand { get; }
 
+    public ICommand CreateSprintCommand { get; }
     #endregion
 
     public MenuWindowViewModel(
@@ -278,6 +291,20 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         LoadSprintsCommand = new RelayCommand(async o => Sprints = await _projectPageService.GetSprints(_projectPageService.SelectedProject.Id));
         LoadProjectUsersCommand = new RelayCommand(async o => Users = await _projectPageService.GetProjectUsers(_projectPageService.SelectedProject.Id));
         LoadSprintTasksCommand = new RelayCommand(async o => Tasks = await _projectPageService.GetSprintTasks(_projectPageService.SelectedSprint.Id));
+
+        CreateSprintCommand = new RelayCommand(async o =>
+        {
+            if (SelectedSprintDate < DateTime.Now)
+            {
+                return;
+            }
+
+            var sprintDuration = SelectedSprintDate.Day - DateTime.Now.Day;
+
+            await projectsPageService.CreateSprint(SelectedProject.Id, sprintDuration);
+            Sprints = await _projectPageService.GetSprints(SelectedProject.Id);
+            OnPropertyChanged(nameof(Sprints));
+        });
         #endregion
         // Profile's functions //
         #region 

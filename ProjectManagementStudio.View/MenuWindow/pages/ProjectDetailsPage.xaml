@@ -53,28 +53,71 @@
                    FontSize="35"
                    Width="735" Height="100"/>
 
-        <GroupBox Header="Спринты" 
-                  Grid.Row="2"
-                  Grid.Column="0"
-                  Grid.ColumnSpan="1"
+        <Grid Grid.Row="2"
+              Grid.Column="0"
+              Grid.ColumnSpan="1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <GroupBox Header="Спринты" 
+                  
                   Margin="10">
-            <ListBox x:Name="SprintList"
+                <ListBox x:Name="SprintList"
                  
                  ItemsSource="{Binding Sprints}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Border BorderThickness="1" CornerRadius="5" Padding="10" Margin="5"
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderThickness="1" CornerRadius="5" Padding="10" Margin="5"
                     BorderBrush="Gray" Background="LightGray">
-                            <StackPanel MouseLeftButtonDown="StackPanel_MouseLeftButtonDown">
-                                <TextBlock Text="{Binding StartDate, StringFormat='Дата начала: {0:dd.MM.yyyy}'}"/>
-                                <TextBlock Text="{Binding EndDate, StringFormat='Дата окончания: {0:dd.MM.yyyy}'}"/>
-                                <TextBlock Text="{Binding Status, Converter={StaticResource SprintStatusConverter}}" Foreground="DarkGreen"/>
-                            </StackPanel>
-                        </Border>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </GroupBox>
+                                <StackPanel MouseLeftButtonDown="StackPanel_MouseLeftButtonDown">
+                                    <TextBlock Text="{Binding StartDate, StringFormat='Дата начала: {0:dd.MM.yyyy}'}"/>
+                                    <TextBlock Text="{Binding EndDate, StringFormat='Дата окончания: {0:dd.MM.yyyy}'}"/>
+                                    <TextBlock Text="{Binding Status, Converter={StaticResource SprintStatusConverter}}" Foreground="DarkGreen"/>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </GroupBox>
+
+            <Grid Grid.Column="1">
+                <Button 
+                        VerticalAlignment="Top"
+                        Margin="0 10 0 0"
+                        Width="100"
+                        Height="30"
+                        Content="Добавить спринт"
+                        
+                        Click="ShowPopup"/>
+
+                <!-- Всплывающее окно -->
+                <Popup x:Name="SprintPopup" StaysOpen="False" Placement="Mouse">
+                    <Border BorderBrush="Black" BorderThickness="1" Background="White" Padding="10">
+                        <StackPanel>
+                            <TextBlock Text="Выберите дату спринта:" FontWeight="Bold"/>
+                            <DatePicker SelectedDate="{Binding SelectedSprintDate}" 
+                                        x:Name="DatePicker"/>
+                            <Button Content="OK" 
+                                    Command="{Binding CreateSprintCommand}"
+                                    Click="ClosePopup"
+                                    />
+                            
+                            <Popup x:Name="ErrorPopup" StaysOpen="False" Placement="Top">
+                                <Border BorderBrush="Red" BorderThickness="2" Background="White" Padding="5">
+                                    <TextBlock Text="Спринт не может заканчиваться в прошлом" Foreground="Red"/>
+                                </Border>
+                            </Popup>
+                        </StackPanel>
+                    </Border>
+                    
+                </Popup>
+            </Grid>
+
+        </Grid>
+
 
         <GroupBox Header="Участники" 
                   Grid.Row="2"
