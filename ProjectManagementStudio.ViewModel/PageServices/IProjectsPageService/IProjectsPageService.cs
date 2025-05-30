@@ -7,10 +7,13 @@ namespace ProjectManagementStudio.ViewModel.PageServices.IProjectsPageService;
 public interface IProjectsPageService
 {
     Project SelectedProject { get; set; }
+    Sprint SelectedSprint {  get; set; }
+    
     Task<ObservableCollection<Project>> GetProjects();
     void OpenAddProjectWindow();
     Task ChangeStatus(int projectId, ProjectStatus projectStatus);
 
     Task<ObservableCollection<Sprint>> GetSprints(int projectId);
     Task<ObservableCollection<User>> GetProjectUsers(int projectId);
+    Task<ObservableCollection<SprintTask>> GetSprintTasks(int sprintId);
 }

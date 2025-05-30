@@ -1,4 +1,6 @@
-﻿using ProjectManagementStudio.ViewModel.MenuWindow;
+﻿using ProjectManagementStudio.Model.ResponseModels;
+using ProjectManagementStudio.ViewModel.MenuWindow;
+using System.Windows;
 
 namespace ProjectManagementStudio.View.MenuWindow.pages;
 
@@ -19,5 +21,13 @@ public partial class ProjectDetailsPage : IProjectDetailsPage
     {
         _viewModel.LoadSprintsCommand.Execute(null);
         _viewModel.LoadProjectUsersCommand.Execute(null);
+    }
+
+    private void StackPanel_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        if (sender is FrameworkElement element && element.DataContext is Sprint sprint)
+        {
+            _viewModel.NavigateToSprintDetailsCommand.Execute(sprint);
+        }
     }
 }

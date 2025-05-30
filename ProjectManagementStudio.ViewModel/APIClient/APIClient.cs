@@ -325,4 +325,33 @@ public class APIClient : IAPIClient
         }
         throw new InvalidOperationException();
     }
+
+    public async Task<ObservableCollection<SprintTask>> GetTasks(int sprintId)
+    {
+        _urlService.URLEndpoint = nameof(GetTasks);
+
+        try
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{_client.BaseAddress}/{_urlService.URLEndpoint}?sprint_id={sprintId}");
+
+            var response = await _client.SendAsync(request);
+
+            Debug.WriteLine(response.StatusCode);
+            Debug.WriteLine(response.RequestMessage);
+
+            var deserealizedList = JsonConvert.DeserializeObject<GetTasksResponse>(await response.Content.ReadAsStringAsync())
+                ?? throw new InvalidOperationException("Deserialized response can't be null");
+
+            return [.. deserealizedList.Data];
+        }
+        catch (HttpRequestException ex)
+        {
+            MessageBox.Show($"Возникла ошибка: сервер отключён или недоступен ({ex.Message})", "Ошибка");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        throw new InvalidOperationException();
+    }
 }

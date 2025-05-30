@@ -17,6 +17,7 @@ public class UrlService : IUrlServiceInitializer, IUrlService
         { "ChangeProjectStatus", "api-v2/project/change-status" },
         { "GetSprintsByProjectID", "api-v2/sprint/get" },
         { "GetProjectUsers", "api-v2/project/users-in-project" },
+        { "GetTasks", "api-v2/task/get" },
         { "AddProject", "api-v2/project/create" }
     };
 

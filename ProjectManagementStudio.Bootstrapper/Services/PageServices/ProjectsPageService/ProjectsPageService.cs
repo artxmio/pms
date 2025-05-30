@@ -25,6 +25,15 @@ internal class ProjectsPageService : IProjectsPageService, IProjectsPageServiceI
         set => _selectedProject = value;
     }
 
+    private Sprint _selectedSprint;
+
+    public Sprint SelectedSprint
+    {
+        get => _selectedSprint;
+        set => _selectedSprint = value;
+    }
+
+
     public ProjectsPageService(
         ICurrentUserService currentUserService,
         IAPIClient client,
@@ -41,6 +50,7 @@ internal class ProjectsPageService : IProjectsPageService, IProjectsPageServiceI
     public async Task<ObservableCollection<Project>> GetProjects() => await _client.GetProjects((int)_currentUserService.CurrentUser.UserId);
     public async Task<ObservableCollection<Sprint>> GetSprints(int projectId) => await _client.GetSprintsByProjectID(projectId);
     public async Task<ObservableCollection<User>> GetProjectUsers(int projectId) => await _client.GetProjectUsers(projectId);
+    public async Task<ObservableCollection<SprintTask>> GetSprintTasks(int sprintId) => await _client.GetTasks(sprintId);
 
     public void OpenAddProjectWindow()
     {

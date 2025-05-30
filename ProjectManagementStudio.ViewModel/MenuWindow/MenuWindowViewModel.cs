@@ -30,6 +30,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     private ObservableCollection<Project> _projects = [];
     private ObservableCollection<Sprint> _sprints = [];
     private ObservableCollection<User> _users = [];
+    private ObservableCollection<SprintTask> _tasks = [];
     private readonly ISettingsPageService _settingPageService;
     private readonly IProjectsPageService _projectPageService;
 
@@ -139,6 +140,16 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         }
     }
 
+    public ObservableCollection<SprintTask> Tasks
+    {
+        get => _tasks;
+        set
+        {
+            _tasks = value;
+            OnPropertyChanged();
+        }
+    }
+
     public ObservableCollection<Project> MyProjects
     {
         get => [.. _projects.Where(x => x.HeadId)];
@@ -149,6 +160,10 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         get => _projectPageService.SelectedProject;
     }
 
+    public Sprint SelectedSprint
+    {
+        get => _projectPageService.SelectedSprint;
+    }
     #endregion
 
     /* // Команды // */
@@ -163,6 +178,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     public ICommand NavigateToSettingsPage { get; }
     public ICommand NavigateToProjectPage { get; }
     public ICommand NavigateToProjectDetailsPage { get; }
+    public ICommand NavigateToSprintDetailsCommand { get; }
 
     public ICommand ChangeLoginCommand { get; }
     public ICommand ChangePasswordCommand { get; }
@@ -182,6 +198,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
     public ICommand LoadSprintsCommand { get; }
     public ICommand LoadProjectUsersCommand { get; }
+    public ICommand LoadSprintTasksCommand { get; }
 
     #endregion
 
@@ -215,6 +232,11 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         {
             ActivePage = _pageManager.NavigateTo(Pages.Pages.ProjectDetailsPage);
             _projectPageService.SelectedProject = o as Project ?? throw new NullReferenceException();
+        });
+        NavigateToSprintDetailsCommand = new RelayCommand(o =>
+        {
+            ActivePage = _pageManager.NavigateTo(Pages.Pages.SprintDetailsPage);
+            _projectPageService.SelectedSprint = o as Sprint ?? throw new NullReferenceException();
         });
         // Project's functions //
         #region
@@ -255,6 +277,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
         LoadSprintsCommand = new RelayCommand(async o => Sprints = await _projectPageService.GetSprints(_projectPageService.SelectedProject.Id));
         LoadProjectUsersCommand = new RelayCommand(async o => Users = await _projectPageService.GetProjectUsers(_projectPageService.SelectedProject.Id));
+        LoadSprintTasksCommand = new RelayCommand(async o => Tasks = await _projectPageService.GetSprintTasks(_projectPageService.SelectedSprint.Id));
         #endregion
         // Profile's functions //
         #region 

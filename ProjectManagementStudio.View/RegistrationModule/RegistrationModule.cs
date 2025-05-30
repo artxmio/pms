@@ -27,6 +27,7 @@ public class RegistrationModule : Module
         builder.RegisterType<SettingsPage>().As<ISettingsPage>().InstancePerDependency();
         builder.RegisterType<ProjectPage>().As<IProjectPage>().InstancePerDependency();
         builder.RegisterType<ProjectDetailsPage>().As<IProjectDetailsPage>().InstancePerDependency();
+        builder.RegisterType<SprintDetailsPage>().As<ISprintDetailsPage>().InstancePerDependency();
 
         builder.RegisterType<LoginChangeDialog>().As<ILoginChangeDialog>().InstancePerDependency();
         builder.RegisterType<PasswordChangeDialog>().As<IPasswordChangeDialog>().InstancePerDependency();

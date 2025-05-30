@@ -14,6 +14,7 @@ public interface IMenuWindowViewModel : IWindowViewModel
     public ICommand NavigateToSettingsPage { get; }
     public ICommand NavigateToProjectPage { get; }
     public ICommand NavigateToProjectDetailsPage { get; }
+    public ICommand NavigateToSprintDetailsCommand { get; }
 
     public ICommand ChangeLoginCommand { get; }
     public ICommand ChangePasswordCommand { get; }
@@ -33,4 +34,5 @@ public interface IMenuWindowViewModel : IWindowViewModel
 
     public ICommand LoadSprintsCommand { get; }
     public ICommand LoadProjectUsersCommand { get; }
+    public ICommand LoadSprintTasksCommand { get; }
 }
