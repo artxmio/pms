@@ -54,4 +54,14 @@ public partial class ProjectDetailsPage : IProjectDetailsPage
             SprintPopup.IsOpen = false;
         }
     }
+
+    private void UserList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        UserPopup.IsOpen = true;
+    }
+
+    private void CloseUserPopup(object sender, RoutedEventArgs e)
+    {
+        UserPopup.IsOpen = false;
+    }
 }

@@ -32,8 +32,8 @@
                                         <TextBlock Text="Статус: " FontWeight="SemiBold"/>
                                         <TextBlock Text="{Binding Status, Converter={StaticResource StatusConverter}}" Foreground="DarkGreen"/>
                                     </StackPanel>
-                                    <TextBlock Text="{Binding StartDate}"/>
-                                    <TextBlock Text="{Binding EndDate}"/>
+                                    <TextBlock Text="{Binding StartDate, StringFormat='Дата начала: {0:dd.MM.yyyy}'}"/>
+                                    <TextBlock Text="{Binding EndDate, StringFormat='Дата окончания: {0:dd.MM.yyyy}'}"/>
                                 </StackPanel>
                                 <Border.ContextMenu>
                                     <ContextMenu>
@@ -42,8 +42,7 @@
                                                 <MenuItem Header="Остановить" Click="StopProject_Click"/>
                                                 <MenuItem Header="Завершить" Click="CloseProject_Click" />
                                         </MenuItem>
-                                        <MenuItem Header="Открыть"/>
-                                        <MenuItem Header="Редактировать"/>
+                                        <MenuItem Header="Открыть" Click="MenuItem_Click"/>
                                     </ContextMenu>
                                 </Border.ContextMenu>
                             </Border>

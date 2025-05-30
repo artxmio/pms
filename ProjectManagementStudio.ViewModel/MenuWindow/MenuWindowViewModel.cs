@@ -35,6 +35,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     private DateTime _selectedSprintDate = DateTime.Now;
     private readonly ISettingsPageService _settingPageService;
     private readonly IProjectsPageService _projectPageService;
+    private User _selectedUser = new User();
 
     #endregion
 
@@ -176,6 +177,16 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
+
+    public User SelectedUser
+    {
+        get => _selectedUser;
+        set
+        {
+            _selectedUser = value;
+            OnPropertyChanged();
+        }
+    }
     #endregion
 
     /* // Команды // */
@@ -207,6 +218,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     public ICommand StopProjectCommand { get; }
     public ICommand CloseProjectCommand { get; }
     public ICommand OpenProjectCommand { get; }
+    public ICommand OpenUserDataPopup { get; }
 
     public ICommand LoadSprintsCommand { get; }
     public ICommand LoadProjectUsersCommand { get; }

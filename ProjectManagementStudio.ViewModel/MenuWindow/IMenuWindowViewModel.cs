@@ -31,6 +31,7 @@ public interface IMenuWindowViewModel : IWindowViewModel
     public ICommand StopProjectCommand { get; }
     public ICommand CloseProjectCommand { get; }
     public ICommand OpenProjectCommand { get; }
+    public ICommand OpenUserDataPopup { get; }
 
     public ICommand LoadSprintsCommand { get; }
     public ICommand LoadProjectUsersCommand { get; }

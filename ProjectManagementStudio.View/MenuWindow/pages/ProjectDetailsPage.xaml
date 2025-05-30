@@ -71,8 +71,7 @@
             </Grid.ColumnDefinitions>
 
             <GroupBox Header="Спринты" 
-                  
-                  Margin="10">
+                      Margin="10">
                 <ListBox x:Name="SprintList"
                  
                  ItemsSource="{Binding Sprints}">
@@ -110,9 +109,8 @@
                                         x:Name="DatePicker"/>
                             <Button Content="OK" 
                                     Command="{Binding CreateSprintCommand}"
-                                    Click="ClosePopup"
-                                    />
-                            
+                                    Click="ClosePopup"/>
+
                             <Popup x:Name="ErrorPopup" StaysOpen="False" Placement="Top">
                                 <Border BorderBrush="Red" BorderThickness="2" Background="White" Padding="5">
                                     <TextBlock Text="Спринт не может заканчиваться в прошлом" Foreground="Red"/>
@@ -120,33 +118,46 @@
                             </Popup>
                         </StackPanel>
                     </Border>
-                    
                 </Popup>
             </Grid>
 
         </Grid>
-
 
         <GroupBox Header="Участники" 
                   Grid.Row="3"
                   Grid.Column="1"
                   Grid.ColumnSpan="1"
                   Margin="10">
-            <ListBox x:Name="UserList"  
-                     ItemsSource="{Binding Users}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Border BorderThickness="1" CornerRadius="5" Padding="10" Margin="5"
-                                BorderBrush="Gray" Background="LightGray"
-                                Height="75"
-                                Width="250">
-                            <StackPanel>
-                                <TextBlock Text="{Binding UserName}" FontSize="14" FontWeight="SemiBold"/>
-                            </StackPanel>
-                        </Border>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+            <Grid>
+                <ListBox x:Name="UserList" ItemsSource="{Binding Users}"
+                         SelectionChanged="UserList_SelectionChanged"
+                         SelectedItem="{Binding SelectedUser}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderThickness="1" CornerRadius="5" Padding="10" Margin="5"
+                        BorderBrush="Gray" Background="LightGray"
+                        Height="75"
+                        Width="250">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding UserName}" FontSize="14" FontWeight="SemiBold"/>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <!-- Всплывающее окно с информацией о пользователе -->
+                <Popup x:Name="UserPopup" StaysOpen="False" Placement="Mouse">
+                    <Border BorderBrush="Black" BorderThickness="1" Background="White" Padding="10">
+                        <StackPanel>
+                            <TextBlock Text="Информация о пользователе:" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding SelectedUser.UserName}" FontSize="16"/>
+                            <Button Content="Закрыть" Click="CloseUserPopup"/>
+                        </StackPanel>
+                    </Border>
+                </Popup>
+            </Grid>
+
 
         </GroupBox>
 

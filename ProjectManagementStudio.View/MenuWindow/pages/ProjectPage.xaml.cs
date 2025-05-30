@@ -43,11 +43,19 @@ public partial class ProjectPage : IProjectPage
     {
         if (sender is FrameworkElement element && element.DataContext is Project project)
         {
-            _viewModel.CloseProjectCommand.Execute(project);
+            _viewModel.OpenProjectCommand.Execute(project);
         }
     }
 
     private void Border_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        if (sender is FrameworkElement element && element.DataContext is Project project)
+        {
+            _viewModel.NavigateToProjectDetailsPage.Execute(project);
+        }
+    }
+
+    private void MenuItem_Click(object sender, RoutedEventArgs e)
     {
         if (sender is FrameworkElement element && element.DataContext is Project project)
         {
