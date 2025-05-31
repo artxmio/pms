@@ -47,9 +47,9 @@
                         FontSize="14"
                         Foreground="#FFFFFF">
                         <TextBox.Text>
-                            <Binding Path="NewLogin" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                            <Binding Path="Title" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                                 <Binding.ValidationRules>
-                                    <validations:LoginValidationRules ValidationStep="ConvertedProposedValue"/>
+                                    <validations:TitleValidationRules ValidationStep="ConvertedProposedValue"/>
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
@@ -75,9 +75,9 @@
                         FontSize="14"
                         Foreground="#FFFFFF">
                         <TextBox.Text>
-                            <Binding Path="NewLogin" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                            <Binding Path="Description" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                                 <Binding.ValidationRules>
-                                    <validations:LoginValidationRules ValidationStep="ConvertedProposedValue"/>
+                                    <validations:DescriptionValidationRules ValidationStep="ConvertedProposedValue"/>
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
