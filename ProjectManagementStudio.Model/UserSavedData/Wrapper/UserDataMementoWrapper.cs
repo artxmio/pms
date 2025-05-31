@@ -69,15 +69,6 @@ internal class UserDataMementoWrapper :
         {
             EnsureInitialized();
             _userDataMemento.IsRememberMe = value;
-
-            if (_userDataMemento.IsRememberMe)
-            {
-                SaveUserData();
-            }
-            else
-            {
-                DeleteUserData();
-            }
         }
     }
 
@@ -110,11 +101,16 @@ internal class UserDataMementoWrapper :
             return;
         }
 
-        string jsonString = File.ReadAllText(_userDataFilePath);
+        using StreamReader reader = new StreamReader(_userDataFilePath);
+
+        string jsonString = reader.ReadToEnd();
 
         if (jsonString.Length != 0)
+        {
             _userDataMemento = JsonConvert.DeserializeObject<UserDataMemento>(jsonString)
-                ?? throw new InvalidOperationException("Deserialized memento can't be null");
+                        ?? throw new InvalidOperationException("Deserialized memento can't be null");
+        }
+
     }
 
     private void EnsureInitialized()
@@ -131,10 +127,9 @@ internal class UserDataMementoWrapper :
         {
             EnsureInitialized();
 
-            File.Create(_userDataFilePath);
-
             var json = JsonConvert.SerializeObject(_userDataMemento)
                 ?? throw new InvalidOperationException("Deserialized memento can't be null");
+
 
             File.WriteAllText(_userDataFilePath, json);
         }

@@ -15,7 +15,7 @@ public partial class App
     protected override void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
-
+     
         _bootstrapper = new Bootstrapper();
 
         var window = _bootstrapper.Run();

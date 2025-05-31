@@ -1,7 +1,6 @@
 ﻿using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 using ProjectManagementStudio.Model.CurrentUserModel;
 using ProjectManagementStudio.Model.ResponseModels;
-using ProjectManagementStudio.Model.SettingSize;
 using ProjectManagementStudio.ViewModel.Command;
 using ProjectManagementStudio.ViewModel.Pages;
 using ProjectManagementStudio.ViewModel.PageServices.IProfilePageService;
@@ -12,7 +11,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Runtime.CompilerServices;
-using System.Windows;
 using System.Windows.Input;
 
 namespace ProjectManagementStudio.ViewModel.MenuWindow;
@@ -62,53 +60,6 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         set
         {
             _activePage = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public ObservableCollection<IWindowSizes> Sizes
-    {
-        get
-        {
-            return _settingPageService.SettingSizeService.Sizes;
-        }
-    }
-
-    public IWindowSizes SelectedWindowSize
-    {
-        get
-        {
-            return _settingPageService.SettingSizeService.SelectedWindowSize;
-        }
-        set
-        {
-            _settingPageService.SettingSizeService.SelectedWindowSize = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public int Width
-    {
-        get
-        {
-            return _settingPageService.SettingSizeService.Width;
-        }
-        set
-        {
-            _settingPageService.SettingSizeService.Width = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public int Heigth
-    {
-        get
-        {
-            return _settingPageService.SettingSizeService.Width;
-        }
-        set
-        {
-            _settingPageService.SettingSizeService.Height = value;
             OnPropertyChanged();
         }
     }
@@ -209,7 +160,6 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     public ICommand ChangeAboutTextCommand { get; }
 
     public ICommand ChangeLocalizationCommand { get; }
-    public ICommand ApplySettingsСommand { get; }
 
     public ICommand LogOutCommand { get; }
 
@@ -218,7 +168,6 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     public ICommand StopProjectCommand { get; }
     public ICommand CloseProjectCommand { get; }
     public ICommand OpenProjectCommand { get; }
-    public ICommand OpenUserDataPopup { get; }
 
     public ICommand LoadSprintsCommand { get; }
     public ICommand LoadProjectUsersCommand { get; }
@@ -339,8 +288,6 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         #region
 
         ChangeLocalizationCommand = new RelayCommand(o => _settingPageService.LocalizationService.Language = new CultureInfo((string)o));
-        ApplySettingsСommand = new RelayCommand(o => _settingPageService.ApplySettings());
-
         #endregion
     }
 

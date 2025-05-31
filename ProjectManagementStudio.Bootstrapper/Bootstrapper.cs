@@ -4,10 +4,8 @@ using ProjectManagementStudio.Bootstrapper.Services.PageServices.ProfilePageServ
 using ProjectManagementStudio.Bootstrapper.Services.PageServices.ProjectsPageService;
 using ProjectManagementStudio.Bootstrapper.Services.PageServices.SettingsPageService;
 using ProjectManagementStudio.Bootstrapper.Services.PathService;
-using ProjectManagementStudio.Bootstrapper.Services.Settings.SettingSizeService;
 using ProjectManagementStudio.Bootstrapper.Services.UrlService;
 using ProjectManagementStudio.Model.UserSavedData.Wrapper;
-using ProjectManagementStudio.Model.WindowSavedData.Wrapper;
 using ProjectManagementStudio.ViewModel.LocalizationService;
 using ProjectManagementStudio.ViewModel.MainWindow;
 using ProjectManagementStudio.ViewModel.MenuWindow;
@@ -82,8 +80,6 @@ public class Bootstrapper : IDisposable
     private void InitializeDependencies()
     {
         _container.Resolve<IPathServiceInitializer>().Initialize();
-        _container.Resolve<IWindowDataMementoWrapperInitializer>().Initialize();
-        _container.Resolve<ISettingSizeInitialize>().Initialize();
         _container.Resolve<IUrlServiceInitializer>().Initialize();
         _container.Resolve<IUserDataMementoWrapperInitializer>().Initialize();
         _container.Resolve<ICurrentUserServiceInitializer>().Initialize();

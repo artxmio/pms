@@ -1,54 +1,15 @@
 ﻿using ProjectManagementStudio.ViewModel.MenuWindow;
-using ProjectManagementStudio.ViewModel.SettingSizeService;
-using ProjectManagementStudio.ViewModel.Windows;
-using System.Runtime.InteropServices;
-using System.Windows;
-using System.Windows.Input;
-using System.Windows.Interop;
 
 namespace ProjectManagementStudio.View.MenuWindow;
 
 public partial class MenuWindow : IMenuWindow
 {
     private readonly IMenuWindowViewModel _viewModel;
-    private readonly ISettingSizeService _settingSizeService;
 
-    public MenuWindow(IMenuWindowViewModel viewModel, ISettingSizeService settingSizeService)
+    public MenuWindow(IMenuWindowViewModel viewModel)
     {
         InitializeComponent();
 
         _viewModel = viewModel;
-        _settingSizeService = settingSizeService;
-
-        Loaded += OnLoad;
-        MouseDoubleClick += DoubleClick;
-
-        this.WindowState = WindowState.Maximized;
-    }
-
-    private void DragWindow(object sender, MouseButtonEventArgs e)
-    {
-        if (e.LeftButton == MouseButtonState.Pressed)
-        {
-            this.DragMove();
-        }
-    }
-
-    private void DoubleClick(object sender, RoutedEventArgs e)
-    {
-        if (this.WindowState != WindowState.Maximized)
-        {
-            this.WindowState = WindowState.Maximized;
-        }
-        else
-        {
-            this.WindowState = WindowState.Normal;
-        }
-    }
-
-    private void OnLoad(object sender, RoutedEventArgs e)
-    {
-        this.Width = _settingSizeService.Width;
-        this.Height = _settingSizeService.Height;
     }
 }

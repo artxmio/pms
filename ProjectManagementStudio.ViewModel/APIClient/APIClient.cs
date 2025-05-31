@@ -62,11 +62,9 @@ public class APIClient : IAPIClient
         }
         catch (HttpRequestException ex)
         {
-            MessageBox.Show($"Возникла ошибка: сервер отключён или недоступен ({ex.Message})", "Ошибка");
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Возникла неизвестная ошибка: {ex.Message}", "Ошибка");
         }
 
         return isExist;

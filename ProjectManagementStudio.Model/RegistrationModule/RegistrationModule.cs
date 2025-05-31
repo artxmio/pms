@@ -5,11 +5,9 @@ using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel.ModalWindowMod
 using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel.ModalWindowModels.NewEmail;
 using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel.ModalWindowModels.NewLogin;
 using ProjectManagementStudio.Model.MenuWindowModels.ProfileModel.ModalWindowModels.NewPassword;
-using ProjectManagementStudio.Model.SettingSize;
 using ProjectManagementStudio.Model.UserSavedData.Wrapper;
 using ProjectManagementStudio.Model.WindowModels.AuthModel;
 using ProjectManagementStudio.Model.WindowModels.RegisterModel;
-using ProjectManagementStudio.Model.WindowSavedData.Wrapper;
 
 namespace ProjectManagementStudio.Model.RegistrationModule
 {
@@ -28,16 +26,9 @@ namespace ProjectManagementStudio.Model.RegistrationModule
             builder.RegisterType<ChangeEmailModel>().As<IChangeEmailModel>().SingleInstance();
             builder.RegisterType<AboutTextModel>().As<IAboutTextModel>().SingleInstance();
 
-            builder.RegisterType<WindowSizes>().As<IWindowSizes>().InstancePerDependency();
-
             builder.RegisterType<UserDataMementoWrapper>()
                 .As<IUserDataMementoWrapper>()
                 .As<IUserDataMementoWrapperInitializer>()
-                .SingleInstance();
-
-            builder.RegisterType<WindowDataMementoWrapper>()
-                .As<IWindowDataMementoWrapper>()
-                .As<IWindowDataMementoWrapperInitializer>()
                 .SingleInstance();
         }
     }

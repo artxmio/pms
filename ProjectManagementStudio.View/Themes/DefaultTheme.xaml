@@ -8,8 +8,8 @@
     <SolidColorBrush x:Key="ButtonDisabledText" Color="#666666"/>
     <SolidColorBrush x:Key="Field" Color="#80DBCBE8"/>
     <SolidColorBrush x:Key="RememberMeColor" Color="#2C1B45"/>
-    <ImageSource x:Key="Background">../Source/DefaultTheme/backgroundImage.jpg</ImageSource>
-    <ImageSource x:Key="CloseButton">../Source/DefaultTheme/Close_icon.png</ImageSource>
+    <BitmapImage x:Key="Background">../Source/DefaultTheme/backgroundImage.jpg</BitmapImage>
+    <BitmapImage x:Key="CloseButton">../Source/DefaultTheme/Close_icon.png</BitmapImage>
     <BitmapImage x:Key="Eye">../Source/DefaultTheme/eye.png</BitmapImage>
     <BitmapImage x:Key="EyeClosed">../Source/DefaultTheme/eye_closed.png</BitmapImage>
     
@@ -35,16 +35,25 @@
         <!-- Left Menu Background -->
     <SolidColorBrush x:Key="LeftMenu">#2C1B47</SolidColorBrush>
         <!-- Button images -->
-    <ImageSource x:Key="Avatar">../Source/DefaultTheme/ava.png</ImageSource>
-    <ImageSource x:Key="Home">../Source/DefaultTheme/home.png</ImageSource>
-    <ImageSource x:Key="User">../Source/DefaultTheme/user.png</ImageSource>
-    <ImageSource x:Key="Project">../Source/DefaultTheme/project.png</ImageSource>
-    <ImageSource x:Key="File">../Source/DefaultTheme/file.png</ImageSource>
-    <ImageSource x:Key="Settings">../Source/DefaultTheme/settings.png</ImageSource>
-    <ImageSource x:Key="AddProject">../Source/DefaultTheme/plus.png</ImageSource>
-    <ImageSource x:Key="RollWindow">../Source/DefaultTheme/roll_window.png</ImageSource>
-    <ImageSource x:Key="CloseButtonMenu">../Source/DefaultTheme/Close_icon.png</ImageSource>
-    <ImageSource x:Key="EditInfo">../Source/DefaultTheme/Edit_pencil.png</ImageSource>
+    <BitmapImage x:Key="Avatar">../Source/DefaultTheme/ava.png</BitmapImage>
+    <BitmapImage x:Key="Home">../Source/DefaultTheme/home.png</BitmapImage>
+    <BitmapImage x:Key="User">../Source/DefaultTheme/user.png</BitmapImage>
+    <BitmapImage x:Key="Project">../Source/DefaultTheme/project.png</BitmapImage>
+    <BitmapImage x:Key="File">../Source/DefaultTheme/file.png</BitmapImage>
+    <BitmapImage x:Key="Settings">../Source/DefaultTheme/settings.png</BitmapImage>
+    <Style x:Key="AddProjectImageStyle" TargetType="Image">
+        <Setter Property="Source" Value="../Source/DefaultTheme/plus.png"/>
+        <Setter Property="Opacity" Value="0.7"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Opacity" Value="1"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <BitmapImage x:Key="RollWindow">../Source/DefaultTheme/roll_window.png</BitmapImage>
+    <BitmapImage x:Key="CloseButtonMenu">../Source/DefaultTheme/Close_icon.png</BitmapImage>
+    <BitmapImage x:Key="EditInfo">../Source/DefaultTheme/Edit_pencil.png</BitmapImage>
 
 
     <!-- Profile Page -->

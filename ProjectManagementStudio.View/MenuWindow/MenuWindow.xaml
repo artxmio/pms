@@ -6,20 +6,15 @@
         xmlns:local="clr-namespace:ProjectManagementStudio.View.MenuWindow"
         xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MenuWindow;assembly=ProjectManagementStudio.ViewModel"
         mc:Ignorable="d"
-        Title="MenuWindow" 
+        Title="Project MS" 
         Left="0" Top="0"
-        
-        Height="{Binding Heigth, Mode=TwoWay}" 
-        Width="{Binding Width, Mode=TwoWay}"
-        
-        MinHeight="400"
-        MinWidth="500"
         
         AllowsTransparency="True"
         ResizeMode="CanResize"
         
         WindowStyle="None"
         WindowStartupLocation="Manual"
+        WindowState="Maximized"
         RenderOptions.BitmapScalingMode="HighQuality"
         Style="{DynamicResource MenuBackground}"
         d:DataContext="{d:DesignInstance vm:MenuWindowViewModel}"
@@ -58,7 +53,6 @@
 
         <!-- Верхнее меню -->
         <Grid x:Name="header"
-             MouseLeftButtonDown="DragWindow"
              Height="87"
              VerticalAlignment="Top"
              HorizontalAlignment="Stretch"
@@ -312,18 +306,7 @@
                     </Border>
                 </ControlTemplate>
             </Button.Template>
-            <Image Height="50" Width="50" d:Source="..\Source\DefaultTheme\plus.png" Source="{DynamicResource AddProject}">
-                <Image.Style>
-                    <Style TargetType="Image">
-                        <Setter Property="Opacity" Value="0.7"/>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Opacity" Value="1"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Image.Style>
-            </Image>
+            <Image Height="50" Width="50" Style="{DynamicResource AddProjectImageStyle}"/>
         </Button>
     </Grid>
 </Window>

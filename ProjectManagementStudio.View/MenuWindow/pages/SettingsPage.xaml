@@ -56,7 +56,7 @@
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Grid>
-                                        <Image Margin="5,0,0,0" d:Source="../../Source/DefaultTheme/pink_circle.png" Width="50" Height="50" HorizontalAlignment="Left">
+                                        <Image Margin="5,0,0,0" Source="../../Source/DefaultTheme/pink_circle.png" Width="50" Height="50" HorizontalAlignment="Left">
                                             <Image.Effect>
                                                 <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="2" Opacity="0.5" Direction="270"/>
                                             </Image.Effect>
@@ -179,7 +179,7 @@
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Grid>
-                                        <Image Margin="5,0,0,0" Source="..\..\Source\RedTheme\red_circle.png" Width="50" Height="50" HorizontalAlignment="Left">
+                                        <Image Margin="5,0,0,0" Source="../../Source/RedTheme/red_circle.png" Width="50" Height="50" HorizontalAlignment="Left">
                                             <Image.Effect>
                                                 <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="2" Opacity="0.5" Direction="270"/>
                                             </Image.Effect>

@@ -1,4 +1,5 @@
 ﻿using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
+using ProjectManagementStudio.Model.UserSavedData.Wrapper;
 using ProjectManagementStudio.Model.WindowModels.AuthModel;
 using ProjectManagementStudio.Model.WindowModels.RegisterModel;
 using ProjectManagementStudio.ViewModel.APIClient;
@@ -26,7 +27,7 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
     private readonly ILocalizationService _localizationService;
     private readonly IMenuWindowViewModel _menuWindowViewModel;
     private readonly IWindowManager _windowManager;
-
+    private readonly IUserDataMementoWrapper _userDataMementoWrapper;
     private IPage _activePage;
 
     #endregion
@@ -71,8 +72,8 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
         IAuthModel authModel,
         IRegisterModel registerModel,
         ICurrentUserService currentUserService,
-        ILocalizationService localizationService
-        )
+        ILocalizationService localizationService,
+        IUserDataMementoWrapper userDataMementoWrapper)
     {
         LoginModel = authModel;
         RegistrationModel = registerModel;
@@ -85,6 +86,7 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
         
         _localizationService = localizationService;
         _localizationService.LanguageChanged += LanguageChanged;
+        _userDataMementoWrapper = userDataMementoWrapper;
 
         _activePage = _pageManager.NavigateTo(0);
 
@@ -139,6 +141,11 @@ public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
             window.DataContext = _menuWindowViewModel;
 
             _windowManager.Close(this);
+
+            if (LoginModel.IsRememberMe)
+            {
+                _userDataMementoWrapper.SaveUserData();
+            }
         }
         else
         {

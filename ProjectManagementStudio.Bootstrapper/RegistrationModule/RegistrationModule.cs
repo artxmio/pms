@@ -5,7 +5,6 @@ using ProjectManagementStudio.Bootstrapper.Services.PageServices.ProfilePageServ
 using ProjectManagementStudio.Bootstrapper.Services.PageServices.ProjectsPageService;
 using ProjectManagementStudio.Bootstrapper.Services.PageServices.SettingsPageService;
 using ProjectManagementStudio.Bootstrapper.Services.PathService;
-using ProjectManagementStudio.Bootstrapper.Services.Settings.SettingSizeService;
 using ProjectManagementStudio.Bootstrapper.Services.UrlService;
 using ProjectManagementStudio.Model.PathService;
 using ProjectManagementStudio.View.PageFactory;
@@ -14,7 +13,6 @@ using ProjectManagementStudio.ViewModel.LocalizationService;
 using ProjectManagementStudio.ViewModel.PageServices.IProfilePageService;
 using ProjectManagementStudio.ViewModel.PageServices.IProjectsPageService;
 using ProjectManagementStudio.ViewModel.PageServices.ISettingsPageService;
-using ProjectManagementStudio.ViewModel.SettingSizeService;
 using ProjectManagementStudio.ViewModel.UrlService;
 
 namespace ProjectManagementStudio.Bootstrapper.RegistrationModule;
@@ -53,11 +51,6 @@ public class RegistrationModule : Module
         builder.RegisterType<SettingsPageService>()
             .As<ISettingsPageService>()
             .As<ISettingsPageServiceInitializer>()
-            .SingleInstance();
-
-        builder.RegisterType<SettingSizeService>()
-            .As<ISettingSizeService>()
-            .As<ISettingSizeInitialize>()
             .SingleInstance();
 
         builder.RegisterType<ProjectsPageService>()

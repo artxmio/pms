@@ -22,7 +22,6 @@ public interface IMenuWindowViewModel : IWindowViewModel
     public ICommand ChangeAboutTextCommand { get; }
 
     public ICommand ChangeLocalizationCommand { get; }
-    public ICommand ApplySettingsСommand { get; }
 
     public ICommand LogOutCommand { get; }
 
@@ -31,7 +30,6 @@ public interface IMenuWindowViewModel : IWindowViewModel
     public ICommand StopProjectCommand { get; }
     public ICommand CloseProjectCommand { get; }
     public ICommand OpenProjectCommand { get; }
-    public ICommand OpenUserDataPopup { get; }
 
     public ICommand LoadSprintsCommand { get; }
     public ICommand LoadProjectUsersCommand { get; }

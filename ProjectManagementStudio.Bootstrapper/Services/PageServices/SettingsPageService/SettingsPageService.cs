@@ -1,5 +1,4 @@
 ﻿using ProjectManagementStudio.ViewModel.PageServices.ISettingsPageService;
-using ProjectManagementStudio.ViewModel.SettingSizeService;
 using ProjectManagementStudio.ViewModel.LocalizationService;
 using System.Windows;
 
@@ -8,21 +7,7 @@ namespace ProjectManagementStudio.Bootstrapper.Services.PageServices.SettingsPag
 internal class SettingsPageService : ISettingsPageService, ISettingsPageServiceInitializer
 {
     private bool _initialized;
-    private ISettingSizeService _settingsSizeService;
     private ILocalizationService _localizationService;
-
-    public ISettingSizeService SettingSizeService
-    {
-        get
-        {
-            return _settingsSizeService;
-        }
-
-        set
-        {
-            _settingsSizeService = value;
-        }
-    }
 
     public ILocalizationService LocalizationService
     {
@@ -37,9 +22,8 @@ internal class SettingsPageService : ISettingsPageService, ISettingsPageServiceI
         }
     }
     
-    public SettingsPageService(ISettingSizeService settingSizeService, ILocalizationService localizationService)
+    public SettingsPageService(ILocalizationService localizationService)
     {
-        _settingsSizeService = settingSizeService;
         _localizationService = localizationService;
     }
 
@@ -61,7 +45,6 @@ internal class SettingsPageService : ISettingsPageService, ISettingsPageServiceI
 
     public void ApplySettings()
     {
-        _settingsSizeService.ApplySettings();
         _localizationService.SaveLanguage();
 
         MessageBox.Show("Настройки успешно сохранены!", "Уведомление");
