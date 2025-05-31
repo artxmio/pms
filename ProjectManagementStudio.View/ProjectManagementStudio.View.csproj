@@ -21,6 +21,16 @@
 		<None Remove="Source\blue_circle.png" />
 		<None Remove="Source\Close_icon.png" />
 		<None Remove="Source\DarkQuestionMark.png" />
+		<None Remove="Source\DefaultTheme\backgroundImage.jpg" />
+		<None Remove="Source\DefaultTheme\Close_icon.png" />
+		<None Remove="Source\DefaultTheme\Edit_pencil.png" />
+		<None Remove="Source\DefaultTheme\file.png" />
+		<None Remove="Source\DefaultTheme\home.png" />
+		<None Remove="Source\DefaultTheme\plus.png" />
+		<None Remove="Source\DefaultTheme\project.png" />
+		<None Remove="Source\DefaultTheme\roll_window.png" />
+		<None Remove="Source\DefaultTheme\settings.png" />
+		<None Remove="Source\DefaultTheme\user.png" />
 		<None Remove="Source\Edit_pencil.png" />
 		<None Remove="Source\ExitAcc.png" />
 		<None Remove="Source\eye.png" />
@@ -49,22 +59,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Resource Include="Source\project.png">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </Resource>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Resource Include="Source\ava.png">
+	  <Resource Include="Source\DefaultTheme\ava.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Resource Include="Source\blue_circle.png">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </Resource>
-	  <Resource Include="Source\Edit_pencil.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
 	</ItemGroup>
@@ -80,43 +81,55 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Resource Include="Source\backgroundImage.jpg">
-			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
-		</Resource>
-		<Resource Include="Source\Close_icon.png">
-			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
-		</Resource>
 		<Resource Include="Source\DarkQuestionMark.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\DefaultTheme\backgroundImage.jpg">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\DefaultTheme\Close_icon.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\DefaultTheme\Edit_pencil.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\DefaultTheme\file.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\DefaultTheme\home.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\DefaultTheme\plus.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\DefaultTheme\project.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\DefaultTheme\roll_window.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\DefaultTheme\settings.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\DefaultTheme\user.png">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
 		<Resource Include="Source\ExitAcc.png">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
-		<Resource Include="Source\eye.png">
+		<Resource Include="Source\DefaultTheme\eye.png">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
-		<Resource Include="Source\eye_closed.png">
+		<Resource Include="Source\DefaultTheme\eye_closed.png">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-		</Resource>
-		<Resource Include="Source\file.png">
-			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
 		<Resource Include="Source\green_circle.png">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
-		<Resource Include="Source\home.png">
-			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
-		</Resource>
 		<Resource Include="Source\orange_circle.png">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
-		<Resource Include="Source\pink_circle.png">
-		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-		</Resource>
-		<Resource Include="Source\plus.png">
-			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
-		</Resource>
-		<Resource Include="Source\purple_circle.png">
+		<Resource Include="Source\DefaultTheme\pink_circle.png">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
 		<Resource Include="Source\QuestionMark.png">
@@ -128,17 +141,10 @@
 		<Resource Include="Source\red_circle.png">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
-		<Resource Include="Source\roll_window.png" />
-		<Resource Include="Source\settings.png">
-			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
-		</Resource>
 		<Resource Include="Source\Star.png">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
 		<Resource Include="Source\two_people.svg">
-			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
-		</Resource>
-		<Resource Include="Source\user.png">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
 		<Resource Include="Source\window_restore.png" />

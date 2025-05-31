@@ -11,13 +11,12 @@
     ResizeMode="NoResize"
     WindowStyle="None"
     WindowState="Maximized"  
-    d:DataContext="{d:DesignInstance vm:MainWindowViewModel}"
-    Style="{DynamicResource MainBackground}">
+    d:DataContext="{d:DesignInstance vm:MainWindowViewModel}">
 
     <Window.Resources>
 
         <!-- // Стиль для кнопки закрытия приложения //-->
-        <Style x:Key="CloseButton" TargetType="{x:Type Button}">
+        <Style x:Key="Close_Button" TargetType="{x:Type Button}">
             
             <Setter Property="Background" Value="#3D5754"/>
             
@@ -41,6 +40,13 @@
 
     </Window.Resources>
 
+    <Window.Background>
+        <ImageBrush ImageSource="{DynamicResource Background}"/>
+    </Window.Background>
+    
+    <d:Window.Background>
+        <d:ImageBrush ImageSource="../Source/DefaultTheme/backgroundImage.jpg"/>
+    </d:Window.Background>
 
     <Grid>
         <!-- // Фрейм для отображения страниц регистрации и авторизации //-->
@@ -54,9 +60,10 @@
             VerticalAlignment="Top" 
             HorizontalAlignment="Right" 
             Background="Transparent" 
-            Style="{StaticResource ResourceKey=CloseButton}">
+            Style="{StaticResource ResourceKey=Close_Button}">
 
-            <Image x:Name="close" Source="..\Source\Close_icon.png">
+            <Image x:Name="close" d:Source="../Source/DefaultTheme/Close_icon.png"
+                   Source="{DynamicResource CloseButton}">
                 <Image.Style>
                     <Style TargetType="Image">
                         <Setter Property="Opacity" Value="0.5"/>

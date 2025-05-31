@@ -1,14 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
-    <!-- Registration/Login Background -->
-    <Style x:Key="MainBackground" TargetType="Window">
-        <Setter Property="Background">
-            <Setter.Value>
-                <ImageBrush ImageSource="..\Source\backgroundImage.jpg" />
-            </Setter.Value>
-        </Setter>
-    </Style>
 
     <!-- Registrarion/Login -->
     <SolidColorBrush x:Key="ButtonBackground" Color="#2C1B45"/>
@@ -17,7 +8,12 @@
     <SolidColorBrush x:Key="ButtonDisabledText" Color="#666666"/>
     <SolidColorBrush x:Key="Field" Color="#80DBCBE8"/>
     <SolidColorBrush x:Key="RememberMeColor" Color="#2C1B45"/>
+    <ImageSource x:Key="Background">../Source/DefaultTheme/backgroundImage.jpg</ImageSource>
+    <ImageSource x:Key="CloseButton">../Source/DefaultTheme/Close_icon.png</ImageSource>
+    <BitmapImage x:Key="Eye">../Source/DefaultTheme/eye.png</BitmapImage>
+    <BitmapImage x:Key="EyeClosed">../Source/DefaultTheme/eye_closed.png</BitmapImage>
     
+
     <!-- Menu Window -->
     <Style x:Key="MenuBackground" TargetType="Window">
         <Setter Property="Background">
@@ -38,11 +34,24 @@
     </LinearGradientBrush>
         <!-- Left Menu Background -->
     <SolidColorBrush x:Key="LeftMenu">#2C1B47</SolidColorBrush>
-    
+        <!-- Button images -->
+    <ImageSource x:Key="Avatar">../Source/DefaultTheme/ava.png</ImageSource>
+    <ImageSource x:Key="Home">../Source/DefaultTheme/home.png</ImageSource>
+    <ImageSource x:Key="User">../Source/DefaultTheme/user.png</ImageSource>
+    <ImageSource x:Key="Project">../Source/DefaultTheme/project.png</ImageSource>
+    <ImageSource x:Key="File">../Source/DefaultTheme/file.png</ImageSource>
+    <ImageSource x:Key="Settings">../Source/DefaultTheme/settings.png</ImageSource>
+    <ImageSource x:Key="AddProject">../Source/DefaultTheme/plus.png</ImageSource>
+    <ImageSource x:Key="RollWindow">../Source/DefaultTheme/roll_window.png</ImageSource>
+    <ImageSource x:Key="CloseButtonMenu">../Source/DefaultTheme/Close_icon.png</ImageSource>
+    <ImageSource x:Key="EditInfo">../Source/DefaultTheme/Edit_pencil.png</ImageSource>
+
+
     <!-- Profile Page -->
     <SolidColorBrush x:Key="ProfileBackground">#724D9D</SolidColorBrush>
     <SolidColorBrush x:Key="ProfileItems">#2C1B47</SolidColorBrush>
     <SolidColorBrush x:Key="Buttons">#724D9D</SolidColorBrush>
+    
     
     <!-- Settings -->
     <SolidColorBrush x:Key="SettingsBackground">#724D9D</SolidColorBrush>
@@ -52,6 +61,7 @@
     <SolidColorBrush x:Key="ThemeButton">#2C1B47</SolidColorBrush>
     <SolidColorBrush x:Key="ThemeButtonHover">#724D9D</SolidColorBrush>
     
+    
     <!-- About Dialog -->
     <!-- Add Project Dialog -->
     <!-- Login Change Dialog -->
@@ -59,5 +69,6 @@
     <!-- Email Change Dialog -->
     <SolidColorBrush x:Key="MainDialogColor">#2C1B47</SolidColorBrush>
     <SolidColorBrush x:Key="SecondDialogColor">#724D9D</SolidColorBrush>
+    <SolidColorBrush x:Key="ButtonHoverDialog">#482f66</SolidColorBrush>
 
 </ResourceDictionary>

@@ -80,7 +80,8 @@
 
                     <Grid>
                         <Image Width="200" Height="200" 
-                            Source="../../Source/ava.png"
+                            d:Source="../../Source/DefaultTheme/ava.png"
+                            Source="{DynamicResource Avatar}"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Margin="59,78,0,0"/>
@@ -281,7 +282,7 @@
 
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
-                                    <Image x:Name="EditButton" Source ="..\..\Source\Edit_pencil.png"></Image>
+                                    <Image x:Name="EditButton" d:Source ="../../Source/DefaultTheme/Edit_pencil.png" Source="{DynamicResource EditInfo}"></Image>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
                                             <Setter TargetName="EditButton" Property="Opacity" Value="0.7"/>

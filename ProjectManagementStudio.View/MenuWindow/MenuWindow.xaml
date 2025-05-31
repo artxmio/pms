@@ -93,7 +93,7 @@
                 VerticalAlignment="Center"
                 Margin="0,0,25,0"
                 Style="{StaticResource ResourceKey=CloseButton}" Grid.ColumnSpan="2">
-                <Image x:Name="close" Source="..\Source\Close_icon.png">
+                <Image x:Name="close" d:Source="..\Source\DefaultTheme\Close_icon.png" Source="{DynamicResource CloseButtonMenu}">
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
                             <Setter Property="Opacity" Value="0.5" />
@@ -119,7 +119,7 @@
                 VerticalAlignment="Center"
                 Margin="0,0,65,0"
                 Style="{StaticResource ResourceKey=CloseButton}">
-                <Image x:Name="rollUp_window" Source="..\Source\roll_window.png">
+                <Image x:Name="rollUp_window" d:Source="..\Source\DefaultTheme\roll_window.png" Source="{DynamicResource RollWindow}">
                     <Image.Style>
                         <Style TargetType="Image">
                             <Setter Property="Opacity" Value="0.5"/>
@@ -154,7 +154,7 @@
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
-                <Image Margin="0,0,0,0" Height="60" Width="60" Source="..\Source\home.png">
+                <Image Margin="0,0,0,0" Height="60" Width="60" d:Source="..\Source\DefaultTheme\home.png" Source="{DynamicResource Home}">
                     <Image.Style>
                         <Style TargetType="Image">
                             <Setter Property="Opacity" Value="0.7"/>
@@ -186,7 +186,7 @@
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
-                <Image Margin="0,0,0,0" Height="60" Width="60" Source="..\Source\user.png">
+                <Image Margin="0,0,0,0" Height="60" Width="60" d:Source="..\Source\DefaultTheme\user.png" Source="{DynamicResource User}">
                     <Image.Style>
                         <Style TargetType="Image">
                             <Setter Property="Opacity" Value="0.7"/>
@@ -217,7 +217,7 @@
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
-                <Image Margin="0,0,0,0" Height="60" Width="60" Source="..\Source\project.png">
+                <Image Margin="0,0,0,0" Height="60" Width="60" d:Source="..\Source\DefaultTheme\project.png" Source="{DynamicResource Project}">
                     <Image.Style>
                         <Style TargetType="Image">
                             <Setter Property="Opacity" Value="0.7"/>
@@ -248,7 +248,7 @@
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
-                <Image Margin="0,0,0,0" Height="60" Width="60" Source="..\Source\file.png">
+                <Image Margin="0,0,0,0" Height="60" Width="60" d:Source="..\Source\DefaultTheme\file.png" Source="{DynamicResource File}">
                     <Image.Style>
                         <Style TargetType="Image">
                             <Setter Property="Opacity" Value="0.7"/>
@@ -280,7 +280,7 @@
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
-                <Image Margin="0,0,0,0" Height="50" Width="50" Source="..\Source\settings.png">
+                <Image Margin="0,0,0,0" Height="50" Width="50" d:Source="..\Source\DefaultTheme\settings.png" Source="{DynamicResource Settings}">
                     <Image.Style>
                         <Style TargetType="Image">
                             <Setter Property="Opacity" Value="0.7"/>
@@ -312,7 +312,7 @@
                     </Border>
                 </ControlTemplate>
             </Button.Template>
-            <Image Height="50" Width="50" Source="..\Source\plus.png">
+            <Image Height="50" Width="50" d:Source="..\Source\DefaultTheme\plus.png" Source="{DynamicResource AddProject}">
                 <Image.Style>
                     <Style TargetType="Image">
                         <Setter Property="Opacity" Value="0.7"/>

@@ -38,7 +38,7 @@
         </Style>
     </Window.Resources>
 
-    <Border Height="300" Width="550" CornerRadius="25" Background="#2C1B47">
+    <Border Height="300" Width="550" CornerRadius="25" d:Background="#2C1B47" Background="{DynamicResource MainDialogColor}">
         <Border.Effect>
             <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="0" Opacity="0.5"/>
         </Border.Effect>
@@ -59,12 +59,13 @@
                  Margin="70,53,0,0"
                  VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
-            <Border Width="410" Height="30" Background="#724D9D" CornerRadius="10"
+            <Border Width="410" Height="30" d:Background="#724D9D" Background="{DynamicResource SecondDialogColor}" CornerRadius="10"
                 VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,81,0,0">
                 <TextBox
                     VerticalContentAlignment="Center"
                     Width="400" Height="25"
-                    Background="#724D9D"
+                    d:Background="#724D9D" 
+                    Background="{DynamicResource SecondDialogColor}"
                     BorderBrush="Transparent"
                     FontFamily="Outfit"
                     FontSize="14"
@@ -88,16 +89,17 @@
                    FontWeight="Normal" Foreground="#FFFFFF"
                    Margin="70,137,0,0"
                    VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            
-            
-            <Border Width="410" Height="30" Background="#724D9D" CornerRadius="10"
+
+
+            <Border Width="410" Height="30" d:Background="#724D9D" Background="{DynamicResource SecondDialogColor}" CornerRadius="10"
                 VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,103">
                 <uc:TextPasswordBox
                     x:Name="password"
                     Text="{Binding Password, Mode=OneWay}"
                     VerticalContentAlignment="Center"
                     Width="400" Height="25"
-                    Background="#724D9D"
+                    d:Background="#724D9D" 
+                    Background="{DynamicResource SecondDialogColor}"
                     BorderBrush="Transparent"
                     FontFamily="Outfit"
                     FontSize="14"
@@ -163,14 +165,14 @@
                 <Button.Template>
                     <ControlTemplate>
                         <Border x:Name="border"  Width="191" Height="39"
-                            Background="#724D9D" CornerRadius="10">
+                            d:Background="#724D9D" Background="{DynamicResource SecondDialogColor}" CornerRadius="10">
                             <ContentPresenter HorizontalAlignment="Center" 
                                 VerticalAlignment="Center" 
                                 d:Content="Apply" Content="{DynamicResource Apply}"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#482f66"/>
+                                <Setter TargetName="border" Property="Background" d:Value="#482f66" Value="{DynamicResource ButtonHoverDialog}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -190,14 +192,14 @@
                 <Button.Template>
                     <ControlTemplate>
                         <Border x:Name="border"  Width="191" Height="39"
-                            Background="#724D9D" CornerRadius="10">
+                            d:Background="#724D9D" Background="{DynamicResource SecondDialogColor}" CornerRadius="10">
                             <ContentPresenter HorizontalAlignment="Center" 
                                 VerticalAlignment="Center" 
                                 d:Content="Cancel" Content="{DynamicResource Cancel}"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#482f66"/>
+                                <Setter TargetName="border" Property="Background" d:Value="#482f66" Value="{DynamicResource ButtonHoverDialog}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
