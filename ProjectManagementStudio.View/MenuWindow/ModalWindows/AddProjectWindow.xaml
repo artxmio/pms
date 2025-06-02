@@ -36,7 +36,7 @@
                 Margin="45,65,0,0"/>
 
                 <Border Width="670" Height="47" CornerRadius="10" d:Background="#724D9D" Background="{DynamicResource SecondDialogColor}"
-                    VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,104,0,0">
+                    VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,104,0,0" BorderThickness="2" BorderBrush="{DynamicResource Border}">
                     <TextBox
                         VerticalContentAlignment="Center"
                         Width="660" Height="42"
@@ -64,7 +64,7 @@
                     Margin="45,163,0,0"/>
 
                 <Border Width="670" Height="47" CornerRadius="10" d:Background="#724D9D" Background="{DynamicResource SecondDialogColor}"
-                    VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,202,0,0">
+                    VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,202,0,0" BorderThickness="2" BorderBrush="{DynamicResource Border}">
                     <TextBox
                         VerticalContentAlignment="Center"
                         Width="660" Height="42"

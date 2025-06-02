@@ -26,7 +26,30 @@
 	<ItemGroup>
 		<None Remove="Source\ava.png" />
 		<None Remove="Source\backgroundImage.jpg" />
+		<None Remove="Source\BlackTheme\backgroundImage.png" />
+		<None Remove="Source\BlackTheme\black_circle.png" />
+		<None Remove="Source\BlackTheme\Close_icon.png" />
+		<None Remove="Source\BlackTheme\edit_pencil.png" />
+		<None Remove="Source\BlackTheme\eye.png" />
+		<None Remove="Source\BlackTheme\eye_closed.png" />
+		<None Remove="Source\BlackTheme\file.png" />
+		<None Remove="Source\BlackTheme\plus.png" />
+		<None Remove="Source\BlackTheme\project.png" />
+		<None Remove="Source\BlackTheme\roll_window.png" />
+		<None Remove="Source\BlackTheme\settings.png" />
+		<None Remove="Source\BlackTheme\user.png" />
+		<None Remove="Source\BlueTheme\backgroundImage.png" />
 		<None Remove="Source\BlueTheme\blue_circle.png" />
+		<None Remove="Source\BlueTheme\Close_icon.png" />
+		<None Remove="Source\BlueTheme\edit_pencil.png" />
+		<None Remove="Source\BlueTheme\eye.png" />
+		<None Remove="Source\BlueTheme\eye_closed.png" />
+		<None Remove="Source\BlueTheme\file.png" />
+		<None Remove="Source\BlueTheme\plus.png" />
+		<None Remove="Source\BlueTheme\project.png" />
+		<None Remove="Source\BlueTheme\roll_window.png" />
+		<None Remove="Source\BlueTheme\settings.png" />
+		<None Remove="Source\BlueTheme\user.png" />
 		<None Remove="Source\blue_circle.png" />
 		<None Remove="Source\Close_icon.png" />
 		<None Remove="Source\DarkQuestionMark.png" />
@@ -48,16 +71,51 @@
 		<None Remove="Source\eye.png" />
 		<None Remove="Source\eye_closed.png" />
 		<None Remove="Source\file.png" />
+		<None Remove="Source\GreenTheme\backgroundImage.png" />
+		<None Remove="Source\GreenTheme\Close_icon.png" />
+		<None Remove="Source\GreenTheme\edit_pencil.png" />
+		<None Remove="Source\GreenTheme\eye.png" />
+		<None Remove="Source\GreenTheme\eye_closed.png" />
+		<None Remove="Source\GreenTheme\file.png" />
 		<None Remove="Source\GreenTheme\green_circle.png" />
+		<None Remove="Source\GreenTheme\home.png" />
+		<None Remove="Source\GreenTheme\plus.png" />
+		<None Remove="Source\GreenTheme\project.png" />
+		<None Remove="Source\GreenTheme\roll_window.png" />
+		<None Remove="Source\GreenTheme\settings.png" />
+		<None Remove="Source\GreenTheme\user.png" />
 		<None Remove="Source\green_circle.png" />
 		<None Remove="Source\home.png" />
 		<None Remove="Source\orange_circle.png" />
+		<None Remove="Source\PinkTheme\backgroundImage.png" />
+		<None Remove="Source\PinkTheme\Close_icon.png" />
+		<None Remove="Source\PinkTheme\edit_pencil.png" />
+		<None Remove="Source\PinkTheme\eye.png" />
+		<None Remove="Source\PinkTheme\eye_closed.png" />
+		<None Remove="Source\PinkTheme\file.png" />
+		<None Remove="Source\PinkTheme\pink_circle.png" />
+		<None Remove="Source\PinkTheme\plus.png" />
+		<None Remove="Source\PinkTheme\project.png" />
+		<None Remove="Source\PinkTheme\roll_window.png" />
+		<None Remove="Source\PinkTheme\settings.png" />
+		<None Remove="Source\PinkTheme\user.png" />
 		<None Remove="Source\pink_circle.png" />
 		<None Remove="Source\plus.png" />
 		<None Remove="Source\project.png" />
 		<None Remove="Source\purple_circle.png" />
 		<None Remove="Source\QuestionMark.png" />
+		<None Remove="Source\RedTheme\backgroundImage.png" />
+		<None Remove="Source\RedTheme\Close_icon.png" />
+		<None Remove="Source\RedTheme\edit_pencil.png" />
+		<None Remove="Source\RedTheme\eye.png" />
+		<None Remove="Source\RedTheme\eye_closed.png" />
+		<None Remove="Source\RedTheme\file.png" />
+		<None Remove="Source\RedTheme\plus.png" />
+		<None Remove="Source\RedTheme\project.png" />
 		<None Remove="Source\RedTheme\red_circle.png" />
+		<None Remove="Source\RedTheme\roll_window.png" />
+		<None Remove="Source\RedTheme\settings.png" />
+		<None Remove="Source\RedTheme\user.png" />
 		<None Remove="Source\red_blue_circle.png" />
 		<None Remove="Source\red_circle.png" />
 		<None Remove="Source\roll_window.png" />
@@ -73,7 +131,48 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Resource Include="Source\BlueTheme\blue_circle.png" />
+	  <Resource Include="Source\BlackTheme\backgroundImage.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Source\BlackTheme\black_circle.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Source\BlackTheme\Close_icon.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Source\BlackTheme\edit_pencil.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Source\BlackTheme\eye.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Source\BlackTheme\eye_closed.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Source\BlackTheme\file.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Source\BlackTheme\plus.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Source\BlackTheme\project.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Source\BlackTheme\roll_window.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Source\BlackTheme\settings.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Source\BlackTheme\user.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Source\BlueTheme\backgroundImage.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Source\BlueTheme\blue_circle.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -87,6 +186,36 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Resource Include="Source\BlueTheme\Close_icon.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\BlueTheme\edit_pencil.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\BlueTheme\eye.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\BlueTheme\eye_closed.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\BlueTheme\file.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\BlueTheme\plus.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\BlueTheme\project.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\BlueTheme\roll_window.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\BlueTheme\settings.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\BlueTheme\user.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
 		<Resource Include="Source\DefaultTheme\backgroundImage.jpg">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
@@ -108,7 +237,9 @@
 		<Resource Include="Source\DefaultTheme\project.png">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
-		<Resource Include="Source\DefaultTheme\purple_circle.png" />
+		<Resource Include="Source\DefaultTheme\purple_circle.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
 		<Resource Include="Source\DefaultTheme\roll_window.png">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
@@ -127,8 +258,117 @@
 		<Resource Include="Source\DefaultTheme\eye_closed.png">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
-		<Resource Include="Source\GreenTheme\green_circle.png" />
-		<Resource Include="Source\RedTheme\red_circle.png" />
+		<Resource Include="Source\GreenTheme\backgroundImage.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\GreenTheme\Close_icon.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\GreenTheme\edit_pencil.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\GreenTheme\eye.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\GreenTheme\eye_closed.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\GreenTheme\file.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\GreenTheme\green_circle.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\GreenTheme\home.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\GreenTheme\plus.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\GreenTheme\project.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\GreenTheme\roll_window.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\GreenTheme\settings.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\GreenTheme\user.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\PinkTheme\backgroundImage.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\PinkTheme\Close_icon.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\PinkTheme\edit_pencil.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\PinkTheme\eye.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\PinkTheme\eye_closed.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\PinkTheme\file.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\PinkTheme\pink_circle.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\PinkTheme\plus.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\PinkTheme\project.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\PinkTheme\roll_window.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\PinkTheme\settings.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\PinkTheme\user.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\RedTheme\backgroundImage.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\RedTheme\Close_icon.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\RedTheme\edit_pencil.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\RedTheme\eye.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\RedTheme\eye_closed.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\RedTheme\file.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\RedTheme\plus.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\RedTheme\project.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\RedTheme\red_circle.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\RedTheme\roll_window.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\RedTheme\settings.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\RedTheme\user.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
 		<Resource Include="Themes\DefaultTheme.xaml">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
