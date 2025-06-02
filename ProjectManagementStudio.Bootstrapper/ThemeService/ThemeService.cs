@@ -32,7 +32,7 @@ internal class ThemeService : IThemeService, IThemeServiceInitializer
             Source = GetThemeUri(theme)
         };
 
-        var dictionaryToRemove = Application.Current.Resources.MergedDictionaries
+        ResourceDictionary? dictionaryToRemove = Application.Current.Resources.MergedDictionaries
                                             .FirstOrDefault(d => (bool)d.Source?.OriginalString.Contains("Theme.xaml"));
 
         if (dictionaryToRemove != null)

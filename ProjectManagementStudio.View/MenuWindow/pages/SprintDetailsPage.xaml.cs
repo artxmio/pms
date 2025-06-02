@@ -20,4 +20,14 @@ public partial class SprintDetailsPage : ISprintDetailsPage
     {
         _viewModel.LoadSprintTasksCommand.Execute(this);
     }
+
+    private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+    {
+        Tasks.IsOpen = false;
+    }
+
+    private void StackPanel_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        Tasks.IsOpen = true;
+    }
 }

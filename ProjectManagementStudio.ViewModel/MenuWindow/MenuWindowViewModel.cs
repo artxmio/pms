@@ -34,6 +34,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     private readonly ISettingsPageService _settingPageService;
     private readonly IProjectsPageService _projectPageService;
     private User _selectedUser = new User();
+    private SprintTask _selectedTask;
 
     #endregion
 
@@ -135,6 +136,16 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         set
         {
             _selectedUser = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public SprintTask SelectedTask
+    {
+        get => _selectedTask;
+        set
+        {
+            _selectedTask = value;
             OnPropertyChanged();
         }
     }

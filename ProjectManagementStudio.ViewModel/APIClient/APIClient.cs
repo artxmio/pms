@@ -386,4 +386,9 @@ public class APIClient : IAPIClient
             MessageBox.Show($"Возникла неизвестная ошибка: {ex.Message}", "Ошибка");
         }
     }
+
+    public async Task CreateTask(int sprintId, int userId, SprintTask task)
+    {
+
+    }
 }

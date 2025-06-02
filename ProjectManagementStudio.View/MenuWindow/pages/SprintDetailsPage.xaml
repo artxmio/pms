@@ -35,12 +35,13 @@
 
         <ListBox x:Name="TaskList"
                  ItemsSource="{Binding Tasks}"
-                 Grid.Row="3">
+                 Grid.Row="3"
+                 SelectedItem="{Binding SelectedTask}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border BorderThickness="1" CornerRadius="5" Padding="10" Margin="5"
                     BorderBrush="Gray" Background="LightGray">
-                        <StackPanel>
+                        <StackPanel MouseLeftButtonDown="StackPanel_MouseLeftButtonDown">
                             <TextBlock Text="{Binding TaskName}" FontSize="16" FontWeight="Bold"/>
                             <TextBlock Text="{Binding TaskDescription}" TextWrapping="Wrap"/>
                             <ItemsControl ItemsSource="{Binding Tags}">
@@ -57,5 +58,27 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+
+        <Popup x:Name="Tasks" IsOpen="False" Placement="MousePoint">
+            <Border Background="White" BorderBrush="Gray" BorderThickness="2" Padding="10" CornerRadius="5">
+                <StackPanel>
+                    <TextBlock Text="Task Details" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding SelectedTask.TaskName}" FontSize="16"/>
+                    <TextBlock Text="{Binding SelectedTask.TaskDescription}" TextWrapping="Wrap"/>
+
+                    <ItemsControl ItemsSource="{Binding SelectedTask.Tags}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="LightBlue" Padding="5" Margin="2">
+                                    <TextBlock Text="{Binding TagName}"/>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <Button Content="Close" Click="Button_Click" Margin="5"/>
+                </StackPanel>
+            </Border>
+        </Popup>
     </Grid>
 </Page>
