@@ -10,15 +10,22 @@
 
 	<ItemGroup>
 		<Compile Remove="MainWindow\Source\**" />
+		<Compile Remove="Source\BlueRedTheme\**" />
+		<Compile Remove="Source\OrangeTheme\**" />
 		<EmbeddedResource Remove="MainWindow\Source\**" />
+		<EmbeddedResource Remove="Source\BlueRedTheme\**" />
+		<EmbeddedResource Remove="Source\OrangeTheme\**" />
 		<None Remove="MainWindow\Source\**" />
+		<None Remove="Source\BlueRedTheme\**" />
+		<None Remove="Source\OrangeTheme\**" />
 		<Page Remove="MainWindow\Source\**" />
+		<Page Remove="Source\BlueRedTheme\**" />
+		<Page Remove="Source\OrangeTheme\**" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<None Remove="Source\ava.png" />
 		<None Remove="Source\backgroundImage.jpg" />
-		<None Remove="Source\BlueRedTheme\red_blue_circle.png" />
 		<None Remove="Source\BlueTheme\blue_circle.png" />
 		<None Remove="Source\blue_circle.png" />
 		<None Remove="Source\Close_icon.png" />
@@ -44,7 +51,6 @@
 		<None Remove="Source\GreenTheme\green_circle.png" />
 		<None Remove="Source\green_circle.png" />
 		<None Remove="Source\home.png" />
-		<None Remove="Source\OrangeTheme\orange_circle.png" />
 		<None Remove="Source\orange_circle.png" />
 		<None Remove="Source\pink_circle.png" />
 		<None Remove="Source\plus.png" />
@@ -67,11 +73,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Resource Include="Source\BlueRedTheme\red_blue_circle.png" />
 	  <Resource Include="Source\BlueTheme\blue_circle.png" />
-	  <Resource Include="Source\DefaultTheme\ava.png">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </Resource>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -91,7 +93,6 @@
 		<Resource Include="Source\DefaultTheme\Close_icon.png">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
-		<Resource Include="Source\DefaultTheme\DarkQuestionMark.png" />
 		<Resource Include="Source\DefaultTheme\Edit_pencil.png">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
@@ -108,7 +109,6 @@
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
 		<Resource Include="Source\DefaultTheme\purple_circle.png" />
-		<Resource Include="Source\DefaultTheme\QuestionMark.png" />
 		<Resource Include="Source\DefaultTheme\roll_window.png">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
@@ -127,11 +127,7 @@
 		<Resource Include="Source\DefaultTheme\eye_closed.png">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
-		<Resource Include="Source\DefaultTheme\pink_circle.png">
-		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-		</Resource>
 		<Resource Include="Source\GreenTheme\green_circle.png" />
-		<Resource Include="Source\OrangeTheme\orange_circle.png" />
 		<Resource Include="Source\RedTheme\red_circle.png" />
 		<Resource Include="Themes\DefaultTheme.xaml">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
