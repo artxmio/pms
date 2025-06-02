@@ -164,7 +164,7 @@
                 <Button.Template>
                     <ControlTemplate>
                         <Border x:Name="border"  Width="191" Height="39"
-                            d:Background="#724D9D" Background="{DynamicResource SecondDialogColor}" CornerRadius="10">
+                            d:Background="#724D9D" Background="{DynamicResource ButtonDialog}" CornerRadius="10">
                             <ContentPresenter HorizontalAlignment="Center" 
                                 VerticalAlignment="Center" 
                                 d:Content="Apply" Content="{DynamicResource Apply}"/>
@@ -191,7 +191,7 @@
                 <Button.Template>
                     <ControlTemplate>
                         <Border x:Name="border"  Width="191" Height="39"
-                            d:Background="#724D9D" Background="{DynamicResource SecondDialogColor}" CornerRadius="10">
+                            d:Background="#724D9D" Background="{DynamicResource ButtonDialog}" CornerRadius="10">
                             <ContentPresenter HorizontalAlignment="Center" 
                                 VerticalAlignment="Center" 
                                 d:Content="Cancel" Content="{DynamicResource Cancel}"/>

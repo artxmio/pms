@@ -33,6 +33,7 @@
 		<None Remove="Source\BlackTheme\eye.png" />
 		<None Remove="Source\BlackTheme\eye_closed.png" />
 		<None Remove="Source\BlackTheme\file.png" />
+		<None Remove="Source\BlackTheme\home.png" />
 		<None Remove="Source\BlackTheme\plus.png" />
 		<None Remove="Source\BlackTheme\project.png" />
 		<None Remove="Source\BlackTheme\roll_window.png" />
@@ -45,6 +46,7 @@
 		<None Remove="Source\BlueTheme\eye.png" />
 		<None Remove="Source\BlueTheme\eye_closed.png" />
 		<None Remove="Source\BlueTheme\file.png" />
+		<None Remove="Source\BlueTheme\home.png" />
 		<None Remove="Source\BlueTheme\plus.png" />
 		<None Remove="Source\BlueTheme\project.png" />
 		<None Remove="Source\BlueTheme\roll_window.png" />
@@ -93,6 +95,7 @@
 		<None Remove="Source\PinkTheme\eye.png" />
 		<None Remove="Source\PinkTheme\eye_closed.png" />
 		<None Remove="Source\PinkTheme\file.png" />
+		<None Remove="Source\PinkTheme\home.png" />
 		<None Remove="Source\PinkTheme\pink_circle.png" />
 		<None Remove="Source\PinkTheme\plus.png" />
 		<None Remove="Source\PinkTheme\project.png" />
@@ -110,6 +113,7 @@
 		<None Remove="Source\RedTheme\eye.png" />
 		<None Remove="Source\RedTheme\eye_closed.png" />
 		<None Remove="Source\RedTheme\file.png" />
+		<None Remove="Source\RedTheme\home.png" />
 		<None Remove="Source\RedTheme\plus.png" />
 		<None Remove="Source\RedTheme\project.png" />
 		<None Remove="Source\RedTheme\red_circle.png" />
@@ -150,6 +154,9 @@
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
 	  <Resource Include="Source\BlackTheme\file.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Source\BlackTheme\home.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
 	  <Resource Include="Source\BlackTheme\plus.png">
@@ -199,6 +206,9 @@
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
 		<Resource Include="Source\BlueTheme\file.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\BlueTheme\home.png">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
 		<Resource Include="Source\BlueTheme\plus.png">
@@ -315,6 +325,9 @@
 		<Resource Include="Source\PinkTheme\file.png">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
+		<Resource Include="Source\PinkTheme\home.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
 		<Resource Include="Source\PinkTheme\pink_circle.png">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
@@ -349,6 +362,9 @@
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
 		<Resource Include="Source\RedTheme\file.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Source\RedTheme\home.png">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
 		<Resource Include="Source\RedTheme\plus.png">

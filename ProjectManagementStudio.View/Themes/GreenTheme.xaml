@@ -87,7 +87,8 @@
     <!-- Password Change Dialog -->
     <!-- Email Change Dialog -->
     <SolidColorBrush x:Key="MainDialogColor">#406250</SolidColorBrush>
-    <SolidColorBrush x:Key="SecondDialogColor">#8AACA0</SolidColorBrush>
+    <SolidColorBrush x:Key="SecondDialogColor">#688777</SolidColorBrush>
+    <SolidColorBrush x:Key="ButtonDialog">#8AACA0</SolidColorBrush>
     <SolidColorBrush x:Key="ButtonHoverDialog">#6e8a80</SolidColorBrush>
     <SolidColorBrush x:Key="Border">#0D3021</SolidColorBrush>
 

@@ -1,0 +1,95 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Registrarion/Login -->
+    <SolidColorBrush x:Key="ButtonBackground" Color="#3D6E8C"/>
+    <SolidColorBrush x:Key="ButtonHover" Color="#315a73"/>
+    <SolidColorBrush x:Key="ButtonDisabled" Color="#27485c"/>
+    <SolidColorBrush x:Key="ButtonDisabledText" Color="#666666"/>
+    <SolidColorBrush x:Key="Field" Color="#500F1417"/>
+    <SolidColorBrush x:Key="RememberMeColor" Color="#3D6E8C"/>
+    <BitmapImage x:Key="Background">../Source/BlueTheme/backgroundImage.png</BitmapImage>
+    <BitmapImage x:Key="CloseButton">../Source/BlueTheme/Close_icon.png</BitmapImage>
+    <BitmapImage x:Key="Eye">../Source/BlueTheme/eye.png</BitmapImage>
+    <BitmapImage x:Key="EyeClosed">../Source/BlueTheme/eye_closed.png</BitmapImage>
+
+
+    <!-- Menu Window -->
+    <Style x:Key="MenuBackground" TargetType="Window">
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#8DC2E1" Offset="0" />
+                    <GradientStop Color="#272A35" Offset="1" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- Top Menu Gradient -->
+    <Color x:Key="HeaderGradientColorStart">#4A6D82</Color>
+    <Color x:Key="HeaderGradientColorEnd">#272A35</Color>
+    <LinearGradientBrush x:Key="HeaderBackgroundBrush" StartPoint="0,5" EndPoint="1,0">
+        <GradientStop Color="{DynamicResource HeaderGradientColorStart}" Offset="0.2" />
+        <GradientStop Color="{DynamicResource HeaderGradientColorEnd}" Offset="1" />
+    </LinearGradientBrush>
+    <!-- Left Menu Background -->
+    <Color x:Key="LeftMenuGradientColorStart">#4A6D82</Color>
+    <Color x:Key="LeftMenuGradientColorEnd">#10171C</Color>
+    <LinearGradientBrush x:Key="LeftMenu" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="{DynamicResource LeftMenuGradientColorStart}" Offset="0.2" />
+        <GradientStop Color="{DynamicResource LeftMenuGradientColorEnd}" Offset="1" />
+    </LinearGradientBrush>
+    <!-- Button images -->
+    <BitmapImage x:Key="Home">../Source/BlueTheme/home.png</BitmapImage>
+    <BitmapImage x:Key="User">../Source/BlueTheme/user.png</BitmapImage>
+    <BitmapImage x:Key="Project">../Source/BlueTheme/project.png</BitmapImage>
+    <BitmapImage x:Key="File">../Source/BlueTheme/file.png</BitmapImage>
+    <BitmapImage x:Key="Settings">../Source/BlueTheme/settings.png</BitmapImage>
+    <Style x:Key="AddProjectImageStyle" TargetType="Image">
+        <Setter Property="Source" Value="../Source/BlueTheme/plus.png"/>
+        <Setter Property="Opacity" Value="0.7"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Opacity" Value="1"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <BitmapImage x:Key="RollWindow">../Source/BlueTheme/roll_window.png</BitmapImage>
+    <BitmapImage x:Key="CloseButtonMenu">../Source/BlueTheme/Close_icon.png</BitmapImage>
+    <BitmapImage x:Key="EditInfo">../Source/BlueTheme/Edit_pencil.png</BitmapImage>
+
+
+    <!-- Profile Page -->
+    <SolidColorBrush x:Key="ProfileBackground">#456273</SolidColorBrush>
+    <SolidColorBrush x:Key="ProfileItems">#5D7E91</SolidColorBrush>
+    <SolidColorBrush x:Key="Buttons">#A1B1CC</SolidColorBrush>
+    <SolidColorBrush x:Key="ButtonsHover">#8f9db5</SolidColorBrush>
+    <SolidColorBrush x:Key="TextColor">#FFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="LogOutButtonHover">#4b6675</SolidColorBrush>
+    <SolidColorBrush x:Key="LogOutButton">#5D7E91</SolidColorBrush>
+    <SolidColorBrush x:Key="UserProjects">#A1B1CC</SolidColorBrush>
+    <SolidColorBrush x:Key="UserProjectsHover">#5D7E91</SolidColorBrush>
+
+
+    <!-- Settings -->
+    <SolidColorBrush x:Key="SettingsBackground">#456273</SolidColorBrush>
+    <SolidColorBrush x:Key="SettingsItems">#5D7E91</SolidColorBrush>
+    <SolidColorBrush x:Key="Button">#A1B1CC</SolidColorBrush>
+    <SolidColorBrush x:Key="SettingsButtonHover">#8592a8</SolidColorBrush>
+    <SolidColorBrush x:Key="ThemeButton">#5D7E91</SolidColorBrush>
+    <SolidColorBrush x:Key="ThemeButtonHover">#A1B1CC</SolidColorBrush>
+
+
+    <!-- About Dialog -->
+    <!-- Add Project Dialog -->
+    <!-- Login Change Dialog -->
+    <!-- Password Change Dialog -->
+    <!-- Email Change Dialog -->
+    <SolidColorBrush x:Key="MainDialogColor">#5D7E91</SolidColorBrush>
+    <SolidColorBrush x:Key="SecondDialogColor">#456273</SolidColorBrush>
+    <SolidColorBrush x:Key="ButtonDialog">#7EA1B5</SolidColorBrush>
+    <SolidColorBrush x:Key="ButtonHoverDialog">#39505e</SolidColorBrush>
+    <SolidColorBrush x:Key="Border">#2E4451</SolidColorBrush>
+
+</ResourceDictionary>

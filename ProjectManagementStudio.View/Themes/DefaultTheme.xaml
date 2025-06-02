@@ -83,6 +83,7 @@
     <!-- Email Change Dialog -->
     <SolidColorBrush x:Key="MainDialogColor">#2C1B47</SolidColorBrush>
     <SolidColorBrush x:Key="SecondDialogColor">#724D9D</SolidColorBrush>
+    <SolidColorBrush x:Key="ButtonDialog">#724D9D</SolidColorBrush>
     <SolidColorBrush x:Key="ButtonHoverDialog">#482f66</SolidColorBrush>
     <SolidColorBrush x:Key="Border">#2C1B47</SolidColorBrush>
 
