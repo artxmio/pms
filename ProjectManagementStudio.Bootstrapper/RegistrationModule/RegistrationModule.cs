@@ -6,6 +6,7 @@ using ProjectManagementStudio.Bootstrapper.Services.PageServices.ProjectsPageSer
 using ProjectManagementStudio.Bootstrapper.Services.PageServices.SettingsPageService;
 using ProjectManagementStudio.Bootstrapper.Services.PathService;
 using ProjectManagementStudio.Bootstrapper.Services.UrlService;
+using ProjectManagementStudio.Bootstrapper.ThemeService;
 using ProjectManagementStudio.Model.PathService;
 using ProjectManagementStudio.View.PageFactory;
 using ProjectManagementStudio.View.WindowFactory;
@@ -13,6 +14,7 @@ using ProjectManagementStudio.ViewModel.LocalizationService;
 using ProjectManagementStudio.ViewModel.PageServices.IProfilePageService;
 using ProjectManagementStudio.ViewModel.PageServices.IProjectsPageService;
 using ProjectManagementStudio.ViewModel.PageServices.ISettingsPageService;
+using ProjectManagementStudio.ViewModel.ThemeService;
 using ProjectManagementStudio.ViewModel.UrlService;
 
 namespace ProjectManagementStudio.Bootstrapper.RegistrationModule;
@@ -56,6 +58,11 @@ public class RegistrationModule : Module
         builder.RegisterType<ProjectsPageService>()
             .As<IProjectsPageService>()
             .As<IProjectsPageServiceInitializer>()
+            .SingleInstance();
+
+        builder.RegisterType<ThemeService.ThemeService>()
+            .As<IThemeService>()
+            .As<IThemeServiceInitializer>()
             .SingleInstance();
     }
 }

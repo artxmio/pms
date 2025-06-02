@@ -5,10 +5,12 @@ using ProjectManagementStudio.Bootstrapper.Services.PageServices.ProjectsPageSer
 using ProjectManagementStudio.Bootstrapper.Services.PageServices.SettingsPageService;
 using ProjectManagementStudio.Bootstrapper.Services.PathService;
 using ProjectManagementStudio.Bootstrapper.Services.UrlService;
+using ProjectManagementStudio.Bootstrapper.ThemeService;
 using ProjectManagementStudio.Model.UserSavedData.Wrapper;
 using ProjectManagementStudio.ViewModel.LocalizationService;
 using ProjectManagementStudio.ViewModel.MainWindow;
 using ProjectManagementStudio.ViewModel.MenuWindow;
+using ProjectManagementStudio.ViewModel.ThemeService;
 using ProjectManagementStudio.ViewModel.Windows;
 using System.Windows;
 
@@ -85,6 +87,7 @@ public class Bootstrapper : IDisposable
         _container.Resolve<ICurrentUserServiceInitializer>().Initialize();
         _container.Resolve<ISettingsPageServiceInitializer>().Initialize();
         _container.Resolve<IProjectsPageServiceInitializer>().Initialize();
+        _container.Resolve<IThemeServiceInitializer>().Initialize();
     }
 
     public void Dispose() => _container.Dispose();

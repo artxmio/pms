@@ -1,453 +1,328 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="ProjectManagementStudio.Bootstrapper.Bootstrapper" Collapsed="true">
-    <Position X="10.25" Y="2.25" Width="1.5" />
+  <Class Name="ProjectManagementStudio.ViewModel.APIClient.Enums.ChangeableParams" Collapsed="true">
+    <Position X="17.25" Y="14.75" Width="1.5" />
     <TypeIdentifier />
-  </Class>
-  <Class Name="ProjectManagementStudio.Bootstrapper.Properties.Settings" Collapsed="true">
-    <Position X="12" Y="1.25" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="ProjectManagementStudio.Bootstrapper.RegistrationModule.RegistrationModule" Collapsed="true">
-    <Position X="6.75" Y="1.25" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="ProjectManagementStudio.Bootstrapper.Services.UrlService.HttpConfig" Collapsed="true">
-    <Position X="13.75" Y="1.25" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="ProjectManagementStudio.Bootstrapper.Services.UrlService.UrlService" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="15.5" Y="1.25" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.252" Collapsed="true" />
-  </Class>
-  <Class Name="ProjectManagementStudio.Model.CurrentUserModel.CurrentUserModel" Collapsed="true">
-    <Position X="3.25" Y="2.25" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="ProjectManagementStudio.Model.MenuWindowModels.ProfileModel.ModalWindowModels.AboutText.AboutTextModel" Collapsed="true">
-    <Position X="15.5" Y="3.25" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="ProjectManagementStudio.Model.MenuWindowModels.ProfileModel.ModalWindowModels.NewEmail.ChangeEmailModel" Collapsed="true">
-    <Position X="3.25" Y="4.25" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="ProjectManagementStudio.Model.MenuWindowModels.ProfileModel.ModalWindowModels.NewPassword.ChangePasswordModel" Collapsed="true">
-    <Position X="19" Y="2.25" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="ProjectManagementStudio.Model.RegistrationModule.RegistrationModule" Collapsed="true">
-    <Position X="17.25" Y="2.25" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="ProjectManagementStudio.Model.RequestsModels.AddUserRequestModel" Collapsed="true">
-    <Position X="6.75" Y="5" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="ProjectManagementStudio.Model.RequestsModels.AuthRequestModel" Collapsed="true">
-    <Position X="10.25" Y="5" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="ProjectManagementStudio.Model.RequestsModels.ChangeUserParamsRequestModel" Collapsed="true">
-    <Position X="8.5" Y="4.25" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="ProjectManagementStudio.Model.ResponseModels.AddUserResponse" Collapsed="true">
-    <Position X="3.25" Y="1.25" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="ProjectManagementStudio.Model.ResponseModels.ChangeUserParamsResponseModel" Collapsed="true">
-    <Position X="10.25" Y="3.25" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="ProjectManagementStudio.Model.ResponseModels.GetUserResponse" Collapsed="true">
-    <Position X="8.5" Y="1.25" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="ProjectManagementStudio.Model.Responses.IsUserExistResponse" Collapsed="true">
-    <Position X="8.5" Y="2.25" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="ProjectManagementStudio.Model.SettingSize.WindowSizes" Collapsed="true">
-    <Position X="5" Y="2.25" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="ProjectManagementStudio.Model.UserSavedData.Memento.UserDataMemento" Collapsed="true">
-    <Position X="5" Y="5" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="ProjectManagementStudio.Model.WindowModels.AuthModel.AuthModel" Collapsed="true">
-    <Position X="10.25" Y="6" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="ProjectManagementStudio.Model.WindowModels.BaseModel.BaseModel" Collapsed="true">
-    <Position X="12" Y="5" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="ProjectManagementStudio.Model.WindowModels.RegisterModel.RegisterModel" Collapsed="true">
-    <Position X="12" Y="6" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="ProjectManagementStudio.Model.WindowSavedData.Memento.WindowDataMemento" Collapsed="true">
-    <Position X="15.5" Y="2.25" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="ProjectManagementStudio.View.MainWindow.MainWindow" Collapsed="true">
-    <Position X="15.5" Y="4.25" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="ProjectManagementStudio.View.MainWindow.Pages.LoginPage" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="26" Y="1.25" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="ProjectManagementStudio.View.MainWindow.Pages.RegistrationPage" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="22.5" Y="3.25" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="ProjectManagementStudio.View.MenuWindow.ModalWindows.AboutTextChangeDialog" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="20.75" Y="1.25" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="ProjectManagementStudio.View.MenuWindow.ModalWindows.EmailChangeDialog" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="22.5" Y="1.25" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="ProjectManagementStudio.View.MenuWindow.ModalWindows.LoginChangeDialog" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="24.25" Y="1.25" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="ProjectManagementStudio.View.MenuWindow.ModalWindows.PasswordChangeDialog" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="24.25" Y="2.25" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="ProjectManagementStudio.View.MenuWindow.Pages.ProfilePage" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="26" Y="2.25" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="ProjectManagementStudio.View.MenuWindow.Pages.SettingsPage" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="24.25" Y="3.25" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="ProjectManagementStudio.View.MenuWindow.Pages.WelcomePage" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="10.25" Y="1.25" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="ProjectManagementStudio.View.MenuWindow.MenuWindow" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="20.75" Y="2.25" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="ProjectManagementStudio.View.PageManager.PageManager" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="22.5" Y="2.25" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="ProjectManagementStudio.View.RegistrationModule.RegistrationModule" Collapsed="true">
-    <Position X="20.75" Y="3.25" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="ProjectManagementStudio.View.UserControls.TextPasswordBox.TextPasswordBox" Collapsed="true">
-    <Position X="26" Y="3.25" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="ProjectManagementStudio.View.WindowManager.WindowsManager" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="3.25" Y="6" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ProjectManagementStudio.ViewModel.APIClient.APIClient" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="24.25" Y="4.25" Width="1.5" />
+    <Position X="13.75" Y="14.75" Width="1.5" />
     <TypeIdentifier />
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="ProjectManagementStudio.ViewModel.APIClient.ChangeableParams" Collapsed="true">
-    <Position X="8.5" Y="6" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
   <Class Name="ProjectManagementStudio.ViewModel.Command.AsyncCommand" Collapsed="true">
-    <Position X="26" Y="4.25" Width="1.5" />
+    <Position X="15.5" Y="14.75" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Class Name="ProjectManagementStudio.ViewModel.Command.RelayCommand" Collapsed="true">
-    <Position X="22.5" Y="6" Width="1.5" />
+    <Position X="13.75" Y="17.75" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Class Name="ProjectManagementStudio.ViewModel.MainWindow.MainWindowViewModel" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="26" Y="6" Width="1.5" />
+    <Position X="13.75" Y="16.75" Width="1.5" />
     <TypeIdentifier />
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.AboutText.ChangeAboutTextModalWindowViewModel" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="13.75" Y="6" Width="1.5" />
+    <Position X="19" Y="14.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.AddProject.AddProjectWindowViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12" Y="14.75" Width="1.5" />
     <TypeIdentifier />
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewEmail.ChangeEmailModalWindowViewModel" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="24.25" Y="5" Width="1.5" />
+    <Position X="12" Y="15.75" Width="1.5" />
     <TypeIdentifier />
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewLogin.ChangeLoginModalWindowViewModel" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="26" Y="5" Width="1.5" />
+    <Position X="13.75" Y="15.75" Width="1.5" />
     <TypeIdentifier />
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewPassword.ChangePasswordModalWindowViewModel" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="6.75" Y="6" Width="1.5" />
+    <Position X="15.5" Y="15.75" Width="1.5" />
     <TypeIdentifier />
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ProjectManagementStudio.ViewModel.MenuWindow.MenuWindowViewModel" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="5" Y="6" Width="1.5" />
+    <Position X="15.5" Y="16.75" Width="1.5" />
     <TypeIdentifier />
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ProjectManagementStudio.ViewModel.Pages.Pages" Collapsed="true">
-    <Position X="17.25" Y="6" Width="1.5" />
+    <Position X="17.25" Y="16.75" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Class Name="ProjectManagementStudio.ViewModel.RegistrationModule.RegistrationModule" Collapsed="true">
-    <Position X="20.75" Y="6" Width="1.5" />
+    <Position X="12" Y="17.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="ProjectManagementStudio.ViewModel.ValidationsRules.DescriptionValidationRules" Collapsed="true">
+    <Position X="17.25" Y="15.75" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Class Name="ProjectManagementStudio.ViewModel.ValidationsRules.EmailValidationRules" Collapsed="true">
-    <Position X="15.5" Y="6" Width="1.5" />
+    <Position X="19" Y="15.75" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Class Name="ProjectManagementStudio.ViewModel.ValidationsRules.LoginValidationRules" Collapsed="true">
-    <Position X="24.25" Y="6" Width="1.5" />
+    <Position X="12" Y="16.75" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Class Name="ProjectManagementStudio.ViewModel.ValidationsRules.PasswordValidationRules" Collapsed="true">
-    <Position X="19" Y="6" Width="1.5" />
+    <Position X="19" Y="16.75" Width="1.5" />
     <TypeIdentifier />
   </Class>
-  <Interface Name="ProjectManagementStudio.Bootstrapper.Services.AvatarService.IAvatarServiceInitializer" Collapsed="true">
-    <Position X="6.75" Y="3.25" Width="1.5" />
+  <Class Name="ProjectManagementStudio.ViewModel.ValidationsRules.TitleValidationRules" Collapsed="true">
+    <Position X="15.5" Y="17.75" Width="1.5" />
     <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.Bootstrapper.Services.CurrentUserService.ICurrentUserServiceInitializer" Collapsed="true">
-    <Position X="6.75" Y="4.25" Width="1.5" />
+  </Class>
+  <Class Name="ProjectManagementStudio.View.Converters.ProjectStatusConverter" Collapsed="true">
+    <Position X="12" Y="12.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="ProjectManagementStudio.View.Converters.SprintStatusConverter" Collapsed="true">
+    <Position X="12" Y="13.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="ProjectManagementStudio.View.MainWindow.Pages.LoginPage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ProjectManagementStudio.View.MainWindow.Pages.RegistrationPage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.5" Y="12.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ProjectManagementStudio.View.MainWindow.MainWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="11.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ProjectManagementStudio.View.MenuWindow.ModalWindows.AboutTextChangeDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ProjectManagementStudio.View.MenuWindow.ModalWindows.AddProjectWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ProjectManagementStudio.View.MenuWindow.ModalWindows.EmailChangeDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12" Y="10.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ProjectManagementStudio.View.MenuWindow.ModalWindows.LoginChangeDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ProjectManagementStudio.View.MenuWindow.ModalWindows.PasswordChangeDialog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.75" Y="11.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ProjectManagementStudio.View.MenuWindow.Pages.ProfilePage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.5" Y="11.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ProjectManagementStudio.View.MenuWindow.Pages.SettingsPage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="13.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ProjectManagementStudio.View.MenuWindow.Pages.WelcomePage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.5" Y="13.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ProjectManagementStudio.View.MenuWindow.pages.ProjectDetailsPage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="12.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ProjectManagementStudio.View.MenuWindow.pages.ProjectPage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10.25" Y="12.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ProjectManagementStudio.View.MenuWindow.pages.SprintDetailsPage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10.25" Y="13.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ProjectManagementStudio.View.MenuWindow.MenuWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10.25" Y="11.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ProjectManagementStudio.View.PageManager.PageManager" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12" Y="11.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ProjectManagementStudio.View.RegistrationModule.RegistrationModule" Collapsed="true">
+    <Position X="13.75" Y="12.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="ProjectManagementStudio.View.UserControls.TextPasswordBox.TextPasswordBox" Collapsed="true">
+    <Position X="13.75" Y="13.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="ProjectManagementStudio.View.WindowManager.WindowsManager" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="14.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="ProjectManagementStudio.ViewModel.APIClient.IAPIClient" Collapsed="true">
+    <Position X="12.5" Y="5.5" Width="1.5" />
     <TypeIdentifier />
   </Interface>
   <Interface Name="ProjectManagementStudio.Bootstrapper.Services.CurrentUserService.ICurrentUserService" Collapsed="true">
-    <Position X="5" Y="1.25" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.Bootstrapper.Services.PageServices.SettingsPageService.ISettingsPageServiceInitializer" Collapsed="true">
-    <Position X="13.75" Y="3.25" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.Bootstrapper.Services.PathService.IPathServiceInitializer" Collapsed="true">
-    <Position X="17.25" Y="3.25" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.Bootstrapper.Services.Settings.SettingSizeService.ISettingSizeInitialize" Collapsed="true">
-    <Position X="19" Y="1.25" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.Bootstrapper.Services.UrlService.IUrlServiceInitializer" Collapsed="true">
-    <Position X="13.75" Y="2.25" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.Model.CurrentUserModel.ICurrentUserModel" Collapsed="true">
-    <Position X="3.25" Y="3.25" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.Model.MenuWindowModels.ProfileModel.ModalWindowModels.AboutText.IAboutTextModel" Collapsed="true">
-    <Position X="12" Y="3.25" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.Model.MenuWindowModels.ProfileModel.ModalWindowModels.NewEmail.IChangeEmailModel" Collapsed="true">
-    <Position X="3.25" Y="5" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.Model.MenuWindowModels.ProfileModel.ModalWindowModels.NewLogin.IChangeLoginModel" Collapsed="true">
-    <Position X="5" Y="4.25" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.Model.MenuWindowModels.ProfileModel.ModalWindowModels.NewPassword.IChangePasswordModel" Collapsed="true">
-    <Position X="19" Y="3.25" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.Model.PathService.IPathService" Collapsed="true">
-    <Position X="17.25" Y="1.25" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.Model.SettingSize.IWindowSizes" Collapsed="true">
-    <Position X="5" Y="3.25" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.Model.UserSavedData.Memento.IUserDataMemento" Collapsed="true">
-    <Position X="10.25" Y="4.25" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.Model.UserSavedData.Wrapper.IUserDataMementoWrapper" Collapsed="true">
-    <Position X="13.75" Y="4.25" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.Model.UserSavedData.Wrapper.IUserDataMementoWrapperInitializer" Collapsed="true">
-    <Position X="8.5" Y="5" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.Model.WindowModels.AuthModel.IAuthModel" Collapsed="true">
-    <Position X="13.75" Y="5" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.Model.WindowModels.RegisterModel.IRegisterModel" Collapsed="true">
-    <Position X="12" Y="4.25" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.Model.WindowSavedData.Memento.IWindowDataMemento" Collapsed="true">
-    <Position X="12" Y="2.25" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.Model.WindowSavedData.Wrapper.IWindowDataMementoWrapper" Collapsed="true">
-    <Position X="8.5" Y="3.25" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.Model.WindowSavedData.Wrapper.IWindowDataMementoWrapperInitializer" Collapsed="true">
-    <Position X="6.75" Y="2.25" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.View.MainWindow.IMainWindow" Collapsed="true">
-    <Position X="2.75" Y="8.25" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.View.MainWindow.Pages.ILoginPage" Collapsed="true">
-    <Position X="26" Y="8.5" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.View.MainWindow.Pages.IRegistrationPage" Collapsed="true">
-    <Position X="22.5" Y="10" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.View.MenuWindow.ModalWindows.IAboutTextChangeDialog" Collapsed="true">
-    <Position X="2.75" Y="9" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.View.MenuWindow.ModalWindows.IEmailChangeDialog" Collapsed="true">
-    <Position X="5.25" Y="10.5" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.View.MenuWindow.ModalWindows.ILoginChangeDialog" Collapsed="true">
-    <Position X="5.25" Y="9" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.View.MenuWindow.ModalWindows.IPasswordChangeDialog" Collapsed="true">
-    <Position X="5.25" Y="8.25" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.View.MenuWindow.Pages.IProfilePage" Collapsed="true">
-    <Position X="26" Y="9.25" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.View.MenuWindow.Pages.ISettingsPage" Collapsed="true">
-    <Position X="22.5" Y="9.25" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.View.MenuWindow.Pages.IWelcomePage" Collapsed="true">
-    <Position X="22.5" Y="8.5" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.View.MenuWindow.IMenuWindow" Collapsed="true">
-    <Position X="2.75" Y="9.75" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.View.PageFactory.IPageFactory" Collapsed="true">
-    <Position X="5.25" Y="9.75" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.ViewModel.APIClient.IAPIClient" Collapsed="true">
-    <Position X="17.25" Y="4.25" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.ViewModel.AvatarService.IAvatarService" Collapsed="true">
-    <Position X="19" Y="4.25" Width="1.5" />
+    <Position X="14.25" Y="5.5" Width="1.5" />
     <TypeIdentifier />
   </Interface>
   <Interface Name="ProjectManagementStudio.ViewModel.LocalizationService.ILocalizationService" Collapsed="true">
-    <Position X="20.75" Y="4.25" Width="1.5" />
+    <Position X="16" Y="5.5" Width="1.5" />
     <TypeIdentifier />
   </Interface>
   <Interface Name="ProjectManagementStudio.ViewModel.MainWindow.IMainWindowViewModel" Collapsed="true">
-    <Position X="10" Y="8.75" Width="1.5" />
+    <Position X="8.25" Y="4.5" Width="1.5" />
     <TypeIdentifier />
   </Interface>
   <Interface Name="ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.AboutText.IChangeAboutTextModalWindowViewModel" Collapsed="true">
-    <Position X="14.5" Y="8.75" Width="1.5" />
+    <Position X="15" Y="4.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.AddProject.IAddProjectWindowViewModel" Collapsed="true">
+    <Position X="19.5" Y="4.5" Width="1.5" />
     <TypeIdentifier />
   </Interface>
   <Interface Name="ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewEmail.IChangeEmailModalWindowViewModel" Collapsed="true">
-    <Position X="7.75" Y="8.75" Width="1.5" />
+    <Position X="10.5" Y="4.5" Width="1.5" />
     <TypeIdentifier />
   </Interface>
   <Interface Name="ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewLogin.IChangeLoginModalWindowViewModel" Collapsed="true">
-    <Position X="12.25" Y="8.75" Width="1.5" />
+    <Position X="12.75" Y="4.5" Width="1.5" />
     <TypeIdentifier />
   </Interface>
   <Interface Name="ProjectManagementStudio.ViewModel.MenuWindow.ModalWindows.NewPassword.IChangePasswordModalWindowViewModel" Collapsed="true">
-    <Position X="16.75" Y="8.75" Width="1.5" />
+    <Position X="17.25" Y="4.5" Width="1.5" />
     <TypeIdentifier />
   </Interface>
   <Interface Name="ProjectManagementStudio.ViewModel.MenuWindow.IMenuWindowViewModel" Collapsed="true">
-    <Position X="19" Y="8.75" Width="1.5" />
+    <Position X="21.75" Y="4.5" Width="1.5" />
     <TypeIdentifier />
   </Interface>
   <Interface Name="ProjectManagementStudio.ViewModel.Pages.IPage" Collapsed="true">
-    <Position X="23.75" Y="7" Width="1.5" />
+    <Position X="17.75" Y="5.5" Width="1.5" />
     <TypeIdentifier />
   </Interface>
   <Interface Name="ProjectManagementStudio.ViewModel.Pages.IPageManager" Collapsed="true">
-    <Position X="22.5" Y="4.25" Width="1.5" />
+    <Position X="19.5" Y="5.5" Width="1.5" />
     <TypeIdentifier />
   </Interface>
   <Interface Name="ProjectManagementStudio.ViewModel.PageServices.IProfilePageService.IProfilePageService" Collapsed="true">
-    <Position X="17.25" Y="5" Width="1.5" />
+    <Position X="12.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="ProjectManagementStudio.ViewModel.PageServices.IProjectsPageService.IProjectsPageService" Collapsed="true">
+    <Position X="14.25" Y="6.5" Width="1.5" />
     <TypeIdentifier />
   </Interface>
   <Interface Name="ProjectManagementStudio.ViewModel.PageServices.ISettingsPageService.ISettingsPageService" Collapsed="true">
-    <Position X="20.75" Y="5" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="ProjectManagementStudio.ViewModel.SettingSizeService.ISettingSizeService" Collapsed="true">
-    <Position X="19" Y="5" Width="1.5" />
+    <Position X="16" Y="6.5" Width="1.5" />
     <TypeIdentifier />
   </Interface>
   <Interface Name="ProjectManagementStudio.ViewModel.UrlService.IUrlService" Collapsed="true">
-    <Position X="22.5" Y="5" Width="1.5" />
+    <Position X="17.75" Y="6.5" Width="1.5" />
     <TypeIdentifier />
   </Interface>
   <Interface Name="ProjectManagementStudio.ViewModel.Windows.IWindow" Collapsed="true">
-    <Position X="3.25" Y="7.25" Width="1.5" />
+    <Position X="19.5" Y="6.5" Width="1.5" />
     <TypeIdentifier />
   </Interface>
   <Interface Name="ProjectManagementStudio.ViewModel.Windows.IWindowManager" Collapsed="true">
-    <Position X="15.5" Y="5" Width="1.5" />
+    <Position X="12.5" Y="7.25" Width="1.5" />
     <TypeIdentifier />
   </Interface>
   <Interface Name="ProjectManagementStudio.ViewModel.Windows.IWindowViewModel" Collapsed="true">
-    <Position X="13.25" Y="7.5" Width="1.5" />
+    <Position X="15" Y="3.25" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="ProjectManagementStudio.View.MainWindow.Pages.ILoginPage" Collapsed="true">
+    <Position X="15.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="ProjectManagementStudio.View.MainWindow.Pages.IRegistrationPage" Collapsed="true">
+    <Position X="12.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="ProjectManagementStudio.View.MainWindow.IMainWindow" Collapsed="true">
+    <Position X="20.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="ProjectManagementStudio.View.MenuWindow.ModalWindows.IAboutTextChangeDialog" Collapsed="true">
+    <Position X="16.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="ProjectManagementStudio.View.MenuWindow.ModalWindows.IAddProjectWindow" Collapsed="true">
+    <Position X="18.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="ProjectManagementStudio.View.MenuWindow.ModalWindows.IEmailChangeDialog" Collapsed="true">
+    <Position X="23" Y="9.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="ProjectManagementStudio.View.MenuWindow.ModalWindows.ILoginChangeDialog" Collapsed="true">
+    <Position X="9.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="ProjectManagementStudio.View.MenuWindow.ModalWindows.IPasswordChangeDialog" Collapsed="true">
+    <Position X="11.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="ProjectManagementStudio.View.MenuWindow.Pages.IProfilePage" Collapsed="true">
+    <Position X="20.75" Y="8" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="ProjectManagementStudio.View.MenuWindow.Pages.ISettingsPage" Collapsed="true">
+    <Position X="25.25" Y="8" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="ProjectManagementStudio.View.MenuWindow.Pages.IWelcomePage" Collapsed="true">
+    <Position X="29.75" Y="8" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="ProjectManagementStudio.View.MenuWindow.pages.IProjectDetailsPage" Collapsed="true">
+    <Position X="10" Y="8.25" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="ProjectManagementStudio.View.MenuWindow.pages.IProjectPage" Collapsed="true">
+    <Position X="23" Y="8" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="ProjectManagementStudio.View.MenuWindow.pages.ISprintDetailsPage" Collapsed="true">
+    <Position X="27.5" Y="8" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="ProjectManagementStudio.View.MenuWindow.IMenuWindow" Collapsed="true">
+    <Position X="14" Y="9.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="ProjectManagementStudio.View.PageFactory.IPageFactory" Collapsed="true">
+    <Position X="8.5" Y="16" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="ProjectManagementStudio.View.WindowFactory.IWindowFactory" Collapsed="true">
+    <Position X="10.25" Y="16" Width="1.5" />
     <TypeIdentifier />
   </Interface>
   <Font Name="Segoe UI" Size="9" />
