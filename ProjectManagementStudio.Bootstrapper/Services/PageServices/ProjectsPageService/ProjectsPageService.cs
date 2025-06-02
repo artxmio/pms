@@ -14,6 +14,8 @@ internal class ProjectsPageService : IProjectsPageService, IProjectsPageServiceI
 {
     private bool _initialized;
     private Project _selectedProject = null!;
+    private Sprint _selectedSprint = null!;
+    private SprintTask _selectedTask = null!;
     private readonly ICurrentUserService _currentUserService;
     private readonly IAPIClient _client;
     private readonly IWindowManager _windowManager;
@@ -25,12 +27,16 @@ internal class ProjectsPageService : IProjectsPageService, IProjectsPageServiceI
         set => _selectedProject = value;
     }
 
-    private Sprint _selectedSprint;
-
     public Sprint SelectedSprint
     {
         get => _selectedSprint;
         set => _selectedSprint = value;
+    }
+
+    public SprintTask SelectedTask
+    {
+        get => _selectedTask;
+        set => _selectedTask = value;
     }
 
 
@@ -75,5 +81,10 @@ internal class ProjectsPageService : IProjectsPageService, IProjectsPageServiceI
     public async Task CreateSprint(int projectId, int duration)
     {
         await _client.CreateSprint(projectId, duration);
+    }
+
+    public async Task CreateTask(int projectId, int userId, SprintTask task)
+    {
+        await _client.CreateTask(projectId, userId, task);
     }
 }

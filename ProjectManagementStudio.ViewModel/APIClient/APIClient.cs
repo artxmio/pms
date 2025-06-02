@@ -9,6 +9,7 @@ using ProjectManagementStudio.ViewModel.UrlService;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Net.Http;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Windows;
 
@@ -389,6 +390,35 @@ public class APIClient : IAPIClient
 
     public async Task CreateTask(int sprintId, int userId, SprintTask task)
     {
+        _urlService.URLEndpoint = nameof (CreateTask);
 
+        var json = JsonConvert.SerializeObject(new CreateTasksRequest()
+        {
+            UserId = userId,
+            SprintId = sprintId,
+            TagsIds = task.Tags.Select(tag => tag.Id).ToList()
+        });
+
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        try
+        {
+            var request = new HttpRequestMessage(HttpMethod.Post, $"{_client.BaseAddress}{_urlService.URLEndpoint}")
+            {
+                Content = content
+            };
+            var response = await _client.SendAsync(request);
+
+            var deserializeResponse = JsonConvert.DeserializeObject<CreateTaskResponse>(await response.Content.ReadAsStringAsync())
+                ?? throw new InvalidOperationException("Deserialized response can't be null");
+        }
+        catch (HttpRequestException ex)
+        {
+            MessageBox.Show($"Возникла ошибка: сервер отключён или недоступен ({ex.Message})", "Ошибка");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Возникла неизвестная ошибка: {ex.Message}", "Ошибка");
+        }
     }
 }

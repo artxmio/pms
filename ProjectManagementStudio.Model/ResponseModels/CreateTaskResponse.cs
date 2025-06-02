@@ -3,7 +3,7 @@
 namespace ProjectManagementStudio.Model.ResponseModels;
 
 [DataContract]
-public class CreateSprintResponse
+public class CreateTaskResponse
 {
     [DataMember(Name = "success")]
     public bool Success { get; set; }
@@ -11,9 +11,13 @@ public class CreateSprintResponse
     [DataMember(Name = "message")]
     public string Message { get; set; }
 
-    public CreateSprintResponse()
+    [DataMember(Name = "tag_id")]
+    public int TaskId { get; set; }
+
+    public CreateTaskResponse()
     {
         Success = false;
         Message = " ";
+        TaskId = -1;
     }
 }

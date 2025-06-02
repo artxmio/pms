@@ -59,6 +59,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
+        
         <Popup x:Name="Tasks" IsOpen="False" Placement="MousePoint">
             <Border Background="White" BorderBrush="Gray" BorderThickness="2" Padding="10" CornerRadius="5">
                 <StackPanel>
@@ -80,5 +81,11 @@
                 </StackPanel>
             </Border>
         </Popup>
+        <Button Content="Новый проект" 
+                HorizontalAlignment="Left" 
+                Margin="50,264,0,0" 
+                Grid.Row="3" 
+                Command="{Binding CreateTaskCommand}"
+                VerticalAlignment="Top"/>
     </Grid>
 </Page>

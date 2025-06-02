@@ -34,7 +34,6 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     private readonly ISettingsPageService _settingPageService;
     private readonly IProjectsPageService _projectPageService;
     private User _selectedUser = new User();
-    private SprintTask _selectedTask;
 
     #endregion
 
@@ -142,10 +141,10 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
     public SprintTask SelectedTask
     {
-        get => _selectedTask;
+        get => _projectPageService.SelectedTask;
         set
         {
-            _selectedTask = value;
+            _projectPageService.SelectedTask = value;
             OnPropertyChanged();
         }
     }
@@ -185,6 +184,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     public ICommand LoadSprintTasksCommand { get; }
 
     public ICommand CreateSprintCommand { get; }
+    public ICommand CreateTaskCommand { get; }
     #endregion
 
     public MenuWindowViewModel(
@@ -283,6 +283,15 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
             await projectsPageService.CreateSprint(SelectedProject.Id, sprintDuration);
             Sprints = await _projectPageService.GetSprints(SelectedProject.Id);
             OnPropertyChanged(nameof(Sprints));
+        });
+        CreateTaskCommand = new RelayCommand(async o =>
+        {
+            await _projectPageService.CreateTask(SelectedProject.Id, (int)_currentUserService.CurrentUser.UserId, new SprintTask()
+            {
+                TaskDescription = "desc",
+                TaskName = "name",
+                Tags = []
+            });
         });
         #endregion
         // Profile's functions //
