@@ -2,7 +2,7 @@
 
 namespace ProjectManagementStudio.Model.ResponseModels;
 
-    [DataContract]
+[DataContract]
 public class CreateSprintResponse
 {
     [DataMember(Name = "success")]
