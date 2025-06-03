@@ -60,7 +60,7 @@
                  VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
             <Border Width="410" Height="30" d:Background="#724D9D" Background="{DynamicResource SecondDialogColor}" CornerRadius="10"
-                VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,81,0,0">
+                VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,81,0,0" BorderThickness="2" BorderBrush="{DynamicResource Border}">
                 <TextBox
                     VerticalContentAlignment="Center"
                     Width="400" Height="25"
@@ -92,7 +92,7 @@
 
 
             <Border Width="410" Height="30" d:Background="#724D9D" Background="{DynamicResource SecondDialogColor}" CornerRadius="10"
-                VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,103">
+                VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,103" BorderThickness="2" BorderBrush="{DynamicResource Border}">
                 <uc:TextPasswordBox
                     x:Name="password"
                     Text="{Binding Password, Mode=OneWay}"
@@ -124,7 +124,7 @@
                 VerticalAlignment="Center"
                 Cursor="Hand"
                 Tag="0"
-                Margin="0,65,70,0"
+                Margin="0,65,75,0"
                 Click="ShowPassword">
 
                 <Button.Template>
@@ -137,10 +137,10 @@
                     <Image Width="25" Height="25">
                         <Image.Style>
                             <Style TargetType="Image">
-                                <Setter Property="Source" Value="..\..\Source\eye.png"/>
+                                <Setter Property="Source" d:Value="..\..\Source\DefaultTheme\eye.png" Value="{DynamicResource Eye}"/>
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource AncestorType=Button}}" Value="1">
-                                        <Setter Property="Source" Value="..\..\Source\eye_closed.png" />
+                                        <Setter Property="Source" d:Value="..\..\Source\DefaultTheme\eye.png" Value="{DynamicResource EyeClosed}" />
                                     </DataTrigger>
                                     <Trigger Property="IsMouseOver" Value="True">
                                         <Setter Property="Opacity" Value="0.7"/>
@@ -165,7 +165,7 @@
                 <Button.Template>
                     <ControlTemplate>
                         <Border x:Name="border"  Width="191" Height="39"
-                            d:Background="#724D9D" Background="{DynamicResource SecondDialogColor}" CornerRadius="10">
+                            d:Background="#724D9D" Background="{DynamicResource ButtonDialog}" CornerRadius="10">
                             <ContentPresenter HorizontalAlignment="Center" 
                                 VerticalAlignment="Center" 
                                 d:Content="Apply" Content="{DynamicResource Apply}"/>
@@ -192,7 +192,7 @@
                 <Button.Template>
                     <ControlTemplate>
                         <Border x:Name="border"  Width="191" Height="39"
-                            d:Background="#724D9D" Background="{DynamicResource SecondDialogColor}" CornerRadius="10">
+                            d:Background="#724D9D" Background="{DynamicResource ButtonDialog}" CornerRadius="10">
                             <ContentPresenter HorizontalAlignment="Center" 
                                 VerticalAlignment="Center" 
                                 d:Content="Cancel" Content="{DynamicResource Cancel}"/>

@@ -80,8 +80,8 @@
 
                     <Grid>
                         <Image Width="200" Height="200" 
-                            d:Source="../../Source/DefaultTheme/ava.png"
-                            Source="{DynamicResource Avatar}"
+                            d:Source="../../Source/DefaultTheme/user.png"
+                            Source="{DynamicResource User}"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Margin="59,78,0,0"/>
@@ -131,9 +131,9 @@
                             d:Background="#724D9D"
                             Background="{DynamicResource Buttons}"
                             Content="{DynamicResource ChangeLogin}"
+                            Foreground="{DynamicResource TextColor}"
                             FontFamily="outfit" FontSize="25"
-                            FontWeight="Normal"
-                            Foreground="#ffffff">
+                            FontWeight="Normal">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Border x:Name="buttonBorder" 
@@ -148,7 +148,7 @@
                                     </Border>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="buttonBorder" Property="Background" Value="#3B2B57"/>
+                                            <Setter TargetName="buttonBorder" Property="Background" Value="{DynamicResource ButtonsHover}"/>
                                         </Trigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>
@@ -164,7 +164,7 @@
                             Content="{DynamicResource ChangePassword}"
                             FontFamily="outfit" FontSize="25"
                             FontWeight="Normal"
-                            Foreground="#ffffff">
+                            Foreground="{DynamicResource TextColor}">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Border x:Name="buttonBorder" 
@@ -179,7 +179,7 @@
                                     </Border>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="buttonBorder" Property="Background" Value="#3B2B57"/>
+                                            <Setter TargetName="buttonBorder" Property="Background" Value="{DynamicResource ButtonsHover}"/>
                                         </Trigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>
@@ -196,7 +196,7 @@
                             Content="{DynamicResource ChangeEmail}"
                             FontFamily="outfit" FontSize="25"
                             FontWeight="Normal"
-                            Foreground="#ffffff">
+                            Foreground="{DynamicResource TextColor}">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Border x:Name="buttonBorder" 
@@ -211,7 +211,7 @@
                                     </Border>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="buttonBorder" Property="Background" Value="#3B2B57"/>
+                                            <Setter TargetName="buttonBorder" Property="Background" Value="{DynamicResource ButtonsHover}"/>
                                         </Trigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>
@@ -243,19 +243,43 @@
                         <Grid Width="479" Height="185"
                             VerticalAlignment="Bottom" HorizontalAlignment="Center">
                             
-                            <ScrollViewer VerticalScrollBarVisibility="Visible" Style="{StaticResource ScrollViewerStyle}">
-                                <!-- Ваш контент -->
-                                <Border Width="140" Height="140"
+                            <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                                <Button Width="140" Height="140" Margin="35,0,0,0"
                                     HorizontalAlignment="Left" VerticalAlignment="Top"
-                                    Margin="35,0,0,0" CornerRadius="10"
-                                    Background="#724D9D">
-                                    
-                                    <Grid>
-                                        <TextBlock Text="Project-1" FontFamily="Outfit"
-                                            FontSize="20" FontWeight="Normal" Foreground="White"
-                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Grid>
-                                </Border>
+                                    BorderBrush="Transparent" d:Background="#724D9D"
+                                    Background="{DynamicResource UserProjects}">
+
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Foreground" Value="{DynamicResource TextColor}"/>
+                                            <Setter Property="FontSize" Value="20"/>
+                                            <Setter Property="FontFamily" Value="Outfit"/>
+                                            <Setter Property="FontWeight" Value="Normal"/>
+                                            <Setter Property="BorderBrush" Value="Transparent"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border x:Name="border"
+                                                            Background="{TemplateBinding Background}"
+                                                            CornerRadius="10">
+                                                            <ContentPresenter HorizontalAlignment="Center"
+                                                                VerticalAlignment="Center"/>
+                                                        </Border>
+                                                        <ControlTemplate.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter TargetName="border" Property="Background"
+                                                                    Value="{DynamicResource UserProjectsHover}"/>
+                                                            </Trigger>
+                                                        </ControlTemplate.Triggers>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </Button.Style>
+
+                                    <TextBlock Text="Project-1" d:Foreground="#ffffff"
+                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Button>
                             </ScrollViewer>
                         </Grid>
                     </Grid>
@@ -308,7 +332,7 @@
                 </Border>
 
                 <!-- Выйти из аккаунта -->
-                <Button Command="{Binding LogOutCommand}" d:Background="#2C1B47" Background="{DynamicResource ProfileItems}" Width="175" Height="60" Margin="0,0,76,51"
+                <Button Command="{Binding LogOutCommand}" d:Background="#2C1B47" Background="{DynamicResource LogOutButton}" Width="175" Height="60" Margin="0,0,76,51"
                     HorizontalAlignment="Right" VerticalAlignment="Bottom">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
@@ -320,7 +344,7 @@
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="buttonBorder" Property="Background" Value="#3B2B57"/>
+                                    <Setter TargetName="buttonBorder" Property="Background" Value="{DynamicResource LogOutButtonHover}"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>

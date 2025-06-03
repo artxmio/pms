@@ -35,7 +35,6 @@
         <!-- Left Menu Background -->
     <SolidColorBrush x:Key="LeftMenu">#2C1B47</SolidColorBrush>
         <!-- Button images -->
-    <BitmapImage x:Key="Avatar">../Source/DefaultTheme/ava.png</BitmapImage>
     <BitmapImage x:Key="Home">../Source/DefaultTheme/home.png</BitmapImage>
     <BitmapImage x:Key="User">../Source/DefaultTheme/user.png</BitmapImage>
     <BitmapImage x:Key="Project">../Source/DefaultTheme/project.png</BitmapImage>
@@ -60,8 +59,14 @@
     <SolidColorBrush x:Key="ProfileBackground">#724D9D</SolidColorBrush>
     <SolidColorBrush x:Key="ProfileItems">#2C1B47</SolidColorBrush>
     <SolidColorBrush x:Key="Buttons">#724D9D</SolidColorBrush>
-    
-    
+    <SolidColorBrush x:Key="ButtonsHover">#3B2B57</SolidColorBrush>
+    <SolidColorBrush x:Key="TextColor">#FFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="LogOutButtonHover">#3B2B57</SolidColorBrush>
+    <SolidColorBrush x:Key="LogOutButton">#2C1B47</SolidColorBrush>
+    <SolidColorBrush x:Key="UserProjects">#724D9D</SolidColorBrush>
+    <SolidColorBrush x:Key="UserProjectsHover">#3B2B57</SolidColorBrush>
+
+
     <!-- Settings -->
     <SolidColorBrush x:Key="SettingsBackground">#724D9D</SolidColorBrush>
     <SolidColorBrush x:Key="SettingsItems">#2C1B47</SolidColorBrush>
@@ -78,6 +83,8 @@
     <!-- Email Change Dialog -->
     <SolidColorBrush x:Key="MainDialogColor">#2C1B47</SolidColorBrush>
     <SolidColorBrush x:Key="SecondDialogColor">#724D9D</SolidColorBrush>
+    <SolidColorBrush x:Key="ButtonDialog">#724D9D</SolidColorBrush>
     <SolidColorBrush x:Key="ButtonHoverDialog">#482f66</SolidColorBrush>
+    <SolidColorBrush x:Key="Border">#2C1B47</SolidColorBrush>
 
 </ResourceDictionary>

@@ -56,7 +56,7 @@
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Grid>
-                                        <Image Margin="5,0,0,0" Source="../../Source/DefaultTheme/pink_circle.png" Width="50" Height="50" HorizontalAlignment="Left">
+                                        <Image Margin="5,0,0,0" Source="../../Source/DefaultTheme/purple_circle.png" Width="50" Height="50" HorizontalAlignment="Left">
                                             <Image.Effect>
                                                 <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="2" Opacity="0.5" Direction="270"/>
                                             </Image.Effect>
@@ -220,7 +220,7 @@
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Grid>
-                                        <Image Margin="5,0,0,0" Source="..\..\Source\BlueRedTheme\red_blue_circle.png" Width="50" Height="50" HorizontalAlignment="Left">
+                                        <Image Margin="5,0,0,0" Source="..\..\Source\PinkTheme\pink_circle.png" Width="50" Height="50" HorizontalAlignment="Left">
                                             <Image.Effect>
                                                 <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="2" Opacity="0.5" Direction="270"/>
                                             </Image.Effect>
@@ -261,7 +261,7 @@
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Grid>
-                                        <Image Margin="5,0,0,0" Source="..\..\Source\OrangeTheme\orange_circle.png" Width="50" Height="50" HorizontalAlignment="Left">
+                                        <Image Margin="5,0,0,0" Source="..\..\Source\BlackTheme\black_circle.png" Width="50" Height="50" HorizontalAlignment="Left">
                                             <Image.Effect>
                                                 <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="2" Opacity="0.5" Direction="270"/>
                                             </Image.Effect>
@@ -311,7 +311,7 @@
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>
-                        <Button Background="Transparent" BorderBrush="Transparent" Foreground="#FFFFFF"
+                        <Button Background="Transparent" BorderBrush="Transparent" d:Foreground="#ffffff" Foreground="{DynamicResource TextColor}"
                                 FontFamily="Outfit" FontSize="36" FontWeight="Normal"
                                 Command="{Binding ChangeLocalizationCommand}" CommandParameter="ru-RU"
                                 >
@@ -338,7 +338,7 @@
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>
-                        <Button Background="Transparent" BorderBrush="Transparent" Foreground="#FFFFFF"
+                        <Button Background="Transparent" BorderBrush="Transparent" d:Foreground="#ffffff" Foreground="{DynamicResource TextColor}"
                             FontFamily="Outfit" FontSize="36" FontWeight="Normal"
                                 Command="{Binding ChangeLocalizationCommand}" CommandParameter="eu-US"
                                 >
@@ -365,7 +365,7 @@
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>
-                        <Button Background="Transparent" BorderBrush="Transparent" Foreground="#FFFFFF"
+                        <Button Background="Transparent" BorderBrush="Transparent" d:Foreground="#ffffff" Foreground="{DynamicResource TextColor}"
                             FontFamily="Outfit" FontSize="36" FontWeight="Normal"
                                 Command="{Binding ChangeLocalizationCommand}" CommandParameter="ru-RU"
                                 >

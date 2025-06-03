@@ -70,7 +70,7 @@ public class Bootstrapper : IDisposable
 
         var styles = new ResourceDictionary()
         {
-            Source = new Uri("pack://application:,,,/ProjectManagementStudio.View;component/Themes/DefaultTheme.xaml", UriKind.RelativeOrAbsolute)
+            Source = new Uri("pack://application:,,,/ProjectManagementStudio.View;component/Themes/BlackTheme.xaml", UriKind.RelativeOrAbsolute)
         };
         Application.Current.Resources.MergedDictionaries.Add(styles);
         return window;
