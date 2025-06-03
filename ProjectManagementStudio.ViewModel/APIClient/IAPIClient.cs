@@ -23,4 +23,5 @@ public interface IAPIClient
     Task<ObservableCollection<Tag>> GetTags();
     Task CreateSprint(int projectId, int duration);
     Task CreateTask(int sprintId, int userId, SprintTask task);
+    Task UpdateTaskData(SprintTask task);
 }

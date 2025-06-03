@@ -467,4 +467,39 @@ public class APIClient : IAPIClient
             MessageBox.Show($"Возникла неизвестная ошибка: {ex.Message}", "Ошибка");
         }
     }
+
+    public async Task UpdateTaskData(SprintTask task)
+    {
+        _urlService.URLEndpoint = nameof(UpdateTaskData);
+
+        try
+        {
+            var json = JsonConvert.SerializeObject(new ChangeTaskRequest()
+            {
+                TaskId = task.Id,
+                TaskName = task.TaskName,
+                TaskDescription = task.TaskDescription,
+                Tags = [.. task.Tags.Where(x => x.IsChecked).Select(x => x.Id)]
+            });
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var request = new HttpRequestMessage(HttpMethod.Put, $"{_client.BaseAddress}{_urlService.URLEndpoint}")
+            {
+                Content = content
+            };
+
+            var response = await _client.SendAsync(request);
+
+            var deserializeResponse = JsonConvert.DeserializeObject<ChangeTaskResponse>(await response.Content.ReadAsStringAsync())
+                ?? throw new InvalidOperationException("Deserialized response can't be null"); ;
+        }
+        catch (HttpRequestException ex)
+        {
+            MessageBox.Show($"Возникла ошибка: сервер отключён или недоступен ({ex.Message})", "Ошибка");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Возникла неизвестная ошибка: {ex.Message}", "Ошибка");
+        }
+    }
 }

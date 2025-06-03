@@ -78,7 +78,7 @@
                     </ListBox>
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Content="Save" Margin="5"/>
+                        <Button Content="Save" Command="{Binding SaveTaskCommand}" Click="Button_Click" Margin="5"/>
                         <Button Content="Cancel" Click="Button_Click" Margin="5"/>
                     </StackPanel>
                 </StackPanel>

@@ -25,6 +25,7 @@ public partial class SprintDetailsPage : ISprintDetailsPage
     private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
     {
         Tasks.IsOpen = false;
+        _viewModel.LoadSprintTasksCommand.Execute(this);
     }
 
     private void StackPanel_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)

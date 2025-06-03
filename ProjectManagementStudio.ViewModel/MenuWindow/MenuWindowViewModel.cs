@@ -165,7 +165,8 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         set
         {
             _projectPageService.SelectedTask = value;
-            _projectPageService.SelectedTask.Tags = [.. SelectedTask.Tags.Union(Tags, new TagComparer())];
+            if(SelectedTask is not null)
+                _projectPageService.SelectedTask.Tags = [.. SelectedTask.Tags.Union(Tags, new TagComparer())];
             OnPropertyChanged();
         }
     }
@@ -216,6 +217,8 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     public ICommand LoadTagsCommand { get; }
     public ICommand CreateSprintCommand { get; }
     public ICommand CreateTaskCommand { get; }
+
+    public ICommand SaveTaskCommand { get; }
 
     #endregion
 
@@ -334,6 +337,13 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
             Tasks = await _projectPageService.GetSprintTasks(SelectedSprint.Id);
         });
+        SaveTaskCommand = new RelayCommand(async o =>
+        {
+            await _projectPageService.UpdateTask(SelectedTask);
+
+            Tasks = await _projectPageService.GetSprintTasks(SelectedSprint.Id);
+            OnPropertyChanged(nameof(Tasks));
+        });
         #endregion
         // Profile's functions //
         #region 
@@ -343,6 +353,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         ChangeAboutTextCommand = new RelayCommand(o => _profilePageService.OpenChangeAboutTextWindow());
 
         LogOutCommand = new RelayCommand(o => _profilePageService.Logout(this));
+
         #endregion
 
         // Setting's functions //

@@ -58,7 +58,7 @@ internal class ProjectsPageService : IProjectsPageService, IProjectsPageServiceI
     public async Task<ObservableCollection<User>> GetProjectUsers(int projectId) => await _client.GetProjectUsers(projectId);
     public async Task<ObservableCollection<SprintTask>> GetSprintTasks(int sprintId) => await _client.GetTasks(sprintId);
     public async Task<ObservableCollection<Tag>> GetTags() => await _client.GetTags();
-
+    public async Task UpdateTask(SprintTask task) => await _client.UpdateTaskData(task);
 
     public void OpenAddProjectWindow()
     {

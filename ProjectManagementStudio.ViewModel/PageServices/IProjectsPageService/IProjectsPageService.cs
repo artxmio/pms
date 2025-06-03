@@ -20,4 +20,5 @@ public interface IProjectsPageService
     Task<ObservableCollection<User>> GetProjectUsers(int projectId);
     Task<ObservableCollection<SprintTask>> GetSprintTasks(int sprintId);
     Task<ObservableCollection<Tag>> GetTags();
+    Task UpdateTask(SprintTask task);
 }
