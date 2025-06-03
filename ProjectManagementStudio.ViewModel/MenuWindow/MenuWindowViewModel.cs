@@ -1,5 +1,6 @@
 ﻿using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 using ProjectManagementStudio.Model.CurrentUserModel;
+using ProjectManagementStudio.Model.Enums;
 using ProjectManagementStudio.Model.ResponseModels;
 using ProjectManagementStudio.ViewModel.Command;
 using ProjectManagementStudio.ViewModel.Comparers;
@@ -10,7 +11,6 @@ using ProjectManagementStudio.ViewModel.PageServices.ISettingsPageService;
 using ProjectManagementStudio.ViewModel.Windows;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
@@ -220,6 +220,8 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
     public ICommand SaveTaskCommand { get; }
 
+    public ICommand ChangeApplicationTheme { get; }
+
     #endregion
 
     public MenuWindowViewModel(
@@ -360,6 +362,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         #region
 
         ChangeLocalizationCommand = new RelayCommand(o => _settingPageService.LocalizationService.Language = new CultureInfo((string)o));
+        ChangeApplicationTheme = new RelayCommand(o => _settingPageService.ThemeService.SetTheme((Theme)o));
         #endregion
     }
 

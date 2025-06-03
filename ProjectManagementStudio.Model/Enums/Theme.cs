@@ -6,7 +6,7 @@ public enum Theme
     Default,
     Red,
     Green,
-    RedGray,
+    Pink,
     Blue,
-    Orange
+    Black
 }

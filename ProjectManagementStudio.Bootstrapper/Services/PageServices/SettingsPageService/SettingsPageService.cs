@@ -1,6 +1,7 @@
 ﻿using ProjectManagementStudio.ViewModel.PageServices.ISettingsPageService;
 using ProjectManagementStudio.ViewModel.LocalizationService;
 using System.Windows;
+using ProjectManagementStudio.ViewModel.ThemeService;
 
 namespace ProjectManagementStudio.Bootstrapper.Services.PageServices.SettingsPageService;
 
@@ -11,20 +12,22 @@ internal class SettingsPageService : ISettingsPageService, ISettingsPageServiceI
 
     public ILocalizationService LocalizationService
     {
-        get
-        {
-            return _localizationService;
-        }
-
-        set
-        {
-            _localizationService = value;
-        }
+        get => _localizationService;
+        set => _localizationService = value;
     }
-    
-    public SettingsPageService(ILocalizationService localizationService)
+
+    private IThemeService _themeService;
+
+    public IThemeService ThemeService
+    {
+        get => _themeService;
+        set => _themeService = value;
+    }
+
+    public SettingsPageService(ILocalizationService localizationService, IThemeService themeService)
     {
         _localizationService = localizationService;
+        _themeService = themeService;
     }
 
     public void Initialize()
@@ -35,18 +38,5 @@ internal class SettingsPageService : ISettingsPageService, ISettingsPageServiceI
         }
 
         _initialized = true;
-    }
-
-    private void EnsureInitialized()
-    {
-        if (!_initialized)
-            throw new InvalidOperationException($"{nameof(ISettingsPageService)} is not initialized");
-    }
-
-    public void ApplySettings()
-    {
-        _localizationService.SaveLanguage();
-
-        MessageBox.Show("Настройки успешно сохранены!", "Уведомление");
     }
 }

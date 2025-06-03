@@ -43,6 +43,9 @@ internal class ThemeService : IThemeService, IThemeServiceInitializer
         Application.Current.Resources.MergedDictionaries.Add(styles);
 
         Current = theme;
+
+        Properties.Settings.Default.Theme = (int)Current;
+        Properties.Settings.Default.Save();
     }
 
     public void Initialize()
@@ -66,17 +69,17 @@ internal class ThemeService : IThemeService, IThemeServiceInitializer
         Current = (Theme)themeIndex;
     }
 
-    private Uri GetThemeUri(Theme theme)
+    private static Uri GetThemeUri(Theme theme)
     {
         return theme switch
         {
             Theme.Unknown => throw new ApplicationException("Unknow theme."),
             Theme.Default => new Uri("pack://application:,,,/ProjectManagementStudio.View;component/Themes/DefaultTheme.xaml", UriKind.RelativeOrAbsolute),
-            Theme.Red => throw new NotImplementedException(),
-            Theme.Green => throw new NotImplementedException(),
-            Theme.RedGray => throw new NotImplementedException(),
-            Theme.Blue => throw new NotImplementedException(),
-            Theme.Orange => throw new NotImplementedException(),
+            Theme.Red => new Uri("pack://application:,,,/ProjectManagementStudio.View;component/Themes/RedTheme.xaml", UriKind.RelativeOrAbsolute),
+            Theme.Green => new Uri("pack://application:,,,/ProjectManagementStudio.View;component/Themes/GreenTheme.xaml", UriKind.RelativeOrAbsolute),
+            Theme.Pink => new Uri("pack://application:,,,/ProjectManagementStudio.View;component/Themes/PinkTheme.xaml", UriKind.RelativeOrAbsolute),
+            Theme.Blue => new Uri("pack://application:,,,/ProjectManagementStudio.View;component/Themes/BlueTheme.xaml", UriKind.RelativeOrAbsolute),
+            Theme.Black => new Uri("pack://application:,,,/ProjectManagementStudio.View;component/Themes/BlackTheme.xaml", UriKind.RelativeOrAbsolute),
             _ => throw new ApplicationException(),
         };
     }

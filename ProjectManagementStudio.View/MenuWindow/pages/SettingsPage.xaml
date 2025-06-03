@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:ProjectManagementStudio.View.MenuWindow.Pages"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MenuWindow;assembly=ProjectManagementStudio.ViewModel"
+      xmlns:tasksts="clr-namespace:ProjectManagementStudio.Model.Enums;assembly=ProjectManagementStudio.Model"
       mc:Ignorable="d" 
       d:DesignHeight="813" d:DesignWidth="1500"
       Title="SettingsPage"
@@ -52,7 +53,9 @@
                             </Style>
                         </Border.Style>
 
-                        <Button Background="Transparent" BorderBrush="Transparent" >
+                        <Button Background="Transparent" BorderBrush="Transparent" 
+                                Command="{Binding ChangeApplicationTheme}"
+                                CommandParameter="{x:Static tasksts:Theme.Default}">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Grid>
@@ -93,7 +96,9 @@
                             </Style>
                         </Border.Style>
 
-                        <Button Background="Transparent" BorderBrush="Transparent">
+                        <Button Background="Transparent" BorderBrush="Transparent"
+                                Command="{Binding ChangeApplicationTheme}"
+                                CommandParameter="{x:Static tasksts:Theme.Green}">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Grid>
@@ -134,7 +139,9 @@
                             </Style>
                         </Border.Style>
 
-                        <Button Background="Transparent" BorderBrush="Transparent">
+                        <Button Background="Transparent" BorderBrush="Transparent"
+                                Command="{Binding ChangeApplicationTheme}"
+                                CommandParameter="{x:Static tasksts:Theme.Blue}">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Grid>
@@ -175,7 +182,9 @@
                             </Style>
                         </Border.Style>
 
-                        <Button Background="Transparent" BorderBrush="Transparent">
+                        <Button Background="Transparent" BorderBrush="Transparent"
+                                Command="{Binding ChangeApplicationTheme}"
+                                CommandParameter="{x:Static tasksts:Theme.Red}">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Grid>
@@ -216,7 +225,9 @@
                             </Style>
                         </Border.Style>
 
-                        <Button Background="Transparent" BorderBrush="Transparent">
+                        <Button Background="Transparent" BorderBrush="Transparent"
+                                Command="{Binding ChangeApplicationTheme}"
+                                CommandParameter="{x:Static tasksts:Theme.Pink}">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Grid>
@@ -257,7 +268,9 @@
                             </Style>
                         </Border.Style>
 
-                        <Button Background="Transparent" BorderBrush="Transparent">
+                        <Button Background="Transparent" BorderBrush="Transparent"
+                                Command="{Binding ChangeApplicationTheme}"
+                                CommandParameter="{x:Static tasksts:Theme.Black}">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Grid>
