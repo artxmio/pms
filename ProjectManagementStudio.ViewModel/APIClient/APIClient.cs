@@ -9,7 +9,6 @@ using ProjectManagementStudio.ViewModel.UrlService;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Net.Http;
-using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Windows;
 
@@ -276,7 +275,7 @@ public class APIClient : IAPIClient
 
             var response = await _client.SendAsync(request);
 
-            var deserializeResponse = JsonConvert.DeserializeObject<GetSprintsResponse>(await response.Content.ReadAsStringAsync()) 
+            var deserializeResponse = JsonConvert.DeserializeObject<GetSprintsResponse>(await response.Content.ReadAsStringAsync())
                 ?? throw new InvalidOperationException("Deserialized response can't be null"); ;
 
             return [.. deserializeResponse.Data];
@@ -341,7 +340,52 @@ public class APIClient : IAPIClient
             var deserealizedList = JsonConvert.DeserializeObject<GetTasksResponse>(await response.Content.ReadAsStringAsync())
                 ?? throw new InvalidOperationException("Deserialized response can't be null");
 
+            foreach (var item in deserealizedList.Data)
+            {
+                item.Tags.ForEach(tag => tag.IsChecked = true);
+            }
+
             return [.. deserealizedList.Data];
+        }
+        catch (HttpRequestException ex)
+        {
+            MessageBox.Show($"Возникла ошибка: сервер отключён или недоступен ({ex.Message})", "Ошибка");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        throw new InvalidOperationException();
+    }
+
+    public async Task<ObservableCollection<Tag>> GetTags()
+    {
+        _urlService.URLEndpoint = nameof(GetTags);
+
+        try
+        {
+            const int tagsCount = 4;
+
+            List<Tag> tags = [];
+
+            for (int i = 1; i <= tagsCount; i++)
+            {
+                var request = new HttpRequestMessage(HttpMethod.Get, $"{_client.BaseAddress}/{_urlService.URLEndpoint}?id={i}");
+
+                var response = await _client.SendAsync(request);
+
+                var deserealizedList = JsonConvert.DeserializeObject<GetTagResponse>(await response.Content.ReadAsStringAsync())
+                    ?? throw new InvalidOperationException("Deserialized response can't be null");
+
+                tags.Add(new()
+                {
+                    Id = deserealizedList.Data.Id,
+                    TagName = deserealizedList.Data.TagName,
+                    TagDescription = deserealizedList.Data.TagDescription
+                });
+            }
+
+            return [.. tags];
         }
         catch (HttpRequestException ex)
         {
@@ -390,13 +434,15 @@ public class APIClient : IAPIClient
 
     public async Task CreateTask(int sprintId, int userId, SprintTask task)
     {
-        _urlService.URLEndpoint = nameof (CreateTask);
+        _urlService.URLEndpoint = nameof(CreateTask);
 
         var json = JsonConvert.SerializeObject(new CreateTasksRequest()
         {
             UserId = userId,
             SprintId = sprintId,
-            TagsIds = task.Tags.Select(tag => tag.Id).ToList()
+            TagsIds = task.Tags.Select(tag => tag.Id).ToList(),
+            TaskName = task.TaskName,
+            TaskDescription = task.TaskDescription
         });
 
         var content = new StringContent(json, Encoding.UTF8, "application/json");

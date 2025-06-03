@@ -2,6 +2,7 @@
 using ProjectManagementStudio.Model.CurrentUserModel;
 using ProjectManagementStudio.Model.ResponseModels;
 using ProjectManagementStudio.ViewModel.Command;
+using ProjectManagementStudio.ViewModel.Comparers;
 using ProjectManagementStudio.ViewModel.Pages;
 using ProjectManagementStudio.ViewModel.PageServices.IProfilePageService;
 using ProjectManagementStudio.ViewModel.PageServices.IProjectsPageService;
@@ -9,6 +10,7 @@ using ProjectManagementStudio.ViewModel.PageServices.ISettingsPageService;
 using ProjectManagementStudio.ViewModel.Windows;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
@@ -30,10 +32,12 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     private ObservableCollection<Sprint> _sprints = [];
     private ObservableCollection<User> _users = [];
     private ObservableCollection<SprintTask> _tasks = [];
+    private ObservableCollection<Tag> _tags = [];
     private DateTime _selectedSprintDate = DateTime.Now;
     private readonly ISettingsPageService _settingPageService;
     private readonly IProjectsPageService _projectPageService;
     private User _selectedUser = new User();
+    private SprintTask _newTask = new SprintTask();
 
     #endregion
 
@@ -84,6 +88,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
+
     public ObservableCollection<User> Users
     {
         get => _users;
@@ -109,6 +114,16 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         get => [.. _projects.Where(x => x.HeadId)];
     }
 
+    public ObservableCollection<Tag> Tags
+    {
+        get => _tags;
+        set
+        {
+            _tags = value;
+            OnPropertyChanged();
+        }
+    }
+
     public Project SelectedProject
     {
         get => _projectPageService.SelectedProject;
@@ -117,6 +132,11 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     public Sprint SelectedSprint
     {
         get => _projectPageService.SelectedSprint;
+        set
+        {
+            _projectPageService.SelectedSprint = value;
+            OnPropertyChanged();
+        }
     }
 
     public DateTime SelectedSprintDate
@@ -145,6 +165,17 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         set
         {
             _projectPageService.SelectedTask = value;
+            _projectPageService.SelectedTask.Tags = [.. SelectedTask.Tags.Union(Tags, new TagComparer())];
+            OnPropertyChanged();
+        }
+    }
+
+    public SprintTask NewTask
+    {
+        get => _newTask;
+        set
+        {
+            _newTask = value;
             OnPropertyChanged();
         }
     }
@@ -182,9 +213,10 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     public ICommand LoadSprintsCommand { get; }
     public ICommand LoadProjectUsersCommand { get; }
     public ICommand LoadSprintTasksCommand { get; }
-
+    public ICommand LoadTagsCommand { get; }
     public ICommand CreateSprintCommand { get; }
     public ICommand CreateTaskCommand { get; }
+
     #endregion
 
     public MenuWindowViewModel(
@@ -269,7 +301,14 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
         LoadSprintsCommand = new RelayCommand(async o => Sprints = await _projectPageService.GetSprints(_projectPageService.SelectedProject.Id));
         LoadProjectUsersCommand = new RelayCommand(async o => Users = await _projectPageService.GetProjectUsers(_projectPageService.SelectedProject.Id));
-        LoadSprintTasksCommand = new RelayCommand(async o => Tasks = await _projectPageService.GetSprintTasks(_projectPageService.SelectedSprint.Id));
+        LoadSprintTasksCommand = new RelayCommand(async o =>
+        {
+            Tasks = await _projectPageService.GetSprintTasks(_projectPageService.SelectedSprint.Id);
+            OnPropertyChanged(nameof(Sprints));
+            OnPropertyChanged(nameof(Tasks));
+            OnPropertyChanged(nameof(Tags));
+        });
+        LoadTagsCommand = new RelayCommand(async o => Tags = await _projectPageService.GetTags());
 
         CreateSprintCommand = new RelayCommand(async o =>
         {
@@ -286,12 +325,14 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         });
         CreateTaskCommand = new RelayCommand(async o =>
         {
-            await _projectPageService.CreateTask(SelectedProject.Id, (int)_currentUserService.CurrentUser.UserId, new SprintTask()
+            await _projectPageService.CreateTask(SelectedSprint.Id, (int)_currentUserService.CurrentUser.UserId, new SprintTask()
             {
-                TaskDescription = "desc",
-                TaskName = "name",
-                Tags = []
+                TaskDescription = NewTask.TaskDescription,
+                TaskName = NewTask.TaskName,
+                Tags = [.. Tags.Where(x => x.IsChecked)]
             });
+
+            Tasks = await _projectPageService.GetSprintTasks(SelectedSprint.Id);
         });
         #endregion
         // Profile's functions //

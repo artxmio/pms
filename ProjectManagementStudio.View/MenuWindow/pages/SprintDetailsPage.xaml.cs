@@ -19,6 +19,7 @@ public partial class SprintDetailsPage : ISprintDetailsPage
     private void SprintDetailsPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
     {
         _viewModel.LoadSprintTasksCommand.Execute(this);
+        _viewModel.LoadTagsCommand.Execute(this);
     }
 
     private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -29,5 +30,15 @@ public partial class SprintDetailsPage : ISprintDetailsPage
     private void StackPanel_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
         Tasks.IsOpen = true;
+    }
+
+    private void Button_Click_1(object sender, System.Windows.RoutedEventArgs e)
+    {
+        AddTaskPopup.IsOpen = false;
+    }
+
+    private void Button_Click_2(object sender, System.Windows.RoutedEventArgs e)
+    {
+        AddTaskPopup.IsOpen = true;
     }
 }

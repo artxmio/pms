@@ -1,26 +1,21 @@
 ﻿using System.Runtime.Serialization;
-using System.Text.Json.Serialization;
 
 namespace ProjectManagementStudio.Model.ResponseModels;
 
 [DataContract]
-public class Tag
+public class GetTagModel
 {
     [DataMember(Name = "id")]
     public int Id { get; set; }
-    [DataMember(Name = "name")]
+    [DataMember(Name = "tag_name")]
     public string TagName { get; set; }
-    [DataMember(Name = "tag_description")]
+    [DataMember(Name = "description")]
     public string TagDescription { get; set; }
 
-    [JsonIgnore]
-    public bool IsChecked { get; set; }
-
-    public Tag()
+    public GetTagModel()
     {
         Id = -1;
         TagName = "";
         TagDescription = "";
-        IsChecked = false;
     }
 }

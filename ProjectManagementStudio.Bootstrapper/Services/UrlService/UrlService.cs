@@ -20,6 +20,7 @@ public class UrlService : IUrlServiceInitializer, IUrlService
         { "GetTasks", "api-v2/task/get" },
         { "CreateSprint", "api-v2/sprint/post" }, 
         { "CreateTask", "api-v2/task/create" },
+        { "GetTags", "api-v2/tag/get" },
         { "AddProject", "api-v2/project/create" }
     };
 
