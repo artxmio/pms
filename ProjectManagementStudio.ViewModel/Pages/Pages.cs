@@ -10,5 +10,6 @@ public enum Pages
     ProjectPage,
     ProjectDetailsPage,
     SprintDetailsPage,
+    StatisticPage,
     Unknown
 }

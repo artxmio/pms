@@ -28,6 +28,7 @@ internal class PageFactory : IPageFactory
             Pages.ProjectPage => _componentContext.Resolve<IProjectPage>(),
             Pages.ProjectDetailsPage => _componentContext.Resolve<IProjectDetailsPage>(),
             Pages.SprintDetailsPage => _componentContext.Resolve<ISprintDetailsPage>(),
+            Pages.StatisticPage => _componentContext.Resolve<IStatisticPage>(),
             _ => throw new ArgumentException($"No such page: {pageKey}")
         };
     }

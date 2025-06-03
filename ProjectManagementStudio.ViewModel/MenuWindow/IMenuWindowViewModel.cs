@@ -37,4 +37,6 @@ public interface IMenuWindowViewModel : IWindowViewModel
     public ICommand LoadTagsCommand { get; }
     public ICommand CreateSprintCommand { get; }
     public ICommand CreateTaskCommand { get; }
+
+    public ICommand LoadSeriesCommand { get; }
 }

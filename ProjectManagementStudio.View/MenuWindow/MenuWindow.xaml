@@ -232,7 +232,8 @@
                 Width="65" Height="65" 
                 VerticalAlignment="Top"
                 HorizontalAlignment="Center"
-                Background="Transparent">
+                Background="Transparent"
+                Command="{Binding NavigateToStatisticPage}">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border 

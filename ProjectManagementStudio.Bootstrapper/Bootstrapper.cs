@@ -3,6 +3,7 @@ using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
 using ProjectManagementStudio.Bootstrapper.Services.PageServices.ProfilePageService;
 using ProjectManagementStudio.Bootstrapper.Services.PageServices.ProjectsPageService;
 using ProjectManagementStudio.Bootstrapper.Services.PageServices.SettingsPageService;
+using ProjectManagementStudio.Bootstrapper.Services.PageServices.StatisticPageService;
 using ProjectManagementStudio.Bootstrapper.Services.PathService;
 using ProjectManagementStudio.Bootstrapper.Services.UrlService;
 using ProjectManagementStudio.Bootstrapper.ThemeService;
@@ -83,6 +84,7 @@ public class Bootstrapper : IDisposable
         _container.Resolve<ISettingsPageServiceInitializer>().Initialize();
         _container.Resolve<IProjectsPageServiceInitializer>().Initialize();
         _container.Resolve<IThemeServiceInitializer>().Initialize();
+        _container.Resolve<IStatisticPageServiceInitializer>().Initialize();
     }
 
     public void Dispose() => _container.Dispose();

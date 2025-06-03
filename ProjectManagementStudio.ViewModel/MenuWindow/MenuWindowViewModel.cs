@@ -8,6 +8,7 @@ using ProjectManagementStudio.ViewModel.Pages;
 using ProjectManagementStudio.ViewModel.PageServices.IProfilePageService;
 using ProjectManagementStudio.ViewModel.PageServices.IProjectsPageService;
 using ProjectManagementStudio.ViewModel.PageServices.ISettingsPageService;
+using ProjectManagementStudio.ViewModel.PageServices.IStatisticPageService;
 using ProjectManagementStudio.ViewModel.Windows;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -36,6 +37,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     private DateTime _selectedSprintDate = DateTime.Now;
     private readonly ISettingsPageService _settingPageService;
     private readonly IProjectsPageService _projectPageService;
+    private readonly IStatisticPageService _statisticPageService;
     private User _selectedUser = new User();
     private SprintTask _newTask = new SprintTask();
 
@@ -165,7 +167,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         set
         {
             _projectPageService.SelectedTask = value;
-            if(SelectedTask is not null)
+            if (SelectedTask is not null)
                 _projectPageService.SelectedTask.Tags = [.. SelectedTask.Tags.Union(Tags, new TagComparer())];
             OnPropertyChanged();
         }
@@ -180,6 +182,11 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
+
+    public IStatisticPageService StatisticPageService
+    {
+        get => _statisticPageService;
+    }
     #endregion
 
     /* // Команды // */
@@ -192,6 +199,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     public ICommand NavigateToProfilePage { get; }
     public ICommand NavigateToWelcomePage { get; }
     public ICommand NavigateToSettingsPage { get; }
+    public ICommand NavigateToStatisticPage { get; }
     public ICommand NavigateToProjectPage { get; }
     public ICommand NavigateToProjectDetailsPage { get; }
     public ICommand NavigateToSprintDetailsCommand { get; }
@@ -222,6 +230,8 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
     public ICommand ChangeApplicationTheme { get; }
 
+    public ICommand LoadSeriesCommand { get; }
+
     #endregion
 
     public MenuWindowViewModel(
@@ -230,7 +240,8 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         ICurrentUserService currentUserService,
         IProfilePageService profilePageService,
         ISettingsPageService settingPageService,
-        IProjectsPageService projectsPageService)
+        IProjectsPageService projectsPageService,
+        IStatisticPageService statisticPageService)
     {
         _pageManager = pageManager;
         _windowManager = windowManager;
@@ -239,6 +250,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         _profilePageService = profilePageService;
         _settingPageService = settingPageService;
         _projectPageService = projectsPageService;
+        _statisticPageService = statisticPageService;
 
         _activePage = _pageManager.NavigateTo(Pages.Pages.WelcomePage);
 
@@ -249,6 +261,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         NavigateToWelcomePage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(Pages.Pages.WelcomePage));
         NavigateToProfilePage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(Pages.Pages.ProfilePage));
         NavigateToSettingsPage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(Pages.Pages.SettingsPage));
+        NavigateToStatisticPage = new RelayCommand(o => ActivePage = _pageManager.NavigateTo(Pages.Pages.StatisticPage));
         NavigateToProjectPage = new RelayCommand(o =>
         {
             ActivePage = _pageManager.NavigateTo(Pages.Pages.ProjectPage);
@@ -363,6 +376,11 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
         ChangeLocalizationCommand = new RelayCommand(o => _settingPageService.LocalizationService.Language = new CultureInfo((string)o));
         ChangeApplicationTheme = new RelayCommand(o => _settingPageService.ThemeService.SetTheme((Theme)o));
+        #endregion
+
+        // Statistic's functions //
+        #region
+        LoadSeriesCommand = new RelayCommand(async o => await _statisticPageService.InitializeSeries());
         #endregion
     }
 
