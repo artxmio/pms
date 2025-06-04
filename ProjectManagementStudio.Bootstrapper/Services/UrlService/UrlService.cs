@@ -22,6 +22,7 @@ public class UrlService : IUrlServiceInitializer, IUrlService
         { "CreateTask", "api-v2/task/create" },
         { "GetTags", "api-v2/tag/get" },
         { "UpdateTaskData", "api-v2/task/update" },
+        { "AddUserToProject", "api-v2/user/add-to-project" },
         { "AddProject", "api-v2/project/create" }
     };
 

@@ -24,4 +24,5 @@ public interface IAPIClient
     Task CreateSprint(int projectId, int duration);
     Task CreateTask(int sprintId, int userId, SprintTask task);
     Task UpdateTaskData(SprintTask task);
+    Task AddUserToProject(int projectId, int userId);
 }

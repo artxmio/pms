@@ -120,6 +120,12 @@ public class APIClient : IAPIClient
 
             var response = await _client.SendAsync(request);
 
+            if (!response.IsSuccessStatusCode)
+            {
+                MessageBox.Show($"Пользователь {login} не найден!", "Внимание!");
+                return null;
+            }
+
             GetUserResponse deserializeResponse = JsonConvert.DeserializeObject<GetUserResponse>(await response.Content.ReadAsStringAsync())
                 ?? throw new InvalidOperationException("Deserialized response can't be null");
 
@@ -492,6 +498,39 @@ public class APIClient : IAPIClient
 
             var deserializeResponse = JsonConvert.DeserializeObject<ChangeTaskResponse>(await response.Content.ReadAsStringAsync())
                 ?? throw new InvalidOperationException("Deserialized response can't be null"); ;
+        }
+        catch (HttpRequestException ex)
+        {
+            MessageBox.Show($"Возникла ошибка: сервер отключён или недоступен ({ex.Message})", "Ошибка");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Возникла неизвестная ошибка: {ex.Message}", "Ошибка");
+        }
+    }
+
+    public async Task AddUserToProject(int projectId, int userId)
+    {
+        _urlService.URLEndpoint = nameof(AddUserToProject);
+
+        var json = JsonConvert.SerializeObject(new AddUserToProjectRequest()
+        {
+            ProjectId = projectId,
+            UserId = userId
+        });
+        
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        try
+        {
+            var request = new HttpRequestMessage(HttpMethod.Post, $"{_client.BaseAddress}{_urlService.URLEndpoint}")
+            {
+                Content = content
+            };
+            var response = await _client.SendAsync(request);
+
+            var deserializeResponse = JsonConvert.DeserializeObject<AddUserToProjectResponse>(await response.Content.ReadAsStringAsync())
+                ?? throw new InvalidOperationException("Deserialized response can't be null");
         }
         catch (HttpRequestException ex)
         {

@@ -21,4 +21,5 @@ public interface IProjectsPageService
     Task<ObservableCollection<SprintTask>> GetSprintTasks(int sprintId);
     Task<ObservableCollection<Tag>> GetTags();
     Task UpdateTask(SprintTask task);
+    Task AddUserToProject(string login, int projectId);
 }

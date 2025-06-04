@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:ProjectManagementStudio.View.MenuWindow.pages"
       xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MenuWindow;assembly=ProjectManagementStudio.ViewModel"
       xmlns:converters="clr-namespace:ProjectManagementStudio.View.Converters"
+      xmlns:validations="clr-namespace:ProjectManagementStudio.ViewModel.ValidationsRules;assembly=ProjectManagementStudio.ViewModel"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ProjectDetailsPage"
@@ -36,7 +37,7 @@
                 Grid.Row="0" 
                 VerticalAlignment="Center"
                 Command="{Binding NavigateToProjectPage}" Height="40" Width="45"/>
-        
+
         <TextBlock Grid.Row="1"
                    Grid.Column="0"
                    Grid.ColumnSpan="2"
@@ -91,14 +92,20 @@
             </GroupBox>
 
             <Grid Grid.Column="1">
-                <Button 
-                        VerticalAlignment="Top"
+                <StackPanel>
+                    <Button 
                         Margin="0 10 0 0"
                         Width="100"
                         Height="30"
                         Content="Добавить спринт"
-                        
                         Click="ShowPopup"/>
+                    <Button 
+                        Width="100"
+                        Margin="0 10 0 0"
+                        Height="30"
+                        Content="Добавить пользователя"
+                        Click="Button_Click"/>
+                </StackPanel>
 
                 <!-- Всплывающее окно -->
                 <Popup x:Name="SprintPopup" StaysOpen="False" Placement="Mouse">
@@ -116,6 +123,17 @@
                                     <TextBlock Text="Спринт не может заканчиваться в прошлом" Foreground="Red"/>
                                 </Border>
                             </Popup>
+                        </StackPanel>
+                    </Border>
+                </Popup>
+                <Popup x:Name="LoginPopup" Placement="MousePoint" StaysOpen="False">
+                    <Border Background="White" BorderBrush="Black" BorderThickness="1" Padding="10">
+                        <StackPanel>
+                            <TextBlock Text="Введите логин:"/>
+                            <TextBox x:Name="LoginTextBox" Width="200" Text="{Binding NewUserToProjectLogin}"/>
+
+                            <Button Content="Добавить"
+                                    Command="{Binding AddUserToProjectCommand}"/>
                         </StackPanel>
                     </Border>
                 </Popup>

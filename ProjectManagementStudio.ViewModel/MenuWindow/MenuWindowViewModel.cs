@@ -14,6 +14,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using System.Windows.Input;
 
 namespace ProjectManagementStudio.ViewModel.MenuWindow;
@@ -40,6 +41,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     private readonly IStatisticPageService _statisticPageService;
     private User _selectedUser = new User();
     private SprintTask _newTask = new SprintTask();
+    private string _newUserToProjectLogin = "";
 
     #endregion
 
@@ -187,6 +189,16 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     {
         get => _statisticPageService;
     }
+
+    public string NewUserToProjectLogin
+    {
+        get => _newUserToProjectLogin;
+        set
+        {
+            _newUserToProjectLogin = value;
+            OnPropertyChanged();
+        }
+    }
     #endregion
 
     /* // Команды // */
@@ -225,7 +237,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     public ICommand LoadTagsCommand { get; }
     public ICommand CreateSprintCommand { get; }
     public ICommand CreateTaskCommand { get; }
-
+    public ICommand AddUserToProjectCommand { get; }
     public ICommand SaveTaskCommand { get; }
 
     public ICommand ChangeApplicationTheme { get; }
@@ -363,6 +375,15 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
             Tasks = await _projectPageService.GetSprintTasks(SelectedSprint.Id);
             OnPropertyChanged(nameof(Tasks));
+        });
+
+        AddUserToProjectCommand = new RelayCommand(async o =>
+        {
+            Regex regex = new Regex("^[a-zA-Z0-9_]{6,20}$");
+
+            await _projectPageService.AddUserToProject(NewUserToProjectLogin, SelectedProject.Id);
+
+            Users = await _projectPageService.GetProjectUsers(SelectedProject.Id);
         });
         #endregion
         // Profile's functions //

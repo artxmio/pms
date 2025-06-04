@@ -64,4 +64,9 @@ public partial class ProjectDetailsPage : IProjectDetailsPage
     {
         UserPopup.IsOpen = false;
     }
+
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+        LoginPopup.IsOpen = true;   
+    }
 }

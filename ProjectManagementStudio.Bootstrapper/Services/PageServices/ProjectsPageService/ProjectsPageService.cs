@@ -39,7 +39,6 @@ internal class ProjectsPageService : IProjectsPageService, IProjectsPageServiceI
         set => _selectedTask = value;
     }
 
-
     public ProjectsPageService(
         ICurrentUserService currentUserService,
         IAPIClient client,
@@ -59,6 +58,15 @@ internal class ProjectsPageService : IProjectsPageService, IProjectsPageServiceI
     public async Task<ObservableCollection<SprintTask>> GetSprintTasks(int sprintId) => await _client.GetTasks(sprintId);
     public async Task<ObservableCollection<Tag>> GetTags() => await _client.GetTags();
     public async Task UpdateTask(SprintTask task) => await _client.UpdateTaskData(task);
+    public async Task AddUserToProject(string login, int projectId)
+    {
+        var isExist = await _client.GetUserByLogin(login, "");
+
+        if (isExist is not null)
+        {
+            await _client.AddUserToProject(projectId, (int)isExist.UserId);
+        }
+    }
 
     public void OpenAddProjectWindow()
     {
