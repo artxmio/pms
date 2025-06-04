@@ -15,4 +15,5 @@ public interface IStatisticPageService
     Task InitializeSeries();
 
     Task ExportDocx();
+    Task ExportPdf();
 }

@@ -233,6 +233,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
     public ICommand LoadSeriesCommand { get; }
 
     public ICommand ExportDocxCommand { get; }
+    public ICommand ExportPdfCommand { get; }
 
     #endregion
 
@@ -385,6 +386,7 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
         LoadSeriesCommand = new RelayCommand(async o => await _statisticPageService.InitializeSeries());
 
         ExportDocxCommand = new RelayCommand(async o => await _statisticPageService.ExportDocx());
+        ExportPdfCommand = new RelayCommand(async o => await _statisticPageService.ExportPdf());
         #endregion
     }
 

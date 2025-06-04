@@ -19,6 +19,7 @@
     <PackageReference Include="Autofac" Version="8.1.1" />
     <PackageReference Include="DocX" Version="4.0.25105.5786" />
     <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-rc2" />
+    <PackageReference Include="PDFsharp" Version="6.2.0" />
     <PackageReference Include="Xceed.Workbooks.NET" Version="3.0.25228.6154" />
   </ItemGroup>
 

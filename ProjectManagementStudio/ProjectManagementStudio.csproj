@@ -20,6 +20,7 @@
     <PackageReference Include="MaterialDesignColors" Version="3.1.0" />
     <PackageReference Include="MaterialDesignThemes" Version="5.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="PDFsharp" Version="6.2.0" />
     <PackageReference Include="Xceed.Workbooks.NET" Version="3.0.25228.6154" />
   </ItemGroup>
 

@@ -120,6 +120,23 @@ internal class StatisticPageService : IStatisticPageService, IStatisticPageServi
         }
     }
 
+    public async Task ExportPdf()
+    {
+        var dialog = new SaveFileDialog
+        {
+            Title = "Выберите путь для сохранения",
+            Filter = "Документ PDF (*.pdf)|*.pdf"
+        };
+
+        if (dialog.ShowDialog() == true)
+        {
+            List<Project> projects = [.. await _client.GetProjects((int)_currentUserService.CurrentUser.UserId)];
+            await _documentGenerator.GeneratePdf(projects, dialog.FileName);
+
+            MessageBox.Show("Файл сохранён", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+    }
+
     private async Task InitializeProjectUserSeries()
     {
         List<int> projectsIds = [.. (await _client.GetProjects((int)_currentUserService.CurrentUser.UserId)).Select(x => x.Id)];

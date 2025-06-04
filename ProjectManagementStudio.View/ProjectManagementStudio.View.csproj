@@ -73,6 +73,8 @@
 		<None Remove="Source\eye.png" />
 		<None Remove="Source\eye_closed.png" />
 		<None Remove="Source\file.png" />
+		<None Remove="Source\Fonts\OpenSans-Bold.ttf" />
+		<None Remove="Source\Fonts\OpenSans-BoldItalic.ttf" />
 		<None Remove="Source\GreenTheme\backgroundImage.png" />
 		<None Remove="Source\GreenTheme\Close_icon.png" />
 		<None Remove="Source\GreenTheme\edit_pencil.png" />
@@ -132,6 +134,15 @@
 
 	<ItemGroup>
 	  <Page Remove="Themes\DefaultTheme.xaml" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Source\Fonts\OpenSans-Bold.ttf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="Source\Fonts\OpenSans-BoldItalic.ttf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	</ItemGroup>
 
 	<ItemGroup>
