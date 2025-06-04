@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using System.Windows;
+using LiveChartsCore.SkiaSharpView.WPF;
 
 namespace ProjectManagementStudio.View.MenuWindow.pages;
 
@@ -24,23 +25,49 @@ public partial class StatisticPage : IStatisticPage
         _viewModel.LoadSeriesCommand.Execute(null);
     }
 
-    private void SavePieChartAsImage(UIElement pieChartElement, string filePath)
+    private void SaveDiagrams(object sender, RoutedEventArgs e)
     {
-        var renderBitmap = new RenderTargetBitmap(
-            (int)pieChartElement.RenderSize.Width,
-            (int)pieChartElement.RenderSize.Height,
-            96, 96,
-            PixelFormats.Pbgra32);
+        SaveChart(PieChart, "PieChart");
+        SaveChart(CartesianChart, "CartesianChart");
+        SaveChart(LinearChart, "LinearChart");
 
-        renderBitmap.Render(pieChartElement);
+        PieChart.ApplyTemplate();
+        PieChart.UpdateLayout();
 
-        using (var fileStream = new FileStream(filePath, FileMode.Create))
+        CartesianChart.ApplyTemplate();
+        CartesianChart.UpdateLayout();
+
+        LinearChart.ApplyTemplate();
+        LinearChart.UpdateLayout();
+    }
+
+    private void SaveChart(UIElement element, string fileName)
+    {
+        if (element is Chart chart)
         {
-            BitmapEncoder encoder = new PngBitmapEncoder();
-            encoder.Frames.Add(BitmapFrame.Create(renderBitmap));
+            chart.ApplyTemplate();
+            chart.UpdateLayout();
+
+            DrawingVisual dv = new DrawingVisual();
+            using (DrawingContext dc = dv.RenderOpen())
+            {
+                dc.DrawRectangle(new VisualBrush(chart), null, new Rect(new Size(chart.ActualWidth, chart.ActualHeight)));
+            }
+
+            RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap(
+                (int)chart.ActualWidth, (int)chart.ActualHeight, 96, 96, PixelFormats.Pbgra32);
+            renderTargetBitmap.Render(dv);
+
+            string directoryPath = "Temp";
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+            
+            using FileStream fileStream = new FileStream($"{directoryPath}/{fileName}.png", FileMode.Create);
+            PngBitmapEncoder encoder = new PngBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(renderTargetBitmap));
             encoder.Save(fileStream);
         }
-
-        MessageBox.Show($"Диаграмма сохранена как изображение: {filePath}", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
     }
 }

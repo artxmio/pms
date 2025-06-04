@@ -22,7 +22,8 @@ public class DocumentsGenerator : IDocumentsGenerator, IDocumentsGeneratorInitia
     public async Task GenerateDocx(List<Project> projects, string filePath)
     {
         using var doc = DocX.Create(filePath);
-        doc.InsertParagraph("Отчёт о проектах").FontSize(18).Bold().Alignment = Xceed.Document.NET.Alignment.center;
+        doc.InsertParagraph("Отчёт о проектах")
+            .FontSize(18).Bold().Alignment = Xceed.Document.NET.Alignment.center;
 
         foreach (var project in projects)
         {
@@ -30,16 +31,28 @@ public class DocumentsGenerator : IDocumentsGenerator, IDocumentsGeneratorInitia
                 .FontSize(14).Bold();
 
             var sprints = await _client.GetSprintsByProjectID(project.Id);
-
             doc.InsertParagraph($"Количество спринтов: {sprints.Count}");
 
             var users = await _client.GetProjectUsers(project.Id);
+            doc.InsertParagraph($"Участники: {string.Join(", ", users.Select(x=>x.UserName))}").SpacingAfter(20);
+        }
 
-            doc.InsertParagraph($"Участники: {string.Join(", ", users)}").SpacingAfter(20);
+        doc.InsertParagraph($"Диаграммы").SpacingAfter(20).FontSize(18).Bold().Alignment = Xceed.Document.NET.Alignment.center;
+
+        string[] chartPaths = { "Temp/PieChart.png", "Temp/CartesianChart.png", "Temp/LinearChart.png" };
+        foreach (var path in chartPaths)
+        {
+            if (File.Exists(path))
+            {
+                var image = doc.AddImage(path);
+                var picture = image.CreatePicture();
+                doc.InsertParagraph().AppendPicture(picture);
+            }
         }
 
         doc.Save();
     }
+
 
     public void GenerateCsv()
     {
