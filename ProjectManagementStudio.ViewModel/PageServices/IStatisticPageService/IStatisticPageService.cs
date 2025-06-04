@@ -16,4 +16,6 @@ public interface IStatisticPageService
 
     Task ExportDocx();
     Task ExportPdf();
+    Task ExportTxt();
+    Task ExportCsv();
 }

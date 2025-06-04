@@ -233,6 +233,7 @@
                                 FontWeight="Normal"
                                 BorderBrush="Black"
                                 BorderThickness="1"
+                                Command="{Binding ExportCsvCommand}"
                                 Click="SaveDiagrams">
                             <Button.Effect>
                                 <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
@@ -269,6 +270,7 @@
                                 FontWeight="Normal"
                                 BorderBrush="Black"
                                 BorderThickness="1"
+                                Command="{Binding ExportTxtCommand}"
                                 Click="SaveDiagrams">
                             <Button.Effect>
                                 <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>

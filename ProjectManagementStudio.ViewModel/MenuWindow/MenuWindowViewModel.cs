@@ -234,6 +234,8 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
     public ICommand ExportDocxCommand { get; }
     public ICommand ExportPdfCommand { get; }
+    public ICommand ExportTxtCommand { get; }
+    public ICommand ExportCsvCommand { get; }
 
     #endregion
 
@@ -387,6 +389,8 @@ public class MenuWindowViewModel : IMenuWindowViewModel, INotifyPropertyChanged
 
         ExportDocxCommand = new RelayCommand(async o => await _statisticPageService.ExportDocx());
         ExportPdfCommand = new RelayCommand(async o => await _statisticPageService.ExportPdf());
+        ExportTxtCommand = new RelayCommand(async o => await _statisticPageService.ExportTxt());
+        ExportCsvCommand = new RelayCommand(async o => await _statisticPageService.ExportCsv());
         #endregion
     }
 

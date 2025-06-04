@@ -9,6 +9,7 @@ using System.Windows.Threading;
 using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 using PdfSharp.Fonts;
+using System.Text;
 
 namespace ProjectManagementStudio.Bootstrapper.Services.DocumentsGenerator;
 
@@ -59,9 +60,20 @@ public class DocumentsGenerator : IDocumentsGenerator, IDocumentsGeneratorInitia
     }
 
 
-    public void GenerateCsv()
+    public async Task GenerateCsv(List<Project> projects, string filePath)
     {
-        throw new NotImplementedException();
+        using StreamWriter writer = new StreamWriter(filePath, false, Encoding.UTF8);
+
+        writer.WriteLine("Проект;Количество спринтов;Участники");
+
+        foreach (var project in projects)
+        {
+            var sprints = await _client.GetSprintsByProjectID(project.Id);
+            var users = await _client.GetProjectUsers(project.Id);
+            string userNames = string.Join(", ", users.Select(x => x.UserName));
+
+            writer.WriteLine($"{project.Title};{sprints.Count};{userNames}");
+        }
     }
 
     public async Task GeneratePdf(List<Project> projects, string filePath)
@@ -125,10 +137,24 @@ public class DocumentsGenerator : IDocumentsGenerator, IDocumentsGeneratorInitia
         document.Save(filePath);
     }
 
-
-    public void GenerateTxt()
+    public async Task GenerateTxt(List<Project> projects, string filePath)
     {
-        throw new NotImplementedException();
+        using StreamWriter writer = new StreamWriter(filePath, false, System.Text.Encoding.UTF8);
+
+        writer.WriteLine("Отчёт о проектах");
+        writer.WriteLine(new string('-', 50));
+
+        foreach (var project in projects)
+        {
+            writer.WriteLine($"Проект: {project.Title}");
+
+            var sprints = await _client.GetSprintsByProjectID(project.Id);
+            writer.WriteLine($"Количество спринтов: {sprints.Count}");
+
+            var users = await _client.GetProjectUsers(project.Id);
+            writer.WriteLine($"Участники: {string.Join(", ", users.Select(x => x.UserName))}");
+            writer.WriteLine();
+        }
     }
 
     public void Initialize()

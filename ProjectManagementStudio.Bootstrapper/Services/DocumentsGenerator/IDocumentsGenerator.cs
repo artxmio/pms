@@ -6,6 +6,6 @@ public interface IDocumentsGenerator
 {
     Task GenerateDocx(List<Project> projects, string filePath);
     Task GeneratePdf(List<Project> projects, string filePath);
-    void GenerateCsv();
-    void GenerateTxt();
+    Task GenerateCsv(List<Project> projects, string filePath);
+    Task GenerateTxt(List<Project> projects, string filePath);
 }
