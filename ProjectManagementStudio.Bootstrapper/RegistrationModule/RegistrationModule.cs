@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using ProjectManagementStudio.Bootstrapper.Factories;
 using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
+using ProjectManagementStudio.Bootstrapper.Services.DocumentsGenerator;
 using ProjectManagementStudio.Bootstrapper.Services.PageServices.ProfilePageService;
 using ProjectManagementStudio.Bootstrapper.Services.PageServices.ProjectsPageService;
 using ProjectManagementStudio.Bootstrapper.Services.PageServices.SettingsPageService;
@@ -70,6 +71,11 @@ public class RegistrationModule : Module
         builder.RegisterType<StatisticPageService>()
             .As<IStatisticPageService>()
             .As<IStatisticPageServiceInitializer>()
+            .SingleInstance();
+
+        builder.RegisterType<DocumentsGenerator>()
+            .As<IDocumentsGenerator>()
+            .As<IDocumentsGeneratorInitializer>()
             .SingleInstance();
     }
 }

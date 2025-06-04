@@ -7,30 +7,289 @@
       xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
       xmlns:vm="clr-namespace:ProjectManagementStudio.ViewModel.MenuWindow;assembly=ProjectManagementStudio.ViewModel"
       mc:Ignorable="d" 
-      d:DesignHeight="1080" d:DesignWidth="1920"
       Title="StatisticPage"
       d:DataContext="{d:DesignInstance vm:MenuWindowViewModel}">
 
-    <Grid Margin="50">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="50" Orientation="Vertical">
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
-        </Grid.RowDefinitions>
+            <Border HorizontalAlignment="Center"
+                    CornerRadius="15"
+                    BorderBrush="Black"
+                    Margin="0 0 0 30"
+                    Padding="20"
+                    Background="{DynamicResource SettingsBackground}"
+                    d:Background="Aquamarine">
 
-        <Border Padding="0">
+                <Border.Effect>
+                    <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
+                </Border.Effect>
 
-            <lvc:PieChart Grid.Row="0"
-              Width="500"
-              Height="500"
-              Margin="0"
-              Padding="0"
-              FontSize="16"
-              Series="{Binding StatisticPageService.ProjectSeries}"
-                          BorderBrush="Black"
-                          BorderThickness="1">
-            </lvc:PieChart>
-        </Border>
+                <TextBlock Text="Статистика"
+                           FontSize="75"
+                           Foreground="White"
+                           TextAlignment="Center"
+                           FontFamily="Outfit"
+                           FontWeight="Bold"
+                           Width="600"/>
 
+            </Border>
 
-    </Grid>
+            <Border HorizontalAlignment="Center"
+                    CornerRadius="15"
+                    BorderBrush="Black"
+                    Background="{DynamicResource SettingsBackground}"
+                    d:Background="Aquamarine"
+                    Margin="0 0 0 30"
+                    Padding="20">
+                <Border.Effect>
+                    <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
+                </Border.Effect>
+
+                <StackPanel>
+                    <TextBlock Text="Проекты"
+                               FontWeight="Bold"
+                               FontSize="50"
+                               Margin="0 0 0 15"
+                               Foreground="White"/>
+
+                    <lvc:PieChart x:Name="PieChart" Height="300"
+                                  Width="600"
+                                  Series="{Binding StatisticPageService.ProjectSeries}"
+                                  LegendPosition="Bottom"
+                                  Foreground="Black">
+                    </lvc:PieChart>
+                </StackPanel>
+            </Border>
+
+            <Border HorizontalAlignment="Center"
+                    CornerRadius="15"
+                    BorderBrush="Black"
+                    Background="{DynamicResource SettingsBackground}"
+                    d:Background="Aquamarine"
+                    Margin="0 0 0 30"
+                    Padding="20">
+                <Border.Effect>
+                    <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
+                </Border.Effect>
+
+                <StackPanel>
+                    <TextBlock Text="Спринты"
+                               FontWeight="Bold"
+                               FontSize="50"
+                               Margin="0 0 0 15"
+                               Foreground="White"/>
+
+                    <lvc:CartesianChart Height="300"
+                                  Width="600"
+                                  Series="{Binding StatisticPageService.SprintSeries}"
+                                        YAxes="{Binding StatisticPageService.YAxesSprintSeries}"
+                                        XAxes="{Binding StatisticPageService.XAxesSprintSeries}"
+                                  LegendPosition="Bottom"
+                                  Foreground="Black">
+                    </lvc:CartesianChart>
+                </StackPanel>
+            </Border>
+
+            <Border HorizontalAlignment="Center"
+                    CornerRadius="15"
+                    BorderBrush="Black"
+                    Background="{DynamicResource SettingsBackground}"
+                    d:Background="Aquamarine"
+                    Margin="0 0 0 30"
+                    Padding="20">
+                <Border.Effect>
+                    <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
+                </Border.Effect>
+
+                <StackPanel>
+                    <TextBlock Text="Участники"
+                               FontWeight="Bold"
+                               FontSize="50"
+                               Margin="0 0 0 15"
+                               Foreground="White"/>
+
+                    <lvc:CartesianChart Height="300"
+                                  Width="600"
+                                  Series="{Binding StatisticPageService.UserSeries}"
+                                  XAxes="{Binding StatisticPageService.XAxesSprintSeries}"
+                                  LegendPosition="Bottom"
+                                  Foreground="Black">
+                    </lvc:CartesianChart>
+                </StackPanel>
+            </Border>
+            <Border HorizontalAlignment="Center"
+                    CornerRadius="15"
+                    BorderBrush="Black"
+                    Background="{DynamicResource ProfileItems}"
+                    d:Background="Aquamarine"
+                    Margin="0 0 0 30"
+                    Padding="20">
+                <Border.Effect>
+                    <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
+                </Border.Effect>
+                <StackPanel>
+                    <TextBlock Text="Экспорт"
+                               FontWeight="Bold"
+                               FontSize="50"
+                               Foreground="White"
+                               Margin="0 0 0 15"/>
+                    <Grid Width="600">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Button Width="260" Height="39"
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Margin="0,20,0,0"
+                                d:Background="#724D9D"
+                                Background="{DynamicResource Buttons}"
+                                Content="DOCX"
+                                Foreground="{DynamicResource TextColor}"
+                                FontFamily="outfit" FontSize="20"
+                                FontWeight="Normal"
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Command="{Binding ExportDocxCommand}">
+                            <Button.Effect>
+                                <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
+                            </Button.Effect>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="buttonBorder" 
+                                            CornerRadius="10" 
+                                            Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" 
+                                                            VerticalAlignment="Center" ContentSource="Content" 
+                                                            TextElement.FontFamily="{TemplateBinding FontFamily}" 
+                                                            TextElement.FontSize="{TemplateBinding FontSize}" 
+                                                            TextElement.FontWeight="{TemplateBinding FontWeight}"
+                                                            TextElement.Foreground="{TemplateBinding Foreground}"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="buttonBorder" Property="Background" Value="{DynamicResource ButtonsHover}"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button Width="260" Height="39"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Margin="0,20,0,0"
+                                d:Background="#724D9D"
+                                Background="{DynamicResource Buttons}"
+                                Content="PDF"
+                                Foreground="{DynamicResource TextColor}"
+                                FontFamily="outfit" FontSize="20"
+                                FontWeight="Normal"
+                                BorderBrush="Black"
+                                BorderThickness="1">
+                            <Button.Effect>
+                                <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
+                            </Button.Effect>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="buttonBorder" 
+                                            CornerRadius="10" 
+                                            Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" 
+                                                            VerticalAlignment="Center" ContentSource="Content" 
+                                                            TextElement.FontFamily="{TemplateBinding FontFamily}" 
+                                                            TextElement.FontSize="{TemplateBinding FontSize}" 
+                                                            TextElement.FontWeight="{TemplateBinding FontWeight}"
+                                                            TextElement.Foreground="{TemplateBinding Foreground}"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="buttonBorder" Property="Background" Value="{DynamicResource ButtonsHover}"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button Width="260" Height="39"
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Margin="0,20,0,0"
+                                d:Background="#724D9D"
+                                Background="{DynamicResource Buttons}"
+                                Content="CSV"
+                                Foreground="{DynamicResource TextColor}"
+                                FontFamily="outfit" FontSize="20"
+                                FontWeight="Normal"
+                                BorderBrush="Black"
+                                BorderThickness="1">
+                            <Button.Effect>
+                                <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
+                            </Button.Effect>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="buttonBorder" 
+                                            CornerRadius="10" 
+                                            Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" 
+                                                            VerticalAlignment="Center" ContentSource="Content" 
+                                                            TextElement.FontFamily="{TemplateBinding FontFamily}" 
+                                                            TextElement.FontSize="{TemplateBinding FontSize}" 
+                                                            TextElement.FontWeight="{TemplateBinding FontWeight}"
+                                                            TextElement.Foreground="{TemplateBinding Foreground}"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="buttonBorder" Property="Background" Value="{DynamicResource ButtonsHover}"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button Width="260" Height="39"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Margin="0,20,0,0"
+                                d:Background="#724D9D"
+                                Background="{DynamicResource Buttons}"
+                                Content="TXT"
+                                Foreground="{DynamicResource TextColor}"
+                                FontFamily="outfit" FontSize="20"
+                                FontWeight="Normal"
+                                BorderBrush="Black"
+                                BorderThickness="1">
+                            <Button.Effect>
+                                <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.25"/>
+                            </Button.Effect>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="buttonBorder" 
+                                            CornerRadius="10" 
+                                            Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" 
+                                                            VerticalAlignment="Center" ContentSource="Content" 
+                                                            TextElement.FontFamily="{TemplateBinding FontFamily}" 
+                                                            TextElement.FontSize="{TemplateBinding FontSize}" 
+                                                            TextElement.FontWeight="{TemplateBinding FontWeight}"
+                                                            TextElement.Foreground="{TemplateBinding Foreground}"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="buttonBorder" Property="Background" Value="{DynamicResource ButtonsHover}"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+
 </Page>

@@ -13,7 +13,6 @@
     <BitmapImage x:Key="Eye">../Source/PinkTheme/eye.png</BitmapImage>
     <BitmapImage x:Key="EyeClosed">../Source/PinkTheme/eye_closed.png</BitmapImage>
 
-
     <!-- Menu Window -->
     <Style x:Key="MenuBackground" TargetType="Window">
         <Setter Property="Background">
@@ -65,7 +64,7 @@
     <SolidColorBrush x:Key="ProfileItems">#9B5372</SolidColorBrush>
     <SolidColorBrush x:Key="Buttons">#EDD8E2</SolidColorBrush>
     <SolidColorBrush x:Key="ButtonsHover">#d1bec7</SolidColorBrush>
-    <SolidColorBrush x:Key="TextColor">#BF7896</SolidColorBrush>
+    <SolidColorBrush x:Key="TextColor">#e605b5</SolidColorBrush>
     <SolidColorBrush x:Key="LogOutButtonHover">#b88299</SolidColorBrush>
     <SolidColorBrush x:Key="LogOutButton">#E29FBB</SolidColorBrush>
     <SolidColorBrush x:Key="UserProjects">#EDD8E2</SolidColorBrush>

@@ -1,11 +1,18 @@
 ﻿using LiveChartsCore;
-using System.Collections.ObjectModel;
+using LiveChartsCore.SkiaSharpView;
 
 namespace ProjectManagementStudio.ViewModel.PageServices.IStatisticPageService;
 
 public interface IStatisticPageService
 {
-    ObservableCollection<ISeries> ProjectSeries { get; set; }
+    ISeries[] ProjectSeries { get; set; }
+    ISeries[] SprintSeries { get; set; }
+    ISeries[] UserSeries { get; set; }
+
+    Axis[] YAxesSprintSeries { get; set; }
+    Axis[] XAxesSprintSeries { get; set; }
 
     Task InitializeSeries();
+
+    Task ExportDocx();
 }

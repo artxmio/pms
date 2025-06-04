@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using ProjectManagementStudio.Bootstrapper.Services.CurrentUserService;
+using ProjectManagementStudio.Bootstrapper.Services.DocumentsGenerator;
 using ProjectManagementStudio.Bootstrapper.Services.PageServices.ProfilePageService;
 using ProjectManagementStudio.Bootstrapper.Services.PageServices.ProjectsPageService;
 using ProjectManagementStudio.Bootstrapper.Services.PageServices.SettingsPageService;
@@ -85,6 +86,7 @@ public class Bootstrapper : IDisposable
         _container.Resolve<IProjectsPageServiceInitializer>().Initialize();
         _container.Resolve<IThemeServiceInitializer>().Initialize();
         _container.Resolve<IStatisticPageServiceInitializer>().Initialize();
+        _container.Resolve<IDocumentsGeneratorInitializer>().Initialize();
     }
 
     public void Dispose() => _container.Dispose();

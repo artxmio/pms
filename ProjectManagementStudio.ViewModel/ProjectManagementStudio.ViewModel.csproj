@@ -9,11 +9,8 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="8.1.1" />
-    <PackageReference Include="LiveCharts.Core" Version="0.9.8" />
-    <PackageReference Include="LiveChartsCore" Version="2.0.0-rc5.4" />
-    <PackageReference Include="LiveChartsCore.Behaviours" Version="2.0.0-rc5.4" />
-    <PackageReference Include="LiveChartsCore.SkiaSharpView" Version="2.0.0-rc5.4" />
-    <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-rc5.4" />
+    <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-rc2" />
+    <PackageReference Include="Xceed.Workbooks.NET" Version="3.0.25228.6154" />
   </ItemGroup>
 
   <ItemGroup>
