@@ -8,57 +8,123 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SprintDetailsPage"
-      Background="White"
+      d:Background="White"
       d:DataContext="{d:DesignInstance vm:MenuWindowViewModel}">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Button Content="Назад" 
-                HorizontalAlignment="Left" 
-                Margin="10,0,0,0" 
-                Grid.Row="0" 
-                VerticalAlignment="Center"
-                Command="{Binding NavigateToProjectDetailsPage}" Height="40" Width="45"/>
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal">
 
-        <TextBlock Text="{Binding SelectedSprint.StartDate}"
+            <Button VerticalAlignment="Center"
+                HorizontalAlignment="Left"
+                    Width="65" Height="65" 
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Command="{Binding NavigateToProjectDetailsPage}">
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+
+                <Image Margin="0,0,0,0" 
+                       Width="65" 
+                       Height="65" 
+                       d:Source="..\..\Source\DefaultTheme\arrow.png"
+                       Source="{DynamicResource Arrow}">
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Setter Property="Opacity" Value="0.7"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Opacity" Value="1"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Button>
+
+            <TextBlock Text="{Binding SelectedSprint.StartDate}"
+                   Foreground="{DynamicResource TextColor}"
                    FontSize="40"
-                   Grid.Row="1"/>
+                   Grid.Row="0"/>
+        </StackPanel>
+
+
         <TextBlock Text="{Binding SelectedSprint.EndDate}"
+                   Foreground="{DynamicResource TextColor}"
                    FontSize="40"
-                   Grid.Row="2"/>
+                   Margin="0 0 10 0"
+                   Grid.Row="1"/>
 
-        <ListBox x:Name="TaskList"
-                 ItemsSource="{Binding Tasks}"
-                 Grid.Row="3"
-                 SelectedItem="{Binding SelectedTask}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderThickness="1" CornerRadius="5" Padding="10" Margin="5"
-                    BorderBrush="Gray" Background="LightGray">
-                        <StackPanel MouseLeftButtonDown="StackPanel_MouseLeftButtonDown">
-                            <TextBlock Text="{Binding TaskName}" FontSize="16" FontWeight="Bold"/>
-                            <TextBlock Text="{Binding TaskDescription}" TextWrapping="Wrap"/>
-                            <ItemsControl ItemsSource="{Binding Tags}">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <Border Padding="5" Background="LightBlue" Margin="2">
-                                            <TextBlock Text="{Binding TagName}"/>
-                                        </Border>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <Border CornerRadius="15"
+                Grid.Row="2"
+                        Background="{DynamicResource ProfileBackground}"
+                        Margin="0 10 10 10">
+
+            <Border.Effect>
+                <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.1" Direction="270"/>
+            </Border.Effect>
+
+            <ListBox x:Name="TaskList"
+                     ItemsSource="{Binding Tasks}"
+                     SelectedItem="{Binding SelectedTask}"
+                     Background="Transparent"
+                     BorderBrush="Transparent"
+                     HorizontalAlignment="Center"
+                     Height="650"
+                     VirtualizingPanel.ScrollUnit="Pixel"
+                     ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="1" 
+                                        CornerRadius="5" 
+                                        Padding="10" 
+                                        Width="850"
+                                        Height="150"
+                                        HorizontalAlignment="Center"
+                                        Background="{DynamicResource LogOutButton}">
+                            <StackPanel MouseLeftButtonDown="StackPanel_MouseLeftButtonDown">
+                                <TextBlock Text="{Binding TaskName}"
+                                                   Foreground="{DynamicResource TextColor}"
+                                                   FontSize="20"/>
+                                <TextBlock Text="{Binding TaskDescription}"
+                                                   Foreground="{DynamicResource TextColor}"
+                                                   FontSize="20"/>
+                                <ItemsControl ItemsSource="{Binding Tags}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Padding="5" Background="LightBlue" Margin="2">
+                                                <TextBlock Text="{Binding TagName}"/>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
 
         <Popup x:Name="Tasks" IsOpen="False" Placement="MousePoint">
             <Border Background="White" BorderBrush="Gray" BorderThickness="2" Padding="10" CornerRadius="5">
@@ -112,11 +178,35 @@
                 </StackPanel>
             </Border>
         </Popup>
-        <Button Content="Новый таск"
-                HorizontalAlignment="Left" 
-                Margin="20,20" 
-                Grid.Row="4" 
-                Click="Button_Click_2"
-                VerticalAlignment="Center"/>
+        <Button 
+            Margin="0 10 0 35"
+            Grid.Row="3"
+            Foreground="{DynamicResource TextColor}"
+            Background="{DynamicResource Buttons}"
+            FontFamily="outfit" FontSize="15"
+            FontWeight="Normal"
+            Width="200" Height="40"
+            Content="Новая задача"
+            Click="Button_Click_2">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="buttonBorder" 
+                        CornerRadius="10" 
+                        Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" 
+                VerticalAlignment="Center" ContentSource="Content" 
+                TextElement.FontFamily="{TemplateBinding FontFamily}" 
+                TextElement.FontSize="{TemplateBinding FontSize}" 
+                TextElement.FontWeight="{TemplateBinding FontWeight}"
+                TextElement.Foreground="{TemplateBinding Foreground}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="buttonBorder" Property="Background" Value="{DynamicResource ButtonsHover}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
     </Grid>
 </Page>

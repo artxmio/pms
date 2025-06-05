@@ -189,6 +189,7 @@
                             FontWeight="Normal"
                             Width="200" Height="40"
                             Content="Добавить спринт"
+                    Foreground="{DynamicResource TextColor}"
                             Click="ShowPopup">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
@@ -217,7 +218,8 @@
                      FontWeight="Normal"
                      Width="200" Height="40"
                      Content="Добавить участника"
-                     Click="Button_Click">
+                     Click="Button_Click"
+                    Foreground="{DynamicResource TextColor}">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border x:Name="buttonBorder" 
