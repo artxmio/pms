@@ -10,7 +10,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ProjectDetailsPage"
-      Background="White"
+      d:Background="White"
       d:DataContext="{d:DesignInstance vm:MenuWindowViewModel}"
       Margin="50">
 
@@ -31,36 +31,70 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Button Content="Назад" 
-                HorizontalAlignment="Left" 
-                Margin="10,0,0,0" 
-                Grid.Row="0" 
-                VerticalAlignment="Center"
-                Command="{Binding NavigateToProjectPage}" Height="40" Width="45"/>
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center">
+            <Button VerticalAlignment="Center"
+                    Width="65" Height="65" 
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Command="{Binding NavigateToProjectPage}">
 
-        <TextBlock Grid.Row="1"
-                   Grid.Column="0"
-                   Grid.ColumnSpan="2"
-                   HorizontalAlignment="Left" 
-                   Margin="30,30,0,0" 
-                   TextWrapping="Wrap" 
-                   d:Text="TextBlock" 
-                   Text="{Binding SelectedProject.Title}"
-                   FontSize="45"
-                   VerticalAlignment="Top"/>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+
+                <Image Margin="0,0,0,0" 
+                       Width="65" 
+                       Height="65" 
+                       d:Source="..\..\Source\DefaultTheme\arrow.png"
+                       Source="{DynamicResource Arrow}">
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Setter Property="Opacity" Value="0.7"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Opacity" Value="1"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Button>
+            <Border CornerRadius="15"
+                    Padding="15"
+                    Background="{DynamicResource ProfileBackground}">
+                <TextBlock Grid.Row="0"
+                           TextWrapping="Wrap" 
+                           d:Text="TextBlock" 
+                           VerticalAlignment="Center"
+                           FontSize="45"
+                           Background="Transparent"
+                           Foreground="{DynamicResource TextColor}"
+                           Text="{Binding SelectedProject.Title}"/>
+            </Border>
+
+        </StackPanel>
 
         <TextBlock Grid.Row="2"
                    Grid.Column="0"
                    Grid.ColumnSpan="2"
-                   Grid.RowSpan="1"
                    HorizontalAlignment="Left" 
-                   Margin="30,0,0,0" 
+                   Margin="85,0,0,0" 
                    TextWrapping="Wrap"
                    d:Text="TextBox" 
+                   Foreground="{DynamicResource TextColor}"
                    Text="{Binding SelectedProject.Description}"
-                   VerticalAlignment="Top" 
+                   VerticalAlignment="Center" 
                    FontSize="35"
-                   Width="735" Height="100"/>
+                   Width="680" Height="100"/>
 
         <Grid Grid.Row="3"
               Grid.Column="0"
@@ -71,110 +105,235 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <GroupBox Header="Спринты" 
-                      Margin="10">
-                <ListBox x:Name="SprintList"
-                 
-                 ItemsSource="{Binding Sprints}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Border BorderThickness="1" CornerRadius="5" Padding="10" Margin="5"
-                    BorderBrush="Gray" Background="LightGray">
-                                <StackPanel MouseLeftButtonDown="StackPanel_MouseLeftButtonDown">
-                                    <TextBlock Text="{Binding StartDate, StringFormat='Дата начала: {0:dd.MM.yyyy}'}"/>
-                                    <TextBlock Text="{Binding EndDate, StringFormat='Дата окончания: {0:dd.MM.yyyy}'}"/>
-                                    <TextBlock Text="{Binding Status, Converter={StaticResource SprintStatusConverter}}" Foreground="DarkGreen"/>
-                                </StackPanel>
-                            </Border>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </GroupBox>
+            <StackPanel Grid.Row="0"
+                        Grid.Column="0">
+                <TextBlock Text="Спринты"
+                           TextWrapping="Wrap"
+                           d:Text="TextBox" 
+                           Foreground="{DynamicResource TextColor}"
+                           FontSize="25"
+                           Margin="0 0 0 10"/>
+                <Border CornerRadius="15"
+                        Background="{DynamicResource ProfileBackground}"
+                        Margin="0 10 10 10">
+                    
+                    <Border.Effect>
+                        <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.1" Direction="270"/>
+                    </Border.Effect>
+                    
+                    <ListBox x:Name="SprintList"
+                                 Background="Transparent"
+                                 BorderBrush="Transparent"
+                                 ItemsSource="{Binding Sprints}"
+                                 HorizontalAlignment="Center"
+                                 Height="650"
+                                 VirtualizingPanel.ScrollUnit="Pixel"
+                             ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
 
-            <Grid Grid.Column="1">
-                <StackPanel>
-                    <Button 
-                        Margin="0 10 0 0"
-                        Width="100"
-                        Height="30"
-                        Content="Добавить спринт"
-                        Click="ShowPopup"/>
-                    <Button 
-                        Width="100"
-                        Margin="0 10 0 0"
-                        Height="30"
-                        Content="Добавить пользователя"
-                        Click="Button_Click"/>
-                </StackPanel>
-
-                <!-- Всплывающее окно -->
-                <Popup x:Name="SprintPopup" StaysOpen="False" Placement="Mouse">
-                    <Border BorderBrush="Black" BorderThickness="1" Background="White" Padding="10">
-                        <StackPanel>
-                            <TextBlock Text="Выберите дату спринта:" FontWeight="Bold"/>
-                            <DatePicker SelectedDate="{Binding SelectedSprintDate}" 
-                                        x:Name="DatePicker"/>
-                            <Button Content="OK" 
-                                    Command="{Binding CreateSprintCommand}"
-                                    Click="ClosePopup"/>
-
-                            <Popup x:Name="ErrorPopup" StaysOpen="False" Placement="Top">
-                                <Border BorderBrush="Red" BorderThickness="2" Background="White" Padding="5">
-                                    <TextBlock Text="Спринт не может заканчиваться в прошлом" Foreground="Red"/>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderThickness="1" 
+                                        CornerRadius="5" 
+                                        Padding="10" 
+                                        Width="850"
+                                        Height="125"
+                                        HorizontalAlignment="Center"
+                                        Background="{DynamicResource LogOutButton}">
+                                    <StackPanel MouseLeftButtonDown="StackPanel_MouseLeftButtonDown">
+                                        <TextBlock Text="{Binding StartDate, StringFormat='Дата начала: {0:dd.MM.yyyy}'}"
+                                                   Foreground="{DynamicResource TextColor}"
+                                                   FontSize="20"/>
+                                        <TextBlock Text="{Binding EndDate, StringFormat='Дата окончания: {0:dd.MM.yyyy}'}"
+                                                   Foreground="{DynamicResource TextColor}"
+                                                   FontSize="20"/>
+                                        <TextBlock Text="{Binding Status, Converter={StaticResource SprintStatusConverter}}"
+                                                   Foreground="DarkGreen"
+                                                   FontSize="20"/>
+                                    </StackPanel>
                                 </Border>
-                            </Popup>
-                        </StackPanel>
-                    </Border>
-                </Popup>
-                <Popup x:Name="LoginPopup" Placement="MousePoint" StaysOpen="False">
-                    <Border Background="White" BorderBrush="Black" BorderThickness="1" Padding="10">
-                        <StackPanel>
-                            <TextBlock Text="Введите логин:"/>
-                            <TextBox x:Name="LoginTextBox" Width="200" Text="{Binding NewUserToProjectLogin}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Border>
 
-                            <Button Content="Добавить"
-                                    Command="{Binding AddUserToProjectCommand}"/>
-                        </StackPanel>
-                    </Border>
-                </Popup>
-            </Grid>
+            </StackPanel>
+
+                
 
         </Grid>
 
-        <GroupBox Header="Участники" 
-                  Grid.Row="3"
-                  Grid.Column="1"
-                  Grid.ColumnSpan="1"
-                  Margin="10">
-            <Grid>
+        <Border CornerRadius="25"
+                Grid.Row="0"
+                Grid.Column="1"
+                Background="{DynamicResource ProfileItems}"
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Top"
+                Height="200"
+                Width="250">
+            <StackPanel >
+                <TextBlock FontFamily="outfit" FontSize="35"
+                            TextAlignment="Center"
+                            Foreground="#FFFFFF" FontWeight="Normal"
+                            Margin="0,15,0,0" Text="{DynamicResource Options}"
+                            Width="127" Height="42"
+                            HorizontalAlignment="Center"/>
+                <Button 
+                            Margin="0 10 0 0"
+                            Background="{DynamicResource Buttons}"
+                            FontFamily="outfit" FontSize="15"
+                            FontWeight="Normal"
+                            Width="200" Height="40"
+                            Content="Добавить спринт"
+                            Click="ShowPopup">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="buttonBorder" 
+                                CornerRadius="10" 
+                                Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                VerticalAlignment="Center" ContentSource="Content" 
+                                TextElement.FontFamily="{TemplateBinding FontFamily}" 
+                                TextElement.FontSize="{TemplateBinding FontSize}" 
+                                TextElement.FontWeight="{TemplateBinding FontWeight}"
+                                TextElement.Foreground="{TemplateBinding Foreground}"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="buttonBorder" Property="Background" Value="{DynamicResource ButtonsHover}"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button 
+                     Margin="0 10 0 0"
+                     Background="{DynamicResource Buttons}"
+                     FontFamily="outfit" FontSize="15"
+                     FontWeight="Normal"
+                     Width="200" Height="40"
+                     Content="Добавить участника"
+                     Click="Button_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="buttonBorder" 
+                                CornerRadius="10" 
+                                Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                VerticalAlignment="Center" ContentSource="Content" 
+                                TextElement.FontFamily="{TemplateBinding FontFamily}" 
+                                TextElement.FontSize="{TemplateBinding FontSize}" 
+                                TextElement.FontWeight="{TemplateBinding FontWeight}"
+                                TextElement.Foreground="{TemplateBinding Foreground}"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="buttonBorder" Property="Background" Value="{DynamicResource ButtonsHover}"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+        </Border>
+
+        <!-- Всплывающее окно -->
+        <Popup x:Name="SprintPopup" StaysOpen="False" Placement="Mouse">
+            <Border BorderBrush="Black" BorderThickness="1" Background="White" Padding="10">
+                <StackPanel>
+                    <TextBlock Text="Выберите дату спринта:" FontWeight="Bold"/>
+                    <DatePicker SelectedDate="{Binding SelectedSprintDate}" 
+                        x:Name="DatePicker"/>
+                    <Button Content="OK" 
+                    Command="{Binding CreateSprintCommand}"
+                    Click="ClosePopup"/>
+
+                    <Popup x:Name="ErrorPopup" StaysOpen="False" Placement="Top">
+                        <Border BorderBrush="Red" BorderThickness="2" Background="White" Padding="5">
+                            <TextBlock Text="Спринт не может заканчиваться в прошлом" Foreground="Red"/>
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Border>
+        </Popup>
+        <Popup x:Name="LoginPopup" Placement="MousePoint" StaysOpen="False">
+            <Border Background="White" BorderBrush="Black" BorderThickness="1" Padding="10">
+                <StackPanel>
+                    <TextBlock Text="Введите логин:"/>
+                    <TextBox x:Name="LoginTextBox" Width="200" Text="{Binding NewUserToProjectLogin}"/>
+
+                    <Button Content="Добавить"
+                    Command="{Binding AddUserToProjectCommand}"/>
+                </StackPanel>
+            </Border>
+        </Popup>
+
+        <StackPanel Grid.Column="1"
+                    Grid.Row="3">
+
+            <TextBlock Text="Участники"
+                           TextWrapping="Wrap"
+                           d:Text="TextBox" 
+                           Foreground="{DynamicResource TextColor}"
+                           FontSize="25"
+                           Margin="0 0 0 10"/>
+
+            <Border CornerRadius="15"
+                    Background="{DynamicResource ProfileBackground}"
+                    Margin="0 10 10 10">
+                <Border.Effect>
+                    <DropShadowEffect Color="#000000" BlurRadius="4" ShadowDepth="4" Opacity="0.1" Direction="270"/>
+                </Border.Effect>
+                
                 <ListBox x:Name="UserList" ItemsSource="{Binding Users}"
-                         SelectionChanged="UserList_SelectionChanged"
-                         SelectedItem="{Binding SelectedUser}">
+                             BorderBrush="Transparent"
+                             BorderThickness="0"
+                             Background="Transparent"
+                             SelectionChanged="UserList_SelectionChanged"
+                             SelectedItem="{Binding SelectedUser}"         
+                             HorizontalAlignment="Center"
+                             Height="650"
+                             VirtualizingPanel.ScrollUnit="Pixel">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Border BorderThickness="1" CornerRadius="5" Padding="10" Margin="5"
-                        BorderBrush="Gray" Background="LightGray"
-                        Height="75"
-                        Width="250">
-                                <StackPanel>
-                                    <TextBlock Text="{Binding UserName}" FontSize="14" FontWeight="SemiBold"/>
+                            <Border BorderThickness="1" 
+                                        CornerRadius="5" 
+                                        Padding="10" 
+                                        Width="250"
+                                        Height="100"
+                                        HorizontalAlignment="Center"
+                                        Background="{DynamicResource LogOutButton}">
+                                <StackPanel HorizontalAlignment="Center"
+                                            VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding UserName}" 
+                                               FontSize="25" FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextColor}"/>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-
-                <!-- Всплывающее окно с информацией о пользователе -->
-                <Popup x:Name="UserPopup" StaysOpen="False" Placement="Mouse">
-                    <Border BorderBrush="Black" BorderThickness="1" Background="White" Padding="10">
-                        <StackPanel>
-                            <TextBlock Text="Информация о пользователе:" FontWeight="Bold"/>
-                            <TextBlock Text="{Binding SelectedUser.UserName}" FontSize="16"/>
-                            <Button Content="Закрыть" Click="CloseUserPopup"/>
-                        </StackPanel>
-                    </Border>
-                </Popup>
-            </Grid>
-        </GroupBox>
+            </Border>
+            <!-- Всплывающее окно с информацией о пользователе -->
+            <Popup x:Name="UserPopup" StaysOpen="False" Placement="Mouse">
+                <Border BorderBrush="Black" BorderThickness="1" Background="White" Padding="10">
+                    <StackPanel>
+                        <TextBlock Text="Информация о пользователе:" FontWeight="Bold" Margin="0 0 0 10"/>
+                        <TextBlock Text="{Binding SelectedUser.UserName}" FontSize="16"/>
+                        <Button Content="Закрыть" Click="CloseUserPopup"/>
+                    </StackPanel>
+                </Border>
+            </Popup>
+        </StackPanel>
     </Grid>
 </Page>

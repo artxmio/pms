@@ -12,7 +12,7 @@
     <BitmapImage x:Key="CloseButton">../Source/RedTheme/Close_icon.png</BitmapImage>
     <BitmapImage x:Key="Eye">../Source/RedTheme/eye.png</BitmapImage>
     <BitmapImage x:Key="EyeClosed">../Source/RedTheme/eye_closed.png</BitmapImage>
-
+    <BitmapImage x:Key="Arrow">../Source/DefaultTheme/arrow.png</BitmapImage>
 
     <!-- Menu Window -->
     <Style x:Key="MenuBackground" TargetType="Window">

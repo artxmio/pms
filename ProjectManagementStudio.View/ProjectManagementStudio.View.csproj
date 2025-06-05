@@ -55,6 +55,7 @@
 		<None Remove="Source\blue_circle.png" />
 		<None Remove="Source\Close_icon.png" />
 		<None Remove="Source\DarkQuestionMark.png" />
+		<None Remove="Source\DefaultTheme\arrow.png" />
 		<None Remove="Source\DefaultTheme\backgroundImage.jpg" />
 		<None Remove="Source\DefaultTheme\Close_icon.png" />
 		<None Remove="Source\DefaultTheme\DarkQuestionMark.png" />
@@ -238,6 +239,7 @@
 		<Resource Include="Source\BlueTheme\user.png">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
+		<Resource Include="Source\DefaultTheme\arrow.png" />
 		<Resource Include="Source\DefaultTheme\backgroundImage.jpg">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
